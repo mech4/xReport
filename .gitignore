@@ -25,3 +25,27 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+#DAF
+*.pyc
+*.mpyc
+*.dcpy
+*.bak
+*.zpy
+*.obk
+*.tracked
+*.cfg
+trackedtasks/
+*.7z
+*.zip
+*.rar
+*.mdf
+*.ldf
+_notes/
+__otordata/
+__userhome/
+_userhome/
+inbox/
+database/
+
+
