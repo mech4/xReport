@@ -1,0 +1,498 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['multipages1']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::MultiPages<
+      Name='multipages1'
+      Width=320
+      Height=320
+      Pages={
+        object:rtf::Page<
+          PageName='1'
+          PageTitle='Aktiva'
+          Container=$CONTAINERS['grData']
+        >, object:rtf::Page<
+          PageName='2'
+          PageTitle='Pasiva'
+          Container=$CONTAINERS['grData2']
+          Index=1
+        >
+      }
+    >, object:rtf::DualSplit<
+      Name='dsMain'
+      Width=921
+      Height=425
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='No'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='No.'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LPos'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Pos-pos'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LPos.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LPos.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LPos.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LPos.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LPos'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='PPRupiah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Pemerintah Pusat (Rupiah)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='PPValas'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Pemerintah Pusat (Valas)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='PPJumlah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Pemerintah Pusat (Jumlah)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='PLRupiah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Penduduk Lainnya (Rupiah)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='PLValas'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Penduduk Lainnya (Valas)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='PLJumlah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Penduduk Lainnya (Jumlah)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BPRupiah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bukan Penduduk (Rupiah)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BPValas'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bukan Penduduk (Valas)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BPJumlah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bukan Penduduk (Jumlah)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Jumlah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Seluruh (Rp dan Va)'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='No'
+          Top=8
+          Left=8
+          ControlCaption='No.'
+        >, *object:rtf::DBLookupEdit<
+          Name='LPos'
+          Top=36
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Pos-pos'
+          FieldName='LPos.reference_desc'
+          LookupField='LPos.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='PPRupiah'
+          Top=64
+          Left=8
+          ControlCaption='Pemerintah Pusat (Rupiah)'
+        >, *object:rtf::DBEdit<
+          Name='PPValas'
+          Top=92
+          Left=8
+          ControlCaption='Pemerintah Pusat (Valas)'
+        >, *object:rtf::DBEdit<
+          Name='PPJumlah'
+          Top=120
+          Left=8
+          ControlCaption='Pemerintah Pusat (Jumlah)'
+        >, *object:rtf::DBEdit<
+          Name='PLRupiah'
+          Top=148
+          Left=8
+          ControlCaption='Penduduk Lainnya (Rupiah)'
+        >, *object:rtf::DBEdit<
+          Name='PLValas'
+          Top=176
+          Left=8
+          ControlCaption='Penduduk Lainnya (Valas)'
+        >, *object:rtf::DBEdit<
+          Name='PLJumlah'
+          Top=204
+          Left=8
+          ControlCaption='Penduduk Lainnya (Jumlah)'
+        >, *object:rtf::DBEdit<
+          Name='BPRupiah'
+          Top=232
+          Left=8
+          ControlCaption='Bukan Penduduk (Rupiah)'
+        >, *object:rtf::DBEdit<
+          Name='BPValas'
+          Top=260
+          Left=8
+          ControlCaption='Bukan Penduduk (Valas)'
+        >, *object:rtf::DBEdit<
+          Name='BPJumlah'
+          Top=288
+          Left=8
+          ControlCaption='Bukan Penduduk (Jumlah)'
+        >, *object:rtf::DBEdit<
+          Name='Jumlah'
+          Top=316
+          Left=8
+          ControlCaption='Jumlah Seluruh (Rp dan Va)'
+        >
+      }
+      EqualCaptionWidth=200
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=913
+      Height=397
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-2'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcNo'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='No'
+          DisplayFormat=''
+          TitleCaption='No.'
+          Width=24
+        >, object:rtf::GridColumn<
+          Name='gcLPos'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LPos.reference_code'
+          DisplayFormat=''
+          TitleCaption='Pos-pos'
+          Width=56
+        >, object:rtf::GridColumn<
+          Name='gcPPRupiah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PPRupiah'
+          DisplayFormat=''
+          TitleCaption='Pemerintah Pusat (Rupiah)'
+          Width=200
+        >, object:rtf::GridColumn<
+          Name='gcPPValas'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PPValas'
+          DisplayFormat=''
+          TitleCaption='Pemerintah Pusat (Valas)'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcPPJumlah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PPJumlah'
+          DisplayFormat=''
+          TitleCaption='Pemerintah Pusat (Jumlah)'
+          Width=200
+        >, object:rtf::GridColumn<
+          Name='gcPLRupiah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PLRupiah'
+          DisplayFormat=''
+          TitleCaption='Penduduk Lainnya (Rupiah)'
+          Width=200
+        >, object:rtf::GridColumn<
+          Name='gcPLValas'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PLValas'
+          DisplayFormat=''
+          TitleCaption='Penduduk Lainnya (Valas)'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcPLJumlah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PLJumlah'
+          DisplayFormat=''
+          TitleCaption='Penduduk Lainnya (Jumlah)'
+          Width=200
+        >, object:rtf::GridColumn<
+          Name='gcBPRupiah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BPRupiah'
+          DisplayFormat=''
+          TitleCaption='Bukan Penduduk (Rupiah)'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcBPValas'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BPValas'
+          DisplayFormat=''
+          TitleCaption='Bukan Penduduk (Valas)'
+          Width=176
+        >, object:rtf::GridColumn<
+          Name='gcBPJumlah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BPJumlah'
+          DisplayFormat=''
+          TitleCaption='Bukan Penduduk (Jumlah)'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcJumlah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Jumlah'
+          DisplayFormat=''
+          TitleCaption='Jumlah Seluruh (Rp dan Va)'
+          Width=208
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Grid<
+      Name='grData2'
+      Width=913
+      Height=397
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-2'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcNo'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='No'
+          DisplayFormat=''
+          TitleCaption='No.'
+          Width=24
+        >, object:rtf::GridColumn<
+          Name='gcLPos'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LPos.reference_code'
+          DisplayFormat=''
+          TitleCaption='Pos-pos'
+          Width=56
+        >, object:rtf::GridColumn<
+          Name='gcPPRupiah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PPRupiah'
+          DisplayFormat=''
+          TitleCaption='Pemerintah Pusat (Rupiah)'
+          Width=200
+        >, object:rtf::GridColumn<
+          Name='gcPPValas'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PPValas'
+          DisplayFormat=''
+          TitleCaption='Pemerintah Pusat (Valas)'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcPPJumlah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PPJumlah'
+          DisplayFormat=''
+          TitleCaption='Pemerintah Pusat (Jumlah)'
+          Width=200
+        >, object:rtf::GridColumn<
+          Name='gcPLRupiah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PLRupiah'
+          DisplayFormat=''
+          TitleCaption='Penduduk Lainnya (Rupiah)'
+          Width=200
+        >, object:rtf::GridColumn<
+          Name='gcPLValas'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PLValas'
+          DisplayFormat=''
+          TitleCaption='Penduduk Lainnya (Valas)'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcPLJumlah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PLJumlah'
+          DisplayFormat=''
+          TitleCaption='Penduduk Lainnya (Jumlah)'
+          Width=200
+        >, object:rtf::GridColumn<
+          Name='gcBPRupiah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BPRupiah'
+          DisplayFormat=''
+          TitleCaption='Bukan Penduduk (Rupiah)'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcBPValas'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BPValas'
+          DisplayFormat=''
+          TitleCaption='Bukan Penduduk (Valas)'
+          Width=176
+        >, object:rtf::GridColumn<
+          Name='gcBPJumlah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BPJumlah'
+          DisplayFormat=''
+          TitleCaption='Bukan Penduduk (Jumlah)'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcJumlah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Jumlah'
+          DisplayFormat=''
+          TitleCaption='Jumlah Seluruh (Rp dan Va)'
+          Width=208
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >
+  }
+  FormClassName='LBBU_FORM_2'
+>

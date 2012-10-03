@@ -1,0 +1,846 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=240
+      Height=96
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['multipages1']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-301'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcIdOperasional'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='IdOperasional'
+          DisplayFormat=''
+          TitleCaption='ID Operasional'
+          Width=20
+        >, object:rtf::GridColumn<
+          Name='gcNoReff'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NoReff'
+          DisplayFormat=''
+          TitleCaption='No. Referensi'
+          Width=20
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::MultiPages<
+      Name='multipages1'
+      Width=320
+      Height=320
+      Pages={
+        object:rtf::Page<
+          PageName='Page1'
+          PageTitle='Page 1'
+          Container=$CONTAINERS['pData']
+        >, object:rtf::Page<
+          PageName='page2'
+          PageTitle='page 2'
+          Container=$CONTAINERS['panel1']
+          Index=1
+        >
+      }
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LSANDIBANK'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Sandi Bank'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSANDIBANK.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSANDIBANK.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSANDIBANK.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSANDIBANK.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LSANDIBANK'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='JenisKegiatanUsaha'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Kegiatan Usaha'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TanggalLaporan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal Laporan'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NoForm'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='No Form'
+          DataTypeName='varchar'
+          DataLength=10
+        >, object:rtf::FieldUIElmtSetting<
+          Name='JumlahRecordIsi'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Record Isi'
+          DataTypeName='varchar'
+          DataLength=1
+        >, object:rtf::FieldUIElmtSetting<
+          Name='IdOperasional'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='ID Operasional'
+          DataTypeName='varchar'
+          DataLength=1
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NoReff'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='No. Referensi'
+          DataTypeName='varchar'
+          DataLength=16
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJENISTRANSAKSI'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Transaksi'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJENISTRANSAKSI.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJENISTRANSAKSI.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJENISTRANSAKSI.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJENISTRANSAKSI.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LJENISTRANSAKSI'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LSTATUSPEMBELI'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Status Pembeli'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSTATUSPEMBELI.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSTATUSPEMBELI.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSTATUSPEMBELI.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSTATUSPEMBELI.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LSTATUSPEMBELI'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LSANDIPEMBELI'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Sandi Pembeli'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSANDIPEMBELI.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSANDIPEMBELI.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSANDIPEMBELI.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSANDIPEMBELI.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LSANDIPEMBELI'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NamaPembeli'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nama Pembeli'
+          DataTypeName='varchar'
+          DataLength=35
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LSANDINEGARAPEMBELI'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Sandi Negara Pembeli'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSANDINEGARAPEMBELI.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSANDINEGARAPEMBELI.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSANDINEGARAPEMBELI.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSANDINEGARAPEMBELI.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LSANDINEGARAPEMBELI'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='PembeliNonBank'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Sandi Pembeli Non Bank'
+          DataTypeName='varchar'
+          DataLength=15
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LSANDIBANK'
+          Top=8
+          Left=8
+          ControlCaption='Sandi Bank'
+          LookupField='LSANDIBANK.reference_code'
+          DisplayLookupField=true
+        >, *object:rtf::DBEdit<
+          Name='JenisKegiatanUsaha'
+          Top=36
+          Left=8
+          ControlCaption='Jenis Kegiatan Usaha'
+        >, *object:rtf::DBEdit<
+          Name='TanggalLaporan'
+          Top=64
+          Left=8
+          ControlCaption='Tanggal Laporan'
+        >, *object:rtf::DBEdit<
+          Name='NoForm'
+          Top=92
+          Left=8
+          ControlCaption='No Form'
+        >, *object:rtf::DBEdit<
+          Name='JumlahRecordIsi'
+          Top=120
+          Left=8
+          ControlCaption='Jumlah Record Isi'
+        >, *object:rtf::DBEdit<
+          Name='IdOperasional'
+          Top=148
+          Left=8
+          ControlCaption='ID Operasional'
+        >, *object:rtf::DBEdit<
+          Name='NoReff'
+          Top=176
+          Left=8
+          ControlCaption='No. Referensi'
+        >, *object:rtf::DBLookupEdit<
+          Name='LJENISTRANSAKSI'
+          Top=204
+          Left=8
+          ControlCaption='Jenis Transaksi'
+          LookupField='LJENISTRANSAKSI.reference_code'
+          DisplayLookupField=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LSTATUSPEMBELI'
+          Top=232
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Status Pembeli'
+          FieldName='LSTATUSPEMBELI.reference_desc'
+          LookupField='LSTATUSPEMBELI.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LSANDIPEMBELI'
+          Top=260
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Sandi Pembeli'
+          FieldName='LSANDIPEMBELI.reference_desc'
+          LookupField='LSANDIPEMBELI.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='NamaPembeli'
+          Top=288
+          Left=8
+          ControlCaption='Nama Pembeli'
+        >, *object:rtf::DBLookupEdit<
+          Name='LSANDINEGARAPEMBELI'
+          Top=316
+          Left=8
+          ControlCaption='Sandi Negara Pembeli'
+          LookupField='LSANDINEGARAPEMBELI.reference_code'
+          DisplayLookupField=true
+        >, *object:rtf::DBEdit<
+          Name='PembeliNonBank'
+          Top=344
+          Left=8
+          ControlCaption='Sandi Pembeli Non Bank'
+        >
+      }
+      EqualCaptionWidth=150
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LSTATUSPENJUAL'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Status Penjual'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSTATUSPENJUAL.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSTATUSPENJUAL.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSTATUSPENJUAL.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSTATUSPENJUAL.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LSTATUSPENJUAL'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LSANDIBANKPENJUAL'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Sandi Bank Penjual'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSANDIBANKPENJUAL.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSANDIBANKPENJUAL.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSANDIBANKPENJUAL.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSANDIBANKPENJUAL.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LSANDIBANKPENJUAL'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NamaPenjual'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nama Penjual'
+          DataTypeName='varchar'
+          DataLength=35
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LNEGARAPENJUAL'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Sandi Negara Penjual'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LNEGARAPENJUAL.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LNEGARAPENJUAL.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LNEGARAPENJUAL.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LNEGARAPENJUAL.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LNEGARAPENJUAL'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Diskonto'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Diskonto'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='VolumeJtRupiah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Volume (jutaan Rp)'
+          DataTypeName='varchar'
+          DataLength=9
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Tenor'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tenor'
+          DataTypeName='varchar'
+          DataLength=3
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TglValuta'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal Valuta'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TglTempo'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal Jatuh Tempo'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='JangkaWaktu'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jangka Waktu'
+          DataTypeName='varchar'
+          DataLength=2
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJENISSURATBERHARGA'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Surat Berharga'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJENISSURATBERHARGA.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJENISSURATBERHARGA.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJENISSURATBERHARGA.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJENISSURATBERHARGA.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LJENISSURATBERHARGA'
+        >
+      }
+      Name='panel1'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LSTATUSPENJUAL'
+          Top=8
+          Left=8
+          ControlCaption='Status Penjual'
+          LookupField='LSTATUSPENJUAL.reference_code'
+          DisplayLookupField=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LSANDIBANKPENJUAL'
+          Top=36
+          Left=8
+          ControlCaption='Sandi Bank Penjual'
+          LookupField='LSANDIBANKPENJUAL.reference_code'
+          DisplayLookupField=true
+        >, *object:rtf::DBEdit<
+          Name='NamaPenjual'
+          Top=64
+          Left=8
+          ControlCaption='Nama Penjual'
+        >, *object:rtf::DBLookupEdit<
+          Name='LNEGARAPENJUAL'
+          Top=92
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Sandi Negara Penjual'
+          FieldName='LNEGARAPENJUAL.reference_desc'
+          LookupField='LNEGARAPENJUAL.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='Diskonto'
+          Top=120
+          Left=8
+          ControlCaption='Diskonto'
+        >, *object:rtf::DBEdit<
+          Name='VolumeJtRupiah'
+          Top=148
+          Left=8
+          ControlCaption='Volume (jutaan Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Tenor'
+          Top=176
+          Left=8
+          ControlCaption='Tenor'
+        >, *object:rtf::DBEdit<
+          Name='TglValuta'
+          Top=204
+          Left=8
+          ControlCaption='Tanggal Valuta'
+        >, *object:rtf::DBEdit<
+          Name='TglTempo'
+          Top=232
+          Left=8
+          ControlCaption='Tanggal Jatuh Tempo'
+        >, *object:rtf::DBEdit<
+          Name='JangkaWaktu'
+          Top=260
+          Left=8
+          ControlCaption='Jangka Waktu'
+        >, *object:rtf::DBLookupEdit<
+          Name='LJENISSURATBERHARGA'
+          Top=288
+          Left=8
+          ControlCaption='Jenis Surat Berharga'
+          LookupField='LJENISSURATBERHARGA.reference_code'
+          DisplayLookupField=true
+        >
+      }
+      EqualCaptionWidth=120
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='FORM_201'
+>

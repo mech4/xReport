@@ -1,0 +1,111 @@
+object_def Class_UserManager
+version 1,1 odl_id '5268B01762494B78ACC0195D8F6271E3';
+
+p_class UserApp;
+p_class UserGroup;
+p_class UserGroupApp;
+
+p_class BranchLocation {
+  primary_keys {branch_code: varchar(5);}
+
+  fields{
+    BranchName: varchar(50);
+
+    user_id: varchar(20);
+    last_update: timestamp;
+
+    masterbranch_code: varchar(5);
+  }
+
+  links {
+    LMasterBranch(weak): BranchLocation; link by {masterbranch_code to branch_code}; optional; auto_list;
+  }
+
+  constructor RegisterData(LMasterBranch: BranchLocation);
+
+  sub SetMasterBranch(LMasterBranch: BranchLocation);
+  sub ChangeMasterBranch(NewMasterBranch: BranchLocation);
+
+  sub Modify(NewMasterBranch: BranchLocation);
+  sub DeleteData();
+
+  sub SendAddRequest(branch_code: varchar, BranchName: varchar);
+  sub SendModifyRequest(branch_code: varchar, BranchName: varchar);
+  sub SendDeleteRequest(branch_code: varchar);
+};
+
+p_class UserApp {
+  primary_keys {user_id: varchar(20);}
+
+  fields{
+    UserName: varchar(30);
+    Description: varchar(50);
+    NoLimitLocation: FTBoolean;
+    (*NoLimitTerminal: FTBoolean;*)
+
+    login_count: integer;
+    mod_user_id: varchar(20);
+    last_update: timestamp;
+  }
+
+  links{
+    LBranchLocation: BranchLocation; link by automatic;
+  }
+
+  (* request handler. should be private method *)
+  sub SendAddRequest(AUser_ID: varchar, AUserName: varchar, Adesc: varchar, ADepartmentID: varchar, APasswd: varchar);
+  sub SendModifyRequest(AUser_ID: varchar, AUserName: varchar, Adesc: varchar, ADepartmentID: varchar);
+  sub SendDeleteRequest(AUser_ID: varchar);
+  sub SendChangePasswordRequest(AUser_ID: varchar, ANewPassword: varchar, AConfirmPassword: varchar);
+
+  (* public method *)
+  sub RegisterData();
+  sub Modify();
+  sub ChangePassword(ANewPassword: varchar);
+  sub Validate();
+
+  sub LogActivity(Description: varchar);
+
+  sub IsLocked(): FTBoolean;
+  sub IncCounter();
+  sub ResetCounter();
+  sub LockLogin();
+  sub UnLockLogin();
+};
+
+p_class UserGroup {
+  primary_keys {group_id: varchar(8);}
+
+  fields{
+    GroupName: varchar(30);
+    Description: varchar(50);
+
+    user_id: varchar(20);
+    last_update: timestamp;
+  }
+
+  (* request handler. Private Method *)
+  sub SendAddRequest(AGroup_ID: varchar, AGroupName: varchar, ADesc: varchar);
+  sub SendModifyRequest(AGroup_ID: varchar, AGroupName: varchar, ADesc: varchar);
+  sub SendDeleteRequest(AGroup_ID: varchar);
+  sub SendAddUserToGroup(AGroup_ID: varchar, User_ID: varchar);
+  sub SendDeleteUserFromGroup(AGroup_ID: varchar, User_ID: varchar);
+
+  (* Public Method *)
+  sub RegisterData();
+  sub Modify();
+  sub AddUser(UserID: varchar);
+  sub DeleteUser(UserID: varchar);
+};
+
+p_class UserGroupApp {
+  primary_keys  {user_id: varchar(20); group_id: varchar(8);}
+
+  links{
+    LUser (weak): UserApp; link by {user_id to user_id}; auto_list;
+    LUserGroup : UserGroup; link by {group_id to group_id}; auto_list;
+  }
+
+  constructor Create(LUser: UserApp, LUserGroup: UserGroup);
+};
+.

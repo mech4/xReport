@@ -1,0 +1,245 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=240
+      Height=96
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-401'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcLJENIS'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENIS.reference_code'
+          DisplayFormat=''
+          TitleCaption='Sandi Negara Asal'
+          Width=136
+        >, object:rtf::GridColumn<
+          Name='gcLFRAUD'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LFRAUD.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Valuta'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcVolume'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Volume'
+          DisplayFormat=''
+          TitleCaption='Volume (Valuta Asal)'
+          Width=160
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LJENIS'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Sandi Negara Asal'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJENIS.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJENIS.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJENIS.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJENIS.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LJENIS'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LFRAUD'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Valuta'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LFRAUD.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LFRAUD.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LFRAUD.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LFRAUD.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LFRAUD'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Volume'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Volume (Valuta Asal)'
+          DataTypeName='integer'
+          DataLength=15
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LJENIS'
+          Top=8
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Sandi Negara Asal'
+          FieldName='LJENIS.reference_desc'
+          LookupField='LJENIS.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LFRAUD'
+          Top=36
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Valuta'
+          FieldName='LFRAUD.reference_desc'
+          LookupField='LFRAUD.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='Volume'
+          Top=64
+          Left=8
+          ControlCaption='Volume (Valuta Asal)'
+        >
+      }
+      EqualCaptionWidth=160
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LKPBU_FORM_401'
+>

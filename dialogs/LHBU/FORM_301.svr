@@ -1,0 +1,249 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{03AB2DCD-D5DA-4DD5-B07D-CD15AE22527E}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rpclass::TPClassUIDefList<
+  UIDefs={
+    object:rpclass::TPClassUIDef<
+      Name='uipData'
+      CustomLoadedFields={
+        object:rpclass::TCustomLoadedField<
+          Name='item_id'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSANDIBANK.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSANDIBANK.reference_desc'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=60
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSANDIBANK.reference_code'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSANDIBANK.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='JenisKegiatanUsaha'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='TanggalLaporan'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rpclass::TCustomLoadedField<
+          Name='NoForm'
+          DataTypeName='varchar'
+          DataLength=10
+        >, object:rpclass::TCustomLoadedField<
+          Name='JumlahRecordIsi'
+          DataTypeName='varchar'
+          DataLength=1
+        >, object:rpclass::TCustomLoadedField<
+          Name='IdOperasional'
+          DataTypeName='varchar'
+          DataLength=1
+        >, object:rpclass::TCustomLoadedField<
+          Name='NoReff'
+          DataTypeName='varchar'
+          DataLength=16
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENISTRANSAKSI.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENISTRANSAKSI.reference_desc'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=60
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENISTRANSAKSI.reference_code'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENISTRANSAKSI.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSTATUSPEMBELI.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSTATUSPEMBELI.reference_desc'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=60
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSTATUSPEMBELI.reference_code'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSTATUSPEMBELI.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSANDIPEMBELI.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSANDIPEMBELI.reference_desc'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=60
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSANDIPEMBELI.reference_code'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSANDIPEMBELI.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='NamaPembeli'
+          DataTypeName='varchar'
+          DataLength=35
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSANDINEGARAPEMBELI.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSANDINEGARAPEMBELI.reference_desc'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=60
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSANDINEGARAPEMBELI.reference_code'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSANDINEGARAPEMBELI.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='PembeliNonBank'
+          DataTypeName='varchar'
+          DataLength=15
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSTATUSPENJUAL.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSTATUSPENJUAL.reference_desc'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=60
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSTATUSPENJUAL.reference_code'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSTATUSPENJUAL.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSANDIBANKPENJUAL.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSANDIBANKPENJUAL.reference_desc'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=60
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSANDIBANKPENJUAL.reference_code'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSANDIBANKPENJUAL.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='NamaPenjual'
+          DataTypeName='varchar'
+          DataLength=35
+        >, object:rpclass::TCustomLoadedField<
+          Name='LNEGARAPENJUAL.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LNEGARAPENJUAL.reference_desc'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=60
+        >, object:rpclass::TCustomLoadedField<
+          Name='LNEGARAPENJUAL.reference_code'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LNEGARAPENJUAL.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='Diskonto'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rpclass::TCustomLoadedField<
+          Name='VolumeJtRupiah'
+          DataTypeName='varchar'
+          DataLength=9
+        >, object:rpclass::TCustomLoadedField<
+          Name='Tenor'
+          DataTypeName='varchar'
+          DataLength=3
+        >, object:rpclass::TCustomLoadedField<
+          Name='TglValuta'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rpclass::TCustomLoadedField<
+          Name='TglTempo'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rpclass::TCustomLoadedField<
+          Name='JangkaWaktu'
+          DataTypeName='varchar'
+          DataLength=2
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENISSURATBERHARGA.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENISSURATBERHARGA.reference_desc'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=60
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENISSURATBERHARGA.reference_code'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENISSURATBERHARGA.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >
+      }
+      CustomLoadedLinks={
+        object:rpclass::TCustomLoadedLink<
+          Name='LSANDIBANK'
+          ClassTypeName='enterprise.ReferenceData'
+          FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
+        >, object:rpclass::TCustomLoadedLink<
+          Name='LJENISTRANSAKSI'
+          ClassTypeName='enterprise.ReferenceData'
+          FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
+        >, object:rpclass::TCustomLoadedLink<
+          Name='LSTATUSPEMBELI'
+          ClassTypeName='enterprise.ReferenceData'
+          FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
+        >, object:rpclass::TCustomLoadedLink<
+          Name='LSANDIPEMBELI'
+          ClassTypeName='enterprise.ReferenceData'
+          FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
+        >, object:rpclass::TCustomLoadedLink<
+          Name='LSANDINEGARAPEMBELI'
+          ClassTypeName='enterprise.ReferenceData'
+          FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
+        >, object:rpclass::TCustomLoadedLink<
+          Name='LSTATUSPENJUAL'
+          ClassTypeName='enterprise.ReferenceData'
+          FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
+        >, object:rpclass::TCustomLoadedLink<
+          Name='LSANDIBANKPENJUAL'
+          ClassTypeName='enterprise.ReferenceData'
+          FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
+        >, object:rpclass::TCustomLoadedLink<
+          Name='LNEGARAPENJUAL'
+          ClassTypeName='enterprise.ReferenceData'
+          FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
+        >, object:rpclass::TCustomLoadedLink<
+          Name='LJENISSURATBERHARGA'
+          ClassTypeName='enterprise.ReferenceData'
+          FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
+        >
+      }
+      Mode=imMultiRow
+      DeleteOnDel=true
+    >
+  }
+  OnSetDataEx='FormOnSetDataEx'
+>

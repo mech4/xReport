@@ -1,0 +1,495 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=921
+      Height=425
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-39'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcLJENIS'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENIS.reference_code'
+          DisplayFormat=''
+          TitleCaption='Golongan Pemilik'
+          Width=128
+        >, object:rtf::GridColumn<
+          Name='gcLBENTUKPENGHAPUSANBUKUAN'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LBENTUKPENGHAPUSANBUKUAN.reference_code'
+          DisplayFormat=''
+          TitleCaption='Golongan Penerbit'
+          Width=136
+        >, object:rtf::GridColumn<
+          Name='gcLKOLEKTIBILITAS'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LKOLEKTIBILITAS.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis'
+          Width=40
+        >, object:rtf::GridColumn<
+          Name='gcLJENISVALUTA'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENISVALUTA.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Valuta'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcBulanPenerbit'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BulanPenerbit'
+          DisplayFormat=''
+          TitleCaption='Bulan dan Tahun Penerbit'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcBulanJthTempo'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BulanJthTempo'
+          DisplayFormat=''
+          TitleCaption='Bulan dan Tahun Jatuh Tempo'
+          Width=216
+        >, object:rtf::GridColumn<
+          Name='gcNilaiNominal'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NilaiNominal'
+          DisplayFormat=''
+          TitleCaption='Nilai Nominal'
+          Width=104
+        >, object:rtf::GridColumn<
+          Name='gcTahun1'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Tahun1'
+          DisplayFormat=''
+          TitleCaption='Tahun'
+          Width=40
+        >, object:rtf::GridColumn<
+          Name='gcTahun2'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Tahun2'
+          DisplayFormat=''
+          TitleCaption='Tahun'
+          Width=40
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LJENIS'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Golongan Pemilik'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJENIS.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJENIS.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJENIS.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJENIS.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LJENIS'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LBENTUKPENGHAPUSANBUKUAN'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Golongan Penerbit'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LBENTUKPENGHAPUSANBUKUAN.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LBENTUKPENGHAPUSANBUKUAN.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LBENTUKPENGHAPUSANBUKUAN.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LBENTUKPENGHAPUSANBUKUAN.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LBENTUKPENGHAPUSANBUKUAN'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LKOLEKTIBILITAS'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LKOLEKTIBILITAS.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LKOLEKTIBILITAS.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LKOLEKTIBILITAS.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LKOLEKTIBILITAS.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LKOLEKTIBILITAS'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJENISVALUTA'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Valuta'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJENISVALUTA.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJENISVALUTA.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJENISVALUTA.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJENISVALUTA.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LJENISVALUTA'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BulanPenerbit'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bulan dan Tahun Penerbit'
+          DataTypeName='varchar'
+          DataLength=20
+          EnumeratedValues=['JAN=Januari'#13#10,
+            'FEB=Februari'#13#10,
+            'MAR=Maret'#13#10,
+            'APR=April'#13#10,
+            'MEI=Mei'#13#10,
+            'JUN=Juni'#13#10,
+            'JUL=Juli'#13#10,
+            'AGS=Agustus'#13#10,
+            'SEP=September'#13#10,
+            'OKT=Oktober'#13#10,
+            'NOV=November'#13#10,
+            'DES=Desember'#13#10]
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BulanJthTempo'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bulan dan Tahun Jatuh Tempo'
+          DataTypeName='varchar'
+          DataLength=20
+          EnumeratedValues=['JAN=Januari'#13#10,
+            'FEB=Februari'#13#10,
+            'MAR=Maret'#13#10,
+            'APR=April'#13#10,
+            'MEI=Mei'#13#10,
+            'JUN=Juni'#13#10,
+            'JUL=Juli'#13#10,
+            'AGS=Agustus'#13#10,
+            'SEP=September'#13#10,
+            'OKT=Oktober'#13#10,
+            'NOV=November'#13#10,
+            'DES=Desember'#13#10]
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NilaiNominal'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nilai Nominal'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Tahun1'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tahun'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Tahun2'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tahun'
+          DataTypeName='integer'
+          DataLength=4
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LJENIS'
+          Top=8
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Golongan Pemilik'
+          FieldName='LJENIS.reference_desc'
+          LookupField='LJENIS.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LBENTUKPENGHAPUSANBUKUAN'
+          Top=36
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Golongan Penerbit'
+          FieldName='LBENTUKPENGHAPUSANBUKUAN.reference_desc'
+          LookupField='LBENTUKPENGHAPUSANBUKUAN.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          ButtonWidth=1
+        >, *object:rtf::DBLookupEdit<
+          Name='LKOLEKTIBILITAS'
+          Top=64
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis'
+          FieldName='LKOLEKTIBILITAS.reference_desc'
+          LookupField='LKOLEKTIBILITAS.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          ButtonWidth=1
+        >, *object:rtf::DBLookupEdit<
+          Name='LJENISVALUTA'
+          Top=92
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Valuta'
+          FieldName='LJENISVALUTA.reference_desc'
+          LookupField='LJENISVALUTA.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBComboBox<
+          Name='BulanPenerbit'
+          Top=120
+          Left=8
+          ControlCaption='Bulan dan Tahun Penerbit'
+        >, *object:rtf::DBComboBox<
+          Name='BulanJthTempo'
+          Top=148
+          Left=8
+          ControlCaption='Bulan dan Tahun Jatuh Tempo'
+        >, *object:rtf::DBEdit<
+          Name='NilaiNominal'
+          Top=176
+          Left=8
+          ControlCaption='Nilai Nominal'
+        >, *object:rtf::DBEdit<
+          Name='Tahun1'
+          Layout=clAbsolute
+          Top=120
+          Left=296
+          ControlCaption='Tahun'
+        >, *object:rtf::DBEdit<
+          Name='Tahun2'
+          Layout=clAbsolute
+          Top=148
+          Left=296
+          ControlCaption='Tahun'
+        >
+      }
+      EqualCaptionWidth=160
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LBUS_FORM_03'
+>

@@ -1,0 +1,77 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{03AB2DCD-D5DA-4DD5-B07D-CD15AE22527E}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rpclass::TPClassUIDefList<
+  UIDefs={
+    object:rpclass::TPClassUIDef<
+      Name='uipData'
+      CustomLoadedFields={
+        object:rpclass::TCustomLoadedField<
+          Name='item_id'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENISPRODUK.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENISPRODUK.reference_desc'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=60
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENISPRODUK.reference_code'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENISPRODUK.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='Keterangan'
+          DataTypeName='varchar'
+          DataLength=35
+        >, object:rpclass::TCustomLoadedField<
+          Name='BagHas'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='Penalti'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='BiayaAdm'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='Kegagalan'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='Saldo'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='Lain'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='Jumlah'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      CustomLoadedLinks={
+        object:rpclass::TCustomLoadedLink<
+          Name='LJENISPRODUK'
+          ClassTypeName='enterprise.ReferenceData'
+          FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
+        >
+      }
+      Mode=imMultiRow
+      DeleteOnDel=true
+    >
+  }
+  OnSetDataEx='FormOnSetDataEx'
+>

@@ -1,0 +1,743 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  UIParts={
+    object:rtf::PClassUI<
+      Name='uipData'
+      MultiLine=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=240
+      Height=96
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-05'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcLJENIS'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENIS.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis'
+          Width=40
+        >, object:rtf::GridColumn<
+          Name='gcLJENISVALUTA'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENISVALUTA.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Valuta'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcLGOLPENERBIT'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LGOLPENERBIT.reference_code'
+          DisplayFormat=''
+          TitleCaption='Golongan Penerbit/Tertarik'
+          Width=208
+        >, object:rtf::GridColumn<
+          Name='gcLHUBBANKPENERBIT'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LHUBBANKPENERBIT.reference_code'
+          DisplayFormat=''
+          TitleCaption='Hubungan dengan Bank'
+          Width=160
+        >, object:rtf::GridColumn<
+          Name='gcLTUJUANPEMILIKAN'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LTUJUANPEMILIKAN.reference_code'
+          DisplayFormat=''
+          TitleCaption='Tujuan Pemilikan'
+          Width=128
+        >, object:rtf::GridColumn<
+          Name='gcMulai'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Mulai'
+          DisplayFormat=''
+          TitleCaption='Bulan dan Tahun Mulai'
+          Width=168
+        >, object:rtf::GridColumn<
+          Name='gcJatuhTempo'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='JatuhTempo'
+          DisplayFormat=''
+          TitleCaption='Bulan dan Tahun Jatuh Tempo'
+          Width=216
+        >, object:rtf::GridColumn<
+          Name='gcLKOLEKTIBILITAS'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LKOLEKTIBILITAS.reference_code'
+          DisplayFormat=''
+          TitleCaption='Kolektibilitas'
+          Width=112
+        >, object:rtf::GridColumn<
+          Name='gcBagHas'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BagHas'
+          DisplayFormat=''
+          TitleCaption='Persentase Bagi Hasil/Fee'
+          Width=200
+        >, object:rtf::GridColumn<
+          Name='gcLGOLPENJAMIN'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LGOLPENJAMIN.reference_code'
+          DisplayFormat=''
+          TitleCaption='Golongan Penjamin'
+          Width=136
+        >, object:rtf::GridColumn<
+          Name='gcBagianDijamin'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BagianDijamin'
+          DisplayFormat=''
+          TitleCaption='Bagian yang Dijamin'
+          Width=152
+        >, object:rtf::GridColumn<
+          Name='gcNominal'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Nominal'
+          DisplayFormat=''
+          TitleCaption='Nominal (Jutaan Rupiah)'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcJumlah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Jumlah'
+          DisplayFormat=''
+          TitleCaption='Jumlah (Jutaan Rupiah)'
+          Width=176
+        >, object:rtf::GridColumn<
+          Name='gcAgunanPPAP'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='AgunanPPAP'
+          DisplayFormat=''
+          TitleCaption='Agunan yang dapat Diperhitungkan'
+          Width=256
+        >, object:rtf::GridColumn<
+          Name='gcPPAPDibentuk'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PPAPDibentuk'
+          DisplayFormat=''
+          TitleCaption='PPAP yang telah Dibentuk'
+          Width=192
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LJENIS'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJENIS.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJENIS.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJENIS.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJENIS.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LJENIS'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJENISVALUTA'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Valuta'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJENISVALUTA.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJENISVALUTA.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJENISVALUTA.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJENISVALUTA.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LJENISVALUTA'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LGOLPENERBIT'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Golongan Penerbit/Tertarik'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LGOLPENERBIT.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LGOLPENERBIT.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LGOLPENERBIT.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LGOLPENERBIT.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LGOLPENERBIT'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LHUBBANKPENERBIT'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hubungan dengan Bank'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LHUBBANKPENERBIT.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LHUBBANKPENERBIT.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LHUBBANKPENERBIT.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LHUBBANKPENERBIT.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LHUBBANKPENERBIT'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LTUJUANPEMILIKAN'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tujuan Pemilikan'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LTUJUANPEMILIKAN.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LTUJUANPEMILIKAN.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LTUJUANPEMILIKAN.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LTUJUANPEMILIKAN.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LTUJUANPEMILIKAN'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Mulai'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bulan dan Tahun Mulai'
+          DataTypeName='varchar'
+          DataLength=6
+        >, object:rtf::FieldUIElmtSetting<
+          Name='JatuhTempo'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bulan dan Tahun Jatuh Tempo'
+          DataTypeName='varchar'
+          DataLength=6
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LKOLEKTIBILITAS'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kolektibilitas'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LKOLEKTIBILITAS.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LKOLEKTIBILITAS.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LKOLEKTIBILITAS.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LKOLEKTIBILITAS.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LKOLEKTIBILITAS'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BagHas'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Persentase Bagi Hasil/Fee'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LGOLPENJAMIN'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Golongan Penjamin'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LGOLPENJAMIN.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LGOLPENJAMIN.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LGOLPENJAMIN.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LGOLPENJAMIN.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LGOLPENJAMIN'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BagianDijamin'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bagian yang Dijamin'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Nominal'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nominal (Jutaan Rupiah)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Jumlah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah (Jutaan Rupiah)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='AgunanPPAP'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Agunan yang dapat Diperhitungkan'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='PPAPDibentuk'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='PPAP yang telah Dibentuk'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LJENIS'
+          Top=8
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis'
+          FieldName='LJENIS.reference_desc'
+          LookupField='LJENIS.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LJENISVALUTA'
+          Top=36
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Valuta'
+          FieldName='LJENISVALUTA.reference_desc'
+          LookupField='LJENISVALUTA.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LGOLPENERBIT'
+          Top=64
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Golongan Penerbit/Tertarik'
+          FieldName='LGOLPENERBIT.reference_desc'
+          LookupField='LGOLPENERBIT.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LHUBBANKPENERBIT'
+          Top=92
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Hubungan dengan Bank'
+          FieldName='LHUBBANKPENERBIT.reference_desc'
+          LookupField='LHUBBANKPENERBIT.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LTUJUANPEMILIKAN'
+          Top=120
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Tujuan Pemilikan'
+          FieldName='LTUJUANPEMILIKAN.reference_desc'
+          LookupField='LTUJUANPEMILIKAN.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='Mulai'
+          Top=148
+          Left=8
+          ControlCaption='Bulan dan Tahun Mulai'
+        >, *object:rtf::DBEdit<
+          Name='JatuhTempo'
+          Top=176
+          Left=8
+          ControlCaption='Bulan dan Tahun Jatuh Tempo'
+        >, *object:rtf::DBLookupEdit<
+          Name='LKOLEKTIBILITAS'
+          Top=204
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Kolektibilitas'
+          FieldName='LKOLEKTIBILITAS.reference_desc'
+          LookupField='LKOLEKTIBILITAS.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='BagHas'
+          Top=232
+          Left=8
+          ControlCaption='Persentase Bagi Hasil/Fee'
+        >, *object:rtf::DBLookupEdit<
+          Name='LGOLPENJAMIN'
+          Top=260
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Golongan Penjamin'
+          FieldName='LGOLPENJAMIN.reference_desc'
+          LookupField='LGOLPENJAMIN.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='BagianDijamin'
+          Top=288
+          Left=8
+          ControlCaption='Bagian yang Dijamin'
+        >, *object:rtf::DBEdit<
+          Name='Nominal'
+          Top=316
+          Left=8
+          ControlCaption='Nominal (Jutaan Rupiah)'
+        >, *object:rtf::DBEdit<
+          Name='Jumlah'
+          Top=344
+          Left=8
+          ControlCaption='Jumlah (Jutaan Rupiah)'
+        >, *object:rtf::DBEdit<
+          Name='AgunanPPAP'
+          Top=372
+          Left=8
+          ControlCaption='Agunan yang dapat Diperhitungkan'
+        >, *object:rtf::DBEdit<
+          Name='PPAPDibentuk'
+          Top=400
+          Left=8
+          ControlCaption='PPAP yang telah Dibentuk'
+        >
+      }
+      EqualCaptionWidth=200
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LBUS_FORM_05'
+>

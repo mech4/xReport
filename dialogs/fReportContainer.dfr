@@ -1,0 +1,86 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dualsplit1']
+  State=rsMaximized
+  Left=50
+  Top=50
+  Width=873
+  Height=449
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx=''
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Name='uipData'
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dualsplit1'
+      Width=873
+      Height=449
+      Container1=$CONTAINERS['pData']
+      Container2=$CONTAINERS['frReport']
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='formid'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Form filename'
+          DataTypeName='varchar'
+          DataLength=32
+        >
+      }
+      Name='pData'
+      Width=833
+      Height=61
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='formid'
+          Top=8
+          Left=8
+          ControlCaption='Form filename'
+        >, object:rtf::Button<
+          Name='bLoad'
+          Layout=clAbsolute
+          Top=8
+          Left=288
+          ControlCaption=''
+          Caption='Load'
+          OnClick='bLoad'
+        >
+      }
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Frame<
+      Name='frReport'
+      Width=873
+      Height=387
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='fReportContainer'
+>

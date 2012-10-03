@@ -1,0 +1,311 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=240
+      Height=96
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-601'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcLJENISPRODUK'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENISPRODUK.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Produk'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcKeterangan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Keterangan'
+          DisplayFormat=''
+          TitleCaption='Keterangan'
+          Width=80
+        >, object:rtf::GridColumn<
+          Name='gcBagHas'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BagHas'
+          DisplayFormat=''
+          TitleCaption='Bunga/Bagi Hasil/Margin Keuntungan'
+          Width=272
+        >, object:rtf::GridColumn<
+          Name='gcPenalti'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Penalti'
+          DisplayFormat=''
+          TitleCaption='Denda/Penalti'
+          Width=104
+        >, object:rtf::GridColumn<
+          Name='gcBiayaAdm'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BiayaAdm'
+          DisplayFormat=''
+          TitleCaption='Biaya Administrasi/Provisi Transaksi'
+          Width=288
+        >, object:rtf::GridColumn<
+          Name='gcKegagalan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Kegagalan'
+          DisplayFormat=''
+          TitleCaption='Kegagalan/Keterlambatan Transaksi'
+          Width=264
+        >, object:rtf::GridColumn<
+          Name='gcSaldo'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Saldo'
+          DisplayFormat=''
+          TitleCaption='Jumlah Tagihan/Saldo Rekening'
+          Width=232
+        >, object:rtf::GridColumn<
+          Name='gcLain'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Lain'
+          DisplayFormat=''
+          TitleCaption='Lain-lain'
+          Width=72
+        >, object:rtf::GridColumn<
+          Name='gcJumlah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Jumlah'
+          DisplayFormat=''
+          TitleCaption='Jumlah'
+          Width=48
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LJENISPRODUK'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Produk'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJENISPRODUK.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJENISPRODUK.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJENISPRODUK.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJENISPRODUK.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LJENISPRODUK'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Keterangan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Keterangan'
+          DataTypeName='varchar'
+          DataLength=35
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BagHas'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bunga/Bagi Hasil/Margin Keuntungan'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Penalti'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Denda/Penalti'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BiayaAdm'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Biaya Administrasi/Provisi Transaksi'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Kegagalan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kegagalan/Keterlambatan Transaksi'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Saldo'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Tagihan/Saldo Rekening'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Lain'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Lain-lain'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Jumlah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LJENISPRODUK'
+          Top=8
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Produk'
+          FieldName='LJENISPRODUK.reference_desc'
+          LookupField='LJENISPRODUK.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='Keterangan'
+          Top=36
+          Left=8
+          ControlCaption='Keterangan'
+        >, *object:rtf::DBEdit<
+          Name='BagHas'
+          Top=64
+          Left=8
+          ControlCaption='Bunga/Bagi Hasil/Margin Keuntungan'
+        >, *object:rtf::DBEdit<
+          Name='Penalti'
+          Top=92
+          Left=8
+          ControlCaption='Denda/Penalti'
+        >, *object:rtf::DBEdit<
+          Name='BiayaAdm'
+          Top=120
+          Left=8
+          ControlCaption='Biaya Administrasi/Provisi Transaksi'
+        >, *object:rtf::DBEdit<
+          Name='Kegagalan'
+          Top=148
+          Left=8
+          ControlCaption='Kegagalan/Keterlambatan Transaksi'
+        >, *object:rtf::DBEdit<
+          Name='Saldo'
+          Top=176
+          Left=8
+          ControlCaption='Jumlah Tagihan/Saldo Rekening'
+        >, *object:rtf::DBEdit<
+          Name='Lain'
+          Top=204
+          Left=8
+          ControlCaption='Lain-lain'
+        >, *object:rtf::DBEdit<
+          Name='Jumlah'
+          Top=232
+          Left=8
+          ControlCaption='Jumlah'
+        >
+      }
+      EqualCaptionWidth=200
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LKPBU_FORM_601'
+>

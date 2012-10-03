@@ -1,0 +1,94 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dualsplit1']
+  Caption='Test custom lookup'
+  Left=50
+  Top=50
+  Width=400
+  Height=320
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx=''
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Name='uipInput'
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dualsplit1'
+      Width=400
+      Height=320
+      Container1=$CONTAINERS['panel2']
+      Container2=$CONTAINERS['pInput']
+      InversedAlign=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='Nasabah'
+          Hidden=false
+          ReadOnlyControl=false
+          ClassTypeName='Nasabah'
+          DisplayFields='nomor_nasabah;nama_singkat'
+          Restrictions=''
+          FieldBaseName='Nasabah'
+        >
+      }
+      Name='pInput'
+      Width=320
+      Height=240
+      UIPart=$UIPARTS['uipInput']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='Nasabah'
+          Top=8
+          Left=8
+          ControlCaption='no nasabah'
+          LookupField='Nasabah.nama_singkat'
+          DisplayLookupField=true
+          OnExit='LookupExit'
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+          DisableLookup=true
+        >, object:rtf::Button<
+          Name='button1'
+          Layout=clAbsolute
+          Top=192
+          Left=8
+          ControlCaption=''
+          Caption='button'
+        >
+      }
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Panel<
+      Name='panel2'
+      Width=320
+      Height=41
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='frmTestLookup'
+>

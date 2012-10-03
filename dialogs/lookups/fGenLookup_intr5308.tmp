@@ -1,0 +1,107 @@
+class frmLookup:
+  def __init__(self, formObject, parentForm):
+    self.dParameters = {}
+    self.lookupID = ""
+    self.bHasQueryResult = False
+    
+  def checkSamePrevParameter(self, dParameterValues):
+    for key in dParameterValues.keys():
+      if self.dParameters.get(key, None) != dParameterValues[key]:
+        return False
+    return True
+  
+  def getServerParameters(self, dParameterValues):
+    formObj = self.FormObject
+    app = formObj.ClientApplication
+    ph = app.CreatePacket()
+    fieldNamesAndTypes = ['lookup_id: %s' % self.lookupID]
+    for key in dParameterValues.keys():
+      val = dParameterValues[key]
+      if val == None:
+        raise Exception, "Lookup parameter value %s cannot be None" % str(key)
+      if type(val) is str:
+        tName = 'string'
+      elif type(val) is int:
+        tName = 'integer'
+      elif type(val) is float:
+        tName = 'float'
+      else:
+        raise Exception, "Unsupported data type for lookup parameter value %s: %s" % (str(key), str(type(val)))
+      #--
+      pair = "%s: %s" % (str(key), tName)
+      fieldNamesAndTypes.append(pair)
+    #--
+    sDecl = ";".join(fieldNamesAndTypes)
+    rec = ph.packet.CreateDataPacketStructure(sDecl)
+    
+    rec.lookup_id = self.lookupID
+    for key in dParameterValues.keys():
+      rec.SetFieldValueByName(str(key), dParameterValues[key])
+    return ph
+  #--
+   
+  def completeParameters(self, uipData, paramFieldNames, dParameterValues):
+    for paramField in paramFieldNames:
+      splits = paramField.split("@", 1)
+      if len(splits) == 1:
+        keyName = splits[0]
+      else:
+        keyName = splits[1]
+      fieldValue = uipData.GetFieldValue(paramField)
+      dParameterValues[keyName] = fieldValue
+    #--
+    return dParameterValues
+    
+  def transferValues(self, uipData, uiFieldMap):
+    uipData.ForceEdit()
+    for uipField in uiFieldMap.keys():
+      qFieldName = uipFieldMap[uipField]
+      uipData.SetFieldValue(uipField, self.qLookup.GetFieldValue(qFieldName))
+    #--
+  #--
+    
+  def lookup(self, comboControl, lookupID, uipData, uiFieldMap, paramFieldNames, dParameterValues = {}):
+    # comboControl: reference to rtfDBComboEdit
+    # uipData: reference to TrtfPClassUI
+    # uiFieldMap: dictionary containing <uipField>: <queryField>
+    # paramFieldNames: list or tuple of field names to be inclulded in parameter
+    # dParameterValues: dictionary of misc parameter value 
+    formObj = self.FormObject
+    app = formObj.ClientApplication
+    dParameterValues = self.completeParameters(self, uipData, paramFieldNames, dParameterValues) 
+    bNoRefresh = self.bHasQueryResult and (lookupID == self.lookupID) and self.checkSamePrevParameter(dParameterValues)
+    bShowLookup = True  
+    if not bNoRefresh:
+      ph = self.getServerParameters(lookupID, dParameterValues)
+      phRes = formObj.CallServerMethod("initQuery", ph)
+      dsStatus = phRes.packet.status
+      recStatus = dsStatus.GetRecord(0)
+      if recStatus.isErr:
+        raise Exception, recStatus.errMsg
+      bTransferValues = False
+      if recStatus.rowCount == 1: # is unique row
+        comboControl.LookupValid = 1
+        bShowLookup = False
+        self.bHasQueryResult = False
+        self.qLookup.SetDirectResponse(phRes.packet)
+        bTransferValues = True
+      elif recStatus.rowCount == 0: # row not found
+        raise Exception, "Data not found" 
+      else:
+        self.qLookup.SetDirectResponse(phRes.packet)
+        bShowLookup = True
+        bTransferValues = False
+        self.bHasQueryResult = True
+        comboControl.LookupSelected = 1
+      #-- if recStatus
+    #-- if not bNoRefresh
+    self.lookupID = lookupID
+    self.dParameters = dParameterValues
+    if bShowLookup:
+      res = self.FormContainer.Show()
+      bTransferValues = res == 1
+    #--
+    if bTransferValues:
+      self.transferValues(uipData, uiFieldMap)
+  #--
+#--      

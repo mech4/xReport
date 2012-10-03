@@ -1,0 +1,353 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx='FormOnSetDataEx'
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=921
+      Height=425
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-12'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcLEMITEN'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LEMITEN.reference_code'
+          DisplayFormat=''
+          TitleCaption='Perusahaan Emiten/Status Perusahaan'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcLJENISPERUSAHAAN'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENISPERUSAHAAN.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Perusahaan'
+          Width=128
+        >, object:rtf::GridColumn<
+          Name='gcLJENISVALUTA'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENISVALUTA.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Valuta'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcLKOLEKTIBILITAS'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LKOLEKTIBILITAS.reference_code'
+          DisplayFormat=''
+          TitleCaption='Kolektibilitas'
+          Width=112
+        >, object:rtf::GridColumn<
+          Name='gcLTUJUAN'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LTUJUAN.reference_code'
+          DisplayFormat=''
+          TitleCaption='Tujuan Penyertaan'
+          Width=136
+        >, object:rtf::GridColumn<
+          Name='gcWaktuPenyertaan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='WaktuPenyertaan'
+          DisplayFormat=''
+          TitleCaption='Waktu Penyertaan'
+          Width=128
+        >, object:rtf::GridColumn<
+          Name='gcBagPenyertaan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BagPenyertaan'
+          DisplayFormat=''
+          TitleCaption='Bagian Penyertaan'
+          Width=136
+        >, object:rtf::GridColumn<
+          Name='gcJumlah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Jumlah'
+          DisplayFormat=''
+          TitleCaption='Jumlah'
+          Width=48
+        >, object:rtf::GridColumn<
+          Name='gcAgunanPPAP'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='AgunanPPAP'
+          DisplayFormat=''
+          TitleCaption='Agunan yang dapat Diperhitungkan'
+          Width=256
+        >, object:rtf::GridColumn<
+          Name='gcPPAPDibentuk'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PPAPDibentuk'
+          DisplayFormat=''
+          TitleCaption='PPAP yang telah Dibentuk'
+          Width=192
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LEMITEN'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Perusahaan Emiten/Status Perusahaan'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LEMITEN'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJENISPERUSAHAAN'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Perusahaan'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJENISPERUSAHAAN'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJENISVALUTA'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Valuta'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJENISVALUTA'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LKOLEKTIBILITAS'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kolektibilitas'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LKOLEKTIBILITAS'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LTUJUAN'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tujuan Penyertaan'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LTUJUAN'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='WaktuPenyertaan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Waktu Penyertaan'
+          DataTypeName='varchar'
+          DataLength=6
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BagPenyertaan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bagian Penyertaan'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Jumlah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='AgunanPPAP'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Agunan yang dapat Diperhitungkan'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='PPAPDibentuk'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='PPAP yang telah Dibentuk'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LEMITEN'
+          Top=8
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Perusahaan Emiten/Status Perusahaan'
+          FieldName='LEMITEN.reference_desc'
+          LookupField='LEMITEN.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LJENISPERUSAHAAN'
+          Top=36
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Perusahaan'
+          FieldName='LJENISPERUSAHAAN.reference_desc'
+          LookupField='LJENISPERUSAHAAN.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LJENISVALUTA'
+          Top=64
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Valuta'
+          FieldName='LJENISVALUTA.reference_desc'
+          LookupField='LJENISVALUTA.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LKOLEKTIBILITAS'
+          Top=92
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Kolektibilitas'
+          FieldName='LKOLEKTIBILITAS.reference_desc'
+          LookupField='LKOLEKTIBILITAS.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LTUJUAN'
+          Top=120
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Tujuan Penyertaan'
+          FieldName='LTUJUAN.reference_desc'
+          LookupField='LTUJUAN.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='WaktuPenyertaan'
+          Top=148
+          Left=8
+          ControlCaption='Waktu Penyertaan'
+        >, *object:rtf::DBEdit<
+          Name='BagPenyertaan'
+          Top=176
+          Left=8
+          ControlCaption='Bagian Penyertaan'
+        >, *object:rtf::DBEdit<
+          Name='Jumlah'
+          Top=204
+          Left=8
+          ControlCaption='Jumlah'
+        >, *object:rtf::DBEdit<
+          Name='AgunanPPAP'
+          Top=232
+          Left=8
+          ControlCaption='Agunan yang dapat Diperhitungkan'
+        >, *object:rtf::DBEdit<
+          Name='PPAPDibentuk'
+          Top=260
+          Left=8
+          ControlCaption='PPAP yang telah Dibentuk'
+        >
+      }
+      EqualCaptionWidth=220
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LBUS_FORM_12'
+>

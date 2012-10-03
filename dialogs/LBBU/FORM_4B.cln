@@ -1,0 +1,269 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['grData']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::Grid<
+      Name='grData'
+      Width=921
+      Height=425
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-4B'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcLPOS'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LPOS.reference_code'
+          DisplayFormat=''
+          TitleCaption='Pos Neraca dan Jangka Waktu Jatuh Tempo'
+          Width=312
+        >, object:rtf::GridColumn<
+          Name='gcSaldo'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Saldo'
+          DisplayFormat=''
+          TitleCaption='Saldo'
+          Width=40
+        >, object:rtf::GridColumn<
+          Name='gcEks1'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Eks1'
+          DisplayFormat=''
+          TitleCaption='s.d 1 bulan'
+          Width=88
+        >, object:rtf::GridColumn<
+          Name='gcEks3'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Eks3'
+          DisplayFormat=''
+          TitleCaption='1-3 bulan'
+          Width=72
+        >, object:rtf::GridColumn<
+          Name='gcEks6'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Eks6'
+          DisplayFormat=''
+          TitleCaption='3-6 bulan'
+          Width=72
+        >, object:rtf::GridColumn<
+          Name='gcEks12'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Eks12'
+          DisplayFormat=''
+          TitleCaption='6-12 bulan'
+          Width=80
+        >, object:rtf::GridColumn<
+          Name='gcEks15'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Eks15'
+          DisplayFormat=''
+          TitleCaption='lebih dari 12 bulan'
+          Width=152
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::DualSplit<
+      Name='dsMain'
+      Width=921
+      Height=425
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LPOS'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Pos Neraca dan Jangka Waktu Jatuh Tempo'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LPOS.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LPOS.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LPOS.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LPOS.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LPOS'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Saldo'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Saldo'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Eks1'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='s.d 1 bulan'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Eks3'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='1-3 bulan'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Eks6'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='3-6 bulan'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Eks12'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='6-12 bulan'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Eks15'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='lebih dari 12 bulan'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LPOS'
+          Top=8
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Pos Neraca dan Jangka Waktu Jatuh Tempo'
+          FieldName='LPOS.reference_desc'
+          LookupField='LPOS.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='Saldo'
+          Top=36
+          Left=8
+          ControlCaption='Saldo'
+        >, *object:rtf::DBEdit<
+          Name='Eks1'
+          Top=64
+          Left=8
+          ControlCaption='s.d 1 bulan'
+        >, *object:rtf::DBEdit<
+          Name='Eks3'
+          Top=92
+          Left=8
+          ControlCaption='1-3 bulan'
+        >, *object:rtf::DBEdit<
+          Name='Eks6'
+          Top=120
+          Left=8
+          ControlCaption='3-6 bulan'
+        >, *object:rtf::DBEdit<
+          Name='Eks12'
+          Top=148
+          Left=8
+          ControlCaption='6-12 bulan'
+        >, *object:rtf::DBEdit<
+          Name='Eks15'
+          Top=176
+          Left=8
+          ControlCaption='lebih dari 12 bulan'
+        >
+      }
+      EqualCaptionWidth=120
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LBBU_FORM_4B'
+>

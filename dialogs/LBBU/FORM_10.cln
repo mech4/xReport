@@ -1,0 +1,766 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=240
+      Height=96
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['multipages1']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-10'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcNamaDeposan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NamaDeposan'
+          DisplayFormat=''
+          TitleCaption='Nama Deposan'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcNPWPDeposan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NPWPDeposan'
+          DisplayFormat=''
+          TitleCaption='NPWP Deposan'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcGiro'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Giro'
+          DisplayFormat=''
+          TitleCaption='Giro (Rp)'
+          Width=72
+        >, object:rtf::GridColumn<
+          Name='gcGirov'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Girov'
+          DisplayFormat=''
+          TitleCaption='Giro (Va)'
+          Width=72
+        >, object:rtf::GridColumn<
+          Name='gcTabungan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Tabungan'
+          DisplayFormat=''
+          TitleCaption='Tabungan (Rp)'
+          Width=104
+        >, object:rtf::GridColumn<
+          Name='gcTabunganv'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Tabunganv'
+          DisplayFormat=''
+          TitleCaption='Tabungan (Va)'
+          Width=104
+        >, object:rtf::GridColumn<
+          Name='gcDeposito'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Deposito'
+          DisplayFormat=''
+          TitleCaption='Deposito (Rp)'
+          Width=104
+        >, object:rtf::GridColumn<
+          Name='gcDepositov'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Depositov'
+          DisplayFormat=''
+          TitleCaption='Deposito (Va)'
+          Width=104
+        >, object:rtf::GridColumn<
+          Name='gcTotalDeposan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TotalDeposan'
+          DisplayFormat=''
+          TitleCaption='Total Fasilitas Deposan'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcPersenDeposan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PersenDeposan'
+          DisplayFormat=''
+          TitleCaption='Persen Bagi Hasil/Bonus Deposan'
+          Width=248
+        >, object:rtf::GridColumn<
+          Name='gcNamaDebitur'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NamaDebitur'
+          DisplayFormat=''
+          TitleCaption='Nama Debitur'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcNPWPDebitur'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NPWPDebitur'
+          DisplayFormat=''
+          TitleCaption='NPWP Debitur'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcLKUALITAS'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LKUALITAS.reference_code'
+          DisplayFormat=''
+          TitleCaption='Kualitas Aktiva Debitur'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcMurabahah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Murabahah'
+          DisplayFormat=''
+          TitleCaption='Murabahah (Rp)'
+          Width=112
+        >, object:rtf::GridColumn<
+          Name='gcMurabahahv'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Murabahahv'
+          DisplayFormat=''
+          TitleCaption='Murabahah (Va)'
+          Width=112
+        >, object:rtf::GridColumn<
+          Name='gcMargin'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Margin'
+          DisplayFormat=''
+          TitleCaption='Margin Murabahah (Rp)'
+          Width=168
+        >, object:rtf::GridColumn<
+          Name='gcMarginv'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Marginv'
+          DisplayFormat=''
+          TitleCaption='Margin Murabahah (Va)'
+          Width=168
+        >, object:rtf::GridColumn<
+          Name='gcSalam'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Salam'
+          DisplayFormat=''
+          TitleCaption='Salam (Rp)'
+          Width=80
+        >, object:rtf::GridColumn<
+          Name='gcSalamv'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Salamv'
+          DisplayFormat=''
+          TitleCaption='Salam (Va)'
+          Width=80
+        >, object:rtf::GridColumn<
+          Name='gcIstishna'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Istishna'
+          DisplayFormat=''
+          TitleCaption='Istishna (net) (Rp)'
+          Width=152
+        >, object:rtf::GridColumn<
+          Name='gcIstishnav'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Istishnav'
+          DisplayFormat=''
+          TitleCaption='Istishna (net) (Va)'
+          Width=152
+        >, object:rtf::GridColumn<
+          Name='gcMudharabah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Mudharabah'
+          DisplayFormat=''
+          TitleCaption='Mudharabah (Rp)'
+          Width=120
+        >, object:rtf::GridColumn<
+          Name='gcMudharabahv'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Mudharabahv'
+          DisplayFormat=''
+          TitleCaption='Mudharabah (Va)'
+          Width=120
+        >, object:rtf::GridColumn<
+          Name='gcMusyarakah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Musyarakah'
+          DisplayFormat=''
+          TitleCaption='Musyarakah (Rp)'
+          Width=120
+        >, object:rtf::GridColumn<
+          Name='gcMusyarakahv'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Musyarakahv'
+          DisplayFormat=''
+          TitleCaption='Musyarakah (Va)'
+          Width=120
+        >, object:rtf::GridColumn<
+          Name='gcLain'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Lain'
+          DisplayFormat=''
+          TitleCaption='Lainnya (Rp)'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcLainv'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Lainv'
+          DisplayFormat=''
+          TitleCaption='Lainnya (Va)'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcTotalDebitur'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TotalDebitur'
+          DisplayFormat=''
+          TitleCaption='Total Fasilitas Debitur'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcPersenDebitur'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PersenDebitur'
+          DisplayFormat=''
+          TitleCaption='Persen Margin/Bagi Hasil Debitur'
+          Width=256
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='NamaDeposan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nama Deposan'
+          DataTypeName='varchar'
+          DataLength=100
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NPWPDeposan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='NPWP Deposan'
+          DataTypeName='varchar'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Giro'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Giro (Rp)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Girov'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Giro (Va)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Tabungan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tabungan (Rp)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Tabunganv'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tabungan (Va)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Deposito'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Deposito (Rp)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Depositov'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Deposito (Va)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TotalDeposan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Total Fasilitas Deposan'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='PersenDeposan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Persen Bagi Hasil/Bonus Deposan'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='NamaDeposan'
+          Top=8
+          Left=8
+          ControlCaption='Nama Deposan'
+        >, *object:rtf::DBEdit<
+          Name='NPWPDeposan'
+          Top=36
+          Left=8
+          ControlCaption='NPWP Deposan'
+        >, *object:rtf::DBEdit<
+          Name='Giro'
+          Top=64
+          Left=8
+          ControlCaption='Giro (Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Girov'
+          Top=92
+          Left=8
+          ControlCaption='Giro (Va)'
+        >, *object:rtf::DBEdit<
+          Name='Tabungan'
+          Top=120
+          Left=8
+          ControlCaption='Tabungan (Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Tabunganv'
+          Top=148
+          Left=8
+          ControlCaption='Tabungan (Va)'
+        >, *object:rtf::DBEdit<
+          Name='Deposito'
+          Top=176
+          Left=8
+          ControlCaption='Deposito (Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Depositov'
+          Top=204
+          Left=8
+          ControlCaption='Deposito (Va)'
+        >, *object:rtf::DBEdit<
+          Name='TotalDeposan'
+          Top=232
+          Left=8
+          ControlCaption='Total Fasilitas Deposan'
+        >, *object:rtf::DBEdit<
+          Name='PersenDeposan'
+          Top=260
+          Left=8
+          ControlCaption='Persen Bagi Hasil/Bonus Deposan'
+        >
+      }
+      EqualCaptionWidth=200
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::MultiPages<
+      Name='multipages1'
+      Width=320
+      Height=320
+      Pages={
+        object:rtf::Page<
+          PageName='1'
+          PageTitle='Deposan'
+          Container=$CONTAINERS['pData']
+        >, object:rtf::Page<
+          PageName='2'
+          PageTitle='Debitur Page 1'
+          Container=$CONTAINERS['pData2']
+          Index=1
+        >, object:rtf::Page<
+          PageName='3'
+          PageTitle='Debitur Page 2'
+          Container=$CONTAINERS['pData3']
+          Index=2
+        >
+      }
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='NamaDebitur'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nama Debitur'
+          DataTypeName='varchar'
+          DataLength=100
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NPWPDebitur'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='NPWP Debitur'
+          DataTypeName='varchar'
+          DataLength=15
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LKUALITAS'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kualitas Aktiva Debitur'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LKUALITAS.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LKUALITAS.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LKUALITAS.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LKUALITAS.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LKUALITAS'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Murabahah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Murabahah (Rp)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Murabahahv'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Murabahah (Va)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Margin'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Margin Murabahah (Rp)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Marginv'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Margin Murabahah (Va)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Salam'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Salam (Rp)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Salamv'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Salam (Va)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Istishna'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Istishna (net) (Rp)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Istishnav'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Istishna (net) (Va)'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData2'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='NamaDebitur'
+          Top=8
+          Left=8
+          ControlCaption='Nama Debitur'
+        >, *object:rtf::DBEdit<
+          Name='NPWPDebitur'
+          Top=36
+          Left=8
+          ControlCaption='NPWP Debitur'
+        >, *object:rtf::DBLookupEdit<
+          Name='LKUALITAS'
+          Top=64
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Kualitas Aktiva Debitur'
+          FieldName='LKUALITAS.reference_desc'
+          LookupField='LKUALITAS.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='Murabahah'
+          Top=92
+          Left=8
+          ControlCaption='Murabahah (Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Murabahahv'
+          Top=120
+          Left=8
+          ControlCaption='Murabahah (Va)'
+        >, *object:rtf::DBEdit<
+          Name='Margin'
+          Top=148
+          Left=8
+          ControlCaption='Margin Murabahah (Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Marginv'
+          Top=176
+          Left=8
+          ControlCaption='Margin Murabahah (Va)'
+        >, *object:rtf::DBEdit<
+          Name='Salam'
+          Top=204
+          Left=8
+          ControlCaption='Salam (Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Salamv'
+          Top=232
+          Left=8
+          ControlCaption='Salam (Va)'
+        >, *object:rtf::DBEdit<
+          Name='Istishna'
+          Top=260
+          Left=8
+          ControlCaption='Istishna (net) (Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Istishnav'
+          Top=288
+          Left=8
+          ControlCaption='Istishna (net) (Va)'
+        >
+      }
+      EqualCaptionWidth=200
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='Mudharabah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Mudharabah (Rp)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Mudharabahv'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Mudharabah (Va)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Musyarakah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Musyarakah (Rp)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Musyarakahv'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Musyarakah (Va)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Lain'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Lainnya (Rp)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Lainv'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Lainnya (Va)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TotalDebitur'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Total Fasilitas Debitur'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='PersenDebitur'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Persen Margin/Bagi Hasil Debitur'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData3'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='Mudharabah'
+          Top=8
+          Left=8
+          ControlCaption='Mudharabah (Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Mudharabahv'
+          Top=36
+          Left=8
+          ControlCaption='Mudharabah (Va)'
+        >, *object:rtf::DBEdit<
+          Name='Musyarakah'
+          Top=64
+          Left=8
+          ControlCaption='Musyarakah (Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Musyarakahv'
+          Top=92
+          Left=8
+          ControlCaption='Musyarakah (Va)'
+        >, *object:rtf::DBEdit<
+          Name='Lain'
+          Top=120
+          Left=8
+          ControlCaption='Lainnya (Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Lainv'
+          Top=148
+          Left=8
+          ControlCaption='Lainnya (Va)'
+        >, *object:rtf::DBEdit<
+          Name='TotalDebitur'
+          Top=176
+          Left=8
+          ControlCaption='Total Fasilitas Debitur'
+        >, *object:rtf::DBEdit<
+          Name='PersenDebitur'
+          Top=204
+          Left=8
+          ControlCaption='Persen Margin/Bagi Hasil Debitur'
+        >
+      }
+      EqualCaptionWidth=200
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LBBU_FORM_10'
+>

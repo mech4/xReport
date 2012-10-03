@@ -1,0 +1,524 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=921
+      Height=425
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['multipages1']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-405'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcLKOMPONEN'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LKOMPONEN.reference_code'
+          DisplayFormat=''
+          TitleCaption='Komponen'
+          Width=64
+        >, object:rtf::GridColumn<
+          Name='gcHari1'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari1'
+          DisplayFormat=''
+          TitleCaption='Hari 1 (dlm jt Rp)'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari2'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari2'
+          DisplayFormat=''
+          TitleCaption='Hari 2 (dlm jt Rp)'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari3'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari3'
+          DisplayFormat=''
+          TitleCaption='Hari 3 (dlm jt Rp)'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari4'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari4'
+          DisplayFormat=''
+          TitleCaption='Hari 4 (dlm jt Rp)'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari5'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari5'
+          DisplayFormat=''
+          TitleCaption='Hari 5 (dlm jt Rp)'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari6'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari6'
+          DisplayFormat=''
+          TitleCaption='Hari 6 (dlm jt Rp)'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari7'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari7'
+          DisplayFormat=''
+          TitleCaption='Hari 7 (dlm jt Rp)'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari8'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari8'
+          DisplayFormat=''
+          TitleCaption='Hari 8 (dlm jt Rp)'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari9'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari9'
+          DisplayFormat=''
+          TitleCaption='Hari 9 (dlm jt Rp)'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari10'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari10'
+          DisplayFormat=''
+          TitleCaption='Hari 10 (dlm jt Rp)'
+          Width=152
+        >, object:rtf::GridColumn<
+          Name='gcHari11'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari11'
+          DisplayFormat=''
+          TitleCaption='Hari 11 (dlm jt Rp)'
+          Width=152
+        >, object:rtf::GridColumn<
+          Name='gcHari12'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari12'
+          DisplayFormat=''
+          TitleCaption='Hari 12 (dlm jt Rp)'
+          Width=152
+        >, object:rtf::GridColumn<
+          Name='gcHari13'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari13'
+          DisplayFormat=''
+          TitleCaption='Hari 13 (dlm jt Rp)'
+          Width=152
+        >, object:rtf::GridColumn<
+          Name='gcHari14'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari14'
+          DisplayFormat=''
+          TitleCaption='Hari 14 (dlm jt Rp)'
+          Width=152
+        >, object:rtf::GridColumn<
+          Name='gcMinggu3'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Minggu3'
+          DisplayFormat=''
+          TitleCaption='Minggu 3 (dlm jt Rp)'
+          Width=160
+        >, object:rtf::GridColumn<
+          Name='gcMinggu4'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Minggu4'
+          DisplayFormat=''
+          TitleCaption='Minggu 4 (dlm jt Rp)'
+          Width=160
+        >, object:rtf::GridColumn<
+          Name='gcsdbulan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='sdbulan'
+          DisplayFormat=''
+          TitleCaption='1 > sd 3 bulan (dlm jt Rp)'
+          Width=208
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::MultiPages<
+      Name='multipages1'
+      Width=607
+      Height=425
+      Pages={
+        object:rtf::Page<
+          PageName='Page1'
+          PageTitle='Page 1'
+          Container=$CONTAINERS['pData']
+        >, object:rtf::Page<
+          PageName='page2'
+          PageTitle='page 2'
+          Container=$CONTAINERS['panel1']
+          Index=1
+        >
+      }
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LKOMPONEN'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Komponen'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LKOMPONEN.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LKOMPONEN.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LKOMPONEN.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LKOMPONEN.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LKOMPONEN'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari1'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hari 1 (dlm jt Rp)'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari2'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hari 2 (dlm jt Rp)'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari3'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hari 3 (dlm jt Rp)'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari4'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hari 4 (dlm jt Rp)'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari5'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hari 5 (dlm jt Rp)'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari6'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hari 6 (dlm jt Rp)'
+          DataTypeName='varchar'
+          DataLength=20
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LKOMPONEN'
+          Top=8
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Komponen'
+          FieldName='LKOMPONEN.reference_desc'
+          LookupField='LKOMPONEN.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='Hari1'
+          Top=36
+          Left=8
+          ControlCaption='Hari 1 (dlm jt Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Hari2'
+          Top=64
+          Left=8
+          ControlCaption='Hari 2 (dlm jt Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Hari3'
+          Top=92
+          Left=8
+          ControlCaption='Hari 3 (dlm jt Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Hari4'
+          Top=120
+          Left=8
+          ControlCaption='Hari 4 (dlm jt Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Hari5'
+          Top=148
+          Left=8
+          ControlCaption='Hari 5 (dlm jt Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Hari6'
+          Top=176
+          Left=8
+          ControlCaption='Hari 6 (dlm jt Rp)'
+        >
+      }
+      EqualCaptionWidth=150
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='Hari7'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hari 7 (dlm jt Rp)'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari8'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hari 8 (dlm jt Rp)'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari9'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hari 9 (dlm jt Rp)'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari10'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hari 10 (dlm jt Rp)'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari11'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hari 11 (dlm jt Rp)'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari12'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hari 12 (dlm jt Rp)'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari13'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hari 13 (dlm jt Rp)'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari14'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hari 14 (dlm jt Rp)'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Minggu3'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Minggu 3 (dlm jt Rp)'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Minggu4'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Minggu 4 (dlm jt Rp)'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='sdbulan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='1 > sd 3 bulan (dlm jt Rp)'
+          DataTypeName='varchar'
+          DataLength=20
+        >
+      }
+      Name='panel1'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='Hari7'
+          Top=8
+          Left=8
+          ControlCaption='Hari 7 (dlm jt Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Hari8'
+          Top=36
+          Left=8
+          ControlCaption='Hari 8 (dlm jt Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Hari9'
+          Top=64
+          Left=8
+          ControlCaption='Hari 9 (dlm jt Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Hari10'
+          Top=92
+          Left=8
+          ControlCaption='Hari 10 (dlm jt Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Hari11'
+          Top=120
+          Left=8
+          ControlCaption='Hari 11 (dlm jt Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Hari12'
+          Top=148
+          Left=8
+          ControlCaption='Hari 12 (dlm jt Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Hari13'
+          Top=176
+          Left=8
+          ControlCaption='Hari 13 (dlm jt Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Hari14'
+          Top=204
+          Left=8
+          ControlCaption='Hari 14 (dlm jt Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Minggu3'
+          Top=232
+          Left=8
+          ControlCaption='Minggu 3 (dlm jt Rp)'
+        >, *object:rtf::DBEdit<
+          Name='Minggu4'
+          Top=260
+          Left=8
+          ControlCaption='Minggu 4 (dlm jt Rp)'
+        >, *object:rtf::DBEdit<
+          Name='sdbulan'
+          Top=288
+          Left=8
+          ControlCaption='1 > sd 3 bulan (dlm jt Rp)'
+        >
+      }
+      EqualCaptionWidth=150
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LHBU_FORM_405'
+>

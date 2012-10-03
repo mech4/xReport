@@ -1,0 +1,370 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx='FormOnSetDataEx'
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=921
+      Height=425
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-37'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcNoRekening'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NoRekening'
+          DisplayFormat=''
+          TitleCaption='Nomor Rekening'
+          Width=112
+        >, object:rtf::GridColumn<
+          Name='gcJumlahRekening'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='JumlahRekening'
+          DisplayFormat=''
+          TitleCaption='Jumlah Rekening'
+          Width=120
+        >, object:rtf::GridColumn<
+          Name='gcLJENIS'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENIS.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Penggunaan'
+          Width=128
+        >, object:rtf::GridColumn<
+          Name='gcLBENTUKPENGHAPUSANBUKUAN'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LBENTUKPENGHAPUSANBUKUAN.reference_code'
+          DisplayFormat=''
+          TitleCaption='Golongan Pembiayaan'
+          Width=152
+        >, object:rtf::GridColumn<
+          Name='gcLJENISVALUTA'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENISVALUTA.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Valuta'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcLKOLEKTIBILITAS'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LKOLEKTIBILITAS.reference_code'
+          DisplayFormat=''
+          TitleCaption='Kolektibilitas'
+          Width=112
+        >, object:rtf::GridColumn<
+          Name='gcLDEBITUR'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LDEBITUR.reference_code'
+          DisplayFormat=''
+          TitleCaption='Status Pemilik Dana'
+          Width=152
+        >, object:rtf::GridColumn<
+          Name='gcLHUBUNGANBANK'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LHUBUNGANBANK.reference_code'
+          DisplayFormat=''
+          TitleCaption='Lokasi Proyek'
+          Width=104
+        >, object:rtf::GridColumn<
+          Name='gcLSEKTOREKONOMI'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LSEKTOREKONOMI.reference_code'
+          DisplayFormat=''
+          TitleCaption='Sektor Ekonomi'
+          Width=112
+        >, object:rtf::GridColumn<
+          Name='gcTanggalHapusBuku'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TanggalHapusBuku'
+          DisplayFormat=''
+          TitleCaption='Tanggal Hapus Buku'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcJumlah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Jumlah'
+          DisplayFormat=''
+          TitleCaption='Jumlah (Dalam Jutaan Rupiah)'
+          Width=224
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='NoRekening'
+          Hidden=true
+          ReadOnlyControl=false
+          ControlCaption='Nomor Rekening'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='JumlahRekening'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Rekening'
+          DataTypeName='integer'
+          DataLength=5
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJENIS'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Penggunaan'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJENIS'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LBENTUKPENGHAPUSANBUKUAN'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Golongan Pembiayaan'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LBENTUKPENGHAPUSANBUKUAN'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJENISVALUTA'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Valuta'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJENISVALUTA'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LKOLEKTIBILITAS'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kolektibilitas'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LKOLEKTIBILITAS'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LDEBITUR'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Status Pemilik Dana'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LDEBITUR'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LHUBUNGANBANK'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Lokasi Proyek'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LHUBUNGANBANK'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LSEKTOREKONOMI'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Sektor Ekonomi'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LSEKTOREKONOMI'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Jumlah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah (Dalam Jutaan Rupiah)'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='JumlahRekening'
+          Top=8
+          Left=8
+          ControlCaption='Jumlah Rekening'
+        >, *object:rtf::DBLookupEdit<
+          Name='LJENIS'
+          Top=36
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Penggunaan'
+          FieldName='LJENIS.reference_desc'
+          LookupField='LJENIS.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LBENTUKPENGHAPUSANBUKUAN'
+          Top=64
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Golongan Pembiayaan'
+          FieldName='LBENTUKPENGHAPUSANBUKUAN.reference_desc'
+          LookupField='LBENTUKPENGHAPUSANBUKUAN.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          ButtonWidth=1
+        >, *object:rtf::DBLookupEdit<
+          Name='LJENISVALUTA'
+          Top=92
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Valuta'
+          FieldName='LJENISVALUTA.reference_desc'
+          LookupField='LJENISVALUTA.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LKOLEKTIBILITAS'
+          Top=120
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Kolektibilitas'
+          FieldName='LKOLEKTIBILITAS.reference_desc'
+          LookupField='LKOLEKTIBILITAS.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          ButtonWidth=1
+        >, *object:rtf::DBLookupEdit<
+          Name='LDEBITUR'
+          Top=148
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Status Pemilik Dana'
+          FieldName='LDEBITUR.reference_desc'
+          LookupField='LDEBITUR.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          ButtonWidth=1
+        >, *object:rtf::DBLookupEdit<
+          Name='LHUBUNGANBANK'
+          Top=176
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Lokasi Proyek'
+          FieldName='LHUBUNGANBANK.reference_desc'
+          LookupField='LHUBUNGANBANK.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          ButtonWidth=1
+        >, *object:rtf::DBLookupEdit<
+          Name='LSEKTOREKONOMI'
+          Top=204
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Sektor Ekonomi'
+          FieldName='LSEKTOREKONOMI.reference_desc'
+          LookupField='LSEKTOREKONOMI.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          ButtonWidth=1
+        >, *object:rtf::DBEdit<
+          Name='Jumlah'
+          Top=232
+          Left=8
+          ControlCaption='Jumlah (Dalam Jutaan Rupiah)'
+        >
+      }
+      EqualCaptionWidth=160
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LBUS_FORM_37'
+>

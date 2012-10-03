@@ -1,0 +1,312 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=240
+      Height=96
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-205'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcLJANGKA'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJANGKA.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jangka Waktu'
+          Width=20
+        >, object:rtf::GridColumn<
+          Name='gcRealisasi'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Realisasi'
+          DisplayFormat=''
+          TitleCaption='Tingkat Realisasi sebelum Distribusi'
+          Width=20
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LSANDIBANK'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Sandi Bank'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSANDIBANK.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSANDIBANK.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSANDIBANK.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSANDIBANK.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LSANDIBANK'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='JenisKegiatanUsaha'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Kegiatan Usaha'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TanggaLaporan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal Laporan'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NoForm'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='No Form'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Posisi'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Posisi (dalam ribu USD)'
+          DataTypeName='varchar'
+          DataLength=9
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LTRANSDERIVATIF'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Ada Transaksi Derivatif Valas Hari Ini'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LTRANSDERIVATIF.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LTRANSDERIVATIF.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LTRANSDERIVATIF.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LTRANSDERIVATIF.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LTRANSDERIVATIF'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LTRANSDERIVATIFASING'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Ada Transaksi Derivatif Valas Jual Bukan Investasi dengan Pihak Asing'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LTRANSDERIVATIFASING.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LTRANSDERIVATIFASING.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LTRANSDERIVATIFASING.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LTRANSDERIVATIFASING.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LTRANSDERIVATIFASING'
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LSANDIBANK'
+          Top=8
+          Left=8
+          ControlCaption='Sandi Bank'
+          LookupField='LSANDIBANK.reference_code'
+          DisplayLookupField=true
+        >, *object:rtf::DBEdit<
+          Name='JenisKegiatanUsaha'
+          Top=36
+          Left=8
+          ControlCaption='Jenis Kegiatan Usaha'
+        >, *object:rtf::DBEdit<
+          Name='TanggaLaporan'
+          Top=64
+          Left=8
+          ControlCaption='Tanggal Laporan'
+        >, *object:rtf::DBEdit<
+          Name='NoForm'
+          Top=92
+          Left=8
+          ControlCaption='No Form'
+        >, *object:rtf::DBEdit<
+          Name='Posisi'
+          Top=120
+          Left=8
+          ControlCaption='Posisi (dalam ribu USD)'
+        >, *object:rtf::DBLookupEdit<
+          Name='LTRANSDERIVATIF'
+          Top=148
+          Left=8
+          ControlCaption='Ada Transaksi Derivatif Valas Hari Ini'
+          LookupField='LTRANSDERIVATIF.reference_code'
+          DisplayLookupField=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LTRANSDERIVATIFASING'
+          Top=176
+          Left=8
+          ControlCaption='Ada Transaksi Derivatif Valas Jual Bukan Investasi dengan Pihak Asing'
+          LookupField='LTRANSDERIVATIFASING.reference_code'
+          DisplayLookupField=true
+        >
+      }
+      EqualCaptionWidth=200
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LBUS_FORM_204'
+>

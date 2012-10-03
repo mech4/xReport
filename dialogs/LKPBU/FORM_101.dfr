@@ -1,0 +1,445 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx='FormOnSetDataEx'
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=921
+      Height=425
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-101'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcJenis'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENIS.reference_code'
+          DisplayFormat=''
+          TitleCaption='Golongan Pemilik Surat Berharga'
+          Width=20
+        >, object:rtf::GridColumn<
+          Name='gcNamaPemilik'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NamaPemilik'
+          DisplayFormat=''
+          TitleCaption='Nama Pemilik Surat Berharga'
+        >, object:rtf::GridColumn<
+          Name='gcLNEGARAASALPEMILIK'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LNEGARAASALPEMILIK.reference_code'
+          DisplayFormat=''
+          TitleCaption='Negara Asal Pemilik Surat Berharga'
+          Width=50
+        >, object:rtf::GridColumn<
+          Name='gcLGOLONGANPENERBIT'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LGOLONGANPENERBIT.reference_code'
+          DisplayFormat=''
+          TitleCaption='Golongan Penerbit Surat Berharga'
+        >, object:rtf::GridColumn<
+          Name='gcLNEGARAASALPENERBIT'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LNEGARAASALPENERBIT.reference_code'
+          DisplayFormat=''
+          TitleCaption='Negara Asal Penerbit Surat Berharga'
+        >, object:rtf::GridColumn<
+          Name='gcNamaPenerbit'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NamaPenerbit'
+          DisplayFormat=''
+          TitleCaption='Nama Penerbit Surat Berharga'
+        >, object:rtf::GridColumn<
+          Name='gcKodeSuratBerharga'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='KodeSuratBerharga'
+          DisplayFormat=''
+          TitleCaption='Kode Surat Berharga'
+        >, object:rtf::GridColumn<
+          Name='gcLJENISSURATBERHARGA'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENISSURATBERHARGA.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Surat Berharga'
+        >, object:rtf::GridColumn<
+          Name='gcKeterangan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Keterangan'
+          DisplayFormat=''
+          TitleCaption='Keterangan'
+        >, object:rtf::GridColumn<
+          Name='gcLJENISVALUTA'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENISVALUTA.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Valuta'
+        >, object:rtf::GridColumn<
+          Name='gcTglPenerbit'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TglPenerbit'
+          DisplayFormat=''
+          TitleCaption='Tanggal Penerbit'
+        >, object:rtf::GridColumn<
+          Name='gcTglJatuhTempo'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TglJatuhTempo'
+          DisplayFormat=''
+          TitleCaption='Tanggal Jatuh Tempo'
+        >, object:rtf::GridColumn<
+          Name='gcNilai'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Nilai'
+          DisplayFormat=''
+          TitleCaption='Nilai (Valuta Asal)'
+        >, object:rtf::GridColumn<
+          Name='gcPembayaran'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Pembayaran'
+          DisplayFormat=''
+          TitleCaption='Pembayaran Kupon/Devided/Bunga/Diskon'
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LJENIS'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Golongan Pemilik Surat Berharga'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJENIS'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NamaPemilik'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nama Pemilik Surat Berharga'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LNEGARAASALPEMILIK'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Negara Asal Pemilik Surat Berharga'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LNEGARAASALPEMILIK'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LGOLONGANPENERBIT'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Golongan Penerbit Surat Berharga'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code'
+          Restrictions=''
+          FieldBaseName='LGOLONGANPENERBIT'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LNEGARAASALPENERBIT'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Negara Asal Penerbit Surat Berharga'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code'
+          Restrictions=''
+          FieldBaseName='LNEGARAASALPENERBIT'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NamaPenerbit'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nama Penerbit Surat Berharga'
+          DataTypeName='varchar'
+          DataLength=35
+        >, object:rtf::FieldUIElmtSetting<
+          Name='KodeSuratBerharga'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kode Surat Berharga'
+          DataTypeName='varchar'
+          DataLength=15
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJENISSURATBERHARGA'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Surat Berharga'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code'
+          Restrictions=''
+          FieldBaseName='LJENISSURATBERHARGA'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Keterangan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Ketarangan'
+          DataTypeName='varchar'
+          DataLength=35
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJENISVALUTA'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Valuta'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code'
+          Restrictions=''
+          FieldBaseName='LJENISVALUTA'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TglPenerbit'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal Penerbit'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TglJatuhTempo'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal Jatuh Tempo'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Nilai'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nilai (Valuta Asal)'
+          DataTypeName='double'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Pembayaran'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Pembayaran Kupon/Devided/Bunga/Diskont'
+          DataTypeName='double'
+          DataLength=15
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LJENIS'
+          Top=8
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Golongan Pemilik Surat Berharga'
+          FieldName='LJENIS.reference_desc'
+          LookupField='LJENIS.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='NamaPemilik'
+          Top=36
+          Left=8
+          ControlCaption='Nama Pemilik Surat Berharga'
+        >, *object:rtf::DBLookupEdit<
+          Name='LNEGARAASALPEMILIK'
+          Top=64
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Negara Asal Pemilik Surat Berharga'
+          FieldName='LNEGARAASALPEMILIK.reference_desc'
+          LookupField='LNEGARAASALPEMILIK.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LGOLONGANPENERBIT'
+          Top=92
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Golongan Penerbit Surat Berharga'
+          FieldName='LGOLONGANPENERBIT.reference_desc'
+          LookupField='LGOLONGANPENERBIT.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+        >, *object:rtf::DBLookupEdit<
+          Name='LNEGARAASALPENERBIT'
+          Top=120
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Negara Asal Penerbit Surat Berharga'
+          FieldName='LNEGARAASALPENERBIT.reference_desc'
+          LookupField='LNEGARAASALPENERBIT.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+        >, *object:rtf::DBEdit<
+          Name='NamaPenerbit'
+          Top=148
+          Left=8
+          ControlCaption='Nama Penerbit Surat Berharga'
+        >, *object:rtf::DBEdit<
+          Name='KodeSuratBerharga'
+          Top=176
+          Left=8
+          ControlCaption='Kode Surat Berharga'
+        >, *object:rtf::DBLookupEdit<
+          Name='LJENISSURATBERHARGA'
+          Top=204
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Surat Berharga'
+          FieldName='LJENISSURATBERHARGA.reference_desc'
+          LookupField='LJENISSURATBERHARGA.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+        >, *object:rtf::DBEdit<
+          Name='Keterangan'
+          Top=232
+          Left=8
+          ControlCaption='Ketarangan'
+          OnEnter='onenter'
+        >, *object:rtf::DBLookupEdit<
+          Name='LJENISVALUTA'
+          Top=260
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Valuta'
+          FieldName='LJENISVALUTA.reference_desc'
+          LookupField='LJENISVALUTA.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+        >, *object:rtf::DBEdit<
+          Name='TglPenerbit'
+          Top=288
+          Left=8
+          ControlCaption='Tanggal Penerbit'
+        >, *object:rtf::DBEdit<
+          Name='TglJatuhTempo'
+          Top=316
+          Left=8
+          ControlCaption='Tanggal Jatuh Tempo'
+        >, *object:rtf::DBEdit<
+          Name='Nilai'
+          Top=344
+          Left=8
+          ControlCaption='Nilai (Valuta Asal)'
+          OnEnter='OnEn'
+        >, *object:rtf::DBEdit<
+          Name='Pembayaran'
+          Top=372
+          Left=8
+          ControlCaption='Pembayaran Kupon/Devided/Bunga/Diskon'
+        >, object:rtf::Label<
+          Name='label1'
+          Layout=clAbsolute
+          Top=344
+          Left=144
+          Width=25
+          Height=17
+          ControlCaption=''
+          Caption='.'
+          AutoSize=true
+          FontName='Tahoma'
+          FontColor=-16777208
+          FontSize=10
+        >
+      }
+      EqualCaptionWidth=220
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LKPBU_FORM_101'
+>

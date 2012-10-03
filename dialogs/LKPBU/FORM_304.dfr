@@ -1,0 +1,256 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx='FormOnSetDataEx'
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=240
+      Height=96
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-304'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcLJENIS'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENIS.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Kartu'
+          Width=88
+        >, object:rtf::GridColumn<
+          Name='gcKeteranganJK'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='KeteranganJK'
+          DisplayFormat=''
+          TitleCaption='Keterangan Jenis Kartu'
+          Width=176
+        >, object:rtf::GridColumn<
+          Name='gcLFRAUD'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LFRAUD.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Penyebab Fraud'
+          Width=160
+        >, object:rtf::GridColumn<
+          Name='gcKeterangan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Keterangan'
+          DisplayFormat=''
+          TitleCaption='Ketarangan Jenis Penyebab Fraud'
+          Width=248
+        >, object:rtf::GridColumn<
+          Name='gcJmlhKasus1'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='JmlhKasus1'
+          DisplayFormat=''
+          TitleCaption='Jumlah Kasus - Periode Laporan'
+          Width=240
+        >, object:rtf::GridColumn<
+          Name='gcJmlhKasus2'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='JmlhKasus2'
+          DisplayFormat=''
+          TitleCaption='Jumlah Kasus - Periode Sebelumnya'
+          Width=264
+        >, object:rtf::GridColumn<
+          Name='gcNominalKerugian'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NominalKerugian'
+          DisplayFormat=''
+          TitleCaption='Nominal Kerugian'
+          Width=128
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LJENIS'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Kartu'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJENIS'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='KeteranganJK'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Keterangan Jenis Kartu'
+          DataTypeName='varchar'
+          DataLength=35
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LFRAUD'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Penyebab Fraud'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LFRAUD'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Keterangan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Ketarangan Jenis Penyebab Fraud'
+          DataTypeName='varchar'
+          DataLength=35
+        >, object:rtf::FieldUIElmtSetting<
+          Name='JmlhKasus1'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Kasus - Periode Laporan'
+          DataTypeName='integer'
+          DataLength=12
+        >, object:rtf::FieldUIElmtSetting<
+          Name='JmlhKasus2'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Kasus - Periode Sebelumnya'
+          DataTypeName='integer'
+          DataLength=12
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NominalKerugian'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nominal Kerugian'
+          DataTypeName='integer'
+          DataLength=15
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LJENIS'
+          Top=8
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Kartu'
+          FieldName='LJENIS.reference_desc'
+          LookupField='LJENIS.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='KeteranganJK'
+          Top=36
+          Left=8
+          ControlCaption='Keterangan Jenis Kartu'
+          OnEnter='onenter'
+        >, *object:rtf::DBLookupEdit<
+          Name='LFRAUD'
+          Top=64
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Penyebab Fraud'
+          FieldName='LFRAUD.reference_desc'
+          LookupField='LFRAUD.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='Keterangan'
+          Top=92
+          Left=8
+          ControlCaption='Ketarangan Jenis Penyebab Fraud'
+          OnEnter='masuk'
+        >, *object:rtf::DBEdit<
+          Name='JmlhKasus1'
+          Top=120
+          Left=8
+          ControlCaption='Jumlah Kasus - Periode Laporan'
+        >, *object:rtf::DBEdit<
+          Name='JmlhKasus2'
+          Top=148
+          Left=8
+          ControlCaption='Jumlah Kasus - Periode Sebelumnya'
+        >, *object:rtf::DBEdit<
+          Name='NominalKerugian'
+          Top=176
+          Left=8
+          ControlCaption='Nominal Kerugian'
+        >
+      }
+      EqualCaptionWidth=220
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LKPBU_FORM_304'
+>

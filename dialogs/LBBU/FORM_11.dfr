@@ -1,0 +1,288 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx='FormOnSetDataEx'
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=921
+      Height=425
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-11'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcAktivitas'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Aktivitas'
+          DisplayFormat=''
+          TitleCaption='Business Line/Aktivitas Fungsional'
+          Width=272
+        >, object:rtf::GridColumn<
+          Name='gcusd'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='usd'
+          DisplayFormat=''
+          TitleCaption='USD'
+          Width=24
+        >, object:rtf::GridColumn<
+          Name='gcgbp'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='gbp'
+          DisplayFormat=''
+          TitleCaption='GBP'
+          Width=24
+        >, object:rtf::GridColumn<
+          Name='gcsgd'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='sgd'
+          DisplayFormat=''
+          TitleCaption='SGD'
+          Width=24
+        >, object:rtf::GridColumn<
+          Name='gchkd'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='hkd'
+          DisplayFormat=''
+          TitleCaption='HKD'
+          Width=24
+        >, object:rtf::GridColumn<
+          Name='gcjpy'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='jpy'
+          DisplayFormat=''
+          TitleCaption='JPY'
+          Width=24
+        >, object:rtf::GridColumn<
+          Name='gcaud'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='aud'
+          DisplayFormat=''
+          TitleCaption='AUD'
+          Width=24
+        >, object:rtf::GridColumn<
+          Name='gceuro'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='euro'
+          DisplayFormat=''
+          TitleCaption='EURO'
+          Width=32
+        >, object:rtf::GridColumn<
+          Name='gcmyr'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='myr'
+          DisplayFormat=''
+          TitleCaption='MYR'
+          Width=24
+        >, object:rtf::GridColumn<
+          Name='gcothers'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='others'
+          DisplayFormat=''
+          TitleCaption='Others'
+          Width=48
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='Aktivitas'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Business Line/Aktivitas Fungsional'
+          DataTypeName='varchar'
+          DataLength=100
+        >, object:rtf::FieldUIElmtSetting<
+          Name='usd'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='USD'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='gbp'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='GBP'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='sgd'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='SGD'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='hkd'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='HKD'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='jpy'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='JPY'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='aud'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='AUD'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='euro'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='EURO'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='myr'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='MYR'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='others'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Others'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='Aktivitas'
+          Top=8
+          Left=8
+          ControlCaption='Business Line/Aktivitas Fungsional'
+        >, *object:rtf::DBEdit<
+          Name='usd'
+          Top=36
+          Left=8
+          ControlCaption='USD'
+        >, *object:rtf::DBEdit<
+          Name='gbp'
+          Top=64
+          Left=8
+          ControlCaption='GBP'
+        >, *object:rtf::DBEdit<
+          Name='sgd'
+          Top=92
+          Left=8
+          ControlCaption='SGD'
+        >, *object:rtf::DBEdit<
+          Name='hkd'
+          Top=120
+          Left=8
+          ControlCaption='HKD'
+        >, *object:rtf::DBEdit<
+          Name='jpy'
+          Top=148
+          Left=8
+          ControlCaption='JPY'
+        >, *object:rtf::DBEdit<
+          Name='aud'
+          Top=176
+          Left=8
+          ControlCaption='AUD'
+        >, *object:rtf::DBEdit<
+          Name='euro'
+          Top=204
+          Left=8
+          ControlCaption='EURO'
+        >, *object:rtf::DBEdit<
+          Name='myr'
+          Top=232
+          Left=8
+          ControlCaption='MYR'
+        >, *object:rtf::DBEdit<
+          Name='others'
+          Top=260
+          Left=8
+          ControlCaption='Others'
+        >
+      }
+      EqualCaptionWidth=200
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LBBU_FORM_11'
+>

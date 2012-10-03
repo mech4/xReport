@@ -1,0 +1,375 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx='FormOnSetDataEx'
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=240
+      Height=96
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-501'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcLJENIS'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENIS.reference_code'
+          DisplayFormat=''
+          TitleCaption='Pemilik Rekening Pemerintah Pusat'
+          Width=264
+        >, object:rtf::GridColumn<
+          Name='gcLPEMILIK'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LPEMILIK.reference_code'
+          DisplayFormat=''
+          TitleCaption='Pemilik Rekening Daerah'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcLPERKIRAAN'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LPERKIRAAN.reference_code'
+          DisplayFormat=''
+          TitleCaption='Perkiraan'
+          Width=72
+        >, object:rtf::GridColumn<
+          Name='gcPerkiraanLainya'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PerkiraanLainya'
+          DisplayFormat=''
+          TitleCaption='Nama Perkiraan Lainya'
+          Width=168
+        >, object:rtf::GridColumn<
+          Name='gcLPEMILIKDANANONDAERAH'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LPEMILIKDANANONDAERAH.reference_code'
+          DisplayFormat=''
+          TitleCaption='Pemilik Dana Non Daerah'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcLPEMILIKDANA'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LPEMILIKDANA.reference_code'
+          DisplayFormat=''
+          TitleCaption='Pemilik Dana Daerah'
+          Width=152
+        >, object:rtf::GridColumn<
+          Name='gcLLAWANTRANSAKSI'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LLAWANTRANSAKSI.reference_code'
+          DisplayFormat=''
+          TitleCaption='Lawan Transaksi Perpindahan Dana'
+          Width=256
+        >, object:rtf::GridColumn<
+          Name='gcLJENISVALUTA'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENISVALUTA.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Valuta'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcNominal'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Nominal'
+          DisplayFormat=''
+          TitleCaption='Nominal (Valuta Asal)'
+          Width=168
+        >, object:rtf::GridColumn<
+          Name='gcTglTransaksi'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TglTransaksi'
+          DisplayFormat=''
+          TitleCaption='Tanggal Transaksi'
+          Width=136
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LJENIS'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Pemilik Rekening Pemerintah Pusat'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJENIS'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LPEMILIK'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Pemilik Rekening Daerah'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LPEMILIK'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LPERKIRAAN'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Perkiraan'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LPERKIRAAN'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='PerkiraanLainya'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nama Perkiraan Lainya'
+          DataTypeName='varchar'
+          DataLength=35
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LPEMILIKDANANONDAERAH'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Pemilik Dana Non Daerah'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code'
+          Restrictions=''
+          FieldBaseName='LPEMILIKDANANONDAERAH'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LPEMILIKDANA'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Pemilik Dana Daerah'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LPEMILIKDANA'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LLAWANTRANSAKSI'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Lawan Transaksi Perpindahan Dana'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code'
+          Restrictions=''
+          FieldBaseName='LLAWANTRANSAKSI'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJENISVALUTA'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Valuta'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code'
+          Restrictions=''
+          FieldBaseName='LJENISVALUTA'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Nominal'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nominal (Valuta Asal)'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TglTransaksi'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal Transaksi'
+          DataTypeName='varchar'
+          DataLength=8
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LJENIS'
+          Top=8
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Pemilik Rekening Pemerintah Pusat'
+          FieldName='LJENIS.reference_desc'
+          LookupField='LJENIS.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LPEMILIK'
+          Top=36
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Pemilik Rekening Daerah'
+          FieldName='LPEMILIK.reference_desc'
+          LookupField='LPEMILIK.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LPERKIRAAN'
+          Top=64
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Perkiraan'
+          FieldName='LPERKIRAAN.reference_desc'
+          LookupField='LPERKIRAAN.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='PerkiraanLainya'
+          Top=92
+          Left=8
+          ControlCaption='Nama Perkiraan Lainya'
+          OnEnter='onenter'
+        >, *object:rtf::DBLookupEdit<
+          Name='LPEMILIKDANANONDAERAH'
+          Top=120
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Pemilik Dana Non Daerah'
+          FieldName='LPEMILIKDANANONDAERAH.reference_desc'
+          LookupField='LPEMILIKDANANONDAERAH.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+        >, *object:rtf::DBLookupEdit<
+          Name='LPEMILIKDANA'
+          Top=148
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Pemilik Dana Daerah'
+          FieldName='LPEMILIKDANA.reference_desc'
+          LookupField='LPEMILIKDANA.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LLAWANTRANSAKSI'
+          Top=176
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Lawan Transaksi Perpindahan Dana'
+          FieldName='LLAWANTRANSAKSI.reference_desc'
+          LookupField='LLAWANTRANSAKSI.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          ButtonWidth=1
+        >, *object:rtf::DBLookupEdit<
+          Name='LJENISVALUTA'
+          Top=204
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Valuta'
+          FieldName='LJENISVALUTA.reference_desc'
+          LookupField='LJENISVALUTA.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          ButtonWidth=1
+        >, *object:rtf::DBEdit<
+          Name='Nominal'
+          Top=232
+          Left=8
+          ControlCaption='Nominal (Valuta Asal)'
+        >, *object:rtf::DBEdit<
+          Name='TglTransaksi'
+          Top=260
+          Left=8
+          ControlCaption='Tanggal Transaksi'
+        >
+      }
+      EqualCaptionWidth=260
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LKPBU_FORM_501'
+>

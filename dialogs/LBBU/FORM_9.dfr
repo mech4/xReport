@@ -1,0 +1,834 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx='FormOnSetDataEx'
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=240
+      Height=96
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['multipages1']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-9'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcNama'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Nama'
+          DisplayFormat=''
+          TitleCaption='Nama'
+          Width=32
+        >, object:rtf::GridColumn<
+          Name='gcNPWP'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NPWP'
+          DisplayFormat=''
+          TitleCaption='NPWP'
+          Width=32
+        >, object:rtf::GridColumn<
+          Name='gcAlamat'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Alamat'
+          DisplayFormat=''
+          TitleCaption='Alamat'
+          Width=48
+        >, object:rtf::GridColumn<
+          Name='gcLCARA'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LCARA.reference_code'
+          DisplayFormat=''
+          TitleCaption='Cara Restrukturisasi'
+          Width=160
+        >, object:rtf::GridColumn<
+          Name='gcFrekuensi'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Frekuensi'
+          DisplayFormat=''
+          TitleCaption='Frekuensi Restrukturisasi'
+          Width=200
+        >, object:rtf::GridColumn<
+          Name='gcLAKADSBLM'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LAKADSBLM.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Akad Sebelum'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcPlafonSblm'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PlafonSblm'
+          DisplayFormat=''
+          TitleCaption='Plafon Sebelum'
+          Width=112
+        >, object:rtf::GridColumn<
+          Name='gcSaldoSBLM'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='SaldoSBLM'
+          DisplayFormat=''
+          TitleCaption='Saldo Pembiayaan Sebelum'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcLVALSBLM'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LVALSBLM.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Valuta Sebelum'
+          Width=160
+        >, object:rtf::GridColumn<
+          Name='gcNisbahSBLM'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NisbahSBLM'
+          DisplayFormat=''
+          TitleCaption='Nisbah Sebelum'
+          Width=112
+        >, object:rtf::GridColumn<
+          Name='gcBagHasSBLM'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BagHasSBLM'
+          DisplayFormat=''
+          TitleCaption='Persentase Margin/Bagi Hasil/Fee Sebelum'
+          Width=320
+        >, object:rtf::GridColumn<
+          Name='gcTunggakanSBLM'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TunggakanSBLM'
+          DisplayFormat=''
+          TitleCaption='Tunggakan Margin Sebelum'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcAwalSBLM'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='AwalSBLM'
+          DisplayFormat=''
+          TitleCaption='Jangka Awal Sebelum'
+          Width=152
+        >, object:rtf::GridColumn<
+          Name='gcTempoSBLM'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TempoSBLM'
+          DisplayFormat=''
+          TitleCaption='Jangka Tempo Sebelum'
+          Width=160
+        >, object:rtf::GridColumn<
+          Name='gcLKUASBLM'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LKUASBLM.reference_code'
+          DisplayFormat=''
+          TitleCaption='Kualitas Aktiva Sebelum'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcTglAgunanSBLM'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TglAgunanSBLM'
+          DisplayFormat=''
+          TitleCaption='Tanggal Penilaian Agunan Sebelum'
+          Width=256
+        >, object:rtf::GridColumn<
+          Name='gcNilaiAgunanSBLM'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NilaiAgunanSBLM'
+          DisplayFormat=''
+          TitleCaption='Nilai Agunan Sebelum'
+          Width=160
+        >, object:rtf::GridColumn<
+          Name='gcLAKADSTLH'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LAKADSTLH.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Akad Setelah'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcPlafonSTLH'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PlafonSTLH'
+          DisplayFormat=''
+          TitleCaption='Plafon Setelah'
+          Width=112
+        >, object:rtf::GridColumn<
+          Name='gcSaldoSTLH'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='SaldoSTLH'
+          DisplayFormat=''
+          TitleCaption='Saldo Pembiayaan Setelah'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcLVALSTLH'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LVALSTLH.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Valuta Setelah'
+          Width=160
+        >, object:rtf::GridColumn<
+          Name='gcNisbahSTLH'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NisbahSTLH'
+          DisplayFormat=''
+          TitleCaption='Nisbah Setelah'
+          Width=112
+        >, object:rtf::GridColumn<
+          Name='gcBagHasSTLH'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BagHasSTLH'
+          DisplayFormat=''
+          TitleCaption='Persentase Margin/Bagi Hasil/Fee Setelah'
+          Width=320
+        >, object:rtf::GridColumn<
+          Name='gcTunggakanSTLH'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TunggakanSTLH'
+          DisplayFormat=''
+          TitleCaption='Tunggakan Margin Setelah'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcAwalSTLH'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='AwalSTLH'
+          DisplayFormat=''
+          TitleCaption='Jangka Awal Setelah'
+          Width=152
+        >, object:rtf::GridColumn<
+          Name='gcTempoSTLH'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TempoSTLH'
+          DisplayFormat=''
+          TitleCaption='Jangka Tempo Setelah'
+          Width=160
+        >, object:rtf::GridColumn<
+          Name='gcLKUASTLH'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LKUASTLH.reference_code'
+          DisplayFormat=''
+          TitleCaption='Kualitas Aktiva Setelah'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcTglAgunanSTLH'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TglAgunanSTLH'
+          DisplayFormat=''
+          TitleCaption='Tanggal Penilaian Agunan Setelah'
+          Width=256
+        >, object:rtf::GridColumn<
+          Name='gcNilaiAgunanSTLH'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NilaiAgunanSTLH'
+          DisplayFormat=''
+          TitleCaption='Nilai Agunan Setelah'
+          Width=160
+        >, object:rtf::GridColumn<
+          Name='gcKerugian'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Kerugian'
+          DisplayFormat=''
+          TitleCaption='Kerugian Restrukturisasi'
+          Width=192
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::MultiPages<
+      Name='multipages1'
+      Width=320
+      Height=320
+      Pages={
+        object:rtf::Page<
+          PageName='1'
+          PageTitle='Page 1'
+          Container=$CONTAINERS['pData']
+        >, object:rtf::Page<
+          PageName='2'
+          PageTitle='Page 2'
+          Container=$CONTAINERS['pData2']
+          Index=1
+        >, object:rtf::Page<
+          PageName='3'
+          PageTitle='Page 3'
+          Container=$CONTAINERS['pData3']
+          Index=2
+        >
+      }
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='Nama'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nama'
+          DataTypeName='varchar'
+          DataLength=100
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NPWP'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='NPWP'
+          DataTypeName='varchar'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Alamat'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Alamat'
+          DataTypeName='varchar'
+          DataLength=200
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LCARA'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Cara Restrukturisasi'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LCARA'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Frekuensi'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Frekuensi Restrukturisasi'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='Nama'
+          Top=8
+          Left=8
+          ControlCaption='Nama'
+        >, *object:rtf::DBEdit<
+          Name='NPWP'
+          Top=36
+          Left=8
+          ControlCaption='NPWP'
+        >, *object:rtf::DBEdit<
+          Name='Alamat'
+          Top=64
+          Left=8
+          ControlCaption='Alamat'
+        >, *object:rtf::DBLookupEdit<
+          Name='LCARA'
+          Top=92
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Cara Restrukturisasi'
+          FieldName='LCARA.reference_desc'
+          LookupField='LCARA.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='Frekuensi'
+          Top=120
+          Left=8
+          ControlCaption='Frekuensi Restrukturisasi'
+        >
+      }
+      EqualCaptionWidth=220
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LAKADSBLM'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Akad Sebelum'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LAKADSBLM'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='PlafonSblm'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Plafon Sebelum'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='SaldoSBLM'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Saldo Pembiayaan Sebelum'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LVALSBLM'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Valuta Sebelum'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LVALSBLM'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NisbahSBLM'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nisbah Sebelum'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BagHasSBLM'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Persentase Margin/Bagi Hasil/Fee Sebelum'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TunggakanSBLM'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tunggakan Margin Sebelum'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='AwalSBLM'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jangka Awal Sebelum'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TempoSBLM'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jangka Tempo Sebelum'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LKUASBLM'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kualitas Aktiva Sebelum'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LKUASBLM'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TglAgunanSBLM'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal Penilaian Agunan Sebelum'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NilaiAgunanSBLM'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nilai Agunan Sebelum'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData2'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LAKADSBLM'
+          Top=8
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Akad Sebelum'
+          FieldName='LAKADSBLM.reference_desc'
+          LookupField='LAKADSBLM.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='PlafonSblm'
+          Top=36
+          Left=8
+          ControlCaption='Plafon Sebelum'
+        >, *object:rtf::DBEdit<
+          Name='SaldoSBLM'
+          Top=64
+          Left=8
+          ControlCaption='Saldo Pembiayaan Sebelum'
+        >, *object:rtf::DBLookupEdit<
+          Name='LVALSBLM'
+          Top=92
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Valuta Sebelum'
+          FieldName='LVALSBLM.reference_desc'
+          LookupField='LVALSBLM.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='NisbahSBLM'
+          Top=120
+          Left=8
+          ControlCaption='Nisbah Sebelum'
+        >, *object:rtf::DBEdit<
+          Name='BagHasSBLM'
+          Top=148
+          Left=8
+          ControlCaption='Persentase Margin/Bagi Hasil/Fee Sebelum'
+        >, *object:rtf::DBEdit<
+          Name='TunggakanSBLM'
+          Top=176
+          Left=8
+          ControlCaption='Tunggakan Margin Sebelum'
+        >, *object:rtf::DBEdit<
+          Name='AwalSBLM'
+          Top=204
+          Left=8
+          ControlCaption='Jangka Awal Sebelum'
+        >, *object:rtf::DBEdit<
+          Name='TempoSBLM'
+          Top=232
+          Left=8
+          ControlCaption='Jangka Tempo Sebelum'
+        >, *object:rtf::DBLookupEdit<
+          Name='LKUASBLM'
+          Top=260
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Kualitas Aktiva Sebelum'
+          FieldName='LKUASBLM.reference_desc'
+          LookupField='LKUASBLM.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='TglAgunanSBLM'
+          Top=288
+          Left=8
+          ControlCaption='Tanggal Penilaian Agunan Sebelum'
+        >, *object:rtf::DBEdit<
+          Name='NilaiAgunanSBLM'
+          Top=316
+          Left=8
+          ControlCaption='Nilai Agunan Sebelum'
+        >
+      }
+      EqualCaptionWidth=220
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LAKADSTLH'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Akad Setelah'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LAKADSTLH'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='PlafonSTLH'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Plafon Setelah'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='SaldoSTLH'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Saldo Pembiayaan Setelah'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LVALSTLH'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Valuta Setelah'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LVALSTLH'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NisbahSTLH'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nisbah Setelah'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BagHasSTLH'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Persentase Margin/Bagi Hasil/Fee Setelah'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TunggakanSTLH'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tunggakan Margin Setelah'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='AwalSTLH'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jangka Awal Setelah'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TempoSTLH'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jangka Tempo Setelah'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LKUASTLH'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kualitas Aktiva Setelah'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LKUASTLH'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TglAgunanSTLH'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal Penilaian Agunan Setelah'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NilaiAgunanSTLH'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nilai Agunan Setelah'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Kerugian'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kerugian Restrukturisasi'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData3'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LAKADSTLH'
+          Top=8
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Akad Setelah'
+          FieldName='LAKADSTLH.reference_desc'
+          LookupField='LAKADSTLH.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='PlafonSTLH'
+          Top=36
+          Left=8
+          ControlCaption='Plafon Setelah'
+        >, *object:rtf::DBEdit<
+          Name='SaldoSTLH'
+          Top=64
+          Left=8
+          ControlCaption='Saldo Pembiayaan Setelah'
+        >, *object:rtf::DBLookupEdit<
+          Name='LVALSTLH'
+          Top=92
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Valuta Setelah'
+          FieldName='LVALSTLH.reference_desc'
+          LookupField='LVALSTLH.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='NisbahSTLH'
+          Top=120
+          Left=8
+          ControlCaption='Nisbah Setelah'
+        >, *object:rtf::DBEdit<
+          Name='BagHasSTLH'
+          Top=148
+          Left=8
+          ControlCaption='Persentase Margin/Bagi Hasil/Fee Setelah'
+        >, *object:rtf::DBEdit<
+          Name='TunggakanSTLH'
+          Top=176
+          Left=8
+          ControlCaption='Tunggakan Margin Setelah'
+        >, *object:rtf::DBEdit<
+          Name='AwalSTLH'
+          Top=204
+          Left=8
+          ControlCaption='Jangka Awal Setelah'
+        >, *object:rtf::DBEdit<
+          Name='TempoSTLH'
+          Top=232
+          Left=8
+          ControlCaption='Jangka Tempo Setelah'
+        >, *object:rtf::DBLookupEdit<
+          Name='LKUASTLH'
+          Top=260
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Kualitas Aktiva Setelah'
+          FieldName='LKUASTLH.reference_desc'
+          LookupField='LKUASTLH.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='TglAgunanSTLH'
+          Top=288
+          Left=8
+          ControlCaption='Tanggal Penilaian Agunan Setelah'
+        >, *object:rtf::DBEdit<
+          Name='NilaiAgunanSTLH'
+          Top=316
+          Left=8
+          ControlCaption='Nilai Agunan Setelah'
+        >, *object:rtf::DBEdit<
+          Name='Kerugian'
+          Top=344
+          Left=8
+          ControlCaption='Kerugian Restrukturisasi'
+        >
+      }
+      EqualCaptionWidth=220
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LBBU_FORM_9'
+>

@@ -1,0 +1,19 @@
+; MODULE CONFIGURATION FILE
+; EASY DAF(tm) 2.0 component-oriented framework
+
+[references]
+enterprise=c:\dafapp\ibank2\enterprise\default.mcf
+
+[liblist]
+mblob=blob
+mreport=report
+
+[classlist]
+blobregistration=mblob
+reportclassgroup=mreport
+reportclass=mreport
+report=mreport
+period=mreport
+branch=mreport
+branchmember=mreport
+reportitem=mreport

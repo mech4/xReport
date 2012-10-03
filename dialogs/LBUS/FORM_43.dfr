@@ -1,0 +1,154 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx='FormOnSetDataEx'
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=921
+      Height=425
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-43'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcNo'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='No'
+          DisplayFormat=''
+          TitleCaption='No'
+          Width=16
+        >, object:rtf::GridColumn<
+          Name='gcUraian'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Uraian'
+          DisplayFormat=''
+          TitleCaption='Uraian'
+          Width=48
+        >, object:rtf::GridColumn<
+          Name='gcJumlah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Jumlah'
+          DisplayFormat=''
+          TitleCaption='Jumlah (Jutaan Rupiah)'
+          Width=176
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='No'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='No'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Uraian'
+          Hidden=false
+          ReadOnlyControl=false
+          Height=50
+          ControlCaption='Uraian'
+          DataTypeName='varchar'
+          DataLength=50
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Jumlah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah (Jutaan Rupiah)'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='No'
+          Top=8
+          Left=8
+          Width=69
+          Height=21
+          ControlCaption='No'
+        >, *object:rtf::DBEdit<
+          Name='Uraian'
+          Top=36
+          Left=8
+          ControlCaption='Uraian'
+        >, *object:rtf::DBEdit<
+          Name='Jumlah'
+          Top=64
+          Left=8
+          Width=237
+          Height=21
+          ControlCaption='Jumlah (Jutaan Rupiah)'
+          CaptionWidth=160
+        >
+      }
+      EqualCaptionWidth=160
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LBUS_FORM_43'
+>

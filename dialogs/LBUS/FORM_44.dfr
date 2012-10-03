@@ -1,0 +1,711 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=449
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx='FormOnSetDataEx'
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::MultiPages<
+      Name='multipages1'
+      Width=607
+      Height=449
+      Pages={
+        object:rtf::Page<
+          PageName='1'
+          PageTitle='Page 1'
+          Container=$CONTAINERS['pData']
+        >, object:rtf::Page<
+          PageName='2'
+          PageTitle='Page 2'
+          Container=$CONTAINERS['pData2']
+          Index=1
+        >
+      }
+    >, object:rtf::DualSplit<
+      Name='dsMain'
+      Width=921
+      Height=449
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['multipages1']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-44'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcNilaiKontrak'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NilaiKontrak'
+          DisplayFormat=''
+          TitleCaption='Nilai Kontrak Sewa'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcMulai'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Mulai'
+          DisplayFormat=''
+          TitleCaption='Bulan Tahun Mulai'
+          Width=136
+        >, object:rtf::GridColumn<
+          Name='gcJatuhTempo'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='JatuhTempo'
+          DisplayFormat=''
+          TitleCaption='Bulan Tahun Jatuh Tempo'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcLPERIODE'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LPERIODE.reference_code'
+          DisplayFormat=''
+          TitleCaption='Periode Pembayaran Sewa'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcNilaiSewa'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NilaiSewa'
+          DisplayFormat=''
+          TitleCaption='Nilai Sewa per Periode'
+          Width=176
+        >, object:rtf::GridColumn<
+          Name='gcLGOLPENYEWA'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LGOLPENYEWA.reference_code'
+          DisplayFormat=''
+          TitleCaption='Golongan Penyewa'
+          Width=128
+        >, object:rtf::GridColumn<
+          Name='gcLHUBBANK'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LHUBBANK.reference_code'
+          DisplayFormat=''
+          TitleCaption='Hubungan dengan Bank'
+          Width=160
+        >, object:rtf::GridColumn<
+          Name='gcLKOLEK'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LKOLEK.reference_code'
+          DisplayFormat=''
+          TitleCaption='Kolektibilitas'
+          Width=112
+        >, object:rtf::GridColumn<
+          Name='gcLGOLPENJAMIN'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LGOLPENJAMIN.reference_code'
+          DisplayFormat=''
+          TitleCaption='Golongan Penjamin'
+          Width=136
+        >, object:rtf::GridColumn<
+          Name='gcBagDijamin'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BagDijamin'
+          DisplayFormat=''
+          TitleCaption='Bagian yang Dijamin'
+          Width=152
+        >, object:rtf::GridColumn<
+          Name='gcTunggakan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Tunggakan'
+          DisplayFormat=''
+          TitleCaption='Akumulasi Tunggakan Sewa'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcAgunanPPAP'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='AgunanPPAP'
+          DisplayFormat=''
+          TitleCaption='Agunan yang dapat Diperhitungkan'
+          Width=256
+        >, object:rtf::GridColumn<
+          Name='gcPPAPDibentuk'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PPAPDibentuk'
+          DisplayFormat=''
+          TitleCaption='PPAP yang telah Dibentuk'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcLJENISAKTIVA'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENISAKTIVA.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Aktiva Ijarah'
+          Width=152
+        >, object:rtf::GridColumn<
+          Name='gcBulanTahunPerolehan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BulanTahunPerolehan'
+          DisplayFormat=''
+          TitleCaption='Bulan Tahun Perolehan'
+          Width=168
+        >, object:rtf::GridColumn<
+          Name='gcLJENISVALUTAPEROLEHAN'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENISVALUTAPEROLEHAN.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Valuta Peroleha Aktiva Ijarah'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcHargaPerolehan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='HargaPerolehan'
+          DisplayFormat=''
+          TitleCaption='Harga Perolehan (Jutaan Rupiah)'
+          Width=248
+        >, object:rtf::GridColumn<
+          Name='gcLMETODA'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LMETODA.reference_code'
+          DisplayFormat=''
+          TitleCaption='Metode Penyusutan'
+          Width=136
+        >, object:rtf::GridColumn<
+          Name='gcAkumulasi'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Akumulasi'
+          DisplayFormat=''
+          TitleCaption='Akumulasi Penyusutan/Amortisasi'
+          Width=248
+        >, object:rtf::GridColumn<
+          Name='gcNilaiBersih'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NilaiBersih'
+          DisplayFormat=''
+          TitleCaption='Nilai Bersih (Jutaan Rupiah)'
+          Width=224
+        >, object:rtf::GridColumn<
+          Name='gcNomorAkad'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NomorAkad'
+          DisplayFormat=''
+          TitleCaption='Nomor Akad Ijarah'
+          Width=136
+        >, object:rtf::GridColumn<
+          Name='gcLJENISAKAD'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENISAKAD.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Akad Ijarah'
+          Width=136
+        >, object:rtf::GridColumn<
+          Name='gcLJENISVALUTAAKAD'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENISVALUTAAKAD.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Valuta'
+          Width=96
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='NilaiKontrak'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nilai Kontrak Sewa'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Mulai'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bulan Tahun Mulai'
+          DataTypeName='varchar'
+          DataLength=6
+        >, object:rtf::FieldUIElmtSetting<
+          Name='JatuhTempo'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bulan Tahun Jatuh Tempo'
+          DataTypeName='varchar'
+          DataLength=6
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LPERIODE'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Periode Pembayaran Sewa'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LPERIODE'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NilaiSewa'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nilai Sewa per Periode'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LGOLPENYEWA'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Golongan Penyewa'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LGOLPENYEWA'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LHUBBANK'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hubungan dengan Bank'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LHUBBANK'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LKOLEK'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kolektibilitas'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LKOLEK'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LGOLPENJAMIN'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Golongan Penjamin'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LGOLPENJAMIN'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BagDijamin'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bagian yang Dijamin'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Tunggakan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Akumulasi Tunggakan Sewa'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='AgunanPPAP'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Agunan yang dapat Diperhitungkan'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='PPAPDibentuk'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='PPAP yang telah Dibentuk'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData2'
+      Width=601
+      Height=417
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='NilaiKontrak'
+          Top=8
+          Left=8
+          ControlCaption='Nilai Kontrak Sewa'
+        >, *object:rtf::DBEdit<
+          Name='Mulai'
+          Top=36
+          Left=8
+          ControlCaption='Bulan Tahun Mulai'
+        >, *object:rtf::DBEdit<
+          Name='JatuhTempo'
+          Top=64
+          Left=8
+          ControlCaption='Bulan Tahun Jatuh Tempo'
+        >, *object:rtf::DBLookupEdit<
+          Name='LPERIODE'
+          Top=92
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Periode Pembayaran Sewa'
+          FieldName='LPERIODE.reference_desc'
+          LookupField='LPERIODE.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='NilaiSewa'
+          Top=120
+          Left=8
+          ControlCaption='Nilai Sewa per Periode'
+        >, *object:rtf::DBLookupEdit<
+          Name='LGOLPENYEWA'
+          Top=148
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Golongan Penyewa'
+          FieldName='LGOLPENYEWA.reference_desc'
+          LookupField='LGOLPENYEWA.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LHUBBANK'
+          Top=176
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Hubungan dengan Bank'
+          FieldName='LHUBBANK.reference_desc'
+          LookupField='LHUBBANK.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LKOLEK'
+          Top=204
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Kolektibilitas'
+          FieldName='LKOLEK.reference_desc'
+          LookupField='LKOLEK.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LGOLPENJAMIN'
+          Top=232
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Golongan Penjamin'
+          FieldName='LGOLPENJAMIN.reference_desc'
+          LookupField='LGOLPENJAMIN.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='BagDijamin'
+          Top=260
+          Left=8
+          ControlCaption='Bagian yang Dijamin'
+        >, *object:rtf::DBEdit<
+          Name='Tunggakan'
+          Top=288
+          Left=8
+          ControlCaption='Akumulasi Tunggakan Sewa'
+        >, *object:rtf::DBEdit<
+          Name='AgunanPPAP'
+          Top=316
+          Left=8
+          ControlCaption='Agunan yang dapat Diperhitungkan'
+        >, *object:rtf::DBEdit<
+          Name='PPAPDibentuk'
+          Top=344
+          Left=8
+          ControlCaption='PPAP yang telah Dibentuk'
+        >
+      }
+      EqualCaptionWidth=200
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LJENISAKTIVA'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Aktiva Ijarah'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJENISAKTIVA'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BulanTahunPerolehan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bulan Tahun Perolehan'
+          DataTypeName='varchar'
+          DataLength=6
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJENISVALUTAPEROLEHAN'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Valuta Peroleha Aktiva Ijarah'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJENISVALUTAPEROLEHAN'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='HargaPerolehan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Harga Perolehan (Jutaan Rupiah)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LMETODA'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Metode Penyusutan'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LMETODA'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Akumulasi'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Akumulasi Penyusutan/Amortisasi'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NilaiBersih'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nilai Bersih (Jutaan Rupiah)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NomorAkad'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nomor Akad Ijarah'
+          DataTypeName='varchar'
+          DataLength=60
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJENISAKAD'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Akad Ijarah'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJENISAKAD'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJENISVALUTAAKAD'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Valuta'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJENISVALUTAAKAD'
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LJENISAKTIVA'
+          Top=8
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Aktiva Ijarah'
+          FieldName='LJENISAKTIVA.reference_desc'
+          LookupField='LJENISAKTIVA.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='BulanTahunPerolehan'
+          Top=36
+          Left=8
+          ControlCaption='Bulan Tahun Perolehan'
+        >, *object:rtf::DBLookupEdit<
+          Name='LJENISVALUTAPEROLEHAN'
+          Top=64
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Valuta Peroleha Aktiva Ijarah'
+          FieldName='LJENISVALUTAPEROLEHAN.reference_desc'
+          LookupField='LJENISVALUTAPEROLEHAN.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='HargaPerolehan'
+          Top=92
+          Left=8
+          ControlCaption='Harga Perolehan (Jutaan Rupiah)'
+        >, *object:rtf::DBLookupEdit<
+          Name='LMETODA'
+          Top=120
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Metode Penyusutan'
+          FieldName='LMETODA.reference_desc'
+          LookupField='LMETODA.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='Akumulasi'
+          Top=148
+          Left=8
+          ControlCaption='Akumulasi Penyusutan/Amortisasi'
+        >, *object:rtf::DBEdit<
+          Name='NilaiBersih'
+          Top=176
+          Left=8
+          ControlCaption='Nilai Bersih (Jutaan Rupiah)'
+        >, *object:rtf::DBEdit<
+          Name='NomorAkad'
+          Top=204
+          Left=8
+          ControlCaption='Nomor Akad Ijarah'
+        >, *object:rtf::DBLookupEdit<
+          Name='LJENISAKAD'
+          Top=232
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Akad Ijarah'
+          FieldName='LJENISAKAD.reference_desc'
+          LookupField='LJENISAKAD.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LJENISVALUTAAKAD'
+          Top=260
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Valuta'
+          FieldName='LJENISVALUTAAKAD.reference_desc'
+          LookupField='LJENISVALUTAAKAD.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >
+      }
+      EqualCaptionWidth=200
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LBUS_FORM_44'
+>

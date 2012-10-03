@@ -1,0 +1,146 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['grData']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx='FormOnSetDataEx'
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::Grid<
+      Name='grData'
+      Width=921
+      Height=425
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-1'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcTanggal'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Tanggal'
+          DisplayFormat=''
+          TitleCaption='Tanggal'
+          Width=56
+        >, object:rtf::GridColumn<
+          Name='gcRupiah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Rupiah'
+          DisplayFormat=''
+          TitleCaption='Rupiah (Jutaan Rupiah)'
+          Width=176
+        >, object:rtf::GridColumn<
+          Name='gcValas'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Valas'
+          DisplayFormat=''
+          TitleCaption='Valas (Eq Ribuan USD)'
+          Width=168
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::DualSplit<
+      Name='dsMain'
+      Width=921
+      Height=425
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='Tanggal'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Rupiah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Rupiah (Jutaan Rupiah)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Valas'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Valas (Eq Ribuan USD)'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='Tanggal'
+          Top=8
+          Left=8
+          ControlCaption='Tanggal'
+        >, *object:rtf::DBEdit<
+          Name='Rupiah'
+          Top=36
+          Left=8
+          ControlCaption='Rupiah (Jutaan Rupiah)'
+        >, *object:rtf::DBEdit<
+          Name='Valas'
+          Top=64
+          Left=8
+          ControlCaption='Valas (Eq Ribuan USD)'
+        >
+      }
+      EqualCaptionWidth=120
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LBBU_FORM_1'
+>
