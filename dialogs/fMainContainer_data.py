@@ -10,7 +10,7 @@ import com.ihsan.util.attrutil as attrutil
 import com.ihsan.foundation.pobjecthelper as phelper
 import sys, os
 import pyFlexcel
-if ATTR_TYPE == ATTR_ORACLE: 
+if ATTR_TYPE == ATTR_MONGODB: 
   from pymongo import Connection
 
 def SaveReport(config, params, returns):
@@ -226,6 +226,132 @@ def DownloadReport(config, params, returns):
     sw.LoadFromFile(storeFile)
     sw.Name = "return"
     sw.FileName = rec.xlstemplate
+    sw.MIMEType = app.GetMIMETypeFromExtension(storeFile)
+  except:    
+    config.Rollback()
+    status.IsErr = 1
+    if DEBUG_MODE:
+      errMessage = debug.getExcMsg()
+      #app.ConWriteln(errMessage)
+    else:
+      errMessage = str(sys.exc_info()[1])
+    #--
+    status.ErrMessage = errMessage 
+  #-- try.except
+  if DEBUG_MODE:
+    app.ConRead('Press any key')
+  #--
+  return 1
+
+def GenerateTxt(config, params, returns):
+  def fixMap():
+    for col in pos:
+      sfield = datamap[col]
+      
+      if sfield.split("_")[0] in reflist:
+        datamap[col] = "{0}.{1}".format(sfield.split("_")[0]
+          , sfield[sfield.find("_")+1:])
+      #--
+    #-- for
+  #-- def   
+  def formTxtValue(val, size, tipe):
+    if tipe==1:
+      val = int(val)
+    #--
+    if tipe==2:
+      val = int(val*100000)
+    #--
+    if val=='-':
+      val = ''
+    #--
+    s = str(val)
+    if tipe==0:
+      s = s.ljust(size)[:size]
+    else:
+      s = s.zfill(size)[-size:]
+    return s
+  #-- def          
+    
+  if DEBUG_MODE:
+    app = config.AppObject
+    app.ConCreate('out')
+  #--
+  
+  helper = phelper.PObjectHelper(config)
+  status = returns.CreateValues(["IsErr", 0], ["ErrMessage",""])
+  
+  try :
+    rec = params.FirstRecord
+    reportAttr = {}
+    attrutil.transferAttributes(helper, 
+      ['class_id', 'period_id', 'branch_id']
+      , reportAttr, rec)
+  
+    oReport   = helper.GetObjectByNames('Report', reportAttr)
+    if oReport.isnull: 
+      raise Exception, "Report not found!"
+    #--
+    report_id = oReport.report_id or -1
+    
+    reportclass = helper.GetObject("ReportClass", rec.class_id)
+    period      = helper.GetObject("Period", rec.period_id)
+    branch      = helper.GetObject("Branch", rec.branch_id)
+    
+    sandi_pelapor = branch.branch_code
+    periode_laporan = period.period_code
+    jenis_laporan = '01'
+    no_form = reportclass.report_code.split('FORM')[-1]
+    useheader = rec.useheader
+    jml_record = 0
+      
+    #set header
+    header=sandi_pelapor+periode_laporan+jenis_laporan+no_form
+    
+    itemName = "{0}_{1}".format(rec.group_code, rec.report_code)
+     
+    datamap = eval(rec.xlsmap)
+    pos = datamap.keys()
+    reflist = eval(rec.reflist)
+    txtmap = eval(rec.txtmap)     
+    contents = ''
+    
+    fixMap()
+      
+    res = config.CreateSQL('''
+        select item_id from {0} where report_id = {1} 
+    '''.format(itemName, report_id)).rawresult
+      
+    jml = 0
+    while not res.Eof:
+      oItem = config.CreatePObjImplProxy(itemName)
+      oItem.Key = res.item_id
+      for col in pos:
+        fieldname = datamap[col]
+        svalue = oItem.EvalMembers(fieldname)
+        
+        contents += formTxtValue(svalue, txtmap[col][0], txtmap[col][1])          
+        #--
+      contents += '\n'
+      jml+=1
+      res.Next()
+    #--
+    header += str(jml).zfill(6)[-6:]+'\n'
+    
+    storeDir  = config.UserHomeDirectory
+    storeFile = storeDir + rec.txttemplate
+    if os.access(storeFile, os.F_OK) == 1: os.remove(storeFile)
+    spath = os.path.dirname(storeFile)
+    if not os.path.exists(spath): os.makedirs(spath)
+    fOut = open(storeFile, "w")
+    if useheader:
+      fOut.write(header)
+    fOut.write(contents)
+    fOut.close()
+    app = config.AppObject
+    sw = returns.AddStreamWrapper()
+    sw.LoadFromFile(storeFile)
+    sw.Name = "return"
+    sw.FileName = rec.txttemplate
     sw.MIMEType = app.GetMIMETypeFromExtension(storeFile)
   except:    
     config.Rollback()

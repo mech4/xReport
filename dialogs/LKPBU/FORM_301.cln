@@ -32,8 +32,8 @@ object:rtf::Form<
   Containers={
     object:rtf::MultiPages<
       Name='multipages1'
-      Width=320
-      Height=320
+      Width=607
+      Height=425
       Pages={
         object:rtf::Page<
           PageName='1'
@@ -48,8 +48,8 @@ object:rtf::Form<
       }
     >, object:rtf::DualSplit<
       Name='dsMain'
-      Width=240
-      Height=96
+      Width=921
+      Height=425
       Container1=$CONTAINERS['grData']
       Container2=$CONTAINERS['multipages1']
       SplitDirection=sdrSplitLeftRight

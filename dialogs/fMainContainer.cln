@@ -304,6 +304,16 @@ object:rtf::Form<
           ControlCaption=''
           Caption='Download'
           OnClick='bDownloadOnClick'
+        >, object:rtf::Button<
+          Name='bGenerate'
+          Layout=clAbsolute
+          Top=64
+          Left=280
+          Width=89
+          Height=25
+          ControlCaption=''
+          Caption='Generate'
+          OnClick='bGenerateOnClick'
         >
       }
       ControlLeftMargin=8

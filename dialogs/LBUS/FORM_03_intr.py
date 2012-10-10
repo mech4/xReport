@@ -1,5 +1,5 @@
 REFMAP = {
-  'LJENIS'           : 'R_JENIS_SIMPANAN_WADIAH'
+  'LJENIS'           : 'R_JENIS_PENEMPATAN_BI'
   , 'LJENISVALUTA'   : 'R_JENIS_VALUTA'
 }
   

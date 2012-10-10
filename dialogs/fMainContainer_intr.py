@@ -81,6 +81,7 @@ class fReportContainer:
       self.repform.pData.SetAllControlsReadOnly(not swOn)
     self.pData_bSave.enabled = swOn
     self.pData_bDownload.enabled = swOn
+    self.pData_bGenerate.enabled = swOn
     self.pAction_bNewrow.enabled = swOn
     self.pAction_bDeleteRow.enabled = swOn
     
@@ -177,6 +178,34 @@ class fReportContainer:
     )
     
     ph = formobj.CallServerMethod('DownloadReport', ph)
+    
+    status = ph.FirstRecord
+    if status.IsErr == 1:
+      app.ShowMessage("ERROR! " + status.ErrMessage)
+    else:
+      oPrint = app.GetClientClass('PrintLib','PrintLib')()
+      oPrint.doProcess(app, ph.packet, 1)    
+    #--
+    
+
+  def bGenerateOnClick(self, sender):
+    formobj = self.FormObject; app = formobj.ClientApplication
+    
+    uMain = self.uipMain    
+    ph = app.CreateValues(
+      ["class_id", uMain.GetFieldValue("reportclass.class_id")]
+      , ["period_id", uMain.GetFieldValue("period.period_id")]
+      , ["branch_id", uMain.GetFieldValue("branch.branch_id")]
+      , ["group_code", self.group_code]
+      , ["report_code", uMain.GetFieldValue("reportclass.report_code")]
+      , ["txttemplate", self.repform.txttemplate]
+      , ["txtmap", str(self.repform.txtmap)]
+      , ["xlsmap", str(self.repform.xlsmap)]
+      , ["reflist", str(self.repform.reflist)]
+      , ["useheader", str(self.repform.useheader)]
+    )
+    
+    ph = formobj.CallServerMethod('GenerateTxt', ph)
     
     status = ph.FirstRecord
     if status.IsErr == 1:

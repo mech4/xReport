@@ -21,6 +21,20 @@ class LKPBU_FORM_603:
       , 4: 'TerkaitSistem'
       , 5: 'Total'
     }
+    self.useheader = 1 #1: true, 0:false
+    self.txttemplate = 'lkpbu/form603.txt'
+    #txtmap dimulai dari index 1 sesuai xlsmap (index 0 diisi [0,0]
+    #format [len, jenis] : 
+    #       jenis 0 untuk spasi 
+    #       jenis 1 untuk zerofill int
+    #       jenis 2 untuk zerofill x,5
+    self.txtmap      = ( [0,0]
+      , [3,0]
+      , [35,0]  
+      , [12,1]
+      , [12,1]
+      , [15,1]
+    )
   #--
 
   def refExit(self, sender):
