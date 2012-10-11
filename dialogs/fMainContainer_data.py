@@ -10,8 +10,10 @@ import com.ihsan.util.attrutil as attrutil
 import com.ihsan.foundation.pobjecthelper as phelper
 import sys, os
 import pyFlexcel
+'''
 if ATTR_TYPE == ATTR_MONGODB: 
   from pymongo import Connection
+'''
 
 def SaveReport(config, params, returns):
   if DEBUG_MODE:
@@ -34,9 +36,12 @@ def SaveReport(config, params, returns):
   ], reportAttr, uMain)
   
   if ATTR_TYPE == ATTR_MONGODB:
+    '''
     conn  = Connection()    
     db    = conn[uMain.group_code]
     table = db[uMain.GetFieldByName('reportclass.report_code')]
+    '''
+    pass
   else:
     itemName = "{0}_{1}".format(uMain.group_code
       , uMain.GetFieldByName('reportclass.report_code'))
@@ -59,8 +64,11 @@ def SaveReport(config, params, returns):
           app.ConWriteln(str(item_id))
         #--
         if ATTR_TYPE == ATTR_MONGODB:
+          '''
           oItem = helper.GetObject('ReportItem', item_id)
-          table.remove({"item_id": item_id}) 
+          table.remove({"item_id": item_id})
+          '''
+          pass 
         else:
           oItem = config.CreatePObjImplProxy(itemName)
           oItem.Key = item_id
@@ -77,6 +85,8 @@ def SaveReport(config, params, returns):
       rec = uData.GetRecord(i)
       item_id = rec.item_id or -1
       if ATTR_TYPE == ATTR_MONGODB:
+        pass
+        '''
         if item_id == -1:
           item = helper.CreatePObject('ReportItem')
           item_id = item.item_id        
@@ -89,6 +99,7 @@ def SaveReport(config, params, returns):
         #--
         attrutil.transferAttributes(helper, attrlist, itemdata, rec)
         table.save(itemdata)
+        '''
       elif ATTR_TYPE == ATTR_ORACLE:
         if item_id == -1:
           item = config.CreatePObject(itemName)
@@ -166,9 +177,12 @@ def DownloadReport(config, params, returns):
     owb.SetCellValue(4, 2, "{0} - {1}".format(period.period_code, period.description))
 
     if ATTR_TYPE == ATTR_MONGODB:
+      pass
+      '''
       conn  = Connection()
       db    = conn[rec.group_code]
       table = db[rec.report_code]
+      '''
     else:
       itemName = "{0}_{1}".format(rec.group_code, rec.report_code)
     #--
@@ -179,6 +193,8 @@ def DownloadReport(config, params, returns):
     reflist = eval(rec.reflist)     
     
     if ATTR_TYPE == ATTR_MONGODB:
+      pass
+      '''
       for data in table.find({"report_id": report_id}).sort("item_id"):
         for col in pos:
           fieldname = datamap[col]
@@ -193,6 +209,7 @@ def DownloadReport(config, params, returns):
         
         row += 1 
       #-- for
+      '''
     else:
       fixMap()
       
