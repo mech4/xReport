@@ -336,7 +336,9 @@ object:rtf::Form<
           OnExit='refExit'
           DisplayLookupColor=-16777192
           DisplayLookupWidth=50
+          DirectInput=true
           ButtonWidth=1
+          ManualInputCheck=true
         >, *object:rtf::DBLookupEdit<
           Name='LJENISVALUTA'
           Top=204
@@ -350,7 +352,9 @@ object:rtf::Form<
           OnExit='refExit'
           DisplayLookupColor=-16777192
           DisplayLookupWidth=50
+          DirectInput=true
           ButtonWidth=1
+          ManualInputCheck=true
         >, *object:rtf::DBEdit<
           Name='Nominal'
           Top=232

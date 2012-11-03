@@ -392,6 +392,90 @@ object:ODL<
       ClassID='{62E419E7-8338-4516-A794-EA4F110FCA70}'
       AutoPrimaryKey=$TYPEDECLS['ReportClassGroup'].MEMBERS['group_id']
     >, object:ClassTypeDecl<
+      TypeName='LBUS_FORM01'
+      PTableName='LBUS_FORM01'
+      Members={
+        object:FieldMember<
+          MemberName='report_id'
+          PhysicalName='REPORT_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='item_id'
+          PhysicalName='ITEM_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:FieldMember<
+          MemberName='Value1'
+          PhysicalName='VALUE1'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='Value2'
+          PhysicalName='VALUE2'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='Total'
+          PhysicalName='TOTAL'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:LinkMember<
+          MemberName='LPOS'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LBUS_FORM01'].MEMBERS['LPOS_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LPOS_refdata_id'
+          PhysicalName='LPOS_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >
+      }
+      ClassID='{1CAFD8D0-01CF-42C1-8ADC-7DA0B4B04DE0}'
+      AutoPrimaryKey=$TYPEDECLS['LBUS_FORM01'].MEMBERS['item_id']
+    >, object:ClassTypeDecl<
+      TypeName='LBUS_FORM02'
+      PTableName='LBUS_FORM02'
+      Members={
+        object:FieldMember<
+          MemberName='report_id'
+          PhysicalName='REPORT_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='item_id'
+          PhysicalName='ITEM_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:FieldMember<
+          MemberName='Value1'
+          PhysicalName='VALUE1'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='Value2'
+          PhysicalName='VALUE2'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='Total'
+          PhysicalName='TOTAL'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:LinkMember<
+          MemberName='LPOS'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LBUS_FORM02'].MEMBERS['LPOS_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LPOS_refdata_id'
+          PhysicalName='LPOS_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >
+      }
+      ClassID='{05DB9378-4F24-4E39-919A-EA7188391F25}'
+      AutoPrimaryKey=$TYPEDECLS['LBUS_FORM02'].MEMBERS['item_id']
+    >, object:ClassTypeDecl<
       TypeName='LBUS_FORM03'
       PTableName='LBUS_FORM03'
       Members={
@@ -1243,17 +1327,17 @@ object:ODL<
         >, object:FieldMember<
           MemberName='Realisasi'
           PhysicalName='REALISASI'
-          DataType=$TYPEDECLS['VARCHAR']
+          DataType=$TYPEDECLS['DOUBLE']
           DataLength=8
         >, object:FieldMember<
           MemberName='Nisbah'
           PhysicalName='NISBAH'
-          DataType=$TYPEDECLS['VARCHAR']
+          DataType=$TYPEDECLS['DOUBLE']
           DataLength=8
         >, object:FieldMember<
           MemberName='Distribusi'
           PhysicalName='DISTRIBUSI'
-          DataType=$TYPEDECLS['VARCHAR']
+          DataType=$TYPEDECLS['DOUBLE']
           DataLength=8
         >, object:FieldMember<
           MemberName='item_id'
@@ -1996,7 +2080,7 @@ object:ODL<
           DataLength=35
         >, object:FieldMember<
           MemberName='LPEMILIKDANANONDAERAH_refdata_id'
-          PhysicalName='LPEMILIKDANANONDAERAH_REFDATA_ID'
+          PhysicalName='LNONDAERAH_REFDATA_ID'
           DataType=$TYPEDECLS['INTEGER']
         >, object:LinkMember<
           MemberName='LPEMILIKDANANONDAERAH'
@@ -2314,6 +2398,1331 @@ object:ODL<
       }
       ClassID='{3B2BEB8F-0D13-11E2-92B9-00140B44333B}'
       AutoPrimaryKey=$TYPEDECLS['LKPBU_FORM605'].MEMBERS['item_id']
+    >, object:ClassTypeDecl<
+      TypeName='LKPBU_FORM701'
+      PTableName='LKPBU_FORM701'
+      Members={
+        object:FieldMember<
+          MemberName='BulanData'
+          PhysicalName='BULANDATA'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=35
+        >, object:FieldMember<
+          MemberName='NamaPerusahaan'
+          PhysicalName='NAMAPERUSAHAAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Keterangan'
+          PhysicalName='KETERANGAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='LJENISPERUSAHAAN_refdata_id'
+          PhysicalName='LJENISPERUSAHAAN_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LJENISPERUSAHAAN'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM701'].MEMBERS['LJENISPERUSAHAAN_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LPIHAK_refdata_id'
+          PhysicalName='LPIHAK_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LPIHAK'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM701'].MEMBERS['LPIHAK_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LJENISPENYELESAIAN_refdata_id'
+          PhysicalName='LJENISPENYELESAIAN_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LJENISPENYELESAIAN'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM701'].MEMBERS['LJENISPENYELESAIAN_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LJENISPRODUK_refdata_id'
+          PhysicalName='LJENISPRODUK_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LJENISPRODUK'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM701'].MEMBERS['LJENISPRODUK_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='NamaProduk'
+          PhysicalName='NAMAPRODUK'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='JumlahPolis'
+          PhysicalName='JUMLAHPOLIS'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='JumlahNasabah'
+          PhysicalName='JUMLAHNASABAH'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='LVALUTAASAL_refdata_id'
+          PhysicalName='LVALUTAASAL_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LVALUTAASAL'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM701'].MEMBERS['LVALUTAASAL_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='TotalPertanggungan'
+          PhysicalName='TOTALPERTANGGUNGAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='AkumulasiAwal'
+          PhysicalName='AKUMULASIAWAL'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='BulanLaporan'
+          PhysicalName='BULANLAPORAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='FreeBasedIncome'
+          PhysicalName='FREEBASEDINCOME'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='NilaiFound'
+          PhysicalName='NILAIFOUND'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='item_id'
+          PhysicalName='ITEM_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:LinkMember<
+          MemberName='LReport'
+          LinkedClass=$TYPEDECLS['Report']
+          AutoForeignKey=true
+        >
+      }
+      ClassID='{34FF7CB0-2379-11E2-9B0D-00140B44333B}'
+      AutoPrimaryKey=$TYPEDECLS['LKPBU_FORM701'].MEMBERS['item_id']
+    >, object:ClassTypeDecl<
+      TypeName='LKPBU_FORM702'
+      PTableName='LKPBU_FORM702'
+      Members={
+        object:FieldMember<
+          MemberName='BulanData'
+          PhysicalName='BULANDATA'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=35
+        >, object:FieldMember<
+          MemberName='NamaReksa'
+          PhysicalName='NAMAREKSA'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='LSIFAT_refdata_id'
+          PhysicalName='LSIFAT_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LSIFAT'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM702'].MEMBERS['LSIFAT_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LJENIS_refdata_id'
+          PhysicalName='LJENIS_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LJENIS'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM702'].MEMBERS['LJENIS_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LVALUTAASAL_refdata_id'
+          PhysicalName='LVALUTAASAL_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LVALUTAASAL'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM702'].MEMBERS['LVALUTAASAL_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='Subscription'
+          PhysicalName='SUBSCRIPTION'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Redemption'
+          PhysicalName='REDEMPTION'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='NAVperunit'
+          PhysicalName='NAVPERUNIT'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='TotalUnit'
+          PhysicalName='TOTALUNIT'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='PorsiAset'
+          PhysicalName='PORSIASET'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='FeeBasedIncome'
+          PhysicalName='FEEBASEDINCOME'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='NamaManajerInvestasi'
+          PhysicalName='NAMAMANAJERINVESTASI'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Keterangan'
+          PhysicalName='KETERANGAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='LTERKAIT_refdata_id'
+          PhysicalName='LTERKAIT_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LTERKAIT'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM702'].MEMBERS['LTERKAIT_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='NamaBank'
+          PhysicalName='NAMABANK'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='TotalNAV'
+          PhysicalName='TOTALNAV'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='LSPONSOR_refdata_id'
+          PhysicalName='LSPONSOR_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LSPONSOR'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM702'].MEMBERS['LSPONSOR_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='NominalSponsor'
+          PhysicalName='NOMINALSPONSOR'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='NoEfektif'
+          PhysicalName='NOEFEKTIF'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='NoPenegasan'
+          PhysicalName='NOPENEGASAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='item_id'
+          PhysicalName='ITEM_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:LinkMember<
+          MemberName='LReport'
+          LinkedClass=$TYPEDECLS['Report']
+          AutoForeignKey=true
+        >
+      }
+      ClassID='{352F3F40-2379-11E2-A575-00140B44333B}'
+      AutoPrimaryKey=$TYPEDECLS['LKPBU_FORM702'].MEMBERS['item_id']
+    >, object:ClassTypeDecl<
+      TypeName='LKPBU_FORM703'
+      PTableName='LKPBU_FORM703'
+      Members={
+        object:FieldMember<
+          MemberName='NamaProduk'
+          PhysicalName='NAMAPRODUK'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=50
+        >, object:FieldMember<
+          MemberName='JenisProduk'
+          PhysicalName='JENISPRODUK'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=50
+        >, object:FieldMember<
+          MemberName='Keterangan1'
+          PhysicalName='KETERANGAN1'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=50
+        >, object:FieldMember<
+          MemberName='LMETODE_refdata_id'
+          PhysicalName='LMETODE_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LMETODE'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM703'].MEMBERS['LMETODE_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='Keterangan2'
+          PhysicalName='KETERANGAN2'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=50
+        >, object:FieldMember<
+          MemberName='Penerbit'
+          PhysicalName='PENERBIT'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=50
+        >, object:FieldMember<
+          MemberName='LNEGARAPENERBIT_refdata_id'
+          PhysicalName='LNEGARAPENERBIT_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LNEGARAPENERBIT'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM703'].MEMBERS['LNEGARAPENERBIT_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='Kustodian'
+          PhysicalName='KUSTODIAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=50
+        >, object:FieldMember<
+          MemberName='LNEGARAKUSTODIAN_refdata_id'
+          PhysicalName='LNEGARAKUSTODIAN_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LNEGARAKUSTODIAN'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM703'].MEMBERS['LNEGARAKUSTODIAN_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='TanggalBankMenjualProduk'
+          PhysicalName='TANGGALBANKMENJUALPRODUK'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='TanggalJT'
+          PhysicalName='TANGGALJT'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='LGOLPEMILIK_refdata_id'
+          PhysicalName='LGOLPEMILIK_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LGOLPEMILIK'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM703'].MEMBERS['LGOLPEMILIK_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LKLASNASABAH_refdata_id'
+          PhysicalName='LKLASNASABAH_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LKLASNASABAH'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM703'].MEMBERS['LKLASNASABAH_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='JumlahPemilik'
+          PhysicalName='JUMLAHPEMILIK'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='LJENISVALUTA_refdata_id'
+          PhysicalName='LJENISVALUTA_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LJENISVALUTA'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM703'].MEMBERS['LJENISVALUTA_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='JumlahPenjualan'
+          PhysicalName='JUMLAHPENJUALAN'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='JumlahOutstanding'
+          PhysicalName='JUMLAHOUTSTANDING'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='FeeBasedIncome'
+          PhysicalName='FEEBASEDINCOME'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='item_id'
+          PhysicalName='ITEM_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:LinkMember<
+          MemberName='LReport'
+          LinkedClass=$TYPEDECLS['Report']
+          AutoForeignKey=true
+        >
+      }
+      ClassID='{3538B521-2379-11E2-9E09-00140B44333B}'
+      AutoPrimaryKey=$TYPEDECLS['LKPBU_FORM703'].MEMBERS['item_id']
+    >, object:ClassTypeDecl<
+      TypeName='LKPBU_FORM704'
+      PTableName='LKPBU_FORM704'
+      Members={
+        object:FieldMember<
+          MemberName='LDELIVERY_refdata_id'
+          PhysicalName='LDELIVERY_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LDELIVERY'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM704'].MEMBERS['LDELIVERY_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='JumlahNasabah1'
+          PhysicalName='JUMLAHNASABAH1'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='Frekuensi1'
+          PhysicalName='FREKUENSI1'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='JumlahNasabah2'
+          PhysicalName='JUMLAHNASABAH2'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='Frekuensi2'
+          PhysicalName='FREKUENSI2'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='NilaiTransaksi'
+          PhysicalName='NILAITRANSAKSI'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='FrekuensiFraud'
+          PhysicalName='FREKUENSIFRAUD'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='NilaiFraud'
+          PhysicalName='NILAIFRAUD'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='item_id'
+          PhysicalName='ITEM_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:LinkMember<
+          MemberName='LReport'
+          LinkedClass=$TYPEDECLS['Report']
+          AutoForeignKey=true
+        >
+      }
+      ClassID='{353D9721-2379-11E2-A310-00140B44333B}'
+      AutoPrimaryKey=$TYPEDECLS['LKPBU_FORM704'].MEMBERS['item_id']
+    >, object:ClassTypeDecl<
+      TypeName='LKPBU_FORM705'
+      PTableName='LKPBU_FORM705'
+      Members={
+        object:FieldMember<
+          MemberName='NamaProduk'
+          PhysicalName='NAMAPRODUK'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=50
+        >, object:FieldMember<
+          MemberName='JmlNasabah'
+          PhysicalName='JMLNASABAH'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='LINSTRUMEN_refdata_id'
+          PhysicalName='LINSTRUMEN_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LINSTRUMEN'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM705'].MEMBERS['LINSTRUMEN_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LPOSOPTION_refdata_id'
+          PhysicalName='LPOSOPTION_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LPOSOPTION'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM705'].MEMBERS['LPOSOPTION_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LVAROPTION_refdata_id'
+          PhysicalName='LVAROPTION_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LVAROPTION'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM705'].MEMBERS['LVAROPTION_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LPOSFORWARD_refdata_id'
+          PhysicalName='LPOSFORWARD_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LPOSFORWARD'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM705'].MEMBERS['LPOSFORWARD_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LVARFORWARD_refdata_id'
+          PhysicalName='LVARFORWARD_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LVARFORWARD'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM705'].MEMBERS['LVARFORWARD_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LVARSWAP_refdata_id'
+          PhysicalName='LVARSWAP_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LVARSWAP'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM705'].MEMBERS['LVARSWAP_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LKARAKTERISTIK_refdata_id'
+          PhysicalName='LKARAKTERISTIK_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LKARAKTERISTIK'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM705'].MEMBERS['LKARAKTERISTIK_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LVALDAS_refdata_id'
+          PhysicalName='LVALDAS_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LVALDAS'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM705'].MEMBERS['LVALDAS_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='StrikePrice'
+          PhysicalName='STRIKEPRICE'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='Nominal'
+          PhysicalName='NOMINAL'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='item_id'
+          PhysicalName='ITEM_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:LinkMember<
+          MemberName='LReport'
+          LinkedClass=$TYPEDECLS['Report']
+          AutoForeignKey=true
+        >
+      }
+      ClassID='{353FE10F-2379-11E2-9EE9-00140B44333B}'
+      AutoPrimaryKey=$TYPEDECLS['LKPBU_FORM705'].MEMBERS['item_id']
+    >, object:ClassTypeDecl<
+      TypeName='LKPBU_FORM706'
+      PTableName='LKPBU_FORM706'
+      Members={
+        object:FieldMember<
+          MemberName='NamaProduk'
+          PhysicalName='NAMAPRODUK'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='NamaNasabah'
+          PhysicalName='NAMANASABAH'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='LJENISPRODUK_refdata_id'
+          PhysicalName='LJENISPRODUK_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LJENISPRODUK'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM706'].MEMBERS['LJENISPRODUK_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='StrikePrice '
+          PhysicalName='STRIKEPRICE '
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Nominal'
+          PhysicalName='NOMINAL'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='TotalJaminan'
+          PhysicalName='TOTALJAMINAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='TotalKerugian'
+          PhysicalName='TOTALKERUGIAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='SisaKerugian'
+          PhysicalName='SISAKERUGIAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='AksiPlan'
+          PhysicalName='AKSIPLAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='item_id'
+          PhysicalName='ITEM_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:LinkMember<
+          MemberName='LReport'
+          LinkedClass=$TYPEDECLS['Report']
+          AutoForeignKey=true
+        >
+      }
+      ClassID='{3542520F-2379-11E2-B276-00140B44333B}'
+      AutoPrimaryKey=$TYPEDECLS['LKPBU_FORM706'].MEMBERS['item_id']
+    >, object:ClassTypeDecl<
+      TypeName='LKPBU_FORM801'
+      PTableName='LKPBU_FORM801'
+      Members={
+        object:FieldMember<
+          MemberName='LDATA_refdata_id'
+          PhysicalName='LDATA_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LDATA'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM801'].MEMBERS['LDATA_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='NIP'
+          PhysicalName='NIP'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='NamaPejabat'
+          PhysicalName='NAMAPEJABAT'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=100
+        >, object:FieldMember<
+          MemberName='LSTATUSTK_refdata_id'
+          PhysicalName='LSTATUSTK_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LSTATUSTK'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM801'].MEMBERS['LSTATUSTK_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='NamaJabatan'
+          PhysicalName='NAMAJABATAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=50
+        >, object:FieldMember<
+          MemberName='AlamatSkrg'
+          PhysicalName='ALAMATSKRG'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=100
+        >, object:FieldMember<
+          MemberName='AlamatID'
+          PhysicalName='ALAMATID'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=100
+        >, object:FieldMember<
+          MemberName='Telepon'
+          PhysicalName='TELEPON'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=40
+        >, object:FieldMember<
+          MemberName='Faksimile'
+          PhysicalName='FAKSIMILE'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=40
+        >, object:FieldMember<
+          MemberName='NPWP'
+          PhysicalName='NPWP'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=15
+        >, object:FieldMember<
+          MemberName='NoID'
+          PhysicalName='NOID'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='TempatLahir'
+          PhysicalName='TEMPATLAHIR'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='TanggalLahir'
+          PhysicalName='TANGGALLAHIR'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='Kewarganegaraan_refdata_id'
+          PhysicalName='KEWARGANEGARAAN_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='Kewarganegaraan'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM801'].MEMBERS['Kewarganegaraan_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='Gender_refdata_id'
+          PhysicalName='GENDER_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='Gender'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM801'].MEMBERS['Gender_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='NoPelaporan'
+          PhysicalName='NOPELAPORAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=40
+        >, object:FieldMember<
+          MemberName='TanggalPelaporan'
+          PhysicalName='TANGGALPELAPORAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='LSTATUSPE_refdata_id'
+          PhysicalName='LSTATUSPE_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LSTATUSPE'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM801'].MEMBERS['LSTATUSPE_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='NomorSK'
+          PhysicalName='NOMORSK'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=40
+        >, object:FieldMember<
+          MemberName='TanggalSK'
+          PhysicalName='TANGGALSK'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='NomorSK2'
+          PhysicalName='NOMORSK2'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=40
+        >, object:FieldMember<
+          MemberName='TanggalSK2'
+          PhysicalName='TANGGALSK2'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='Keterangan'
+          PhysicalName='KETERANGAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=100
+        >, object:FieldMember<
+          MemberName='item_id'
+          PhysicalName='ITEM_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:LinkMember<
+          MemberName='LReport'
+          LinkedClass=$TYPEDECLS['Report']
+          AutoForeignKey=true
+        >
+      }
+      ClassID='{35497E00-2379-11E2-9633-00140B44333B}'
+      AutoPrimaryKey=$TYPEDECLS['LKPBU_FORM801'].MEMBERS['item_id']
+    >, object:ClassTypeDecl<
+      TypeName='LKPBU_FORM802'
+      PTableName='LKPBU_FORM802'
+      Members={
+        object:FieldMember<
+          MemberName='NIP'
+          PhysicalName='NIP'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='NamaPerushaan'
+          PhysicalName='NAMAPERUSHAAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=50
+        >, object:FieldMember<
+          MemberName='TglMulai'
+          PhysicalName='TGLMULAI'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='TglBerakhir'
+          PhysicalName='TGLBERAKHIR'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='NamaJabatan'
+          PhysicalName='NAMAJABATAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=50
+        >, object:FieldMember<
+          MemberName='item_id'
+          PhysicalName='ITEM_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:LinkMember<
+          MemberName='LReport'
+          LinkedClass=$TYPEDECLS['Report']
+          AutoForeignKey=true
+        >
+      }
+      ClassID='{354BC7F0-2379-11E2-9C30-00140B44333B}'
+      AutoPrimaryKey=$TYPEDECLS['LKPBU_FORM802'].MEMBERS['item_id']
+    >, object:ClassTypeDecl<
+      TypeName='LKPBU_FORM803'
+      PTableName='LKPBU_FORM803'
+      Members={
+        object:FieldMember<
+          MemberName='LSTATUS_refdata_id'
+          PhysicalName='LSTATUS_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LSTATUS'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM803'].MEMBERS['LSTATUS_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LUSIA_refdata_id'
+          PhysicalName='LUSIA_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LUSIA'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM803'].MEMBERS['LUSIA_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LJABATAN_refdata_id'
+          PhysicalName='LJABATAN_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LJABATAN'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM803'].MEMBERS['LJABATAN_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LPENDIDIKAN_refdata_id'
+          PhysicalName='LPENDIDIKAN_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LPENDIDIKAN'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM803'].MEMBERS['LPENDIDIKAN_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LPEKERJAAN_refdata_id'
+          PhysicalName='LPEKERJAAN_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LPEKERJAAN'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM803'].MEMBERS['LPEKERJAAN_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='Laki2'
+          PhysicalName='LAKI2'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='Perempuan'
+          PhysicalName='PEREMPUAN'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='item_id'
+          PhysicalName='ITEM_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:LinkMember<
+          MemberName='LReport'
+          LinkedClass=$TYPEDECLS['Report']
+          AutoForeignKey=true
+        >
+      }
+      ClassID='{354E38F0-2379-11E2-A073-00140B44333B}'
+      AutoPrimaryKey=$TYPEDECLS['LKPBU_FORM803'].MEMBERS['item_id']
+    >, object:ClassTypeDecl<
+      TypeName='LKPBU_FORM804'
+      PTableName='LKPBU_FORM804'
+      Members={
+        object:FieldMember<
+          MemberName='LKATEGORI_refdata_id'
+          PhysicalName='LKATEGORI_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LKATEGORI'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM804'].MEMBERS['LKATEGORI_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LJABATAN_refdata_id'
+          PhysicalName='LJABATAN_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LJABATAN'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM804'].MEMBERS['LJABATAN_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='JmlLaki2'
+          PhysicalName='JMLLAKI2'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='JmlPerempuan'
+          PhysicalName='JMLPEREMPUAN'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='item_id'
+          PhysicalName='ITEM_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:LinkMember<
+          MemberName='LReport'
+          LinkedClass=$TYPEDECLS['Report']
+          AutoForeignKey=true
+        >
+      }
+      ClassID='{3550A9F0-2379-11E2-B5D4-00140B44333B}'
+      AutoPrimaryKey=$TYPEDECLS['LKPBU_FORM804'].MEMBERS['item_id']
+    >, object:ClassTypeDecl<
+      TypeName='LKPBU_FORM805'
+      PTableName='LKPBU_FORM805'
+      Members={
+        object:FieldMember<
+          MemberName='LPEKERJAAN_refdata_id'
+          PhysicalName='LPEKERJAAN_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LPEKERJAAN'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM805'].MEMBERS['LPEKERJAAN_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LPENDIDIKAN_refdata_id'
+          PhysicalName='LPENDIDIKAN_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LPENDIDIKAN'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM805'].MEMBERS['LPENDIDIKAN_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LSTATUS_refdata_id'
+          PhysicalName='LSTATUS_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LSTATUS'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM805'].MEMBERS['LSTATUS_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='Realisasi'
+          PhysicalName='REALISASI'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='Prediksi1'
+          PhysicalName='PREDIKSI1'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='Prediksi2'
+          PhysicalName='PREDIKSI2'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='Prediksi3'
+          PhysicalName='PREDIKSI3'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='Prediksi4'
+          PhysicalName='PREDIKSI4'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='item_id'
+          PhysicalName='ITEM_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:LinkMember<
+          MemberName='LReport'
+          LinkedClass=$TYPEDECLS['Report']
+          AutoForeignKey=true
+        >
+      }
+      ClassID='{3552F3DE-2379-11E2-8374-00140B44333B}'
+      AutoPrimaryKey=$TYPEDECLS['LKPBU_FORM805'].MEMBERS['item_id']
+    >, object:ClassTypeDecl<
+      TypeName='LKPBU_FORM806'
+      PTableName='LKPBU_FORM806'
+      Members={
+        object:FieldMember<
+          MemberName='LJENIS_refdata_id'
+          PhysicalName='LJENIS_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LJENIS'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM806'].MEMBERS['LJENIS_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='JmlSDM'
+          PhysicalName='JMLSDM'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='item_id'
+          PhysicalName='ITEM_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:LinkMember<
+          MemberName='LReport'
+          LinkedClass=$TYPEDECLS['Report']
+          AutoForeignKey=true
+        >
+      }
+      ClassID='{355564DE-2379-11E2-AF3F-00140B44333B}'
+      AutoPrimaryKey=$TYPEDECLS['LKPBU_FORM806'].MEMBERS['item_id']
+    >, object:ClassTypeDecl<
+      TypeName='LKPBU_FORM807'
+      PTableName='LKPBU_FORM807'
+      Members={
+        object:FieldMember<
+          MemberName='LSTATUSTENAGAKERJA_refdata_id'
+          PhysicalName='LSTATUSTENAGAKERJA_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LSTATUSTENAGAKERJA'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM807'].MEMBERS['LSTATUSTENAGAKERJA_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='LSANDIKANTOR_refdata_id'
+          PhysicalName='LSANDIKANTOR_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LSANDIKANTOR'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM807'].MEMBERS['LSANDIKANTOR_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='NamaKantor'
+          PhysicalName='NAMAKANTOR'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Alamat'
+          PhysicalName='ALAMAT'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='LSANDIDATI_refdata_id'
+          PhysicalName='LSANDIDATI_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LSANDIDATI'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM807'].MEMBERS['LSANDIDATI_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='KodePos'
+          PhysicalName='KODEPOS'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='NoTelp'
+          PhysicalName='NOTELP'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='NSIPembukuanKantor'
+          PhysicalName='NSIPEMBUKUANKANTOR'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='TglNSIPembukuan'
+          PhysicalName='TGLNSIPEMBUKUAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='TglOperasional'
+          PhysicalName='TGLOPERASIONAL'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='NSIPerubahanStatus'
+          PhysicalName='NSIPERUBAHANSTATUS'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='TglNSIPerubahanStatus'
+          PhysicalName='TGLNSIPERUBAHANSTATUS'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='TglEfektifPerubahaanStatus'
+          PhysicalName='TGLEFEKTIFPERUBAHAANSTATUS'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='NSIPenutupanKantor'
+          PhysicalName='NSIPENUTUPANKANTOR'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='TglNSIPenutupanKantor'
+          PhysicalName='TGLNSIPENUTUPANKANTOR'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='TglEfektifPenutupanKantor'
+          PhysicalName='TGLEFEKTIFPENUTUPANKANTOR'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='NSIRelokasiKantor'
+          PhysicalName='NSIRELOKASIKANTOR'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='TglSIRelokasi'
+          PhysicalName='TGLSIRELOKASI'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='TglEfektifRelokasiKantor'
+          PhysicalName='TGLEFEKTIFRELOKASIKANTOR'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='JmlKaryawan'
+          PhysicalName='JMLKARYAWAN'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='TglPublikasiMediaMasa'
+          PhysicalName='TGLPUBLIKASIMEDIAMASA'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='Keterangan'
+          PhysicalName='KETERANGAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='item_id'
+          PhysicalName='ITEM_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:LinkMember<
+          MemberName='LReport'
+          LinkedClass=$TYPEDECLS['Report']
+          AutoForeignKey=true
+        >
+      }
+      ClassID='{355C90CF-2379-11E2-A33D-00140B44333B}'
+      AutoPrimaryKey=$TYPEDECLS['LKPBU_FORM807'].MEMBERS['item_id']
     >, object:ClassTypeDecl<
       TypeName='LBUS_FORM04'
       PTableName='LBUS_FORM04'
@@ -5064,6 +6473,19 @@ object:ODL<
           }
           LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
         >, object:FieldMember<
+          MemberName='LHUBBANK_refdata_id'
+          PhysicalName='LHUBBANK_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LHUBBANK'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LBUS_FORM26'].MEMBERS['LHUBBANK_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
           MemberName='Mulai'
           PhysicalName='MULAI'
           DataType=$TYPEDECLS['VARCHAR']
@@ -5768,7 +7190,7 @@ object:ODL<
           LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
         >, object:FieldMember<
           MemberName='LBENTUKPENGHAPUSANBUKUAN_refdata_id'
-          PhysicalName='LBENTUKPENGHAPUSANBUKUAN_REFDATA_ID'
+          PhysicalName='LHAPUSBUKU_REFDATA_ID'
           DataType=$TYPEDECLS['INTEGER']
         >, object:LinkMember<
           MemberName='LBENTUKPENGHAPUSANBUKUAN'
@@ -5888,7 +7310,7 @@ object:ODL<
           LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
         >, object:FieldMember<
           MemberName='LBENTUKPENGHAPUSANBUKUAN_refdata_id'
-          PhysicalName='LBENTUKPENGHAPUSANBUKUAN_REFDATA_ID'
+          PhysicalName='LHAPUSBUKU_REFDATA_ID'
           DataType=$TYPEDECLS['INTEGER']
         >, object:LinkMember<
           MemberName='LBENTUKPENGHAPUSANBUKUAN'
@@ -6067,7 +7489,7 @@ object:ODL<
           LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
         >, object:FieldMember<
           MemberName='LBENTUKPENGHAPUSANBUKUAN_refdata_id'
-          PhysicalName='LBENTUKPENGHAPUSANBUKUAN_REFDATA_ID'
+          PhysicalName='LHAPUSBUKU_REFDATA_ID'
           DataType=$TYPEDECLS['INTEGER']
         >, object:LinkMember<
           MemberName='LBENTUKPENGHAPUSANBUKUAN'
@@ -6382,7 +7804,7 @@ object:ODL<
           DataLength=6
         >, object:FieldMember<
           MemberName='LJENISVALUTAPEROLEHAN_refdata_id'
-          PhysicalName='LJENISVALUTAPEROLEHAN_REFDATA_ID'
+          PhysicalName='LVALPEROLEHAN_REFDATA_ID'
           DataType=$TYPEDECLS['INTEGER']
         >, object:LinkMember<
           MemberName='LJENISVALUTAPEROLEHAN'

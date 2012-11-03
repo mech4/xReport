@@ -1,0 +1,737 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  UIParts={
+    object:rtf::PClassUI<
+      Name='uipData'
+      MultiLine=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=921
+      Height=425
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-705'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcNamaProduk'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NamaProduk'
+          DisplayFormat=''
+          TitleCaption='Nama Produk'
+          Width=88
+        >, object:rtf::GridColumn<
+          Name='gcJmlNasabah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='JmlNasabah'
+          DisplayFormat=''
+          TitleCaption='Jumlah Nasabah'
+          Width=112
+        >, object:rtf::GridColumn<
+          Name='gcLINSTRUMEN'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LINSTRUMEN.reference_code'
+          DisplayFormat=''
+          TitleCaption='Komponen Instrumen'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcLPOSOPTION'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LPOSOPTION.reference_code'
+          DisplayFormat=''
+          TitleCaption='Option - Posisi'
+          Width=120
+        >, object:rtf::GridColumn<
+          Name='gcLVAROPTION'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LVAROPTION.reference_code'
+          DisplayFormat=''
+          TitleCaption='Option - Variabel Dasar'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcLPOSFORWARD'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LPOSFORWARD.reference_code'
+          DisplayFormat=''
+          TitleCaption='Forward - Posisi'
+          Width=128
+        >, object:rtf::GridColumn<
+          Name='gcLVARFORWARD'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LVARFORWARD.reference_code'
+          DisplayFormat=''
+          TitleCaption='Forward - Variabel Dasar'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcLVARSWAP'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LVARSWAP.reference_code'
+          DisplayFormat=''
+          TitleCaption='Swap - Variabel Dasar'
+          Width=168
+        >, object:rtf::GridColumn<
+          Name='gcLKARAKTERISTIK'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LKARAKTERISTIK.reference_code'
+          DisplayFormat=''
+          TitleCaption='Karakteristik Produk'
+          Width=160
+        >, object:rtf::GridColumn<
+          Name='gcLVALDAS'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LVALDAS.reference_code'
+          DisplayFormat=''
+          TitleCaption='Valuta Dasar'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcStrikePrice'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='StrikePrice'
+          DisplayFormat=''
+          TitleCaption='Strike Price'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcNominal'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Nominal'
+          DisplayFormat=''
+          TitleCaption='Nominal/Notional'
+          Width=128
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='NamaProduk'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nama Produk'
+          DataTypeName='varchar'
+          DataLength=50
+        >, object:rtf::FieldUIElmtSetting<
+          Name='JmlNasabah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Nasabah'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LINSTRUMEN'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Komponen Instrumen'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LINSTRUMEN.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LINSTRUMEN.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LINSTRUMEN.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LINSTRUMEN.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LINSTRUMEN'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LPOSOPTION'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Option - Posisi'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LPOSOPTION.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LPOSOPTION.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LPOSOPTION.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LPOSOPTION.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LPOSOPTION'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LVAROPTION'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Option - Variabel Dasar'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LVAROPTION.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LVAROPTION.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LVAROPTION.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LVAROPTION.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LVAROPTION'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LPOSFORWARD'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Forward - Posisi'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LPOSFORWARD.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LPOSFORWARD.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LPOSFORWARD.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LPOSFORWARD.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LPOSFORWARD'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LVARFORWARD'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Forward - Variabel Dasar'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LVARFORWARD.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LVARFORWARD.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LVARFORWARD.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LVARFORWARD.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LVARFORWARD'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LVARSWAP'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Swap - Variabel Dasar'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LVARSWAP.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LVARSWAP.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LVARSWAP.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LVARSWAP.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LVARSWAP'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LKARAKTERISTIK'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Karakteristik Produk'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LKARAKTERISTIK.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LKARAKTERISTIK.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LKARAKTERISTIK.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LKARAKTERISTIK.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LKARAKTERISTIK'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LVALDAS'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Valuta Dasar'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LVALDAS.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LVALDAS.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LVALDAS.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LVALDAS.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LVALDAS'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='StrikePrice'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Strike Price'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Nominal'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nominal/Notional'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='NamaProduk'
+          Top=8
+          Left=8
+          ControlCaption='Nama Produk'
+        >, *object:rtf::DBEdit<
+          Name='JmlNasabah'
+          Top=36
+          Left=8
+          ControlCaption='Jumlah Nasabah'
+        >, *object:rtf::DBLookupEdit<
+          Name='LINSTRUMEN'
+          Top=64
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Komponen Instrumen'
+          FieldName='LINSTRUMEN.reference_desc'
+          LookupField='LINSTRUMEN.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LPOSOPTION'
+          Top=92
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Option - Posisi'
+          FieldName='LPOSOPTION.reference_desc'
+          LookupField='LPOSOPTION.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LVAROPTION'
+          Top=120
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Option - Variabel Dasar'
+          FieldName='LVAROPTION.reference_desc'
+          LookupField='LVAROPTION.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LPOSFORWARD'
+          Top=148
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Forward - Posisi'
+          FieldName='LPOSFORWARD.reference_desc'
+          LookupField='LPOSFORWARD.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LVARFORWARD'
+          Top=176
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Forward - Variabel Dasar'
+          FieldName='LVARFORWARD.reference_desc'
+          LookupField='LVARFORWARD.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LVARSWAP'
+          Top=204
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Swap - Variabel Dasar'
+          FieldName='LVARSWAP.reference_desc'
+          LookupField='LVARSWAP.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LKARAKTERISTIK'
+          Top=232
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Karakteristik Produk'
+          FieldName='LKARAKTERISTIK.reference_desc'
+          LookupField='LKARAKTERISTIK.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LVALDAS'
+          Top=260
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Valuta Dasar'
+          FieldName='LVALDAS.reference_desc'
+          LookupField='LVALDAS.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='StrikePrice'
+          Top=288
+          Left=8
+          ControlCaption='Strike Price'
+        >, *object:rtf::DBEdit<
+          Name='Nominal'
+          Top=316
+          Left=8
+          ControlCaption='Nominal/Notional'
+        >
+      }
+      EqualCaptionWidth=140
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LKPBU_FORM_705'
+>

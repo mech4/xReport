@@ -1,0 +1,194 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dualsplit1']
+  Left=50
+  Top=50
+  Width=473
+  Height=337
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx='FormOnSetDataEx'
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Name='uipBranch'
+      ClassTypeName='Branch'
+      DataBinding=bmMaster
+    >, object:rtf::PClassUI<
+      Name='uipMember'
+      MultiLine=true
+    >, object:rtf::PClassUI<
+      Name='uiLookup'
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dualsplit1'
+      Width=473
+      Height=337
+      Container1=$CONTAINERS['pBranch']
+      Container2=$CONTAINERS['dualsplit2']
+    >, object:rtf::Panel<
+      ControlDefs={
+        object:rtf::MultiControlDef<
+          Action=caView
+          DataMembers=['branch_code'#13#10,
+            'branch_name'#13#10]
+        >, object:rtf::ControlDef<
+          Action=caView
+          DataMember='branch_id'
+        >
+      }
+      Elements={
+        *object:rtf::FieldUIElmtSetting<
+          Name='branch_code'
+          Hidden=false
+          ReadOnlyControl=false
+        >, *object:rtf::FieldUIElmtSetting<
+          Name='branch_name'
+          Hidden=false
+          ReadOnlyControl=false
+        >, *object:rtf::FieldUIElmtSetting<
+          Name='branch_id'
+          Hidden=true
+          ReadOnlyControl=false
+        >
+      }
+      Name='pBranch'
+      Width=401
+      Height=72
+      UIPart=$UIPARTS['uipBranch']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='branch_code'
+          Top=12
+          Left=8
+          Color=-16777192
+          ControlCaption='branch code'
+        >, *object:rtf::DBEdit<
+          Name='branch_name'
+          Top=40
+          Left=8
+          Color=-16777192
+          ControlCaption='branch name'
+        >
+      }
+      EqualCaptionWidth=120
+      ControlLeftMargin=8
+      ControlTopMargin=12
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::DualSplit<
+      Name='dualsplit2'
+      Width=473
+      Height=264
+      Container1=$CONTAINERS['grid1']
+      Container2=$CONTAINERS['pMember']
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LCabang'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Cabang'
+          ClassTypeName='enterprise.Cabang'
+          DisplayFields='Kode_Cabang;Nama_Cabang'
+          Restrictions=''
+          OQLText=['select from enterprise.Cabang'#13#10,
+            '('#13#10,
+            'Kode_Cabang,'#13#10,
+            'Nama_Cabang,'#13#10,
+            'self'#13#10,
+            ');']
+          LookupOption=loCustomOQL
+          FieldBaseName='LCabang'
+        >
+      }
+      Name='pMember'
+      Width=473
+      Height=89
+      UIPart=$UIPARTS['uiLookup']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LCabang'
+          Top=22
+          Left=8
+          ControlCaption='Cabang'
+          LookupField='LCabang.Nama_Cabang'
+          DisplayLookupField=true
+        >, object:rtf::Button<
+          Name='bAdd'
+          Layout=clNextSide
+          Top=22
+          Left=358
+          ControlCaption=''
+          Caption='&Tambah'
+        >, object:rtf::Button<
+          Name='button2'
+          Layout=clNewLine
+          Top=54
+          Left=8
+          ControlCaption=''
+          Caption='&Kembali'
+          ExitAction=eaQuitCancel
+        >
+      }
+      EqualCaptionWidth=120
+      ControlLeftMargin=8
+      ControlTopMargin=22
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='Tambah Cabang Pada Grup Pelaporan'
+    >, object:rtf::Grid<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='kode'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kode Cabang'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='nama'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nama Cabang'
+          DataTypeName='varchar'
+          DataLength=100
+        >
+      }
+      Name='grid1'
+      Width=400
+      Height=169
+      ContextMenuName='popupmenus/pMnuManageBranch'
+      UIPart=$UIPARTS['uipMember']
+      Caption='List Cabang Pada Grup Pelaporan'
+      Columns={
+        *object:rtf::GridColumn<
+          Name='kode'
+          TitleCaption='Kode Cabang'
+        >, *object:rtf::GridColumn<
+          Name='nama'
+          TitleCaption='Nama Cabang'
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >
+  }
+  FormClassName='fManageBranch'
+>

@@ -26,7 +26,7 @@ class LHBU_FORM_102:
     self.xlstopline  = 7
     self.xlsmap      = {
           1: 'IdOperasional'
-        , 2: 'NoReff'
+        , 2: 'NoReff'                          
         , 3: 'LPENANAMDANA_reference_code'
         , 4: 'LPENGELOLADANA_reference_code'
         , 5: 'LCURRENCY_reference_code'
@@ -41,6 +41,31 @@ class LHBU_FORM_102:
         , 14: 'LJENISPENANAM_reference_code'
         , 15: 'LJENISPENGELOLA_reference_code'
     }
+    self.useheader = 3 #1: true LKPBU, 0:false, 2:row header only (LBUS), 3:header LHBU
+    self.txttemplate = 'lhbu/form102.txt'
+    #txtmap dimulai dari index 1 sesuai xlsmap (index 0 diisi [0,0]
+    #format [len, jenis] : 
+    #       jenis 0 untuk spasi 
+    #       jenis 1 untuk zerofill int
+    #       jenis 2 untuk zerofill x,5
+    #       jenis 3 untuk zerofill 99,99
+    self.txtmap      = ( [0,0]
+        , [1,0]
+        , [16,0]
+        , [3,0]
+        , [3,0]
+        , [3,0]
+        , [8,2]
+        , [8,2]
+        , [9,1]
+        , [16,1]
+        , [8,1]
+        , [8,1]
+        , [3,1]
+        , [4,1]
+        , [2,0]
+        , [2,0]
+  )
   #--
 
   def refExit(self, sender):

@@ -1,0 +1,387 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  UIParts={
+    object:rtf::PClassUI<
+      Name='uipData'
+      MultiLine=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=921
+      Height=425
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-805'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcLPEKERJAAN'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LPEKERJAAN.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Pekerjaan'
+          Width=120
+        >, object:rtf::GridColumn<
+          Name='gcLPENDIDIKAN'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LPENDIDIKAN.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Pendidikan'
+          Width=128
+        >, object:rtf::GridColumn<
+          Name='gcLSTATUS'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LSTATUS.reference_code'
+          DisplayFormat=''
+          TitleCaption='Status Pegawai'
+          Width=112
+        >, object:rtf::GridColumn<
+          Name='gcRealisasi'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Realisasi'
+          DisplayFormat=''
+          TitleCaption='Jumlah TK Tahun Realisasi'
+          Width=200
+        >, object:rtf::GridColumn<
+          Name='gcPrediksi1'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Prediksi1'
+          DisplayFormat=''
+          TitleCaption='Jumlah TK Tahun Prediksi 1 (Realisasi+1)'
+          Width=320
+        >, object:rtf::GridColumn<
+          Name='gcPrediksi2'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Prediksi2'
+          DisplayFormat=''
+          TitleCaption='Jumlah TK Tahun Prediksi 2 (Realisasi+2)'
+          Width=320
+        >, object:rtf::GridColumn<
+          Name='gcPrediksi3'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Prediksi3'
+          DisplayFormat=''
+          TitleCaption='Jumlah TK Tahun Prediksi 3 (Realisasi+3)'
+          Width=320
+        >, object:rtf::GridColumn<
+          Name='gcPrediksi4'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Prediksi4'
+          DisplayFormat=''
+          TitleCaption='Jumlah TK Tahun Prediksi 4 (Realisasi+4)'
+          Width=320
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LPEKERJAAN'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Pekerjaan'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LPEKERJAAN.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LPEKERJAAN.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LPEKERJAAN.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LPEKERJAAN.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LPEKERJAAN'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LPENDIDIKAN'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Pendidikan'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LPENDIDIKAN.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LPENDIDIKAN.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LPENDIDIKAN.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LPENDIDIKAN.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LPENDIDIKAN'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LSTATUS'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Status Pegawai'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSTATUS.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSTATUS.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSTATUS.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSTATUS.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LSTATUS'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Realisasi'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah TK Tahun Realisasi'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Prediksi1'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah TK Tahun Prediksi 1 (Realisasi+1)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Prediksi2'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah TK Tahun Prediksi 2 (Realisasi+2)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Prediksi3'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah TK Tahun Prediksi 3 (Realisasi+3)'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Prediksi4'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah TK Tahun Prediksi 4 (Realisasi+4)'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LPEKERJAAN'
+          Top=8
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Pekerjaan'
+          FieldName='LPEKERJAAN.reference_desc'
+          LookupField='LPEKERJAAN.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LPENDIDIKAN'
+          Top=36
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Pendidikan'
+          FieldName='LPENDIDIKAN.reference_desc'
+          LookupField='LPENDIDIKAN.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LSTATUS'
+          Top=64
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Status Pegawai'
+          FieldName='LSTATUS.reference_desc'
+          LookupField='LSTATUS.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='Realisasi'
+          Top=92
+          Left=8
+          ControlCaption='Jumlah TK Tahun Realisasi'
+        >, *object:rtf::DBEdit<
+          Name='Prediksi1'
+          Top=120
+          Left=8
+          ControlCaption='Jumlah TK Tahun Prediksi 1 (Realisasi+1)'
+        >, *object:rtf::DBEdit<
+          Name='Prediksi2'
+          Top=148
+          Left=8
+          ControlCaption='Jumlah TK Tahun Prediksi 2 (Realisasi+2)'
+        >, *object:rtf::DBEdit<
+          Name='Prediksi3'
+          Top=176
+          Left=8
+          ControlCaption='Jumlah TK Tahun Prediksi 3 (Realisasi+3)'
+        >, *object:rtf::DBEdit<
+          Name='Prediksi4'
+          Top=204
+          Left=8
+          ControlCaption='Jumlah TK Tahun Prediksi 4 (Realisasi+4)'
+        >
+      }
+      EqualCaptionWidth=220
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LKPBU_FORM_805'
+>

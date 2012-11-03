@@ -1,0 +1,291 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=921
+      Height=425
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-704'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcLDELIVERY'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LDELIVERY.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Delivery Chanel'
+          Width=168
+        >, object:rtf::GridColumn<
+          Name='gcJumlahNasabah1'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='JumlahNasabah1'
+          DisplayFormat=''
+          TitleCaption='INFORMASIONAL Jumlah Nasabah'
+          Width=224
+        >, object:rtf::GridColumn<
+          Name='gcFrekuensi1'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Frekuensi1'
+          DisplayFormat=''
+          TitleCaption='INFORMASIONAL Frekuensi'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcJumlahNasabah2'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='JumlahNasabah2'
+          DisplayFormat=''
+          TitleCaption='TRANSAKSIONAL Jumlah Nasabah'
+          Width=224
+        >, object:rtf::GridColumn<
+          Name='gcFrekuensi2'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Frekuensi2'
+          DisplayFormat=''
+          TitleCaption='TRANSAKSIONAL Frekuensi'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcNilaiTransaksi'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NilaiTransaksi'
+          DisplayFormat=''
+          TitleCaption='Nilai Transaksi'
+          Width=120
+        >, object:rtf::GridColumn<
+          Name='gcFrekuensiFraud'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='FrekuensiFraud'
+          DisplayFormat=''
+          TitleCaption='Frekuensi Fraud**'
+          Width=136
+        >, object:rtf::GridColumn<
+          Name='gcNilaiFraud'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NilaiFraud'
+          DisplayFormat=''
+          TitleCaption='Nilai Fraud**'
+          Width=104
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LDELIVERY'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Delivery Chanel'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LDELIVERY.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LDELIVERY.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LDELIVERY.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LDELIVERY.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LDELIVERY'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='JumlahNasabah1'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='INFORMASIONAL Jumlah Nasabah'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Frekuensi1'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='INFORMASIONAL Frekuensi'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='JumlahNasabah2'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='TRANSAKSIONAL Jumlah Nasabah'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Frekuensi2'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='TRANSAKSIONAL Frekuensi'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NilaiTransaksi'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nilai Transaksi'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='FrekuensiFraud'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Frekuensi Fraud**'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NilaiFraud'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nilai Fraud**'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LDELIVERY'
+          Top=8
+          Left=8
+          Width=150
+          Height=21
+          ControlCaption='Jenis Delivery Channel'
+          FieldName='LDELIVERY.reference_desc'
+          LookupField='LDELIVERY.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='JumlahNasabah1'
+          Top=36
+          Left=8
+          ControlCaption='INFORMASIONAL Jumlah Nasabah'
+        >, *object:rtf::DBEdit<
+          Name='Frekuensi1'
+          Top=64
+          Left=8
+          ControlCaption='INFORMASIONAL Frekuensi'
+        >, *object:rtf::DBEdit<
+          Name='JumlahNasabah2'
+          Top=92
+          Left=8
+          ControlCaption='TRANSAKSIONAL Jumlah Nasabah'
+        >, *object:rtf::DBEdit<
+          Name='Frekuensi2'
+          Top=120
+          Left=8
+          ControlCaption='TRANSAKSIONAL Frekuensi'
+        >, *object:rtf::DBEdit<
+          Name='NilaiTransaksi'
+          Top=148
+          Left=8
+          ControlCaption='Nilai Transaksi'
+        >, *object:rtf::DBEdit<
+          Name='FrekuensiFraud'
+          Top=176
+          Left=8
+          ControlCaption='Frekuensi Fraud**'
+        >, *object:rtf::DBEdit<
+          Name='NilaiFraud'
+          Top=204
+          Left=8
+          ControlCaption='Nilai Fraud**'
+        >
+      }
+      EqualCaptionWidth=200
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LKPBU_FORM_704'
+>

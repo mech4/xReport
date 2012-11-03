@@ -43,13 +43,23 @@ object:rtf::Form<
       Caption='FORM-4A'
       Columns={
         object:rtf::GridColumn<
-          Name='gcLPOS'
+          Name='LPOS.reference_desc'
+          InputStyle=cisLookup
+          EnumeratedValues=''
+          OnBeforeLookup='refBeforeLookup'
+          FieldName='LPOS.reference_desc'
+          DisplayFormat=''
+          TitleCaption='Pos Neraca dan Jangka Waktu Jatuh Tempo'
+          Width=312
+          DirectInput=true
+        >, object:rtf::GridColumn<
+          Name='LPOS.reference_code'
           InputStyle=cisNormal
           EnumeratedValues=''
           FieldName='LPOS.reference_code'
           DisplayFormat=''
-          TitleCaption='Pos Neraca dan Jangka Waktu Jatuh Tempo'
-          Width=312
+          TitleCaption='Sandi'
+          Width=60
         >, object:rtf::GridColumn<
           Name='gcSaldo'
           InputStyle=cisNormal
@@ -100,7 +110,6 @@ object:rtf::Form<
           Width=152
         >
       }
-      ReadOnly=true
       RowSelect=true
       SuppressHelpLine=true
     >, object:rtf::DualSplit<

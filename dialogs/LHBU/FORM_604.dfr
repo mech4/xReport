@@ -113,21 +113,21 @@ object:rtf::Form<
           Hidden=false
           ReadOnlyControl=false
           ControlCaption='Tingkat Realisasi sebelum Distribusi'
-          DataTypeName='varchar'
+          DataTypeName='double'
           DataLength=8
         >, object:rtf::FieldUIElmtSetting<
           Name='Nisbah'
           Hidden=false
           ReadOnlyControl=false
           ControlCaption='Nisbah Bagi Hasil'
-          DataTypeName='varchar'
+          DataTypeName='double'
           DataLength=8
         >, object:rtf::FieldUIElmtSetting<
           Name='Distribusi'
           Hidden=false
           ReadOnlyControl=false
           ControlCaption='Distribusi Realisasi Mudharabah'
-          DataTypeName='varchar'
+          DataTypeName='double'
           DataLength=8
         >
       }

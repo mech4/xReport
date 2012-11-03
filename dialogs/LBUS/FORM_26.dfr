@@ -43,8 +43,8 @@ object:rtf::Form<
   Containers={
     object:rtf::DualSplit<
       Name='dsMain'
-      Width=921
-      Height=425
+      Width=240
+      Height=96
       Container1=$CONTAINERS['grData']
       Container2=$CONTAINERS['pData']
       SplitDirection=sdrSplitLeftRight
@@ -66,7 +66,7 @@ object:rtf::Form<
           EnumeratedValues=''
           FieldName='LJENIS.reference_code'
           DisplayFormat=''
-          TitleCaption='Jenis'
+          TitleCaption='Tujuan'
           Width=40
         >, object:rtf::GridColumn<
           Name='gcLJENISVALUTA'
@@ -83,6 +83,14 @@ object:rtf::Form<
           FieldName='LPEMILIK.reference_code'
           DisplayFormat=''
           TitleCaption='Pemilik'
+          Width=56
+        >, object:rtf::GridColumn<
+          Name='gcLHUBBANK'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LHUBBANK.reference_code'
+          DisplayFormat=''
+          TitleCaption='Hubungan Dengan Bank'
           Width=56
         >, object:rtf::GridColumn<
           Name='gcMulai'
@@ -127,7 +135,7 @@ object:rtf::Form<
           Name='LJENIS'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Jenis'
+          ControlCaption='Tujuan'
           ClassTypeName='enterprise.ReferenceData'
           DisplayFields='reference_desc;reference_code;refdata_id'
           Restrictions=''
@@ -150,6 +158,15 @@ object:rtf::Form<
           DisplayFields='reference_desc;reference_code;refdata_id'
           Restrictions=''
           FieldBaseName='LPEMILIK'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LHUBBANK'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hubungan Dengan Bank'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LHUBBANK'
         >, object:rtf::FieldUIElmtSetting<
           Name='Mulai'
           Hidden=false
@@ -191,7 +208,7 @@ object:rtf::Form<
           Left=8
           Width=250
           Height=21
-          ControlCaption='Jenis'
+          ControlCaption='Tujuan'
           FieldName='LJENIS.reference_desc'
           LookupField='LJENIS.reference_code'
           DisplayLookupField=true
@@ -224,8 +241,24 @@ object:rtf::Form<
           Width=250
           Height=21
           ControlCaption='Pemilik'
-          FieldName='LJENISVALUTA.reference_desc'
-          LookupField='LJENISVALUTA.reference_code'
+          FieldName='LPEMILIK.reference_desc'
+          LookupField='LPEMILIK.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LHUBBANK'
+          Top=92
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Hubungan Dengan Bank'
+          FieldName='LHUBBANK.reference_desc'
+          LookupField='LHUBBANK.reference_code'
           DisplayLookupField=true
           OnExit='refExit'
           DisplayLookupColor=-16777192
@@ -235,27 +268,27 @@ object:rtf::Form<
           ManualInputCheck=true
         >, *object:rtf::DBEdit<
           Name='Mulai'
-          Top=92
+          Top=120
           Left=8
           ControlCaption='Mulai'
         >, *object:rtf::DBEdit<
           Name='JatuhTempo'
-          Top=120
+          Top=148
           Left=8
           ControlCaption='Jatuh Tempo'
         >, *object:rtf::DBEdit<
           Name='PersentaseBonus'
-          Top=148
+          Top=176
           Left=8
           ControlCaption='Persentase Bonus'
         >, *object:rtf::DBEdit<
           Name='Jumlah'
-          Top=176
+          Top=204
           Left=8
           ControlCaption='Jumlah (jutaan rupiah)'
         >
       }
-      EqualCaptionWidth=120
+      EqualCaptionWidth=160
       ControlLeftMargin=8
       ControlTopMargin=8
       DefaultControlHeight=21

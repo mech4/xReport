@@ -1,0 +1,66 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{03AB2DCD-D5DA-4DD5-B07D-CD15AE22527E}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rpclass::TPClassUIDefList<
+  UIDefs={
+    object:rpclass::TPClassUIDef<
+      Name='uipMain'
+      CustomLoadedFields={
+        object:rpclass::TCustomLoadedField<
+          Name='attrlist'
+          DataTypeName='varchar'
+          DataLength=5000
+        >, object:rpclass::TCustomLoadedField<
+          Name='group_code'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='period.period_id'
+          DataTypeName='INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='period.period_code'
+          DataTypeName='VARCHAR'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='period.description'
+          DataTypeName='VARCHAR'
+          DataLength=32
+        >, object:rpclass::TCustomLoadedField<
+          Name='period.period_id'
+          DataTypeName='INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='branch.branch_id'
+          DataTypeName='INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='branch.branch_code'
+          DataTypeName='VARCHAR'
+          DataLength=10
+        >, object:rpclass::TCustomLoadedField<
+          Name='branch.branch_name'
+          DataTypeName='VARCHAR'
+          DataLength=32
+        >, object:rpclass::TCustomLoadedField<
+          Name='branch.branch_id'
+          DataTypeName='INTEGER'
+        >
+      }
+      CustomLoadedLinks={
+        object:rpclass::TCustomLoadedLink<
+          Name='period'
+          ClassTypeName='Period'
+          FieldNames='period_id;period_code;description;period_id'
+        >, object:rpclass::TCustomLoadedLink<
+          Name='branch'
+          ClassTypeName='Branch'
+          FieldNames='branch_id;branch_code;branch_name;branch_id'
+        >
+      }
+      Mode=imSingleRow
+      DeleteOnDel=true
+    >
+  }
+>

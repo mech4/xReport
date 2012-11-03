@@ -1,0 +1,57 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{03AB2DCD-D5DA-4DD5-B07D-CD15AE22527E}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rpclass::TPClassUIDefList<
+  UIDefs={
+    object:rpclass::TPClassUIDef<
+      Name='uipBranch'
+      PClassName='Branch'
+      LoadedFieldList='branch_code;branch_name;branch_id'
+      Mode=imSingleRow
+    >, object:rpclass::TPClassUIDef<
+      Name='uipMember'
+      CustomLoadedFields={
+        object:rpclass::TCustomLoadedField<
+          Name='kode'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='nama'
+          DataTypeName='varchar'
+          DataLength=100
+        >
+      }
+      Mode=imMultiRow
+    >, object:rpclass::TPClassUIDef<
+      Name='uiLookup'
+      CustomLoadedFields={
+        object:rpclass::TCustomLoadedField<
+          Name='LCabang.Kode_Cabang'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LCabang.Kode_Cabang'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LCabang.Nama_Cabang'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=30
+        >
+      }
+      CustomLoadedLinks={
+        object:rpclass::TCustomLoadedLink<
+          Name='LCabang'
+          ClassTypeName='enterprise.Cabang'
+          FieldNames='Kode_Cabang;Kode_Cabang;Nama_Cabang'
+        >
+      }
+      Mode=imSingleRow
+    >
+  }
+  OnSetDataEx='FormOnSetDataEx'
+>

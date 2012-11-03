@@ -1,0 +1,182 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx=''
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Name='uipData'
+      MultiLine=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=921
+      Height=425
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-804'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcLKATEGORI'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LKATEGORI.reference_code'
+          DisplayFormat=''
+          TitleCaption='Kategori Pegawai Berhenti'
+          Width=200
+        >, object:rtf::GridColumn<
+          Name='gcLJABATAN'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJABATAN.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jabatan'
+          Width=56
+        >, object:rtf::GridColumn<
+          Name='gcJmlLaki2'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='JmlLaki2'
+          DisplayFormat=''
+          TitleCaption='Jumlah TK Laki-laki'
+          Width=152
+        >, object:rtf::GridColumn<
+          Name='gcJmlPerempuan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='JmlPerempuan'
+          DisplayFormat=''
+          TitleCaption='Jumlah TK Perempuan'
+          Width=152
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LKATEGORI'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kategori Pegawai Berhenti'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LKATEGORI'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJABATAN'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jabatan'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJABATAN'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='JmlLaki2'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah TK Laki-laki'
+          DataTypeName='double'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='JmlPerempuan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah TK Perempuan'
+          DataTypeName='double'
+          DataLength=20
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LKATEGORI'
+          Top=8
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Kategori Pegawai Berhenti'
+          FieldName='LKATEGORI.reference_desc'
+          LookupField='LKATEGORI.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LJABATAN'
+          Top=36
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jabatan'
+          FieldName='LJABATAN.reference_desc'
+          LookupField='LJABATAN.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='JmlLaki2'
+          Top=64
+          Left=8
+          ControlCaption='Jumlah TK Laki-laki'
+        >, *object:rtf::DBEdit<
+          Name='JmlPerempuan'
+          Top=92
+          Left=8
+          ControlCaption='Jumlah TK Perempuan'
+        >
+      }
+      EqualCaptionWidth=180
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LKPBU_FORM_804'
+>

@@ -8,7 +8,8 @@ class LBBU_FORM_3:
       'LJenis'
     ]
     self.attrlist = [
-      'PPKPKNVa'
+      'PPKPKNRp'
+      ,'PPKPKNVa'
       ,'PPDKRp'
       ,'PPDKVa'
       ,'PPDLRp'
@@ -24,26 +25,55 @@ class LBBU_FORM_3:
       ,'Jumlah'
     ]
     self.paction     = None
-    self.xlstemplate = 'lbus/form3.xls'
-    self.xlstopline  = 7
+    self.xlstemplate = 'lbbu/form3.xls'
+    self.xlstopline  = 8
     self.xlsmap      = {
-          1: 'LJenis_reference_code'
-        , 2: 'PPKPKNRp'
-        , 3: 'PPKPKNVa'
-        , 4: 'PPDKRp'
-        , 5: 'PPDKVa'
-        , 6: 'PPDLRp'
-        , 7: 'PPDLVa'
-        , 8: 'PPSubJml'
-        , 9: 'PPSubJmlVa'
-        , 10: 'PDT1Rp'
-        , 11: 'PDT1Va'
-        , 12: 'PDT2Rp'
-        , 13: 'PDT2Va'
-        , 14: 'PDSubJmlRp'
-        , 15: 'PDSubJmlVa'
-        , 16: 'Jumlah'
+          1: 'LJenis_reference_desc'
+        , 2: 'LJenis_reference_code'
+        , 3: 'PPKPKNRp'
+        , 4: 'PPKPKNVa'
+        , 5: 'PPDKRp'
+        , 6: 'PPDKVa'
+        , 7: 'PPDLRp'
+        , 8: 'PPDLVa'
+        , 9: 'PPSubJml'
+        , 10: 'PPSubJmlVa'
+        , 11: 'PDT1Rp'
+        , 12: 'PDT1Va'
+        , 13: 'PDT2Rp'
+        , 14: 'PDT2Va'
+        , 15: 'PDSubJmlRp'
+        , 16: 'PDSubJmlVa'
+        , 17: 'Jumlah'
     }
+    self.useheader = 4 #1: true LKPBU, 0:false, 2:row header only (LBUS), 3:header LHBU, 4:row header (LBBU)
+    self.txttemplate = 'lbbu/form3.txt'
+    #txtmap dimulai dari index 1 sesuai xlsmap (index 0 diisi [0,0]
+    #format [len, jenis] : 
+    #       jenis 0 untuk spasi 
+    #       jenis 1 untuk zerofill int
+    #       jenis 2 untuk zerofill x,5
+    #       jenis 3 untuk zerofill 99,99
+    #       jenis 4 untuk tgl dgn separator '/' dan spasi 
+    self.txtmap      = ( [0,0]
+      , [80,0]
+      , [5,0]
+      , [30,1]
+      , [30,1]
+      , [30,1]
+      , [30,1]
+      , [30,1]
+      , [30,1]
+      , [30,1]
+      , [30,1]
+      , [30,1]
+      , [30,1]
+      , [30,1]
+      , [30,1]
+      , [30,1]
+      , [30,1]
+      , [30,1]
+    )
   #--
 
   def refExit(self, sender):

@@ -8,7 +8,7 @@ class lookupReportClass:
     config = self.config
     mlu = self.config.ModLibUtils
     rqsql.SELECTFROMClause = '''
-      SELECT r.report_code, r.report_name, r.class_id, r.form_id
+      SELECT r.report_code, r.report_name, r.class_id, r.form_id, r.periode_type
       FROM {reportclass} r, {reportclassgroup} g
     '''.format(
       reportclass=config.MapDBTableName('reportclass')

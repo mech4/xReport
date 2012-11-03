@@ -32,7 +32,8 @@ class LBUS_FORM_10:
       ,'LGOLPENJAMIN'
     ]
     self.attrlist = [
-      'JumlahRekening'
+      'NomorRekening'
+      ,'JumlahRekening'
       ,'BlnThnMulai'
       ,'BlnThnTempo'
       ,'Nisbah'
@@ -49,20 +50,69 @@ class LBUS_FORM_10:
     self.xlstemplate = 'lbus/form10.xls'
     self.xlstopline  = 8
     self.xlsmap      = {
-          1: 'Nisbah'
-        , 2: 'PersenBagiHasil'
-        , 3: 'LGOLPEMBIAYAAN_reference_code'
-        , 4: 'LSEKTOREKONOMI_reference_code'
-        , 5: 'LLOKASIPROYEK_reference_code'
-        , 6: 'LGOLPENJAMIN_reference_code'
-        , 7: 'BagDijamin'
-        , 8: 'Plafond'
-        , 9: 'KelonggaranTarik'
-        , 10: 'DebetBlnLalu'
-        , 11: 'DebetBlnLap'
-        , 12: 'AgunanPPAP'
-        , 13: 'PPAPDibentuk'
+          1: 'NomorRekening'
+        , 2: 'JumlahRekening'
+        , 3: 'LSTATUSPEMBIAYAAN_reference_code'
+        , 4: 'LSIFAT_reference_code'
+        , 5: 'LJENIS_reference_code'
+        , 6: 'LJENISPENGGUNAAN_reference_code'
+        , 7: 'LORIENTPENGGUNAAN_reference_code'
+        , 8: 'LJENISVALUTA_reference_code'
+        , 9: 'LGOLDEBITUR_reference_code'
+        , 10: 'LHUBBANK_reference_code'
+        , 11: 'BlnThnMulai'
+        , 12: 'BlnThnTempo'
+        , 13: 'LKOLEKTIBILITAS_reference_code'
+        , 14: 'Nisbah'
+        , 15: 'PersenBagiHasil'
+        , 16: 'LGOLPEMBIAYAAN_reference_code'
+        , 17: 'LSEKTOREKONOMI_reference_code'
+        , 18: 'LLOKASIPROYEK_reference_code'
+        , 19: 'LGOLPENJAMIN_reference_code'
+        , 20: 'BagDijamin'
+        , 21: 'Plafond'
+        , 22: 'KelonggaranTarik'
+        , 23: 'DebetBlnLalu'
+        , 24: 'DebetBlnLap'
+        , 25: 'AgunanPPAP'
+        , 26: 'PPAPDibentuk'
     }
+    self.useheader = 2 #1: true, 0:false, 2:row header only (LBUS)
+    self.txttemplate = 'lbus/form10.txt'
+    #txtmap dimulai dari index 1 sesuai xlsmap (index 0 diisi [0,0]
+    #format [len, jenis] : 
+    #       jenis 0 untuk spasi 
+    #       jenis 1 untuk zerofill int
+    #       jenis 2 untuk zerofill x,5
+    #       jenis 3 untuk zerofill 99,99
+    self.txtmap      = ( [0,0]
+      , [15,0]
+      , [8,1]
+      , [2,0]
+      , [1,0]
+      , [2,0]
+      , [2,0]
+      , [1,0]
+      , [3,0]
+      , [3,0]
+      , [1,0]
+      , [6,1]
+      , [6,1]
+      , [1,0]
+      , [4,3]
+      , [4,3]
+      , [2,0]
+      , [4,0]
+      , [4,0]
+      , [3,0]
+      , [4,3]
+      , [12,1]
+      , [12,1]
+      , [12,1]
+      , [12,1]
+      , [12,1]
+      , [12,1]
+  )
   #--
 
   def refExit(self, sender):

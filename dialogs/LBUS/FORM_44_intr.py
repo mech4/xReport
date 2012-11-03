@@ -39,14 +39,6 @@ class LBUS_FORM_44:
       ,'Akumulasi'
       ,'NilaiBersih'
       ,'NomorAkad'
-      ,'NilaiKontrak'
-      ,'Mulai'
-      ,'JatuhTempo'
-      ,'NilaiSewa'
-      ,'BagDijamin'
-      ,'Tunggakan'
-      ,'AgunanPPAP'
-      ,'PPAPDibentuk'
     ]
     self.paction     = None
     self.xlstemplate = 'lbus/form44.xls'
@@ -69,12 +61,47 @@ class LBUS_FORM_44:
         , 15: 'NilaiSewa'
         , 16: 'LGOLPENYEWA_reference_code'
         , 17: 'LHUBBANK_reference_code'
-        , 16: 'LKOLEK_reference_code'
-        , 17: 'LGOLPENJAMIN_reference_code'
-        , 18: 'BagDijamin'
-        , 19: 'AgunanPPAP'
-        , 20: 'PPAPDibentuk'
+        , 18: 'LKOLEK_reference_code'
+        , 19: 'LGOLPENJAMIN_reference_code'
+        , 20: 'BagDijamin'
+        , 21: 'Akumulasi'
+        , 22: 'AgunanPPAP'
+        , 23: 'PPAPDibentuk'
     }
+    self.useheader = 2 #1: true, 0:false, 2:row header only (LBUS)
+    self.txttemplate = 'lbus/form44.txt'
+    #txtmap dimulai dari index 1 sesuai xlsmap (index 0 diisi [0,0]
+    #format [len, jenis] : 
+    #       jenis 0 untuk spasi 
+    #       jenis 1 untuk zerofill int
+    #       jenis 2 untuk zerofill x,5
+    #       jenis 3 untuk zerofill 99,99
+    self.txtmap      = ( [0,0]
+      , [2,0]
+      , [6,1]
+      , [1,0]
+      , [12,1]
+      , [2,0]
+      , [12,1]
+      , [12,1]
+      , [15,0]
+      , [1,0]
+      , [1,0]
+      , [12,1]
+      , [6,1]
+      , [6,1]
+      , [1,0]
+      , [12,1]
+      , [3,0]
+      , [1,0]
+      , [1,0]
+      , [3,0]
+      , [12,1]
+      , [4,3]
+      , [12,1]
+      , [12,1]
+      , [12,1]
+  )
   #--
 
   def refExit(self, sender):

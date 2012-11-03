@@ -57,6 +57,20 @@ object:rpclass::TPClassUIDefList<
           Name='LPEMILIK.refdata_id'
           DataTypeName='enterprise.INTEGER'
         >, object:rpclass::TCustomLoadedField<
+          Name='LHUBBANK.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LHUBBANK.reference_desc'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=60
+        >, object:rpclass::TCustomLoadedField<
+          Name='LHUBBANK.reference_code'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LHUBBANK.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
           Name='Mulai'
           DataTypeName='varchar'
           DataLength=6
@@ -85,6 +99,10 @@ object:rpclass::TPClassUIDefList<
           FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
         >, object:rpclass::TCustomLoadedLink<
           Name='LPEMILIK'
+          ClassTypeName='enterprise.ReferenceData'
+          FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
+        >, object:rpclass::TCustomLoadedLink<
+          Name='LHUBBANK'
           ClassTypeName='enterprise.ReferenceData'
           FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
         >

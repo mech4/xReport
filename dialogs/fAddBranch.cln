@@ -1,0 +1,103 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['panel1']
+  Caption='Tambah Grup Cabang Pelaporan'
+  Left=50
+  Top=50
+  Width=400
+  Height=177
+  UIParts={
+    object:rtf::PClassUI<
+      Name='uipBranch'
+      ClassTypeName='Branch'
+      DataBinding=bmMaster
+      CreateInstanceOnNew=true
+    >
+  }
+  Containers={
+    object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='branch_code'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kode Cabang'
+          DataTypeName='VARCHAR'
+          DataLength=10
+        >, object:rtf::FieldUIElmtSetting<
+          Name='branch_name'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nama Cabang'
+          DataTypeName='VARCHAR'
+          DataLength=32
+        >, object:rtf::FieldUIElmtSetting<
+          Name='description'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Keterangan'
+          DataTypeName='VARCHAR'
+          DataLength=32
+        >
+      }
+      Name='panel1'
+      Width=401
+      Height=177
+      UIPart=$UIPARTS['uipBranch']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='branch_code'
+          Top=20
+          Left=8
+          ControlCaption='Kode Cabang'
+        >, *object:rtf::DBEdit<
+          Name='branch_name'
+          Top=48
+          Left=8
+          ControlCaption='Nama Cabang'
+        >, *object:rtf::DBEdit<
+          Name='description'
+          Top=76
+          Left=8
+          ControlCaption='Keterangan'
+        >, object:rtf::Label<
+          Name='label1'
+          Layout=clNewLine
+          Top=104
+          Left=8
+          ControlCaption=''
+        >, object:rtf::Button<
+          Name='bSave'
+          Layout=clNewLine
+          Top=132
+          Left=8
+          ControlCaption=''
+          Caption='&Save'
+          DefaultAction=daProcessAllUI
+          ExitAction=eaQuitOK
+        >, object:rtf::Button<
+          Name='bCancel'
+          Layout=clNextSide
+          Top=132
+          Left=87
+          ControlCaption=''
+          Caption='&Cancel'
+          ExitAction=eaQuitCancel
+        >
+      }
+      EqualCaptionWidth=120
+      ControlLeftMargin=8
+      ControlTopMargin=20
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='fAddBranch'
+>

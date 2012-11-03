@@ -1,0 +1,828 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  UIParts={
+    object:rtf::PClassUI<
+      Name='uipData'
+      MultiLine=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=921
+      Height=425
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['multipages1']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-801'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcLDATA'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LDATA.reference_code'
+          DisplayFormat=''
+          TitleCaption='Status Data'
+          Width=88
+        >, object:rtf::GridColumn<
+          Name='gcNIP'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NIP'
+          DisplayFormat=''
+          TitleCaption='NIP'
+          Width=24
+        >, object:rtf::GridColumn<
+          Name='gcNamaPejabat'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NamaPejabat'
+          DisplayFormat=''
+          TitleCaption='Nama Pejabat Eksekutif'
+          Width=176
+        >, object:rtf::GridColumn<
+          Name='gcLSTATUSTK'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LSTATUSTK.reference_code'
+          DisplayFormat=''
+          TitleCaption='Status Tenaga Kerja'
+          Width=152
+        >, object:rtf::GridColumn<
+          Name='gcNamaJabatan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NamaJabatan'
+          DisplayFormat=''
+          TitleCaption='Nama Jabatan'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcAlamatSkrg'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='AlamatSkrg'
+          DisplayFormat=''
+          TitleCaption='Alamat Rumah (Saat Ini)'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcAlamatID'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='AlamatID'
+          DisplayFormat=''
+          TitleCaption='Alamat KTP atau Paspor atau KITAS (WNA)'
+          Width=312
+        >, object:rtf::GridColumn<
+          Name='gcTelepon'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Telepon'
+          DisplayFormat=''
+          TitleCaption='Nomor Telepon'
+          Width=104
+        >, object:rtf::GridColumn<
+          Name='gcFaksimile'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Faksimile'
+          DisplayFormat=''
+          TitleCaption='Nomor Faksimile'
+          Width=120
+        >, object:rtf::GridColumn<
+          Name='gcNPWP'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NPWP'
+          DisplayFormat=''
+          TitleCaption='NPWP'
+          Width=32
+        >, object:rtf::GridColumn<
+          Name='gcNoID'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NoID'
+          DisplayFormat=''
+          TitleCaption='No. ID'
+          Width=48
+        >, object:rtf::GridColumn<
+          Name='gcTempatLahir'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TempatLahir'
+          DisplayFormat=''
+          TitleCaption='Tempat Lahir'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcTanggalLahir'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TanggalLahir'
+          DisplayFormat=''
+          TitleCaption='Tanggal Lahir'
+          Width=104
+        >, object:rtf::GridColumn<
+          Name='gcKewarganegaraan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Kewarganegaraan.reference_code'
+          DisplayFormat=''
+          TitleCaption='Kewarganegaraan'
+          Width=120
+        >, object:rtf::GridColumn<
+          Name='gcGender'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Gender.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Kelamin'
+          Width=104
+        >, object:rtf::GridColumn<
+          Name='gcNoPelaporan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NoPelaporan'
+          DisplayFormat=''
+          TitleCaption='No. Surat Pelaporan'
+          Width=152
+        >, object:rtf::GridColumn<
+          Name='gcTanggalPelaporan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TanggalPelaporan'
+          DisplayFormat=''
+          TitleCaption='Tanggal Surat Pelaporan'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcLSTATUSPE'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LSTATUSPE.reference_code'
+          DisplayFormat=''
+          TitleCaption='Status PE'
+          Width=72
+        >, object:rtf::GridColumn<
+          Name='gcNomorSK'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NomorSK'
+          DisplayFormat=''
+          TitleCaption='Nomor Surat Keputusan Pengangkatan'
+          Width=272
+        >, object:rtf::GridColumn<
+          Name='gcTanggalSK'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TanggalSK'
+          DisplayFormat=''
+          TitleCaption='Tanggal Efektif Pengangkatan'
+          Width=224
+        >, object:rtf::GridColumn<
+          Name='gcNomorSK2'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NomorSK2'
+          DisplayFormat=''
+          TitleCaption='Nomor Surat Keputusan Pemberhentian'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcTanggalSK2'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TanggalSK2'
+          DisplayFormat=''
+          TitleCaption='Tanggal Efektif Pemberhentian'
+          Width=232
+        >, object:rtf::GridColumn<
+          Name='gcKeterangan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Keterangan'
+          DisplayFormat=''
+          TitleCaption='Keterangan'
+          Width=80
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::MultiPages<
+      Name='multipages1'
+      Width=607
+      Height=425
+      Pages={
+        object:rtf::Page<
+          PageName='1'
+          PageTitle='Page 1'
+          Container=$CONTAINERS['pData']
+        >, object:rtf::Page<
+          PageName='2'
+          PageTitle='Page 2'
+          Container=$CONTAINERS['pData2']
+          Index=1
+        >
+      }
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LDATA'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Status Data'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LDATA.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LDATA.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LDATA.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LDATA.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LDATA'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NIP'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='NIP'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NamaPejabat'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nama Pejabat Eksekutif'
+          DataTypeName='varchar'
+          DataLength=100
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LSTATUSTK'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Status Tenaga Kerja'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSTATUSTK.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSTATUSTK.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSTATUSTK.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSTATUSTK.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LSTATUSTK'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NamaJabatan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nama Jabatan'
+          DataTypeName='varchar'
+          DataLength=50
+        >, object:rtf::FieldUIElmtSetting<
+          Name='AlamatSkrg'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Alamat Rumah (Saat Ini)'
+          DataTypeName='varchar'
+          DataLength=100
+        >, object:rtf::FieldUIElmtSetting<
+          Name='AlamatID'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Alamat KTP atau Paspor atau KITAS (WNA)'
+          DataTypeName='varchar'
+          DataLength=100
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Telepon'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nomor Telepon'
+          DataTypeName='varchar'
+          DataLength=40
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Faksimile'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nomor Faksimile'
+          DataTypeName='varchar'
+          DataLength=40
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NPWP'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='NPWP'
+          DataTypeName='varchar'
+          DataLength=15
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LDATA'
+          Top=8
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Status Data'
+          FieldName='LDATA.reference_desc'
+          LookupField='LDATA.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='NIP'
+          Top=36
+          Left=8
+          ControlCaption='NIP'
+        >, *object:rtf::DBEdit<
+          Name='NamaPejabat'
+          Top=64
+          Left=8
+          ControlCaption='Nama Pejabat Eksekutif'
+        >, *object:rtf::DBLookupEdit<
+          Name='LSTATUSTK'
+          Top=92
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Status Tenaga Kerja'
+          FieldName='LSTATUSTK.reference_desc'
+          LookupField='LSTATUSTK.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='NamaJabatan'
+          Top=120
+          Left=8
+          ControlCaption='Nama Jabatan'
+        >, *object:rtf::DBEdit<
+          Name='AlamatSkrg'
+          Top=148
+          Left=8
+          ControlCaption='Alamat Rumah (Saat Ini)'
+        >, *object:rtf::DBEdit<
+          Name='AlamatID'
+          Top=176
+          Left=8
+          ControlCaption='Alamat KTP atau Paspor atau KITAS (WNA)'
+        >, *object:rtf::DBEdit<
+          Name='Telepon'
+          Top=204
+          Left=8
+          ControlCaption='Nomor Telepon'
+        >, *object:rtf::DBEdit<
+          Name='Faksimile'
+          Top=232
+          Left=8
+          ControlCaption='Nomor Faksimile'
+        >, *object:rtf::DBEdit<
+          Name='NPWP'
+          Top=260
+          Left=8
+          ControlCaption='NPWP'
+        >
+      }
+      EqualCaptionWidth=200
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='NoID'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='No. ID'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TempatLahir'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tempat Lahir'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TanggalLahir'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal Lahir'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::LinkUIElmtSetting<
+          Name='Kewarganegaraan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kewarganegaraan'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='Kewarganegaraan.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='Kewarganegaraan.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='Kewarganegaraan.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='Kewarganegaraan.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='Kewarganegaraan'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='Gender'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Kelamin'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='Gender.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='Gender.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='Gender.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='Gender.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='Gender'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NoPelaporan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='No. Surat Pelaporan'
+          DataTypeName='varchar'
+          DataLength=40
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TanggalPelaporan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal Surat Pelaporan'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LSTATUSPE'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Status PE'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSTATUSPE.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LSTATUSPE.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSTATUSPE.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LSTATUSPE.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LSTATUSPE'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NomorSK'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nomor Surat Keputusan Pengangkatan'
+          DataTypeName='varchar'
+          DataLength=40
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TanggalSK'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal Efektif Pengangkatan'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NomorSK2'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nomor Surat Keputusan Pemberhentian'
+          DataTypeName='varchar'
+          DataLength=40
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TanggalSK2'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal Efektif Pemberhentian'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Keterangan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Keterangan'
+          DataTypeName='varchar'
+          DataLength=100
+        >
+      }
+      Name='pData2'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='NoID'
+          Top=8
+          Left=8
+          ControlCaption='No. ID'
+        >, *object:rtf::DBEdit<
+          Name='TempatLahir'
+          Top=36
+          Left=8
+          ControlCaption='Tempat Lahir'
+        >, *object:rtf::DBEdit<
+          Name='TanggalLahir'
+          Top=64
+          Left=8
+          ControlCaption='Tanggal Lahir'
+        >, *object:rtf::DBLookupEdit<
+          Name='Kewarganegaraan'
+          Top=92
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Kewarganegaraan'
+          FieldName='Kewarganegaraan.reference_desc'
+          LookupField='Kewarganegaraan.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='Gender'
+          Top=120
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Kelamin'
+          FieldName='Gender.reference_desc'
+          LookupField='Gender.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='NoPelaporan'
+          Top=148
+          Left=8
+          ControlCaption='No. Surat Pelaporan'
+        >, *object:rtf::DBEdit<
+          Name='TanggalPelaporan'
+          Top=176
+          Left=8
+          ControlCaption='Tanggal Surat Pelaporan'
+        >, *object:rtf::DBLookupEdit<
+          Name='LSTATUSPE'
+          Top=204
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Status PE'
+          FieldName='LSTATUSPE.reference_desc'
+          LookupField='LSTATUSPE.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='NomorSK'
+          Top=232
+          Left=8
+          ControlCaption='Nomor Surat Keputusan Pengangkatan'
+        >, *object:rtf::DBEdit<
+          Name='TanggalSK'
+          Top=260
+          Left=8
+          ControlCaption='Tanggal Efektif Pengangkatan'
+        >, *object:rtf::DBEdit<
+          Name='NomorSK2'
+          Top=288
+          Left=8
+          ControlCaption='Nomor Surat Keputusan Pemberhentian'
+        >, *object:rtf::DBEdit<
+          Name='TanggalSK2'
+          Top=316
+          Left=8
+          ControlCaption='Tanggal Efektif Pemberhentian'
+        >, *object:rtf::DBEdit<
+          Name='Keterangan'
+          Top=344
+          Left=8
+          ControlCaption='Keterangan'
+        >
+      }
+      EqualCaptionWidth=200
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LKPBU_FORM_801'
+>

@@ -1,0 +1,490 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx='FormOnSetDataEx'
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=921
+      Height=425
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['multipages1']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-701'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcBulanData'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BulanData'
+          DisplayFormat=''
+          TitleCaption='Bulan Data'
+          Width=80
+        >, object:rtf::GridColumn<
+          Name='gcNamaPerusahaan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NamaPerusahaan'
+          DisplayFormat=''
+          TitleCaption='Nama Perusahaan'
+          Width=120
+        >, object:rtf::GridColumn<
+          Name='gcKeterangan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Keterangan'
+          DisplayFormat=''
+          TitleCaption='Keterangan'
+          Width=80
+        >, object:rtf::GridColumn<
+          Name='gcLJENISPERUSAHAAN'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENISPERUSAHAAN.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Perusahaan'
+          Width=128
+        >, object:rtf::GridColumn<
+          Name='gcLPIHAK'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LPIHAK.reference_code'
+          DisplayFormat=''
+          TitleCaption='Pihak Terkait'
+          Width=104
+        >, object:rtf::GridColumn<
+          Name='gcLJENISPENYELESAIAN'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENISPENYELESAIAN.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Model Bisnis'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcLJENISPRODUK'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENISPRODUK.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Produk'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcNamaProduk'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NamaProduk'
+          DisplayFormat=''
+          TitleCaption='Nama Produk'
+          Width=88
+        >, object:rtf::GridColumn<
+          Name='gcJumlahPolis'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='JumlahPolis'
+          DisplayFormat=''
+          TitleCaption='Jumlah Polis'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcJumlahNasabah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='JumlahNasabah'
+          DisplayFormat=''
+          TitleCaption='Jumlah Nasabah'
+          Width=112
+        >, object:rtf::GridColumn<
+          Name='gcLVALUTAASAL'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LVALUTAASAL.reference_code'
+          DisplayFormat=''
+          TitleCaption='Valuta Asal'
+          Width=88
+        >, object:rtf::GridColumn<
+          Name='gcTotalPertanggungan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TotalPertanggungan'
+          DisplayFormat=''
+          TitleCaption='Total Pertanggungan'
+          Width=152
+        >, object:rtf::GridColumn<
+          Name='gcAkumulasiAwal'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='AkumulasiAwal'
+          DisplayFormat=''
+          TitleCaption='Akumulasi Sejak Awal'
+          Width=160
+        >, object:rtf::GridColumn<
+          Name='gcBulanLaporan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BulanLaporan'
+          DisplayFormat=''
+          TitleCaption='Bulan Laporan'
+          Width=104
+        >, object:rtf::GridColumn<
+          Name='gcFreeBasedIncome'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='FreeBasedIncome'
+          DisplayFormat=''
+          TitleCaption='Free Based Income'
+          Width=136
+        >, object:rtf::GridColumn<
+          Name='gcNilaiFound'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NilaiFound'
+          DisplayFormat=''
+          TitleCaption='Nilai Found'
+          Width=88
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::MultiPages<
+      Name='multipages1'
+      Width=607
+      Height=425
+      Pages={
+        object:rtf::Page<
+          PageName='1'
+          PageTitle='Page 1'
+          Container=$CONTAINERS['pData']
+        >, object:rtf::Page<
+          PageName='2'
+          PageTitle='Page 2'
+          Container=$CONTAINERS['pData2']
+          Index=1
+        >
+      }
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='BulanData'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bulan Data'
+          DataTypeName='varchar'
+          DataLength=35
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NamaPerusahaan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nama Perusahaan'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Keterangan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Keterangan'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJENISPERUSAHAAN'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Perusahaan'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJENISPERUSAHAAN'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LPIHAK'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Pihak Terkait'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LPIHAK'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJENISPENYELESAIAN'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Model Bisnis'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJENISPENYELESAIAN'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJENISPRODUK'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Produk'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_code;reference_desc;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJENISPRODUK'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NamaProduk'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nama Produk'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='JumlahPolis'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Polis'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='JumlahNasabah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Nasabah'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LVALUTAASAL'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Valuta Asal'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_code;reference_desc'
+          Restrictions=''
+          FieldBaseName='LVALUTAASAL'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TotalPertanggungan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Total Pertanggungan'
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='BulanData'
+          Top=8
+          Left=8
+          ControlCaption='Bulan Data'
+        >, *object:rtf::DBEdit<
+          Name='NamaPerusahaan'
+          Top=36
+          Left=8
+          ControlCaption='Nama Perusahaan'
+        >, *object:rtf::DBEdit<
+          Name='Keterangan'
+          Top=64
+          Left=8
+          ControlCaption='Keterangan'
+        >, *object:rtf::DBLookupEdit<
+          Name='LJENISPERUSAHAAN'
+          Top=92
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Perusahaan'
+          FieldName='LJENISPERUSAHAAN.reference_desc'
+          LookupField='LJENISPERUSAHAAN.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LPIHAK'
+          Top=120
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Pihak Terkait'
+          FieldName='LPIHAK.reference_desc'
+          LookupField='LPIHAK.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LJENISPENYELESAIAN'
+          Top=148
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Model Bisnis'
+          FieldName='LJENISPENYELESAIAN.reference_desc'
+          LookupField='LJENISPENYELESAIAN.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LJENISPRODUK'
+          Top=176
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Produk'
+          FieldName='LJENISPRODUK.reference_desc'
+          LookupField='LJENISPRODUK.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='NamaProduk'
+          Top=204
+          Left=8
+          ControlCaption='Nama Produk'
+        >, *object:rtf::DBEdit<
+          Name='JumlahPolis'
+          Top=232
+          Left=8
+          ControlCaption='Jumlah Polis'
+        >, *object:rtf::DBEdit<
+          Name='JumlahNasabah'
+          Top=260
+          Left=8
+          ControlCaption='Jumlah Nasabah'
+        >, *object:rtf::DBLookupEdit<
+          Name='LVALUTAASAL'
+          Top=288
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Valuta Asal'
+          FieldName='LVALUTAASAL.reference_desc'
+          LookupField='LVALUTAASAL.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='TotalPertanggungan'
+          Top=316
+          Left=8
+          ControlCaption='Total Pertanggungan'
+        >
+      }
+      EqualCaptionWidth=200
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='AkumulasiAwal'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Akumulasi Sejak Awal'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BulanLaporan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bulan Laporan'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='FreeBasedIncome'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Free Based Income'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NilaiFound'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nilai Found'
+        >
+      }
+      Name='pData2'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='AkumulasiAwal'
+          Top=8
+          Left=8
+          ControlCaption='Akumulasi Sejak Awal'
+        >, *object:rtf::DBEdit<
+          Name='BulanLaporan'
+          Top=36
+          Left=8
+          ControlCaption='Bulan Laporan'
+        >, *object:rtf::DBEdit<
+          Name='FreeBasedIncome'
+          Top=64
+          Left=8
+          ControlCaption='Free Based Income'
+        >, *object:rtf::DBEdit<
+          Name='NilaiFound'
+          Top=92
+          Left=8
+          ControlCaption='Nilai Found'
+        >
+      }
+      EqualCaptionWidth=200
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LKPBU_FORM_701'
+>

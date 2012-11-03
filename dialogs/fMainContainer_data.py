@@ -220,11 +220,15 @@ def DownloadReport(config, params, returns):
       while not res.Eof:
         oItem = config.CreatePObjImplProxy(itemName)
         oItem.Key = res.item_id
+        colskip = 0
         for col in pos:
           fieldname = datamap[col]
-          svalue = oItem.EvalMembers(fieldname)
-
-          owb.SetCellValue(row, col, svalue)          
+          if fieldname[0]!='@':
+            svalue = oItem.EvalMembers(fieldname)
+            
+            owb.SetCellValue(row, col-colskip, svalue)
+          else:
+            colskip += 1          
         #--
         row += 1
         res.Next()
@@ -278,16 +282,35 @@ def GenerateTxt(config, params, returns):
     if tipe==2:
       val = int(val*100000)
     #--
+    if tipe==3:
+      val = int(val*100)
+    if tipe==4:
+      val = str(val)
+      val = val[0:2]+'/'+val[2:4]+'/'+val[4:8]
     if val=='-':
+      val = ''
+    if val==None:
       val = ''
     #--
     s = str(val)
-    if tipe==0:
+    if tipe in (0,4):
       s = s.ljust(size)[:size]
     else:
       s = s.zfill(size)[-size:]
     return s
   #-- def          
+  def Eom(month, year):
+    year = int(year)
+    if month<12:
+      month = int(month)+1
+    else:
+      month = 1
+      year = year+1
+    mlu = config.ModLibUtils
+    d = mlu.EncodeDate(year, month, 1)
+    d = d-1
+    ret = mlu.DecodeDate(d)
+    return ret[2] 
     
   if DEBUG_MODE:
     app = config.AppObject
@@ -322,7 +345,9 @@ def GenerateTxt(config, params, returns):
     jml_record = 0
       
     #set header
-    header=sandi_pelapor+periode_laporan+jenis_laporan+no_form
+    header=sandi_pelapor[:3]+'000'+periode_laporan+jenis_laporan+no_form.zfill(4)
+    if int(useheader)==3:
+      header=sandi_pelapor[:3]+'08'+periode_laporan+no_form
     
     itemName = "{0}_{1}".format(rec.group_code, rec.report_code)
      
@@ -339,19 +364,76 @@ def GenerateTxt(config, params, returns):
     '''.format(itemName, report_id)).rawresult
       
     jml = 0
+    totalrp = 0
+    totalva = 0
     while not res.Eof:
       oItem = config.CreatePObjImplProxy(itemName)
       oItem.Key = res.item_id
+      if int(useheader)==2:
+        #row header LBUS
+        contents += 'LS'+no_form+sandi_pelapor+periode_laporan
+      if int(useheader)==4:
+        #row header LBBU
+        if no_form.isdigit():
+          no_form = no_form.zfill(2).ljust(4)[:4]
+        else:
+          if jml==0:
+            no_form = '0'+str(no_form)
+          no_form = no_form.ljust(4)[:4]
+        if no_form[0:2]=='09':
+          contents += 'LBBUS'+str(no_form)+sandi_pelapor[:3]+'990'+periode_laporan+'121005517990'+str(jml+1).zfill(4)+str(jml+1).zfill(6)
+        else:
+          contents += 'LBBUS'+str(no_form)+sandi_pelapor[:3]+'990'+periode_laporan+'121005517990'+str(jml+1).zfill(4)+str(jml+1).zfill(4)
+      #raise Exception, pos
       for col in pos:
         fieldname = datamap[col]
-        svalue = oItem.EvalMembers(fieldname)
-        
+        fieldname = fieldname.strip('@')
+        if fieldname == 'Rownum':
+          svalue = str(jml+1).zfill(2)
+          if no_form[0:2]=='11':
+            svalue = str(jml+1)
+        elif fieldname == 'Endmonth':
+          svalue = str(Eom(periode_laporan[5:7], periode_laporan[1:5])).zfill(2)+periode_laporan[5:7]+periode_laporan[1:5]
+        else:
+          svalue = oItem.EvalMembers(fieldname)
+          #sum rp dan va FORM1 LBBU
+          if (int(useheader)==4) and (no_form=='01  ') and (col==4):
+            totalrp+=svalue
+          if (int(useheader)==4) and (no_form=='01  ') and (col==5):
+            totalva+=svalue
+            
         contents += formTxtValue(svalue, txtmap[col][0], txtmap[col][1])          
         #--
+      if int(useheader)==2:
+        #row footer LBUS
+        contents += str(jml+1).zfill(5)
+        if jml==0:
+          extra = ''.zfill(187-len(contents))
+        contents += extra
+        #uknown data
+        contents += '   020393    20000000000000000000000000000000000000000000000000'
+      if int(useheader)==4:
+        #row footer LBBU
+        if jml==0:
+          extra = ''.zfill(1300-len(contents))
+        contents += extra
       contents += '\n'
       jml+=1
       res.Next()
     #--
+    if (int(useheader)==4) and (no_form=='01  '):
+      #summary FORM1 LBBU
+      totalrp = int(totalrp)
+      totalva = int(totalva)
+      contents += 'LBBUS'+str(no_form)+sandi_pelapor[:3]+'990'+periode_laporan
+      contents += '121005517990'+str(jml+1).zfill(4)+str(jml+1).zfill(4)
+      contents += 'JUMLAH'.ljust(50)+str(jml+1).zfill(2).ljust(5)+'31121901'
+      contents += str(totalrp).zfill(30)+str(totalva).zfill(30)+''.zfill(1135)+'\n'
+      jml+=1
+      contents += 'LBBUS'+str(no_form)+sandi_pelapor[:3]+'990'+periode_laporan
+      contents += '121005517990'+str(jml+1).zfill(4)+str(jml+1).zfill(4)
+      contents += 'RATA-RATA'.ljust(50)+str(jml+1).zfill(2).ljust(5)+'31121901'
+      contents += str(totalrp/(jml-1)).zfill(30)+str(totalva/(jml-1)).zfill(30)+''.zfill(1135)+'\n'
     header += str(jml).zfill(6)[-6:]+'\n'
     
     storeDir  = config.UserHomeDirectory
@@ -360,7 +442,7 @@ def GenerateTxt(config, params, returns):
     spath = os.path.dirname(storeFile)
     if not os.path.exists(spath): os.makedirs(spath)
     fOut = open(storeFile, "w")
-    if useheader:
+    if int(useheader) in (1,3):
       fOut.write(header)
     fOut.write(contents)
     fOut.close()
@@ -385,3 +467,147 @@ def GenerateTxt(config, params, returns):
     app.ConRead('Press any key')
   #--
   return 1
+
+
+def PeriodCheck(config, params, returns):
+  def periodGenerate(period_type, tgl, bln, thn, hari):
+    mon = ('', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December')
+    qtr = ('', '1st Quarter', '2nd Quarter', '3rd Quarter', '4th Quarter')
+    week = ('', '1st Week of', '2nd Week of', '3rd Week of', '4th Week of')
+    dayname = ('', 'Sunday,', 'Monday,', 'Tuesday,', 'Wednesday,', 'Thrusday,', 'Friday,', 'Saturday,')
+    if period_type=='Y':
+      return str(thn), str(thn)
+    elif period_type=='M':
+      return str(bln).zfill(2)+str(thn), mon[bln]+' '+str(thn)      
+    elif period_type=='Q':
+      return str((bln/3)+1).zfill(2)+str(thn), qtr[(bln/3)+1]+' '+str(thn)
+    elif period_type=='W':
+      if tgl<8:
+        return '1'+str(thn)+str(bln).zfill(2), week[1]+' '+mon[bln]+' '+str(thn)
+      elif tgl<16:
+        return '2'+str(thn)+str(bln).zfill(2), week[2]+' '+mon[bln]+' '+str(thn)
+      elif tgl<24:
+        return '3'+str(thn)+str(bln).zfill(2), week[3]+' '+mon[bln]+' '+str(thn)
+      else:
+        return '4'+str(thn)+str(bln).zfill(2), week[4]+' '+mon[bln]+' '+str(thn)
+    else:
+      return str(tgl).zfill(2)+str(bln).zfill(2)+str(thn), dayname[hari]+' '+str(tgl).zfill(2)+' '+mon[bln]+' '+str(thn)     
+  #--
+  ptype = params.FirstRecord.period_type
+  mlu = config.ModLibUtils
+  tgl = mlu.DecodeDate(config.Now())
+  hari = mlu.DayOfWeek(config.Now())
+  bln = tgl[1]
+  thn = tgl[0]
+  tglnum = tgl[2]
+  period = periodGenerate(ptype, tglnum, bln, thn, hari)
+  s = "select * from period where period_code='%s' and period_type='%s'" % (period[0], ptype)
+  res = config.CreateSQL(s).RawResult
+  if not res.Eof:
+    #raise Exception, 'Ada'
+    pass
+  else:
+    #raise Exception, 'Belum Ada'
+    s = "insert into period (period_id, period_code, description, period_type) values (seq_period, '%s', '%s', '%s')" % (period[0], period[1], ptype)
+    config.ExecSQL(s)
+  return 
+  
+def ImportReport(config, params, returns):
+  def fixMap():
+    for col in pos:
+      sfield = datamap[col]
+      
+      if sfield.split("_")[0] in reflist:
+        datamap[col] = "{0}.{1}".format(sfield.split("_")[0]
+          , sfield[sfield.find("_")+1:])
+      #--
+    #-- for
+  #-- def           
+  rec = params.FirstRecord
+  row = int(rec.xlstopline)
+  datamap = eval(rec.xlsmap)
+  pos = datamap.keys()
+  reflist = eval(rec.reflist)     
+  f = open(config.GetHomeDir()+"dialogs\\"+rec.formid.replace("/","\\")+"_intr.py", "r")
+  refmap = f.read()
+  f.close()
+  f = None
+  refmap = eval(refmap.split("class")[0].replace("\n","").split("=")[-1])
+  #raise Exception, refmap
+  sw = params.GetStreamWrapper(0)
+  helper = phelper.PObjectHelper(config)
+  status = returns.CreateValues(["IsErr", 0], ["ErrMessage",""])
+  sdef = ''
+  rdef = ''
+  fixMap()
+  colcount = 0
+  for col in pos:
+    if datamap[col][0] != '@':
+      sdef += datamap[col]+':string'
+      sdef += ';'
+      if (datamap[col].split('.')[0] in reflist) and (datamap[col].split('.')[0] not in rdef) :
+        rdef += datamap[col].split('.')[0]+'.refdata_id:integer;'
+        rdef += datamap[col].split('.')[0]+'.reference_desc:string;'
+        rdef += datamap[col].split('.')[0]+'.reference_code:string'
+        rdef += ';' 
+      colcount+=1
+  sdef = sdef.rstrip(';')
+  rdef = rdef.rstrip(';')
+  res = returns.AddNewDatasetEx('iData', sdef)
+  if rdef not in (None,''):
+    rf = returns.AddNewDatasetEx('iReff', rdef) 
+  try:
+    tmplFile = config.UserHomeDirectory + sw.Name + '.xls'
+    sw.SaveToFile(tmplFile)
+    owb = pyFlexcel.Open(tmplFile)
+    owb.ActivateWorksheet("report")
+    check1 = owb.GetCellValue(2,1)
+    check2 = owb.GetCellValue(3,2)
+    check3 = owb.GetCellValue(4,2)
+    if (check1!=rec.check1) or (check2!=rec.check2) or (check3!=rec.check3):
+      raise Exception, 'File Not Match.'
+
+    test = 'test'
+    jml = 0
+    while test not in (None,''):
+      test = owb.GetCellValue(row,1)
+      if test not in (None,''):
+        iData = res.AddRecord()
+        if rdef not in (None,''):
+          iLink = rf.AddRecord()
+          linkcounter = 0       
+        colcount = 0     
+        for col in pos:
+          if datamap[col][0] != '@':
+            iData.SetFieldAt(colcount, owb.GetCellValue(row, colcount+1))
+            if rdef not in (None,''):
+              if ((datamap[col].split('.')[0] in reflist) and ('code' in datamap[col])):
+                #raise Exception, str(type(unicode(owb.GetCellValue(row, colcount+1))))
+                cellvalue = owb.GetCellValue(row, colcount+1)
+                if str(type(cellvalue)) == "<type 'float'>":
+                  cellvalue = str(int(cellvalue)) 
+                s = '''
+                   select * from %s a, %s b 
+                   where a.reftype_id=b.reftype_id
+                   and a.reference_code='%s' 
+                   and b.reference_name='%s' 
+                   ''' % (config.MapDBTableName('enterprise.ReferenceData'), 
+                          config.MapDBTableName('enterprise.ReferenceType'),
+                          cellvalue,
+                          refmap[datamap[col].split('.')[0]]
+                          )
+                #if str(type(owb.GetCellValue(row, colcount+1))) != "<type 'unicode'>":
+                #  raise Exception, s
+                linkdata = config.CreateSQL(s).RawResult
+                iLink.SetFieldByName(datamap[col].split('.')[0]+".refdata_id", linkdata.refdata_id)
+                iLink.SetFieldByName(datamap[col].split('.')[0]+".reference_desc", linkdata.reference_desc)
+                iLink.SetFieldByName(datamap[col].split('.')[0]+".reference_code", linkdata.reference_code)
+            colcount+=1
+        jml+=1
+        row+=1
+  except:    
+    status.IsErr = 1
+    errMessage = str(sys.exc_info()[1])
+    status.ErrMessage = errMessage 
+    
+  

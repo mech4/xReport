@@ -573,7 +573,9 @@ object:rtf::Form<
           OnExit='refExit'
           DisplayLookupColor=-16777192
           DisplayLookupWidth=50
+          DirectInput=true
           ButtonWidth=1
+          ManualInputCheck=true
         >, *object:rtf::DBEdit<
           Name='Keterangan2'
           Top=148

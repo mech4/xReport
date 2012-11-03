@@ -14,4 +14,24 @@ def FormOnSetDataEx(uideflist, params):
     return
   
   form_loaditem.setData(uideflist, params)
-    
+  if uideflist.uipData.Dataset.RecordCount==0:
+    config = uideflist.config
+    mlu = config.ModLibUtils
+    pid = params.FirstRecord.period_id
+    pCode = config.CreateSQL("select period_code from period where period_id=%s" % pid).RawResult.period_code
+    week = int(pCode[:1])
+    bln = int(pCode[5:7])
+    thn = int(pCode[1:5])
+    ds = uideflist.uipData.Dataset
+    s = "select * from %s a, %s b where a.reftype_id=b.reftype_id and b.reference_name='R_POS2_LBBU' order by a.refdata_id" % (
+                config.MapDBTableName('enterprise.referencedata'),    
+                config.MapDBTableName('enterprise.referencetype')
+        )
+    res = config.CreateSQL(s).RawResult
+    while not res.Eof:
+      rec = ds.AddRecord()
+      rec.SetFieldByName('LPos.reference_desc', res.reference_desc)    
+      rec.SetFieldByName('LPos.reference_code', res.reference_code)    
+      rec.SetFieldByName('LPos.refdata_id', res.refdata_id)    
+      res.Next()
+    #--

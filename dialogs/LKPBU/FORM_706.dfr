@@ -1,0 +1,267 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx='FormOnSetDataEx'
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=921
+      Height=425
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-706'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcNamaProduk'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NamaProduk'
+          DisplayFormat=''
+          TitleCaption='Nama Produk'
+          Width=88
+        >, object:rtf::GridColumn<
+          Name='gcNamaNasabah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NamaNasabah'
+          DisplayFormat=''
+          TitleCaption='Jumlah Nasabah'
+          Width=112
+        >, object:rtf::GridColumn<
+          Name='gcLJENISPRODUK'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENISPRODUK.reference_code'
+          DisplayFormat=''
+          TitleCaption='Valuta Dasar'
+          Width=96
+        >, object:rtf::GridColumn<
+          Name='gcStrikePrice '
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='StrikePrice '
+          DisplayFormat=''
+          TitleCaption='Strike Price '
+          Width=104
+        >, object:rtf::GridColumn<
+          Name='gcNominal'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Nominal'
+          DisplayFormat=''
+          TitleCaption='Nominal/ Notional '
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcTotalJaminan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TotalJaminan'
+          DisplayFormat=''
+          TitleCaption='Total Jaminan'
+          Width=104
+        >, object:rtf::GridColumn<
+          Name='gcTotalKerugian'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='TotalKerugian'
+          DisplayFormat=''
+          TitleCaption='Total Kerugian'
+          Width=112
+        >, object:rtf::GridColumn<
+          Name='gcSisaKerugian'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='SisaKerugian'
+          DisplayFormat=''
+          TitleCaption='Sisa Kerugian'
+          Width=104
+        >, object:rtf::GridColumn<
+          Name='gcAksiPlan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='AksiPlan'
+          DisplayFormat=''
+          TitleCaption='Aksi Plan'
+          Width=72
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='NamaProduk'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nama Produk'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NamaNasabah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Nasabah'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJENISPRODUK'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Valuta Dasar'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_code;reference_desc;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJENISPRODUK'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='StrikePrice '
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Strike Price '
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Nominal'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nominal/ Notional '
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TotalJaminan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Total Jaminan'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TotalKerugian'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Total Kerugian'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='SisaKerugian'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Sisa Kerugian'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='AksiPlan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Aksi Plan'
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='NamaProduk'
+          Top=8
+          Left=8
+          ControlCaption='Nama Produk'
+        >, *object:rtf::DBEdit<
+          Name='NamaNasabah'
+          Top=36
+          Left=8
+          ControlCaption='Jumlah Nasabah'
+        >, *object:rtf::DBLookupEdit<
+          Name='LJENISPRODUK'
+          Top=64
+          Left=8
+          Width=150
+          Height=21
+          ControlCaption='Valuta Dasar'
+          FieldName='LJENISPRODUK.reference_code'
+          LookupField='LJENISPRODUK.reference_desc'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='StrikePrice '
+          Top=92
+          Left=8
+          ControlCaption='Strike Price '
+        >, *object:rtf::DBEdit<
+          Name='Nominal'
+          Top=120
+          Left=8
+          ControlCaption='Nominal/ Notional '
+        >, *object:rtf::DBEdit<
+          Name='TotalJaminan'
+          Top=148
+          Left=8
+          ControlCaption='Total Jaminan'
+        >, *object:rtf::DBEdit<
+          Name='TotalKerugian'
+          Top=176
+          Left=8
+          ControlCaption='Total Kerugian'
+        >, *object:rtf::DBEdit<
+          Name='SisaKerugian'
+          Top=204
+          Left=8
+          ControlCaption='Sisa Kerugian'
+        >, *object:rtf::DBEdit<
+          Name='AksiPlan'
+          Top=232
+          Left=8
+          ControlCaption='Aksi Plan'
+        >
+      }
+      EqualCaptionWidth=140
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LKPBU_FORM_706'
+>

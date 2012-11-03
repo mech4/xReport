@@ -1,0 +1,421 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['multipages1']
+  Left=50
+  Top=50
+  Width=921
+  Height=457
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx='FormOnSetDataEx'
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::MultiPages<
+      Name='multipages1'
+      Width=921
+      Height=457
+      Pages={
+        object:rtf::Page<
+          PageTitle='Page 1'
+          Container=$CONTAINERS['dsMain']
+        >, object:rtf::Page<
+          PageTitle='Page 2'
+          Container=$CONTAINERS['dualsplit1']
+          Index=1
+        >
+      }
+    >, object:rtf::DualSplit<
+      Name='dsMain'
+      Width=913
+      Height=429
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-807'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcLSTATUSTENAGAKERJA'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LSTATUSTENAGAKERJA.reference_code'
+          DisplayFormat=''
+          TitleCaption='Status Kantor'
+          Width=144
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LSTATUSTENAGAKERJA'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Status Kantor'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_code;reference_desc;refdata_id'
+          Restrictions=''
+          FieldBaseName='LSTATUSTENAGAKERJA'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LSANDIKANTOR'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Sandi Kantor'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_code;reference_desc;refdata_id'
+          Restrictions=''
+          FieldBaseName='LSANDIKANTOR'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NamaKantor'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nama Kantor'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Alamat'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Alamat'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LSANDIDATI'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Dati II'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_code;reference_desc;refdata_id'
+          Restrictions=''
+          FieldBaseName='LSANDIDATI'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='KodePos'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kode Pos'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NoTelp'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='No Telepon'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NSIPembukuanKantor'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='No Surat Izin Pembukuan Kantor'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TglNSIPembukuan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal No Surat Izin Pembukuan'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TglOperasional'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal Operasional'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NSIPerubahanStatus'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='No Surat Izin Perubahan Status'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TglNSIPerubahanStatus'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal NSI Perubahaan Status'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TglEfektifPerubahaanStatus'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal Efektif Perubahaan Status'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NSIPenutupanKantor'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='No Surat Izin Penutupan Kantor'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TglNSIPenutupanKantor'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal NSI Penutupan Kantor'
+          DataTypeName='varchar'
+          DataLength=8
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LSTATUSTENAGAKERJA'
+          Top=8
+          Left=8
+          Width=150
+          Height=21
+          ControlCaption='Status Kantor'
+          FieldName='LJENISPRODUK.reference_code'
+          LookupField='LJENISPRODUK.reference_desc'
+          DisplayLookupField=true
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=72
+          ButtonWidth=1
+        >, *object:rtf::DBLookupEdit<
+          Name='LSANDIKANTOR'
+          Top=36
+          Left=8
+          Width=150
+          Height=21
+          ControlCaption='Sandi Kantor'
+          FieldName='LSANDIKANTOR.reference_code'
+          LookupField='LSANDIKANTOR.reference_desc'
+          DisplayLookupField=true
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=72
+          ButtonWidth=1
+        >, *object:rtf::DBEdit<
+          Name='NamaKantor'
+          Top=64
+          Left=8
+          ControlCaption='Nama Kantor'
+        >, *object:rtf::DBEdit<
+          Name='Alamat'
+          Top=92
+          Left=8
+          ControlCaption='Alamat'
+        >, *object:rtf::DBLookupEdit<
+          Name='LSANDIDATI'
+          Top=120
+          Left=8
+          Width=150
+          Height=21
+          ControlCaption='Dati II'
+          FieldName='LSANDIDATI.reference_code'
+          LookupField='LSANDIDATI.reference_desc'
+          DisplayLookupField=true
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=72
+          ButtonWidth=1
+        >, *object:rtf::DBEdit<
+          Name='KodePos'
+          Top=148
+          Left=8
+          ControlCaption='Kode Pos'
+        >, *object:rtf::DBEdit<
+          Name='NoTelp'
+          Top=176
+          Left=8
+          ControlCaption='No Telepon'
+        >, *object:rtf::DBEdit<
+          Name='NSIPembukuanKantor'
+          Top=204
+          Left=8
+          ControlCaption='No Surat Izin Pembukuan Kantor'
+        >, *object:rtf::DBEdit<
+          Name='TglNSIPembukuan'
+          Top=232
+          Left=8
+          ControlCaption='Tanggal No Surat Izin Pembukuan'
+        >, *object:rtf::DBEdit<
+          Name='TglOperasional'
+          Top=260
+          Left=8
+          ControlCaption='Tanggal Operasional'
+        >, *object:rtf::DBEdit<
+          Name='NSIPerubahanStatus'
+          Top=288
+          Left=8
+          ControlCaption='No Surat Izin Perubahan Status'
+        >, *object:rtf::DBEdit<
+          Name='TglNSIPerubahanStatus'
+          Top=316
+          Left=8
+          ControlCaption='Tanggal NSI Perubahaan Status'
+        >, *object:rtf::DBEdit<
+          Name='TglEfektifPerubahaanStatus'
+          Top=344
+          Left=8
+          ControlCaption='Tanggal Efektif Perubahaan Status'
+        >, *object:rtf::DBEdit<
+          Name='NSIPenutupanKantor'
+          Top=372
+          Left=8
+          ControlCaption='No Surat Izin Penutupan Kantor'
+        >, *object:rtf::DBEdit<
+          Name='TglNSIPenutupanKantor'
+          Top=400
+          Left=8
+          ControlCaption='Tanggal NSI Penutupan Kantor'
+        >
+      }
+      EqualCaptionWidth=200
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::DualSplit<
+      Name='dualsplit1'
+      Width=240
+      Height=96
+      Container1=$CONTAINERS['grData2']
+      Container2=$CONTAINERS['pData2']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData2'
+      Width=318
+      Height=240
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='TglEfektifPenutupanKantor'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal Efektif Penutupan Kantor'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NSIRelokasiKantor'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='No Surat Izin Relokasi Kantor'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TglSIRelokasi'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal Surat Izin Relokasi '
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TglEfektifRelokasiKantor'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal Efektif Relokasi Kantor'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='JmlKaryawan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Karyawan'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='TglPublikasiMediaMasa'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tanggal Publikasi Masa'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Keterangan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Keterangan'
+        >
+      }
+      Name='pData2'
+      Width=601
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='TglEfektifPenutupanKantor'
+          Top=8
+          Left=8
+          ControlCaption='Tanggal Efektif Penutupan Kantor'
+        >, *object:rtf::DBEdit<
+          Name='NSIRelokasiKantor'
+          Top=36
+          Left=8
+          ControlCaption='No Surat Izin Relokasi Kantor'
+        >, *object:rtf::DBEdit<
+          Name='TglSIRelokasi'
+          Top=64
+          Left=8
+          ControlCaption='Tanggal Surat Izin Relokasi '
+        >, *object:rtf::DBEdit<
+          Name='TglEfektifRelokasiKantor'
+          Top=92
+          Left=8
+          ControlCaption='Tanggal Efektif Relokasi Kantor'
+        >, *object:rtf::DBEdit<
+          Name='JmlKaryawan'
+          Top=120
+          Left=8
+          ControlCaption='Jumlah Karyawan'
+        >, *object:rtf::DBEdit<
+          Name='TglPublikasiMediaMasa'
+          Top=148
+          Left=8
+          ControlCaption='Tanggal Publikasi Masa'
+        >, *object:rtf::DBEdit<
+          Name='Keterangan'
+          Top=176
+          Left=8
+          ControlCaption='Keterangan'
+        >
+      }
+      EqualCaptionWidth=200
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LKPBU_FORM_605'
+>

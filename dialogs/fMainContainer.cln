@@ -119,6 +119,15 @@ object:rtf::Form<
               UsedAsDisplay=true
               KeyOrDisplayName='form_id'
               FinalDisplayFieldName='form_id'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='reportclass.periode_type'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='VARCHAR'
+              DataLength=1
+              UsedAsDisplay=true
+              KeyOrDisplayName='periode_type'
+              FinalDisplayFieldName='periode_type'
             >
           }
           Restrictions=''
@@ -245,7 +254,6 @@ object:rtf::Form<
           DisplayLookupWidth=300
           DirectInput=true
           ButtonWidth=1
-          DisableLookup=true
         >, *object:rtf::DBLookupEdit<
           Name='period'
           Top=36
@@ -300,7 +308,7 @@ object:rtf::Form<
           Name='bDownload'
           Layout=clAbsolute
           Top=64
-          Left=200
+          Left=208
           ControlCaption=''
           Caption='Download'
           OnClick='bDownloadOnClick'
@@ -308,12 +316,29 @@ object:rtf::Form<
           Name='bGenerate'
           Layout=clAbsolute
           Top=64
-          Left=280
+          Left=400
           Width=89
           Height=25
           ControlCaption=''
+          LayoutOrder=8
           Caption='Generate'
           OnClick='bGenerateOnClick'
+        >, object:rtf::CheckBox<
+          Name='cbNihil'
+          Layout=clNextSide
+          Top=36
+          Left=788
+          Enabled=false
+          ControlCaption='NIHIL'
+          LayoutOrder=9
+        >, object:rtf::Button<
+          Name='bImport'
+          Layout=clAbsolute
+          Top=64
+          Left=288
+          ControlCaption=''
+          Caption='Import'
+          OnClick='bImportOnClick'
         >
       }
       ControlLeftMargin=8

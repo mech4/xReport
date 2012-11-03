@@ -37,6 +37,10 @@ object:rpclass::TPClassUIDefList<
           DataTypeName='VARCHAR'
           DataLength=60
         >, object:rpclass::TCustomLoadedField<
+          Name='reportclass.periode_type'
+          DataTypeName='VARCHAR'
+          DataLength=1
+        >, object:rpclass::TCustomLoadedField<
           Name='period.period_id'
           DataTypeName='INTEGER'
         >, object:rpclass::TCustomLoadedField<
@@ -70,7 +74,7 @@ object:rpclass::TPClassUIDefList<
         object:rpclass::TCustomLoadedLink<
           Name='reportclass'
           ClassTypeName='ReportClass'
-          FieldNames='class_id;report_code;report_name;class_id;form_id'
+          FieldNames='class_id;report_code;report_name;class_id;form_id;periode_type'
         >, object:rpclass::TCustomLoadedLink<
           Name='period'
           ClassTypeName='Period'

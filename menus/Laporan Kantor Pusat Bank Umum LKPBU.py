@@ -6,7 +6,7 @@ def openlistreportOnClick(sender, app):
   form = app.FindForm(formid)
   if form == None:
     form = app.CreateForm(formname, formid, 2, None, None)
-    form.Show("LKPBU", "Q")
+    form.Show("LKPBU", "M")
   else:  
     form.Show() 
   

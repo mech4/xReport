@@ -13,6 +13,15 @@ object:rtf::Form<
   Height=425
   UIParts={
     object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
       Name='uipData'
       MultiLine=true
     >

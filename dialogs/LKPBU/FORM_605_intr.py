@@ -15,8 +15,8 @@ class LKPBU_FORM_605:
     self.xlstemplate = 'lkpbu/form605.xls'
     self.xlstopline  = 7
     self.xlsmap      = {
-        1: 'LLJENISPENYELESAIANI_reference_code'
-      , 3: 'Keterangan'    
+        1: 'LJENISPENYELESAIAN_reference_code'
+      , 2: 'Keterangan'    
       , 3: 'DiluarSistem'
       , 4: 'TerkaitSistem'
       , 5: 'Total'

@@ -10,7 +10,7 @@ REFMAP = {
   
 class LKPBU_FORM_501:
   def __init__(self, formObj, parentForm):
-    self.reflist  = ['LJENIS', 'LPEMILIK', , 'LPERKIRAAN', 'LPEMILIKDANANONDAERAH', 'LPEMILIKDANA', 'LJENISVALUTA', 'LLAWANTRANSAKSI']
+    self.reflist  = ['LJENIS', 'LPEMILIK', 'LPERKIRAAN', 'LPEMILIKDANANONDAERAH', 'LPEMILIKDANA', 'LJENISVALUTA', 'LLAWANTRANSAKSI']
     self.attrlist = [
       'PerkiraanLainya'
     , 'Nominal'
@@ -23,7 +23,7 @@ class LKPBU_FORM_501:
         1: 'LJENIS_reference_code'  
       , 2: 'LPEMILIK_reference_code'
       , 3: 'LPERKIRAAN_reference_code'
-      , 4: 'Volume'
+      , 4: 'PerkiraanLainya'
       , 5: 'LPEMILIKDANANONDAERAH_reference_code'
       , 6: 'LPEMILIKDANA_reference_code'
       , 7: 'LLAWANTRANSAKSI_reference_code'
@@ -59,6 +59,7 @@ class LKPBU_FORM_501:
     uapp = self.FormObject.ClientApplication.UserAppObject
     if self.uipData.GetFieldValue(reference_desc) == '-':
       self.uipData.ClearLink(sName)
+      return 1
     else:  
       res = uapp.stdLookup(sender, "reference@lookupRefByDesc", sName, 
         "reference_desc;reference_code;refdata_id", None, 

@@ -21,6 +21,20 @@ class LHBU_FORM_403:
         , 3: 'Valas'
         , 4: 'Jumlah'
     }
+    self.useheader = 3 #1: true LKPBU, 0:false, 2:row header only (LBUS), 3:header LHBU
+    self.txttemplate = 'lhbu/form403.txt'
+    #txtmap dimulai dari index 1 sesuai xlsmap (index 0 diisi [0,0]
+    #format [len, jenis] : 
+    #       jenis 0 untuk spasi 
+    #       jenis 1 untuk zerofill int
+    #       jenis 2 untuk zerofill x,5
+    #       jenis 3 untuk zerofill 99,99
+    self.txtmap      = ( [0,0]
+      , [3,0]
+      , [9,1]
+      , [9,1]
+      , [9,1]
+  )
   #--
 
   def refExit(self, sender):

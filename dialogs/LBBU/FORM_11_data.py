@@ -14,4 +14,27 @@ def FormOnSetDataEx(uideflist, params):
     return
   
   form_loaditem.setData(uideflist, params)
+  if uideflist.uipData.Dataset.RecordCount==0:
+    config = uideflist.config
+    ds = uideflist.uipData.Dataset
+    akt = ('1. LENDING (Long)',
+           '',
+           '2. TREASURY & INVESTMENT',
+           '  a. Long',
+           '  b. Short',
+           '',
+           '3. TRADE FINANCE & BANK GUARANTEE',
+           '  a. Long',
+           '  b. Short',
+           '',
+           '4. FUNDING & DEBT INSTRUMENT (SHORT)',
+           '',
+           '5. LAIN-LAIN',
+           '  a. Long',
+           '  b. Short',
+    )
+    for teks in akt:
+      rec = ds.AddRecord()
+      rec.Aktivitas = teks
+    #--
     

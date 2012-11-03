@@ -1,8 +1,8 @@
 REFMAP = {
-  'LJENIS'                     : 'R_PIUTANG_PEMBIAYAAN'
+  'LJENIS'                     : 'R_JENIS_AKTIVA_PRODUKTIF'
   , 'LJENISVALUTA'             : 'R_JENIS_VALUTA'
   , 'LBENTUKPENGHAPUSANBUKUAN' : 'R_BENTUK_HAPUS_BUKU'
-  , 'LDEBITUR'                 : 'R_SANDI_BANK'
+  , 'LDEBITUR'                 : 'R_BANK_DAN_PIHAK_KE3'
   , 'LHUBUNGANBANK'            : 'R_HUBUNGAN_DENGAN_BANK'
   ,'LKOLEKTIBILITAS'           : 'R_KOLEKTIBILITAS'
 }
@@ -18,7 +18,8 @@ class LBUS_FORM_03:
       ,'LKOLEKTIBILITAS'
     ]
     self.attrlist = [
-      'JumlahRekening'
+      'NoRekening'
+      ,'JumlahRekening'
       ,'TanggalHapusBuku'
       ,'Agunan'
       ,'BakiDebetHapusbuku'
@@ -43,6 +44,29 @@ class LBUS_FORM_03:
         , 12: 'BakiDebetBulan'
         , 13: 'Jumlah'
     }
+    self.useheader = 2 #1: true, 0:false, 2:row header only (LBUS)
+    self.txttemplate = 'lbus/form36.txt'
+    #txtmap dimulai dari index 1 sesuai xlsmap (index 0 diisi [0,0]
+    #format [len, jenis] : 
+    #       jenis 0 untuk spasi 
+    #       jenis 1 untuk zerofill int
+    #       jenis 2 untuk zerofill x,5
+    #       jenis 3 untuk zerofill 99,99
+    self.txtmap      = ( [0,0]
+      , [15,0]
+      , [8,1]
+      , [2,0]
+      , [1,0]
+      , [3,0]
+      , [3,0]
+      , [1,0]
+      , [8,1]
+      , [1,0]
+      , [12,1]
+      , [12,1]
+      , [12,1]
+      , [12,1]
+  )
   #--
 
   def refExit(self, sender):

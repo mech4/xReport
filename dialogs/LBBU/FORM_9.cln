@@ -32,8 +32,8 @@ object:rtf::Form<
   Containers={
     object:rtf::DualSplit<
       Name='dsMain'
-      Width=240
-      Height=96
+      Width=921
+      Height=425
       Container1=$CONTAINERS['grData']
       Container2=$CONTAINERS['multipages1']
       SplitDirection=sdrSplitLeftRight
@@ -234,14 +234,6 @@ object:rtf::Form<
           TitleCaption='Persentase Margin/Bagi Hasil/Fee Setelah'
           Width=320
         >, object:rtf::GridColumn<
-          Name='gcTunggakanSTLH'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='TunggakanSTLH'
-          DisplayFormat=''
-          TitleCaption='Tunggakan Margin Setelah'
-          Width=192
-        >, object:rtf::GridColumn<
           Name='gcAwalSTLH'
           InputStyle=cisNormal
           EnumeratedValues=''
@@ -296,8 +288,8 @@ object:rtf::Form<
       SuppressHelpLine=true
     >, object:rtf::MultiPages<
       Name='multipages1'
-      Width=320
-      Height=320
+      Width=607
+      Height=425
       Pages={
         object:rtf::Page<
           PageName='1'
@@ -900,13 +892,6 @@ object:rtf::Form<
           DataTypeName='double'
           DataLength=20
         >, object:rtf::FieldUIElmtSetting<
-          Name='TunggakanSTLH'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Tunggakan Margin Setelah'
-          DataTypeName='double'
-          DataLength=20
-        >, object:rtf::FieldUIElmtSetting<
           Name='AwalSTLH'
           Hidden=false
           ReadOnlyControl=false
@@ -1051,23 +1036,18 @@ object:rtf::Form<
           Left=8
           ControlCaption='Persentase Margin/Bagi Hasil/Fee Setelah'
         >, *object:rtf::DBEdit<
-          Name='TunggakanSTLH'
-          Top=176
-          Left=8
-          ControlCaption='Tunggakan Margin Setelah'
-        >, *object:rtf::DBEdit<
           Name='AwalSTLH'
-          Top=204
+          Top=176
           Left=8
           ControlCaption='Jangka Awal Setelah'
         >, *object:rtf::DBEdit<
           Name='TempoSTLH'
-          Top=232
+          Top=204
           Left=8
           ControlCaption='Jangka Tempo Setelah'
         >, *object:rtf::DBLookupEdit<
           Name='LKUASTLH'
-          Top=260
+          Top=232
           Left=8
           Width=250
           Height=21
@@ -1083,17 +1063,17 @@ object:rtf::Form<
           ManualInputCheck=true
         >, *object:rtf::DBEdit<
           Name='TglAgunanSTLH'
-          Top=288
+          Top=260
           Left=8
           ControlCaption='Tanggal Penilaian Agunan Setelah'
         >, *object:rtf::DBEdit<
           Name='NilaiAgunanSTLH'
-          Top=316
+          Top=288
           Left=8
           ControlCaption='Nilai Agunan Setelah'
         >, *object:rtf::DBEdit<
           Name='Kerugian'
-          Top=344
+          Top=316
           Left=8
           ControlCaption='Kerugian Restrukturisasi'
         >

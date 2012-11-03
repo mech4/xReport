@@ -98,6 +98,7 @@ class LKPBU_FORM_301:
     uapp = self.FormObject.ClientApplication.UserAppObject
     if self.uipData.GetFieldValue(reference_desc) == '-':
       self.uipData.ClearLink(sName)
+      return 1
     else:  
       res = uapp.stdLookup(sender, "reference@lookupRefByDesc", sName, 
         "reference_desc;reference_code;refdata_id", None, 

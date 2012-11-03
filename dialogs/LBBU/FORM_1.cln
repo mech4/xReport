@@ -68,7 +68,6 @@ object:rtf::Form<
           Width=168
         >
       }
-      ReadOnly=true
       RowSelect=true
       SuppressHelpLine=true
     >, object:rtf::DualSplit<

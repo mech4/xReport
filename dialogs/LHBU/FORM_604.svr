@@ -30,15 +30,15 @@ object:rpclass::TPClassUIDefList<
           DataTypeName='enterprise.INTEGER'
         >, object:rpclass::TCustomLoadedField<
           Name='Realisasi'
-          DataTypeName='varchar'
+          DataTypeName='double'
           DataLength=8
         >, object:rpclass::TCustomLoadedField<
           Name='Nisbah'
-          DataTypeName='varchar'
+          DataTypeName='double'
           DataLength=8
         >, object:rpclass::TCustomLoadedField<
           Name='Distribusi'
-          DataTypeName='varchar'
+          DataTypeName='double'
           DataLength=8
         >
       }
