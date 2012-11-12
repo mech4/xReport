@@ -60,14 +60,7 @@ object:rtf::Form<
       SplitDirection=sdrSplitLeftRight
     >, object:rtf::Panel<
       Elements={
-        object:rtf::FieldUIElmtSetting<
-          Name='No'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='No.'
-          DataTypeName='varchar'
-          DataLength=20
-        >, object:rtf::LinkUIElmtSetting<
+        object:rtf::LinkUIElmtSetting<
           Name='LPos'
           Hidden=false
           ReadOnlyControl=false
@@ -194,14 +187,9 @@ object:rtf::Form<
       Height=433
       UIPart=$UIPARTS['uipData']
       Controls={
-        *object:rtf::DBEdit<
-          Name='No'
-          Top=8
-          Left=8
-          ControlCaption='No.'
-        >, *object:rtf::DBLookupEdit<
+        *object:rtf::DBLookupEdit<
           Name='LPos'
-          Top=36
+          Top=8
           Left=8
           Width=250
           Height=21
@@ -217,52 +205,52 @@ object:rtf::Form<
           ManualInputCheck=true
         >, *object:rtf::DBEdit<
           Name='PPRupiah'
-          Top=64
+          Top=36
           Left=8
           ControlCaption='Pemerintah Pusat (Rupiah)'
         >, *object:rtf::DBEdit<
           Name='PPValas'
-          Top=92
+          Top=64
           Left=8
           ControlCaption='Pemerintah Pusat (Valas)'
         >, *object:rtf::DBEdit<
           Name='PPJumlah'
-          Top=120
+          Top=92
           Left=8
           ControlCaption='Pemerintah Pusat (Jumlah)'
         >, *object:rtf::DBEdit<
           Name='PLRupiah'
-          Top=148
+          Top=120
           Left=8
           ControlCaption='Penduduk Lainnya (Rupiah)'
         >, *object:rtf::DBEdit<
           Name='PLValas'
-          Top=176
+          Top=148
           Left=8
           ControlCaption='Penduduk Lainnya (Valas)'
         >, *object:rtf::DBEdit<
           Name='PLJumlah'
-          Top=204
+          Top=176
           Left=8
           ControlCaption='Penduduk Lainnya (Jumlah)'
         >, *object:rtf::DBEdit<
           Name='BPRupiah'
-          Top=232
+          Top=204
           Left=8
           ControlCaption='Bukan Penduduk (Rupiah)'
         >, *object:rtf::DBEdit<
           Name='BPValas'
-          Top=260
+          Top=232
           Left=8
           ControlCaption='Bukan Penduduk (Valas)'
         >, *object:rtf::DBEdit<
           Name='BPJumlah'
-          Top=288
+          Top=260
           Left=8
           ControlCaption='Bukan Penduduk (Jumlah)'
         >, *object:rtf::DBEdit<
           Name='Jumlah'
-          Top=316
+          Top=288
           Left=8
           ControlCaption='Jumlah Seluruh (Rp dan Va)'
         >
@@ -286,14 +274,6 @@ object:rtf::Form<
       Caption='FORM-2'
       Columns={
         object:rtf::GridColumn<
-          Name='gcNo'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='No'
-          DisplayFormat=''
-          TitleCaption='No.'
-          Width=24
-        >, object:rtf::GridColumn<
           Name='LPos.reference_desc'
           InputStyle=cisLookup
           EnumeratedValues=''
@@ -407,14 +387,6 @@ object:rtf::Form<
       Caption='FORM-2'
       Columns={
         object:rtf::GridColumn<
-          Name='gcNo'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='No'
-          DisplayFormat=''
-          TitleCaption='No.'
-          Width=24
-        >, object:rtf::GridColumn<
           Name='gcLPos'
           InputStyle=cisNormal
           EnumeratedValues=''

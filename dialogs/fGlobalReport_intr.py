@@ -51,6 +51,7 @@ class fGlobalReport:
     uapp = self.FormObject.ClientApplication.UserAppObject
     if self.uipMain.GetFieldValue("branch.branch_code") == "-":
       self.uipMain.ClearLink("branch")
+      return 1
     else:  
       res = uapp.stdLookup(sender, "report@lookupBranch", "branch", 
         "branch_code;branch_name;branch_id")
@@ -61,6 +62,7 @@ class fGlobalReport:
     uapp = self.FormObject.ClientApplication.UserAppObject
     if self.uipMain.GetFieldValue("period.period_code") == '-':
       self.uipMain.ClearLink("period")
+      return 1
     else:  
       res = uapp.stdLookup(sender, "report@lookupPeriod", "period", 
         "period_code;description;period_id", None, 
@@ -72,56 +74,11 @@ class fGlobalReport:
     formobj = self.FormObject; app = formobj.ClientApplication
     
     uipMain = self.uipMain
-    ph = app.CreateValues(['group_code',self.group_code])
-    res = formobj.CallServerMethod('GetFormList', ph)
-    status = res.FirstRecord
-    if status.IsErr == 1:
-      app.ShowMessage("ERROR! " + status.ErrMessage)
-      return
-    ds = res.packet.forms
-    
-    ph = app.CreatePacket()
-    fdata = ph.packet.AddNewDatasetEx('Forms',
-              ';'.join([
-              'class_id:integer'
-              ,'period_id:integer'
-              ,'branch_id:integer'
-              ,'group_code:string'
-              ,'report_code:string'
-              ,'txttemplate:string'
-              ,'txtmap:string'
-              ,'xlsmap:string'
-              ,'reflist:string'
-              ,'useheader:string'
-              ])
+    ph = app.CreateValues(
+      ['group_code', self.group_code]
+      , ["period_id", uipMain.GetFieldValue("period.period_id")]
+      , ["branch_id", uipMain.GetFieldValue("branch.branch_id")]
     )
-    for i in range(ds.RecordCount):
-      rec = ds.GetRecord(i)
-      formid = rec.form_id
-      self.repform = self.frReport.Activate(formid, app.CreatePacket(), None)
-      self.setAttrList()
-      fpar = app.CreateValues(
-        ["class_id", rec.class_id]
-        , ["period_id", uipMain.GetFieldValue("period.period_id")]
-        , ["branch_id", uipMain.GetFieldValue("branch.branch_id")]
-        , ["group_code", self.group_code]
-        , ["report_code", rec.report_code]
-        , ["attrlist", str(self.load_attrlist)]
-      )
-      self.repform.FormObject.SetDataWithParameters(fpar)
-      app.ShowMessage('form %s load' % str(i+1))
-      setForm = fdata.AddRecord()
-      setForm.class_id = rec.class_id
-      setForm.period_id = uipMain.GetFieldValue("period.period_id")
-      setForm.branch_id = uipMain.GetFieldValue("branch.branch_id")
-      setForm.group_code = self.group_code
-      setForm.report_code = rec.report_code
-      setForm.txttemplate = self.repform.txttemplate
-      setForm.txtmap = str(self.repform.txtmap)
-      setForm.xlsmap = str(self.repform.xlsmap)
-      setForm.reflist = str(self.repform.reflist)
-      setForm.useheader = str(self.repform.useheader)
-      
     ph = formobj.CallServerMethod('GenerateTxt', ph)
     
     status = ph.FirstRecord

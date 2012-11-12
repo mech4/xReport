@@ -28,3 +28,13 @@ def ShowQueryClick(menu, app) :
       dlg = app.CreateForm(formname,formname,2,None,None)
     dlg.Show()
     
+def generateGlobalonClick(sender, app):
+  formid   = "fGlobalReport-LBBUS"
+  formname = "fGlobalReport"
+   
+  form = app.FindForm(formid)
+  if form == None:
+    form = app.CreateForm(formname, formid, 2, None, None)
+    form.Show("LBBU", "W")
+  else:  
+    form.Show() 

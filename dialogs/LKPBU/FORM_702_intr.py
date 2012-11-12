@@ -4,6 +4,7 @@ REFMAP = {
       ,'LVALUTAASAL' : 'R_JENIS_VALUTA'
       ,'LTERKAIT' : 'R_PT_ASURANSI'
       ,'LSPONSOR' : 'R_PT_ASURANSI'
+      ,'LMANAGER' : 'R_MANAGER_INVESTASI'
 }
   
 class LKPBU_FORM_702:
@@ -14,6 +15,7 @@ class LKPBU_FORM_702:
       ,'LVALUTAASAL'
       ,'LTERKAIT'
       ,'LSPONSOR'
+      ,'LMANAGER'
     ]
     self.attrlist = [
       'BulanData'
@@ -24,7 +26,6 @@ class LKPBU_FORM_702:
       ,'TotalUnit'
       ,'PorsiAset'
       ,'FeeBasedIncome'
-      ,'NamaManajerInvestasi'
       ,'Keterangan'
       ,'NamaBank'
       ,'TotalNAV'
@@ -47,7 +48,7 @@ class LKPBU_FORM_702:
         , 9: 'TotalUnit'
         , 10: 'PorsiAset'
         , 11: 'FeeBasedIncome'
-        , 12: 'NamaManajerInvestasi'
+        , 12: 'LMANAGER_reference_code'
         , 13: 'Keterangan'
         , 14: 'LTERKAIT_reference_code'
         , 15: 'NamaBank'

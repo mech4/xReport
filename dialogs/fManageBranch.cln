@@ -7,6 +7,7 @@ document <
 >
 object:rtf::Form<
   MainContainer=$CONTAINERS['dualsplit1']
+  Caption='Pengelolaan Cabang Pada Grup Pelaporan'
   Left=50
   Top=50
   Width=473
@@ -157,6 +158,7 @@ object:rtf::Form<
           Left=358
           ControlCaption=''
           Caption='&Tambah'
+          OnClick='Add2Group'
         >, object:rtf::Button<
           Name='button2'
           Layout=clNewLine
@@ -193,7 +195,7 @@ object:rtf::Form<
         >
       }
       Name='grid1'
-      Width=400
+      Width=240
       Height=169
       ContextMenuName='popupmenus/pMnuManageBranch'
       UIPart=$UIPARTS['uipMember']

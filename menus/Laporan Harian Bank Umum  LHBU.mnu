@@ -13,6 +13,9 @@ object:rmn::Menu<
         object:rmn::MenuItem<
           Caption='Open list report'
           OnClick='openlistreportOnClick'
+        >, object:rmn::MenuItem<
+          Caption='Generate Global Report File'
+          OnClick='generateGlobalonClick'
         >
       }
     >

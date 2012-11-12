@@ -8,6 +8,7 @@ class fReportContainer:
     self.repform     = None
     self.group_code  = None
     self.period_type = None
+    self.NewData = 1
   #--
 
   def setAttrList(self):
@@ -86,10 +87,12 @@ class fReportContainer:
   def switchEdit(self, swOn=True):
     if self.repform != None:
       self.repform.pData.SetAllControlsReadOnly(not swOn)
+      #pass
     self.pData_bSave.enabled = swOn
     self.pData_bDownload.enabled = swOn
     self.pData_bGenerate.enabled = swOn
     self.pData_bImport.enabled = swOn
+    self.pAction_bSaveRow.enabled = swOn
     self.pAction_bNewrow.enabled = swOn
     self.pAction_bDeleteRow.enabled = swOn
     
@@ -102,12 +105,22 @@ class fReportContainer:
                  self.uipMain.GetFieldValue('reportclass.report_name'),
                  self.uipMain.GetFieldValue('period.description')
                  )):
+        oldData = self.repform.uipData 
+        oldData.First()
+        item_id = oldData.item_id
+        for i in range(oldData.RecordCount):
+          self.uipDeleted.Append()
+          self.uipDeleted.item_id = item_id
+          self.uipDeleted.Post()
+          oldData.Next()
+          item_id = oldData.item_id
         self.repform.uipData.ClearData()
 
-        return
       else:
+        self.pData_cbNihil.checked = 0
         return
     
+    self.uipMain.Edit()
     self.uipMain.attrlist   = str(self.save_attrlist)
     self.uipMain.group_code = self.group_code
     
@@ -126,6 +139,11 @@ class fReportContainer:
     else:
       app.ShowMessage('Data successfully save.')
       self.switchEdit(False)
+      self.pData_bDownload.enabled = 1
+      self.pData_bGenerate.enabled = 1
+      self.pData_bImport.enabled = 1
+      self.pAction_bNewrow.enabled = 1
+      self.pAction_bDeleteRow.enabled = 1
     #--
     
   def bLoadOnClick(self, sender):
@@ -140,9 +158,12 @@ class fReportContainer:
       return
            
     self.repform = self.frReport.Activate(formid, app.CreatePacket(), None)
-    self.repform.txttemplate = ''
-    self.repform.txtmap = ()
-    self.repform.useheader = None
+    try:
+      check = self.repform.txttemplate
+    except:
+      self.repform.txttemplate = ''
+      self.repform.txtmap = ()
+      self.repform.useheader = None
     self.setAttrList()
     
     ph = app.CreateValues(
@@ -161,13 +182,27 @@ class fReportContainer:
       self.pData_cbNihil.checked = 0
       self.pData_cbNihil.enabled = 0
     self.switchEdit()
+    uMain = self.uipMain    
+    ph = app.CreateValues(
+      ["class_id", uMain.GetFieldValue("reportclass.class_id")]
+      , ["period_id", uMain.GetFieldValue("period.period_id")]
+      , ["branch_id", uMain.GetFieldValue("branch.branch_id")]
+    )
+    ph = formObj.CallServerMethod('CheckRepExist', ph)
+    status = ph.FirstRecord
+    if status.IsErr == 1:
+      self.pData_bDownload.enabled = 0
+      self.pData_bGenerate.enabled = 0
+
 
   def bNewRowOnClick(self, sender):
     # procedure(sender: TrtfButton)
     if self.repform != None:
       self.repform.uipData.Append()
+      self.switchEdit()
       self.repform.pData.GetControl(0).SetFocus()
     #--
+    self.pAction_bSaveRow.enabled = 1
 
   def bDeleteRowOnClick(self, sender):
     # procedure(sender: TrtfButton)
@@ -180,12 +215,17 @@ class fReportContainer:
       #--
       self.repform.uipData.Delete()
     #--
+    self.pAction_bSaveRow.enabled = 1
+    self.pData_bSave.enabled = 1
 
   def bSaveRowOnClick(self, sender):
     # procedure(sender: TrtfButton)
     if self.repform != None:
+      self.repform.uipData.Edit()
       self.repform.uipData.Post()
     #--
+    self.pData_bSave.enabled = 1
+
 
 
   def bDownloadOnClick(self, sender):

@@ -129,6 +129,22 @@ def SaveReport(config, params, returns):
   #--
 #--
 
+def CheckRepExist(config, params, returns):
+  helper = phelper.PObjectHelper(config)
+  status = returns.CreateValues(["IsErr", 0])
+  try :
+    rec = params.FirstRecord
+    reportAttr = {}
+    attrutil.transferAttributes(helper, 
+      ['class_id', 'period_id', 'branch_id']
+      , reportAttr, rec)
+    oReport   = helper.GetObjectByNames('Report', reportAttr)
+    if oReport.isnull: 
+      raise Exception, "Report not found!"
+    #--
+  except:    
+    status.IsErr = 1
+
 def DownloadReport(config, params, returns):
   def fixMap():
     for col in pos:
@@ -277,12 +293,15 @@ def GenerateTxt(config, params, returns):
   #-- def   
   def formTxtValue(val, size, tipe):
     if tipe==1:
+      if val in(None,''): val=0
       val = int(val)
     #--
     if tipe==2:
+      if val in(None,''): val=0
       val = int(val*100000)
     #--
     if tipe==3:
+      if val in(None,''): val=0
       val = int(val*100)
     if tipe==4:
       val = str(val)
@@ -366,9 +385,14 @@ def GenerateTxt(config, params, returns):
     jml = 0
     totalrp = 0
     totalva = 0
+    if res.Eof and itemName[0:4]=='LBBU' and itemName[-1:] in ('5','6','7','9'):
+      res = config.CreateSQL('''
+          select -1 "item_id" from dual 
+      ''').rawresult
     while not res.Eof:
-      oItem = config.CreatePObjImplProxy(itemName)
-      oItem.Key = res.item_id
+      if res.item_id > 0:
+        oItem = config.CreatePObjImplProxy(itemName)
+        oItem.Key = res.item_id
       if int(useheader)==2:
         #row header LBUS
         contents += 'LS'+no_form+sandi_pelapor+periode_laporan
@@ -381,7 +405,7 @@ def GenerateTxt(config, params, returns):
             no_form = '0'+str(no_form)
           no_form = no_form.ljust(4)[:4]
         if no_form[0:2]=='09':
-          contents += 'LBBUS'+str(no_form)+sandi_pelapor[:3]+'990'+periode_laporan+'121005517990'+str(jml+1).zfill(4)+str(jml+1).zfill(6)
+          contents += 'LBBUS'+str(no_form)+sandi_pelapor[:3]+'990'+periode_laporan+'121005517990'+str(jml+5).zfill(4)+str(jml+1).zfill(6)
         else:
           contents += 'LBBUS'+str(no_form)+sandi_pelapor[:3]+'990'+periode_laporan+'121005517990'+str(jml+1).zfill(4)+str(jml+1).zfill(4)
       #raise Exception, pos
@@ -393,9 +417,15 @@ def GenerateTxt(config, params, returns):
           if no_form[0:2]=='11':
             svalue = str(jml+1)
         elif fieldname == 'Endmonth':
-          svalue = str(Eom(periode_laporan[5:7], periode_laporan[1:5])).zfill(2)+periode_laporan[5:7]+periode_laporan[1:5]
+          svalue = str(Eom(periode_laporan[4:6], periode_laporan[0:4])).zfill(2)+periode_laporan[4:6]+periode_laporan[0:4]
         else:
-          svalue = oItem.EvalMembers(fieldname)
+          if res.item_id > 0:
+            svalue = oItem.EvalMembers(fieldname)
+          else:
+            if col==1:
+              svalue = 'NIHIL'
+            else:
+              svalue = None
           #sum rp dan va FORM1 LBBU
           if (int(useheader)==4) and (no_form=='01  ') and (col==4):
             totalrp+=svalue
@@ -434,6 +464,60 @@ def GenerateTxt(config, params, returns):
       contents += '121005517990'+str(jml+1).zfill(4)+str(jml+1).zfill(4)
       contents += 'RATA-RATA'.ljust(50)+str(jml+1).zfill(2).ljust(5)+'31121901'
       contents += str(totalrp/(jml-1)).zfill(30)+str(totalva/(jml-1)).zfill(30)+''.zfill(1135)+'\n'
+    if (int(useheader)==4) and (no_form=='09  '):
+      #summary FORM9 LBBU
+      contents += 'LBBUS'+str(no_form)+sandi_pelapor[:3]+'990'+periode_laporan
+      contents += '121005517990'+str(1).zfill(4)+str(999996).zfill(6)
+      for col in pos:
+        if col==1:
+          svalue = 'Total Saldo Pembiayaan Yang Direstrukturisasi Bulan ini'
+        elif col==19:
+          svalue = 0 #total
+        elif col==30:
+          svalue = str(Eom(periode_laporan[4:6], periode_laporan[0:4])).zfill(2)+periode_laporan[4:6]+periode_laporan[0:4]
+        else:
+          svalue = None
+        contents += formTxtValue(svalue, txtmap[col][0], txtmap[col][1])
+      contents += ''.zfill(602)+'\n'
+      contents += 'LBBUS'+str(no_form)+sandi_pelapor[:3]+'990'+periode_laporan
+      contents += '121005517990'+str(2).zfill(4)+str(999997).zfill(6)
+      for col in pos:
+        if col==1:
+          svalue = ' '
+        elif col==19:
+          svalue = 0 #total
+        elif col==30:
+          svalue = str(Eom(periode_laporan[4:6], periode_laporan[0:4])).zfill(2)+periode_laporan[4:6]+periode_laporan[0:4]
+        else:
+          svalue = None
+        contents += formTxtValue(svalue, txtmap[col][0], txtmap[col][1])
+      contents += ''.zfill(602)+'\n'
+      contents += 'LBBUS'+str(no_form)+sandi_pelapor[:3]+'990'+periode_laporan
+      contents += '121005517990'+str(3).zfill(4)+str(999998).zfill(6)
+      for col in pos:
+        if col==1:
+          svalue = 'Saldo Pembiayaan Yang Direstrukturisasi Bulan Lalu'
+        elif col==19:
+          svalue = 0 #total bln lalu?
+        elif col==30:
+          svalue = str(Eom(periode_laporan[4:6], periode_laporan[0:4])).zfill(2)+periode_laporan[4:6]+periode_laporan[0:4]
+        else:
+          svalue = None
+        contents += formTxtValue(svalue, txtmap[col][0], txtmap[col][1])
+      contents += ''.zfill(602)+'\n'
+      contents += 'LBBUS'+str(no_form)+sandi_pelapor[:3]+'990'+periode_laporan
+      contents += '121005517990'+str(4).zfill(4)+str(999999).zfill(6)
+      for col in pos:
+        if col==1:
+          svalue = 'Saldo Kumulatif Pembiayaan yang Direstrukturisasi'
+        elif col==19:
+          svalue = 0 #total
+        elif col==30:
+          svalue = str(Eom(periode_laporan[4:6], periode_laporan[0:4])).zfill(2)+periode_laporan[4:6]+periode_laporan[0:4]
+        else:
+          svalue = None
+        contents += formTxtValue(svalue, txtmap[col][0], txtmap[col][1])
+      contents += ''.zfill(602)+'\n'
     header += str(jml).zfill(6)[-6:]+'\n'
     
     storeDir  = config.UserHomeDirectory

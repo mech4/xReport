@@ -80,9 +80,16 @@ object:rpclass::TPClassUIDefList<
           DataTypeName='varchar'
           DataLength=20
         >, object:rpclass::TCustomLoadedField<
-          Name='NamaManajerInvestasi'
-          DataTypeName='varchar'
+          Name='LMANAGER.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LMANAGER.reference_code'
+          DataTypeName='enterprise.VARCHAR'
           DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LMANAGER.reference_desc'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=60
         >, object:rpclass::TCustomLoadedField<
           Name='Keterangan'
           DataTypeName='varchar'
@@ -142,6 +149,10 @@ object:rpclass::TPClassUIDefList<
           FieldNames='refdata_id;reference_code;reference_desc'
         >, object:rpclass::TCustomLoadedLink<
           Name='LVALUTAASAL'
+          ClassTypeName='enterprise.ReferenceData'
+          FieldNames='refdata_id;reference_code;reference_desc'
+        >, object:rpclass::TCustomLoadedLink<
+          Name='LMANAGER'
           ClassTypeName='enterprise.ReferenceData'
           FieldNames='refdata_id;reference_code;reference_desc'
         >, object:rpclass::TCustomLoadedLink<

@@ -3578,50 +3578,47 @@ object:ODL<
       PTableName='LKPBU_FORM807'
       Members={
         object:FieldMember<
-          MemberName='LSTATUSTENAGAKERJA_refdata_id'
-          PhysicalName='LSTATUSTENAGAKERJA_REFDATA_ID'
+          MemberName='LKANTOR_refdata_id'
+          PhysicalName='LKANTOR_REFDATA_ID'
           DataType=$TYPEDECLS['INTEGER']
         >, object:LinkMember<
-          MemberName='LSTATUSTENAGAKERJA'
+          MemberName='LKANTOR'
           AttrLinks={
             object:AttributeLink<
-              ThisField=$TYPEDECLS['LKPBU_FORM807'].MEMBERS['LSTATUSTENAGAKERJA_refdata_id']
+              ThisField=$TYPEDECLS['LKPBU_FORM807'].MEMBERS['LKANTOR_refdata_id']
               OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
             >
           }
           LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
         >, object:FieldMember<
-          MemberName='LSANDIKANTOR_refdata_id'
-          PhysicalName='LSANDIKANTOR_REFDATA_ID'
-          DataType=$TYPEDECLS['INTEGER']
-        >, object:LinkMember<
-          MemberName='LSANDIKANTOR'
-          AttrLinks={
-            object:AttributeLink<
-              ThisField=$TYPEDECLS['LKPBU_FORM807'].MEMBERS['LSANDIKANTOR_refdata_id']
-              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
-            >
-          }
-          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+          MemberName='KCInduk'
+          PhysicalName='KCINDUK'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=3
+        >, object:FieldMember<
+          MemberName='SandiKantor'
+          PhysicalName='SANDIKANTOR'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=9
         >, object:FieldMember<
           MemberName='NamaKantor'
           PhysicalName='NAMAKANTOR'
           DataType=$TYPEDECLS['VARCHAR']
-          DataLength=20
+          DataLength=45
         >, object:FieldMember<
           MemberName='Alamat'
           PhysicalName='ALAMAT'
           DataType=$TYPEDECLS['VARCHAR']
-          DataLength=20
+          DataLength=45
         >, object:FieldMember<
-          MemberName='LSANDIDATI_refdata_id'
-          PhysicalName='LSANDIDATI_REFDATA_ID'
+          MemberName='LDATI2_refdata_id'
+          PhysicalName='LDATI2_REFDATA_ID'
           DataType=$TYPEDECLS['INTEGER']
         >, object:LinkMember<
-          MemberName='LSANDIDATI'
+          MemberName='LDATI2'
           AttrLinks={
             object:AttributeLink<
-              ThisField=$TYPEDECLS['LKPBU_FORM807'].MEMBERS['LSANDIDATI_refdata_id']
+              ThisField=$TYPEDECLS['LKPBU_FORM807'].MEMBERS['LDATI2_refdata_id']
               OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
             >
           }
@@ -3630,20 +3627,20 @@ object:ODL<
           MemberName='KodePos'
           PhysicalName='KODEPOS'
           DataType=$TYPEDECLS['VARCHAR']
-          DataLength=20
+          DataLength=5
         >, object:FieldMember<
-          MemberName='NoTelp'
-          PhysicalName='NOTELP'
+          MemberName='Telepon'
+          PhysicalName='TELEPON'
           DataType=$TYPEDECLS['VARCHAR']
-          DataLength=20
+          DataLength=14
         >, object:FieldMember<
-          MemberName='NSIPembukuanKantor'
-          PhysicalName='NSIPEMBUKUANKANTOR'
+          MemberName='NoSuratIzin'
+          PhysicalName='NOSURATIZIN'
           DataType=$TYPEDECLS['VARCHAR']
-          DataLength=20
+          DataLength=40
         >, object:FieldMember<
-          MemberName='TglNSIPembukuan'
-          PhysicalName='TGLNSIPEMBUKUAN'
+          MemberName='TglSuratIzin'
+          PhysicalName='TGLSURATIZIN'
           DataType=$TYPEDECLS['VARCHAR']
           DataLength=8
         >, object:FieldMember<
@@ -3652,48 +3649,48 @@ object:ODL<
           DataType=$TYPEDECLS['VARCHAR']
           DataLength=8
         >, object:FieldMember<
-          MemberName='NSIPerubahanStatus'
-          PhysicalName='NSIPERUBAHANSTATUS'
+          MemberName='NoSuratPerubahan'
+          PhysicalName='NOSURATPERUBAHAN'
           DataType=$TYPEDECLS['VARCHAR']
-          DataLength=20
+          DataLength=40
         >, object:FieldMember<
-          MemberName='TglNSIPerubahanStatus'
-          PhysicalName='TGLNSIPERUBAHANSTATUS'
-          DataType=$TYPEDECLS['VARCHAR']
-          DataLength=8
-        >, object:FieldMember<
-          MemberName='TglEfektifPerubahaanStatus'
-          PhysicalName='TGLEFEKTIFPERUBAHAANSTATUS'
+          MemberName='TglSuratPerubahan'
+          PhysicalName='TGLSURATPERUBAHAN'
           DataType=$TYPEDECLS['VARCHAR']
           DataLength=8
         >, object:FieldMember<
-          MemberName='NSIPenutupanKantor'
-          PhysicalName='NSIPENUTUPANKANTOR'
-          DataType=$TYPEDECLS['VARCHAR']
-          DataLength=20
-        >, object:FieldMember<
-          MemberName='TglNSIPenutupanKantor'
-          PhysicalName='TGLNSIPENUTUPANKANTOR'
+          MemberName='TglEfektif'
+          PhysicalName='TGLEFEKTIF'
           DataType=$TYPEDECLS['VARCHAR']
           DataLength=8
         >, object:FieldMember<
-          MemberName='TglEfektifPenutupanKantor'
-          PhysicalName='TGLEFEKTIFPENUTUPANKANTOR'
+          MemberName='NoSuratPenutupan'
+          PhysicalName='NOSURATPENUTUPAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=40
+        >, object:FieldMember<
+          MemberName='TglPenutupan'
+          PhysicalName='TGLPENUTUPAN'
           DataType=$TYPEDECLS['VARCHAR']
           DataLength=8
         >, object:FieldMember<
-          MemberName='NSIRelokasiKantor'
-          PhysicalName='NSIRELOKASIKANTOR'
-          DataType=$TYPEDECLS['VARCHAR']
-          DataLength=20
-        >, object:FieldMember<
-          MemberName='TglSIRelokasi'
-          PhysicalName='TGLSIRELOKASI'
+          MemberName='TglEffPenutupan'
+          PhysicalName='TGLEFFPENUTUPAN'
           DataType=$TYPEDECLS['VARCHAR']
           DataLength=8
         >, object:FieldMember<
-          MemberName='TglEfektifRelokasiKantor'
-          PhysicalName='TGLEFEKTIFRELOKASIKANTOR'
+          MemberName='NoRelokasi'
+          PhysicalName='NORELOKASI'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=40
+        >, object:FieldMember<
+          MemberName='TglRelokasi'
+          PhysicalName='TGLRELOKASI'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='TglEffRelokasi'
+          PhysicalName='TGLEFFRELOKASI'
           DataType=$TYPEDECLS['VARCHAR']
           DataLength=8
         >, object:FieldMember<
@@ -3701,15 +3698,15 @@ object:ODL<
           PhysicalName='JMLKARYAWAN'
           DataType=$TYPEDECLS['INTEGER']
         >, object:FieldMember<
-          MemberName='TglPublikasiMediaMasa'
-          PhysicalName='TGLPUBLIKASIMEDIAMASA'
+          MemberName='TglPublikasi'
+          PhysicalName='TGLPUBLIKASI'
           DataType=$TYPEDECLS['VARCHAR']
           DataLength=8
         >, object:FieldMember<
           MemberName='Keterangan'
           PhysicalName='KETERANGAN'
           DataType=$TYPEDECLS['VARCHAR']
-          DataLength=20
+          DataLength=50
         >, object:FieldMember<
           MemberName='item_id'
           PhysicalName='ITEM_ID'
@@ -3721,7 +3718,7 @@ object:ODL<
           AutoForeignKey=true
         >
       }
-      ClassID='{355C90CF-2379-11E2-A33D-00140B44333B}'
+      ClassID='{9A870AC6-28B1-11E2-940C-00140B44333B}'
       AutoPrimaryKey=$TYPEDECLS['LKPBU_FORM807'].MEMBERS['item_id']
     >, object:ClassTypeDecl<
       TypeName='LBUS_FORM04'
@@ -9282,6 +9279,144 @@ object:ODL<
       }
       ClassID='{3B331780-0D13-11E2-B7EB-00140B44333B}'
       AutoPrimaryKey=$TYPEDECLS['LBBU_FORM11'].MEMBERS['item_id']
+    >, object:ClassTypeDecl<
+      TypeName='ReportClassProperties'
+      PTableName='REPORTCLASSPROPERTIES'
+      Members={
+        object:FieldMember<
+          MemberName='class_id'
+          PhysicalName='CLASS_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:FieldMember<
+          MemberName='paction'
+          PhysicalName='PACTION'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='xlstemplate'
+          PhysicalName='XLSTEMPLATE'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=50
+        >, object:FieldMember<
+          MemberName='xlstopline'
+          PhysicalName='XLSTOPLINE'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='useheader'
+          PhysicalName='USEHEADER'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='txttemplate'
+          PhysicalName='TXTTEMPLATE'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=50
+        >
+      }
+      ClassID='{5491D597-DA22-4CB0-9705-0EA7B9C7EF4F}'
+    >, object:ClassTypeDecl<
+      TypeName='RefMap'
+      PTableName='REFMAP'
+      Members={
+        object:FieldMember<
+          MemberName='ref_id'
+          PhysicalName='REF_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:FieldMember<
+          MemberName='class_id'
+          PhysicalName='CLASS_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='refname'
+          PhysicalName='REFNAME'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=50
+        >, object:FieldMember<
+          MemberName='reflookup'
+          PhysicalName='REFLOOKUP'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=50
+        >
+      }
+      ClassID='{FFB305DC-4AFA-47A8-952E-C8920E050D65}'
+      AutoPrimaryKey=$TYPEDECLS['RefMap'].MEMBERS['ref_id']
+    >, object:ClassTypeDecl<
+      TypeName='XlsMap'
+      PTableName='XLSMAP'
+      Members={
+        object:FieldMember<
+          MemberName='xmap_id'
+          PhysicalName='XMAP_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:FieldMember<
+          MemberName='class_id'
+          PhysicalName='CLASS_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='fieldnumber'
+          PhysicalName='FIELDNUMBER'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='fieldname'
+          PhysicalName='FIELDNAME'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=100
+        >
+      }
+      ClassID='{59DB75D9-4DA4-476C-88BA-6A78A8C42FD2}'
+      AutoPrimaryKey=$TYPEDECLS['XlsMap'].MEMBERS['xmap_id']
+    >, object:ClassTypeDecl<
+      TypeName='TxtMap'
+      PTableName='TXTMAP'
+      Members={
+        object:FieldMember<
+          MemberName='tmap_id'
+          PhysicalName='TMAP_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:FieldMember<
+          MemberName='class_id'
+          PhysicalName='CLASS_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='fieldnumber'
+          PhysicalName='FIELDNUMBER'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='fieldlength'
+          PhysicalName='FIELDLENGTH'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='fieldtypecode'
+          PhysicalName='FIELDTYPECODE'
+          DataType=$TYPEDECLS['INTEGER']
+        >
+      }
+      ClassID='{1941F219-AD22-4F9D-B006-574608122261}'
+      AutoPrimaryKey=$TYPEDECLS['TxtMap'].MEMBERS['tmap_id']
+    >, object:ClassTypeDecl<
+      TypeName='AttrList'
+      PTableName='ATTRLIST'
+      Members={
+        object:FieldMember<
+          MemberName='alist_id'
+          PhysicalName='ALIST_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:FieldMember<
+          MemberName='class_id'
+          PhysicalName='CLASS_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='fieldname'
+          PhysicalName='FIELDNAME'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=100
+        >
+      }
+      ClassID='{6A38496B-6456-4F11-967E-814DF5ED6228}'
+      AutoPrimaryKey=$TYPEDECLS['AttrList'].MEMBERS['alist_id']
     >
   }
   PhysicalDB=object:ODLDatabase<

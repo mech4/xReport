@@ -43,8 +43,8 @@ object:rtf::Form<
   Containers={
     object:rtf::DualSplit<
       Name='dsMain'
-      Width=921
-      Height=425
+      Width=240
+      Height=96
       Container1=$CONTAINERS['grData']
       Container2=$CONTAINERS['multipages1']
       SplitDirection=sdrSplitLeftRight
@@ -227,8 +227,8 @@ object:rtf::Form<
       SuppressHelpLine=true
     >, object:rtf::MultiPages<
       Name='multipages1'
-      Width=607
-      Height=425
+      Width=320
+      Height=320
       Pages={
         object:rtf::Page<
           PageName='1'
@@ -419,11 +419,15 @@ object:rtf::Form<
       RowControlGap=7
     >, object:rtf::Panel<
       Elements={
-        object:rtf::FieldUIElmtSetting<
-          Name='NamaManajerInvestasi'
+        object:rtf::LinkUIElmtSetting<
+          Name='LMANAGER'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Nama Manajer Investasi'
+          ControlCaption='Nama Manager Investasi'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_code;reference_desc'
+          Restrictions=''
+          FieldBaseName='LMANAGER'
         >, object:rtf::FieldUIElmtSetting<
           Name='Keterangan'
           Hidden=false
@@ -481,11 +485,22 @@ object:rtf::Form<
       Height=433
       UIPart=$UIPARTS['uipData']
       Controls={
-        *object:rtf::DBEdit<
-          Name='NamaManajerInvestasi'
+        *object:rtf::DBLookupEdit<
+          Name='LMANAGER'
           Top=8
           Left=8
+          Width=150
+          Height=21
           ControlCaption='Nama Manajer Investasi'
+          FieldName='LMANAGER.reference_desc'
+          LookupField='LMANAGER.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
         >, *object:rtf::DBEdit<
           Name='Keterangan'
           Top=36

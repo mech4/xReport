@@ -2,7 +2,7 @@ REFMAP = {
   'LPOS'                        : 'R_JENIS_POSPOS'
 }
   
-class LBUS_FORM_404:
+class LHBU_FORM_404:
   def __init__(self, formObj, parentForm):
     self.reflist  = [
       'LPOS'

@@ -49,6 +49,6 @@ def BeforeRestoreSession(config, session_name):
     host = sysvar.GetStringSysVar('CORELINK', 'core_host') 
     uid = sysvar.GetStringSysVar('CORELINK', 'core_login')
     paswd = sysvar.GetStringSysVar('CORELINK', 'core_password') 
-    app.rlogin(host, 'ibank2.core', uid, paswd, 'core')
+    app.rlogin(host, 'ibank2.core/migrasi19', uid, paswd, 'core')
   #--
 #--    

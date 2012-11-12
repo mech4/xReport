@@ -8,8 +8,7 @@ class LBBU_FORM_2:
       'LPos'
     ]
     self.attrlist = [
-      'No'
-      ,'PPRupiah'
+      'PPRupiah'
       ,'PPValas'
       ,'PPJumlah'
       ,'PLRupiah'
@@ -24,19 +23,18 @@ class LBBU_FORM_2:
     self.xlstemplate = 'lbbu/form2.xls'
     self.xlstopline  = 8
     self.xlsmap      = {
-          1: 'No'
-        , 2: 'LPos_reference_desc'
-        , 3: 'LPos_reference_code'
-        , 4: 'PPRupiah'
-        , 5: 'PPValas'
-        , 6: 'PPJumlah'
-        , 7: 'PLRupiah'
-        , 8: 'PLValas'
-        , 9: 'PLJumlah'
-        , 10: 'BPRupiah'
-        , 11: 'BPValas'
-        , 12: 'BPJumlah'
-        , 13: 'Jumlah'
+          1: 'LPos_reference_desc'
+        , 2: 'LPos_reference_code'
+        , 3: 'PPRupiah'
+        , 4: 'PPValas'
+        , 5: 'PPJumlah'
+        , 6: 'PLRupiah'
+        , 7: 'PLValas'
+        , 8: 'PLJumlah'
+        , 9: 'BPRupiah'
+        , 10: 'BPValas'
+        , 11: 'BPJumlah'
+        , 12: 'Jumlah'
     }
     self.useheader = 4 #1: true LKPBU, 0:false, 2:row header only (LBUS), 3:header LHBU, 4:row header (LBBU)
     self.txttemplate = 'lbbu/form2.txt'
@@ -48,8 +46,7 @@ class LBBU_FORM_2:
     #       jenis 3 untuk zerofill 99,99
     #       jenis 4 untuk tgl dgn separator '/' dan spasi 
     self.txtmap      = ( [0,0]
-      , [6,0]
-      , [94,0]
+      , [100,0]
       , [5,0]
       , [30,1]
       , [30,1]

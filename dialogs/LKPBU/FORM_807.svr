@@ -11,73 +11,63 @@ object:rpclass::TPClassUIDefList<
       Name='uipData'
       CustomLoadedFields={
         object:rpclass::TCustomLoadedField<
-          Name='item_id'
-          DataTypeName='integer'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='LSTATUSTENAGAKERJA.refdata_id'
+          Name='LKANTOR.refdata_id'
           DataTypeName='enterprise.INTEGER'
         >, object:rpclass::TCustomLoadedField<
-          Name='LSTATUSTENAGAKERJA.reference_code'
-          DataTypeName='enterprise.VARCHAR'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='LSTATUSTENAGAKERJA.reference_desc'
+          Name='LKANTOR.reference_desc'
           DataTypeName='enterprise.VARCHAR'
           DataLength=60
         >, object:rpclass::TCustomLoadedField<
-          Name='LSTATUSTENAGAKERJA.refdata_id'
-          DataTypeName='enterprise.INTEGER'
-        >, object:rpclass::TCustomLoadedField<
-          Name='LSANDIKANTOR.refdata_id'
-          DataTypeName='enterprise.INTEGER'
-        >, object:rpclass::TCustomLoadedField<
-          Name='LSANDIKANTOR.reference_code'
+          Name='LKANTOR.reference_code'
           DataTypeName='enterprise.VARCHAR'
           DataLength=20
         >, object:rpclass::TCustomLoadedField<
-          Name='LSANDIKANTOR.reference_desc'
-          DataTypeName='enterprise.VARCHAR'
-          DataLength=60
-        >, object:rpclass::TCustomLoadedField<
-          Name='LSANDIKANTOR.refdata_id'
+          Name='LKANTOR.refdata_id'
           DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='KCInduk'
+          DataTypeName='varchar'
+          DataLength=3
+        >, object:rpclass::TCustomLoadedField<
+          Name='SandiKantor'
+          DataTypeName='varchar'
+          DataLength=9
         >, object:rpclass::TCustomLoadedField<
           Name='NamaKantor'
           DataTypeName='varchar'
-          DataLength=20
+          DataLength=45
         >, object:rpclass::TCustomLoadedField<
           Name='Alamat'
           DataTypeName='varchar'
-          DataLength=20
+          DataLength=45
         >, object:rpclass::TCustomLoadedField<
-          Name='LSANDIDATI.refdata_id'
+          Name='LDATI2.refdata_id'
           DataTypeName='enterprise.INTEGER'
         >, object:rpclass::TCustomLoadedField<
-          Name='LSANDIDATI.reference_code'
-          DataTypeName='enterprise.VARCHAR'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='LSANDIDATI.reference_desc'
+          Name='LDATI2.reference_desc'
           DataTypeName='enterprise.VARCHAR'
           DataLength=60
         >, object:rpclass::TCustomLoadedField<
-          Name='LSANDIDATI.refdata_id'
+          Name='LDATI2.reference_code'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LDATI2.refdata_id'
           DataTypeName='enterprise.INTEGER'
         >, object:rpclass::TCustomLoadedField<
           Name='KodePos'
           DataTypeName='varchar'
-          DataLength=20
+          DataLength=5
         >, object:rpclass::TCustomLoadedField<
-          Name='NoTelp'
+          Name='Telepon'
           DataTypeName='varchar'
-          DataLength=20
+          DataLength=14
         >, object:rpclass::TCustomLoadedField<
-          Name='NSIPembukuanKantor'
+          Name='NoSuratIzin'
           DataTypeName='varchar'
-          DataLength=20
+          DataLength=40
         >, object:rpclass::TCustomLoadedField<
-          Name='TglNSIPembukuan'
+          Name='TglSuratIzin'
           DataTypeName='varchar'
           DataLength=8
         >, object:rpclass::TCustomLoadedField<
@@ -85,39 +75,39 @@ object:rpclass::TPClassUIDefList<
           DataTypeName='varchar'
           DataLength=8
         >, object:rpclass::TCustomLoadedField<
-          Name='NSIPerubahanStatus'
+          Name='NoSuratPerubahan'
           DataTypeName='varchar'
-          DataLength=20
+          DataLength=40
         >, object:rpclass::TCustomLoadedField<
-          Name='TglNSIPerubahanStatus'
-          DataTypeName='varchar'
-          DataLength=8
-        >, object:rpclass::TCustomLoadedField<
-          Name='TglEfektifPerubahaanStatus'
+          Name='TglSuratPerubahan'
           DataTypeName='varchar'
           DataLength=8
         >, object:rpclass::TCustomLoadedField<
-          Name='NSIPenutupanKantor'
-          DataTypeName='varchar'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='TglNSIPenutupanKantor'
+          Name='TglEfektif'
           DataTypeName='varchar'
           DataLength=8
         >, object:rpclass::TCustomLoadedField<
-          Name='TglEfektifPenutupanKantor'
+          Name='NoSuratPenutupan'
+          DataTypeName='varchar'
+          DataLength=40
+        >, object:rpclass::TCustomLoadedField<
+          Name='TglPenutupan'
           DataTypeName='varchar'
           DataLength=8
         >, object:rpclass::TCustomLoadedField<
-          Name='NSIRelokasiKantor'
-          DataTypeName='varchar'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='TglSIRelokasi'
+          Name='TglEffPenutupan'
           DataTypeName='varchar'
           DataLength=8
         >, object:rpclass::TCustomLoadedField<
-          Name='TglEfektifRelokasiKantor'
+          Name='NoRelokasi'
+          DataTypeName='varchar'
+          DataLength=40
+        >, object:rpclass::TCustomLoadedField<
+          Name='TglRelokasi'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rpclass::TCustomLoadedField<
+          Name='TglEffRelokasi'
           DataTypeName='varchar'
           DataLength=8
         >, object:rpclass::TCustomLoadedField<
@@ -125,33 +115,27 @@ object:rpclass::TPClassUIDefList<
           DataTypeName='integer'
           DataLength=20
         >, object:rpclass::TCustomLoadedField<
-          Name='TglPublikasiMediaMasa'
+          Name='TglPublikasi'
           DataTypeName='varchar'
           DataLength=8
         >, object:rpclass::TCustomLoadedField<
           Name='Keterangan'
           DataTypeName='varchar'
-          DataLength=20
+          DataLength=50
         >
       }
       CustomLoadedLinks={
         object:rpclass::TCustomLoadedLink<
-          Name='LSTATUSTENAGAKERJA'
+          Name='LKANTOR'
           ClassTypeName='enterprise.ReferenceData'
-          FieldNames='refdata_id;reference_code;reference_desc;refdata_id'
+          FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
         >, object:rpclass::TCustomLoadedLink<
-          Name='LSANDIKANTOR'
+          Name='LDATI2'
           ClassTypeName='enterprise.ReferenceData'
-          FieldNames='refdata_id;reference_code;reference_desc;refdata_id'
-        >, object:rpclass::TCustomLoadedLink<
-          Name='LSANDIDATI'
-          ClassTypeName='enterprise.ReferenceData'
-          FieldNames='refdata_id;reference_code;reference_desc;refdata_id'
+          FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
         >
       }
       Mode=imMultiRow
-      DeleteOnDel=true
     >
   }
-  OnSetDataEx='FormOnSetDataEx'
 >

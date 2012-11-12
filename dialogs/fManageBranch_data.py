@@ -1,3 +1,4 @@
+import sys
 
 def FormOnSetDataEx(uideflist, params):
   # procedure(uideflist: TPClassUIDefList; params: TPClassUIDataPacket)
@@ -16,9 +17,11 @@ def GetLinkedBranch(config, params, returns):
   )
   config.BeginTransaction()
   try:
-    s = "select a.kode_cabang, ent.nama_cabang from branchmember a, %s ent \
-         where a.kode_cabang=ent.kode_cabang and a.branch_id='%s' \
-         " % (config.MapDBTableName('enterprise.Cabang'), branch_id)
+    s = '''
+         select a.kode_cabang, ent.nama_cabang from branchmember a, %s ent 
+         where a.kode_cabang=ent.kode_cabang and a.branch_id='%s'
+         order by a.kode_cabang 
+    ''' % (config.MapDBTableName('enterprise.Cabang'), branch_id)
     res = config.CreateSQL(s).RawResult
     while not res.Eof:
       rec = cabData.AddRecord()
@@ -36,7 +39,9 @@ def AddLinkedBranch(config, params, returns):
   status = returns.CreateValues(['Err',''])
   config.BeginTransaction()
   try:
-    s = "insert into branchmember (branch_id,kode_cabang) values('%s','%s')" % (branch_id,kode_cabang)
+    s = '''
+       insert into branchmember (member_id,branch_id,kode_cabang) values (seq_branchmember.nextval, '%s','%s')
+    ''' % (str(branch_id),kode_cabang)
     config.ExecSQL(s)
     config.Commit()
   except:

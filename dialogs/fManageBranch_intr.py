@@ -21,6 +21,7 @@ class fManageBranch:
       grid.nama = rec.nama                  
     #grid.Post()
     grid.First()    
+    self.uiLookup.ClearLink('LCabang')
     self.FormContainer.Show()
     
   def Add2Group(self, sender):
@@ -46,7 +47,7 @@ class fManageBranch:
     res = self.FormObject.CallServerMethod('AddLinkedBranch', ph)
     status = res.FirstRecord
     if status.Err not in (None,'',0):
-       self.app.ShowMessage('PERINGATAN : ', status.Err)
+       self.app.ShowMessage('PERINGATAN : %s' % status.Err)
        return 0
     self.Show()
     

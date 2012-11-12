@@ -41,7 +41,6 @@ object:rtf::Form<
       Width=473
       Height=105
       Container1=$CONTAINERS['pData']
-      Container2=$CONTAINERS['frReport']
     >, object:rtf::Panel<
       Elements={
         object:rtf::LinkUIElmtSetting<
@@ -194,15 +193,6 @@ object:rtf::Form<
           OnClick='bGenerateOnClick'
         >
       }
-      ControlLeftMargin=8
-      ControlTopMargin=8
-      DefaultControlHeight=21
-      HorizontalControlGap=4
-      RowControlGap=7
-    >, object:rtf::Frame<
-      Name='frReport'
-      Width=473
-      Height=1
       ControlLeftMargin=8
       ControlTopMargin=8
       DefaultControlHeight=21
