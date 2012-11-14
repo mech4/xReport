@@ -67,7 +67,13 @@ class fReportContainer:
       res = uapp.stdLookup(sender, "report@lookupPeriod", "period", 
         "period_code;description;period_id", None, 
         {'period_type': self.period_type})
-        
+      form_no = self.uipMain.GetFieldValue('reportclass.report_code')
+      if form_no==None : form_no=''
+      if self.group_code=='LBBU' and form_no[-1:] not in ('1','2','3'):
+        week = self.uipMain.GetFieldValue('period.period_code')
+        if week==None: week=''
+        if week[-1:] in ('1','2','3'):
+          self.uipMain.ClearLink("reportclass")  
       return res
 
   def reportOnExit(self, sender):
@@ -75,10 +81,16 @@ class fReportContainer:
     if self.uipMain.GetFieldValue("reportclass.report_code") == '-':
       self.uipMain.ClearLink("reportclass")
     else:  
-      res = uapp.stdLookup(sender, "report@lookupReportClass", "reportclass", 
-        "report_code;report_name;class_id;form_id;periode_type", None, 
-        {'group_code': self.group_code})
-      
+      week = self.uipMain.GetFieldValue('period.period_code')
+      if week==None: week=''
+      if week[-1:] in ('1','2','3') and self.group_code=='LBBU':
+        res = uapp.stdLookup(sender, "report@lookupReportClass", "reportclass", 
+          "report_code;report_name;class_id;form_id;periode_type", None, 
+          {'group_code': self.group_code, 'periode_type': 'W'})
+      else:
+        res = uapp.stdLookup(sender, "report@lookupReportClass", "reportclass", 
+          "report_code;report_name;class_id;form_id;periode_type", None, 
+          {'group_code': self.group_code})
       #self.period_type = self.uipMain.GetFieldValue("reportclass.periode_type")
       #self.uipMain.ClearLink("period")
         

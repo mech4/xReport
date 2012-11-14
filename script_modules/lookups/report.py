@@ -3,6 +3,10 @@ class lookupReportClass:
     self.config = config
     self.report_code = fr.report_code
     self.group_code  = fr.group_code
+    try:
+      self.periode_type = fr.periode_type
+    except:
+      self.periode_type = ''
     
   def initQueryObject(self, rqsql):
     config = self.config
@@ -13,14 +17,26 @@ class lookupReportClass:
     '''.format(
       reportclass=config.MapDBTableName('reportclass')
       , reportclassgroup=config.MapDBTableName('reportclassgroup'))
-    rqsql.WHEREClause = '''
-      r.group_id = g.group_id
-      and g.group_code = {group_code!r}
-      and r.report_code LIKE {report_code!r}
-    '''.format(
-      group_code=self.group_code
-      , report_code='%'+self.report_code+'%%'
-    ) 
+    if self.periode_type not in (None,''):
+      rqsql.WHEREClause = '''
+        r.group_id = g.group_id
+        and g.group_code = {group_code!r}
+        and r.report_code LIKE {report_code!r}
+        and r.periode_type = {periode_type!r}
+      '''.format(
+        group_code=self.group_code
+        , report_code='%'+self.report_code+'%%'
+        , periode_type = self.periode_type
+      )
+    else:
+      rqsql.WHEREClause = '''
+        r.group_id = g.group_id
+        and g.group_code = {group_code!r}
+        and r.report_code LIKE {report_code!r}
+      '''.format(
+        group_code=self.group_code
+        , report_code='%'+self.report_code+'%%'
+      )
 
     #rqsql.GROUPBYClause = "GROUP BY acc.account_code, acc.account_name, acc.account_type" 
     rqsql.setAltOrderFieldNames("report_code;report_name;class_id")

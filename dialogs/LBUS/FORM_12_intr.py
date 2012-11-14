@@ -16,7 +16,8 @@ class LBUS_FORM_12:
       ,'LTUJUAN'
     ]
     self.attrlist = [
-      'BagPenyertaan'
+      'WaktuPenyertaan'
+      ,'BagPenyertaan'
       ,'Jumlah'
       ,'AgunanPPAP'
       ,'PPAPDibentuk'

@@ -23,23 +23,23 @@ def GenerateTxt(config, params, returns):
     #-- for
   #-- def   
   def formTxtValue(val, size, tipe):
+    if val==None:
+      val = ''
     if tipe==1:
       if val=='': val=0
       val = int(val)
     #--
     if tipe==2:
       if val=='': val=0
-      val = int(eval(val)*100000)
+      val = int(val*100000)
     #--
     if tipe==3:
       if val=='': val=0
-      val = int(eval(val)*100)
+      val = int(val*100)
     if tipe==4:
       val = str(val)
       val = val[0:2]+'/'+val[2:4]+'/'+val[4:8]
     if val=='-':
-      val = ''
-    if val==None:
       val = ''
     #--
     s = str(val)
@@ -86,17 +86,32 @@ def GenerateTxt(config, params, returns):
       )
   
   try :
+    #check periode if LBBU
+    limitform = ''
+    if g_code=='LBBU':
+      pLBBU = helper.GetObject("Period", par.period_id)
+      p_code = pLBBU.period_code
+      if p_code[-1:]!='4':
+        limitform = "and a.periode_type='W' "
     s = '''
        select a.* from reportclass a, 
        reportclassgroup b 
-       where a.group_id=b.group_id
+       where a.group_id=b.group_id %s
        and b.group_code='%s'
        order by report_code
-    ''' % g_code
+    ''' % (limitform,g_code)
     forms = config.CreateSQL(s).RawResult
     rec = status
     firstform = 0
     ids=''
+    #--
+    #while not forms.Eof:
+    #  ids+=str(forms.report_code)+', '
+    #  forms.Next()
+    #raise Exception, ids
+    #--
+    contents = ''
+    header = ''
     while not forms.Eof:
       ids+=str(forms.report_code)+', '
       sqlproperties = '''
@@ -139,6 +154,8 @@ def GenerateTxt(config, params, returns):
         tmap.Next()
       txtmap = txtmap.rstrip(', ')
       txtmap += ')'
+      if txtmap=="([0,0])": 
+        txtmap = "()"
       rec.txtmap = txtmap
       reportAttr = {}
       attrutil.transferAttributes(helper, 
@@ -147,6 +164,7 @@ def GenerateTxt(config, params, returns):
     
       oReport   = helper.GetObjectByNames('Report', reportAttr)
       itemName = "{0}_{1}".format(rec.group_code, rec.report_code)
+      useheader = rec.useheader
       if not oReport.isnull: 
         #raise Exception, "Report %s not found!" % itemName
       #--
@@ -161,20 +179,20 @@ def GenerateTxt(config, params, returns):
         periode_laporan = period.period_code
         jenis_laporan = '01'
         no_form = reportclass.report_code.split('FORM')[-1]
-        useheader = rec.useheader
         jml_record = 0
           
-        #set header
-        header=sandi_pelapor[:3]+'000'+periode_laporan+jenis_laporan+no_form.zfill(4)
+        #1: true LKPBU, 0:false, 2:row header only (LBUS), 3:header LHBU, 4:row header (LBBU)
+        #set header LKPBU
+        header+=sandi_pelapor[:3]+'000'+periode_laporan+jenis_laporan+no_form.zfill(4)
         if int(useheader)==3:
-          header=sandi_pelapor[:3]+'08'+periode_laporan+no_form
+          # if LHBU use this header
+          header+=sandi_pelapor[:3]+'08'+periode_laporan+no_form
         
+        itemName = "{0}_{1}".format(rec.group_code, rec.report_code)
         datamap = eval(rec.xlsmap)
         pos = datamap.keys()
         reflist = eval(rec.reflist)
-        txtmap = eval(rec.txtmap)
-        if not firstform:
-          contents = ''
+        txtmap = eval(rec.txtmap)     
         
         fixMap()
           
@@ -185,9 +203,14 @@ def GenerateTxt(config, params, returns):
         jml = 0
         totalrp = 0
         totalva = 0
+        if res.Eof and itemName[0:4]=='LBBU' and itemName[-1:] in ('5','6','7','9'):
+          res = config.CreateSQL('''
+              select -1 "item_id" from dual 
+          ''').rawresult
         while not res.Eof:
-          oItem = config.CreatePObjImplProxy(itemName)
-          oItem.Key = res.item_id
+          if res.item_id > 0:
+            oItem = config.CreatePObjImplProxy(itemName)
+            oItem.Key = res.item_id
           if int(useheader)==2:
             #row header LBUS
             contents += 'LS'+no_form+sandi_pelapor+periode_laporan
@@ -200,10 +223,10 @@ def GenerateTxt(config, params, returns):
                 no_form = '0'+str(no_form)
               no_form = no_form.ljust(4)[:4]
             if no_form[0:2]=='09':
-              contents += 'LBBUS'+str(no_form)+sandi_pelapor[:3]+'990'+periode_laporan+'121005517990'+str(jml+1).zfill(4)+str(jml+1).zfill(6)
+              contents += 'LBBUS'+str(no_form)+sandi_pelapor[:3]+'990'+periode_laporan+'121005517990'+str(jml+5).zfill(4)+str(jml+1).zfill(6)
             else:
               contents += 'LBBUS'+str(no_form)+sandi_pelapor[:3]+'990'+periode_laporan+'121005517990'+str(jml+1).zfill(4)+str(jml+1).zfill(4)
-          #raise Exception, str(datamap)
+          #raise Exception, pos
           for col in pos:
             fieldname = datamap[col]
             fieldname = fieldname.strip('@')
@@ -212,15 +235,30 @@ def GenerateTxt(config, params, returns):
               if no_form[0:2]=='11':
                 svalue = str(jml+1)
             elif fieldname == 'Endmonth':
-              svalue = str(Eom(periode_laporan[5:7], periode_laporan[1:5])).zfill(2)+periode_laporan[5:7]+periode_laporan[1:5]
+              svalue = str(Eom(periode_laporan[4:6], periode_laporan[0:4])).zfill(2)+periode_laporan[4:6]+periode_laporan[0:4]
             else:
-              svalue = oItem.EvalMembers(fieldname)
+              if res.item_id > 0:
+                if len(fieldname.split('.'))>1:
+                  checkname = fieldname.split('.')[0]+'_refdata_id'
+                else:
+                  checkname = fieldname
+                if oItem.IsFieldNull(checkname):
+                  svalue = None
+                else:
+                  svalue = oItem.EvalMembers(fieldname)
+              else:
+                if col==1:
+                  svalue = 'NIHIL'
+                else:
+                  svalue = None
               #sum rp dan va FORM1 LBBU
               if (int(useheader)==4) and (no_form=='01  ') and (col==4):
                 totalrp+=svalue
               if (int(useheader)==4) and (no_form=='01  ') and (col==5):
                 totalva+=svalue
-            contents += formTxtValue(svalue, txtmap[col][0], txtmap[col][1])          
+                
+            if len(txtmap)>0:
+              contents += formTxtValue(svalue, txtmap[col][0], txtmap[col][1])
             #--
           if int(useheader)==2:
             #row footer LBUS
@@ -233,7 +271,7 @@ def GenerateTxt(config, params, returns):
           if int(useheader)==4:
             #row footer LBBU
             if jml==0:
-              extra = ''.zfill(1300-len(contents))
+              extra = ''.zfill(1300-len(contents.split('\n')[-1]))
             contents += extra
           contents += '\n'
           jml+=1
@@ -252,9 +290,66 @@ def GenerateTxt(config, params, returns):
           contents += '121005517990'+str(jml+1).zfill(4)+str(jml+1).zfill(4)
           contents += 'RATA-RATA'.ljust(50)+str(jml+1).zfill(2).ljust(5)+'31121901'
           contents += str(totalrp/(jml-1)).zfill(30)+str(totalva/(jml-1)).zfill(30)+''.zfill(1135)+'\n'
+        if (int(useheader)==4) and (no_form=='09  '):
+          #summary FORM9 LBBU
+          contents += 'LBBUS'+str(no_form)+sandi_pelapor[:3]+'990'+periode_laporan
+          contents += '121005517990'+str(1).zfill(4)+str(999996).zfill(6)
+          for col in pos:
+            if col==1:
+              svalue = 'Total Saldo Pembiayaan Yang Direstrukturisasi Bulan ini'
+            elif col==19:
+              svalue = 0 #total
+            elif col==30:
+              svalue = str(Eom(periode_laporan[4:6], periode_laporan[0:4])).zfill(2)+periode_laporan[4:6]+periode_laporan[0:4]
+            else:
+              svalue = None
+            contents += formTxtValue(svalue, txtmap[col][0], txtmap[col][1])
+          contents += ''.zfill(602)+'\n'
+          contents += 'LBBUS'+str(no_form)+sandi_pelapor[:3]+'990'+periode_laporan
+          contents += '121005517990'+str(2).zfill(4)+str(999997).zfill(6)
+          for col in pos:
+            if col==1:
+              svalue = ' '
+            elif col==19:
+              svalue = 0 #total
+            elif col==30:
+              svalue = str(Eom(periode_laporan[4:6], periode_laporan[0:4])).zfill(2)+periode_laporan[4:6]+periode_laporan[0:4]
+            else:
+              svalue = None
+            contents += formTxtValue(svalue, txtmap[col][0], txtmap[col][1])
+          contents += ''.zfill(602)+'\n'
+          contents += 'LBBUS'+str(no_form)+sandi_pelapor[:3]+'990'+periode_laporan
+          contents += '121005517990'+str(3).zfill(4)+str(999998).zfill(6)
+          for col in pos:
+            if col==1:
+              svalue = 'Saldo Pembiayaan Yang Direstrukturisasi Bulan Lalu'
+            elif col==19:
+              svalue = 0 #total bln lalu?
+            elif col==30:
+              svalue = str(Eom(periode_laporan[4:6], periode_laporan[0:4])).zfill(2)+periode_laporan[4:6]+periode_laporan[0:4]
+            else:
+              svalue = None
+            contents += formTxtValue(svalue, txtmap[col][0], txtmap[col][1])
+          contents += ''.zfill(602)+'\n'
+          contents += 'LBBUS'+str(no_form)+sandi_pelapor[:3]+'990'+periode_laporan
+          contents += '121005517990'+str(4).zfill(4)+str(999999).zfill(6)
+          for col in pos:
+            if col==1:
+              svalue = 'Saldo Kumulatif Pembiayaan yang Direstrukturisasi'
+            elif col==19:
+              svalue = 0 #total
+            elif col==30:
+              svalue = str(Eom(periode_laporan[4:6], periode_laporan[0:4])).zfill(2)+periode_laporan[4:6]+periode_laporan[0:4]
+            else:
+              svalue = None
+            contents += formTxtValue(svalue, txtmap[col][0], txtmap[col][1])
+          contents += ''.zfill(602)+'\n'
         header += str(jml).zfill(6)[-6:]+'\n'
         #end indent
       firstform+=1
+      if int(useheader) in (1,3):
+        header+=contents
+        contents = ''
       forms.Next()
     #--
     storeDir  = config.UserHomeDirectory
@@ -265,7 +360,8 @@ def GenerateTxt(config, params, returns):
     fOut = open(storeFile, "w")
     if int(useheader) in (1,3):
       fOut.write(header)
-    fOut.write(contents)
+    else:
+      fOut.write(contents)
     fOut.close()
     app = config.AppObject
     sw = returns.AddStreamWrapper()

@@ -363,9 +363,11 @@ def GenerateTxt(config, params, returns):
     useheader = rec.useheader
     jml_record = 0
       
-    #set header
+    #1: true LKPBU, 0:false, 2:row header only (LBUS), 3:header LHBU, 4:row header (LBBU)
+    #set header LKPBU
     header=sandi_pelapor[:3]+'000'+periode_laporan+jenis_laporan+no_form.zfill(4)
     if int(useheader)==3:
+      # if LHBU use this header
       header=sandi_pelapor[:3]+'08'+periode_laporan+no_form
     
     itemName = "{0}_{1}".format(rec.group_code, rec.report_code)
@@ -527,6 +529,7 @@ def GenerateTxt(config, params, returns):
     if not os.path.exists(spath): os.makedirs(spath)
     fOut = open(storeFile, "w")
     if int(useheader) in (1,3):
+      #if LKPBU or LHBU : use header
       fOut.write(header)
     fOut.write(contents)
     fOut.close()
