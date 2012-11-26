@@ -71,8 +71,8 @@ def FormOnSetDataEx(uideflist, params):
       branchmembers.Next()
     pid = params.FirstRecord.period_id
     pCode = config.CreateSQL("select period_code from period where period_id=%s" % pid).RawResult.period_code
-    tgl = pCode[2:4]
-    bln = pCode[:2]
+    bln = pCode[2:4]
+    tgl = pCode[:2]
     thn = pCode[4:8]
     period = "%s-%s-%s" % (tgl,bln,thn)
     ds = uideflist.uipData.Dataset
