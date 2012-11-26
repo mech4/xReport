@@ -358,14 +358,16 @@ def GenerateTxt(config, params, returns):
     
     sandi_pelapor = branch.branch_code
     periode_laporan = period.period_code
-    jenis_laporan = '01'
+    jenis_laporan = 'A'
     no_form = reportclass.report_code.split('FORM')[-1]
     useheader = rec.useheader
     jml_record = 0
       
     #1: true LKPBU, 0:false, 2:row header only (LBUS), 3:header LHBU, 4:row header (LBBU)
     #set header LKPBU
-    header=sandi_pelapor[:3]+'000'+periode_laporan+jenis_laporan+no_form.zfill(4)
+    if int(useheader)==1:
+      periode_laporan='M'+periode_laporan[2:6]+periode_laporan[0:2]+'01'
+    header=sandi_pelapor[:3]+'000000'+periode_laporan+jenis_laporan+no_form.zfill(4)
     if int(useheader)==3:
       # if LHBU use this header
       header=sandi_pelapor[:3]+'08'+periode_laporan+no_form
@@ -387,6 +389,7 @@ def GenerateTxt(config, params, returns):
     jml = 0
     totalrp = 0
     totalva = 0
+    skipped1strow = 0
     if res.Eof and itemName[0:4]=='LBBU' and itemName[-1:] in ('5','6','7','9'):
       res = config.CreateSQL('''
           select -1 "item_id" from dual 
@@ -397,7 +400,10 @@ def GenerateTxt(config, params, returns):
         oItem.Key = res.item_id
       if int(useheader)==2:
         #row header LBUS
-        contents += 'LS'+no_form+sandi_pelapor+periode_laporan
+        if no_form in ('01','02') and oItem.EvalMembers(datamap[1]) in (None,'', ' '):
+          pass
+        else:
+          contents += 'LS'+no_form+sandi_pelapor+periode_laporan
       if int(useheader)==4:
         #row header LBBU
         if no_form.isdigit():
@@ -434,22 +440,32 @@ def GenerateTxt(config, params, returns):
           if (int(useheader)==4) and (no_form=='01  ') and (col==5):
             totalva+=svalue
             
-        contents += formTxtValue(svalue, txtmap[col][0], txtmap[col][1])          
+        if int(useheader)==2 and no_form in ('01','02') and oItem.EvalMembers(datamap[1]) in (None,'', ' '):
+          pass
+        else:
+          contents += formTxtValue(svalue, txtmap[col][0], txtmap[col][1])          
         #--
       if int(useheader)==2:
-        #row footer LBUS
-        contents += str(jml+1).zfill(5)
-        if jml==0:
-          extra = ''.zfill(187-len(contents))
-        contents += extra
-        #uknown data
-        contents += '   020393    20000000000000000000000000000000000000000000000000'
+        if no_form in ('01','02') and oItem.EvalMembers(datamap[1]) in (None,'', ' '):
+          if jml==skipped1strow:
+            skipped1strow+=1
+        else:
+          #row footer LBUS
+          contents += str(jml+1).zfill(5)
+          if jml==skipped1strow:
+            extra = ''.zfill(187-len(contents))
+          contents += extra
+          #uknown data
+          contents += '   020393    20000000000000000000000000000000000000000000000000'
       if int(useheader)==4:
         #row footer LBBU
         if jml==0:
           extra = ''.zfill(1300-len(contents))
         contents += extra
-      contents += '\n'
+      if int(useheader)==2 and no_form in ('01','02') and oItem.EvalMembers(datamap[1]) in (None,'', ' '):
+        pass
+      else:
+        contents += '\n'
       jml+=1
       res.Next()
     #--
@@ -520,7 +536,10 @@ def GenerateTxt(config, params, returns):
           svalue = None
         contents += formTxtValue(svalue, txtmap[col][0], txtmap[col][1])
       contents += ''.zfill(602)+'\n'
-    header += str(jml).zfill(6)[-6:]+'\n'
+    if int(useheader)==1:
+      header += str(jml).zfill(9)[-9:]+'\n'
+    else:
+      header += str(jml).zfill(6)[-6:]+'\n'
     
     storeDir  = config.UserHomeDirectory
     storeFile = storeDir + rec.txttemplate

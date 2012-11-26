@@ -177,12 +177,14 @@ def GenerateTxt(config, params, returns):
         
         sandi_pelapor = branch.branch_code
         periode_laporan = period.period_code
-        jenis_laporan = '01'
+        jenis_laporan = 'A'
         no_form = reportclass.report_code.split('FORM')[-1]
         jml_record = 0
           
         #1: true LKPBU, 0:false, 2:row header only (LBUS), 3:header LHBU, 4:row header (LBBU)
         #set header LKPBU
+        if int(useheader)==1:
+          periode_laporan='M'+periode_laporan[2:6]+periode_laporan[0:2]+'01'
         header+=sandi_pelapor[:3]+'000'+periode_laporan+jenis_laporan+no_form.zfill(4)
         if int(useheader)==3:
           # if LHBU use this header
@@ -344,7 +346,10 @@ def GenerateTxt(config, params, returns):
               svalue = None
             contents += formTxtValue(svalue, txtmap[col][0], txtmap[col][1])
           contents += ''.zfill(602)+'\n'
-        header += str(jml).zfill(6)[-6:]+'\n'
+        if int(useheader)==1:
+          header += str(jml).zfill(9)[-9:]+'\n'
+        else:
+          header += str(jml).zfill(6)[-6:]+'\n'
         #end indent
       firstform+=1
       if int(useheader) in (1,3):
