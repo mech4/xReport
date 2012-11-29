@@ -444,7 +444,7 @@ def FormOnSetDataEx(uideflist, params):
       "536" : '''('920010111001', '920010111002', '920010111003', '920010111039',)''',
       "537" : '''('920010112001',)''',
       "531" : '''('920010113001',)''',
-      "540" : '''('920010210001', '920010210002', '920010210003', '920010210004', '920010210039',)''',
+      "540" : '''('920010211001', '920010211002', '920010211003', '920010211004', '920010211039',)''',
       "591" : '''('930010000001',)''',
       "597" : '''('930020110001', '930020120001', '930020130001', '930020140001', '930020140002', 
                   '930020150001', '930020150002', '930020210001', '930020220001', '930020230001', 
@@ -495,7 +495,17 @@ def FormOnSetDataEx(uideflist, params):
         value = None
       if value not in (None,'',0):
         #if value<0: value=value*-1
-        rp = int(value/1000000)
+        rp = int(value/100000)
+        if int(str(rp)[-1])>4:
+          if rp<0:
+            rp = (rp/10)
+          else:
+            rp = (rp/10)+1
+        else:
+          if rp<0:
+            rp = (rp/10)+1
+          else:
+            rp = rp/10
       else:
         rp = 0
       if res.reference_code in coaMap.keys(): 
@@ -505,6 +515,16 @@ def FormOnSetDataEx(uideflist, params):
       if value not in (None,'',0):
         #if value<0: value=value*-1
         valas = int(value/1000000)
+        if int(str(valas)[-1])>4:
+          if valas<0:
+            valas = valas/10
+          else:
+            valas = (valas/10)+1
+        else:
+          if valas<0:
+            valas = (valas/10)+1
+          else:
+            valas = valas/10
       else:
         valas = 0
       if res.reference_code=='290':
@@ -539,6 +559,9 @@ def FormOnSetDataEx(uideflist, params):
       if kode==466 and rp>0:
         rp = 0
       total = rp+valas
+      if kode==445:
+        sATr = rp
+        sATv = valas
       if rp<0: rp=rp*-1
       if valas<0: valas=valas*-1
       if total<0: total=total*-1
@@ -546,5 +569,59 @@ def FormOnSetDataEx(uideflist, params):
       rec.SetFieldByName('Value2', str(valas))    
       rec.SetFieldByName('Total', str(total))    
       res.Next()
+    if (sATr<0) or (sATv<0):
+      for i in range(ds.RecordCount):
+        cek = ds.GetRecord(i)
+        if cek.GetFieldByName('LPOS.reference_code')=='230':
+          recnum230 = i
+        if cek.GetFieldByName('LPOS.reference_code')=='445':
+          recnum445 = i
+        if cek.GetFieldByName('LPOS.reference_code')=='290':
+          recnum290 = i
+        if cek.GetFieldByName('LPOS.reference_code')=='490':
+          recnum490 = i
+    if sATr<0:
+      upd = ds.GetRecord(recnum230)
+      upd.SetFieldByName('Value1', str(int(upd.GetFieldByName('Value1'))+(sATr*-1)))
+      upd.SetFieldByName('Total', str(int(upd.GetFieldByName('Total'))+(sATr*-1)))
+      upd = ds.GetRecord(recnum290)
+      upd.SetFieldByName('Value1', str(int(upd.GetFieldByName('Value1'))+(sATr*-1)))
+      upd.SetFieldByName('Total', str(int(upd.GetFieldByName('Total'))+(sATr*-1)))
+      upd = ds.GetRecord(recnum445)
+      upd.SetFieldByName('Value1', '0')
+      upd.SetFieldByName('Total', str(int(upd.GetFieldByName('Total'))+(sATr)))
+      upd = ds.GetRecord(recnum490)
+      upd.SetFieldByName('Value1', str(int(upd.GetFieldByName('Value1'))+(sATr*-1)))
+      upd.SetFieldByName('Total', str(int(upd.GetFieldByName('Total'))+(sATr*-1)))
+    if sATv<0:
+      upd = ds.GetRecord(recnum230)
+      upd.SetFieldByName('Value1', str(int(upd.GetFieldByName('Value1'))+(sATv*-1)))
+      upd.SetFieldByName('Total', str(int(upd.GetFieldByName('Total'))+(sATv*-1)))
+      upd = ds.GetRecord(recnum290)
+      upd.SetFieldByName('Value1', str(int(upd.GetFieldByName('Value1'))+(sATv*-1)))
+      upd.SetFieldByName('Total', str(int(upd.GetFieldByName('Total'))+(sATv*-1)))
+      upd = ds.GetRecord(recnum445)
+      upd.SetFieldByName('Value1', '0')
+      upd.SetFieldByName('Total', str(int(upd.GetFieldByName('Total'))+(sATv)))
+      upd = ds.GetRecord(recnum490)
+      upd.SetFieldByName('Value1', str(int(upd.GetFieldByName('Value1'))+(sATv*-1)))
+      upd.SetFieldByName('Total', str(int(upd.GetFieldByName('Total'))+(sATv*-1)))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     #--
     
