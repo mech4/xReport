@@ -562,6 +562,9 @@ def FormOnSetDataEx(uideflist, params):
       if kode==445:
         sATr = rp
         sATv = valas
+      if kode==223:
+        sRAKr = rp
+        sRAKv = valas
       if rp<0: rp=rp*-1
       if valas<0: valas=valas*-1
       if total<0: total=total*-1
@@ -569,18 +572,22 @@ def FormOnSetDataEx(uideflist, params):
       rec.SetFieldByName('Value2', str(valas))    
       rec.SetFieldByName('Total', str(total))    
       res.Next()
-    if (sATr<0) or (sATv<0):
+    if (sATr<0) or (sATv<0) or (sRAKr<0) or (sRAKv<0):
       for i in range(ds.RecordCount):
         cek = ds.GetRecord(i)
         if cek.GetFieldByName('LPOS.reference_code')=='230':
           recnum230 = i
+        if cek.GetFieldByName('LPOS.reference_code')=='223':
+          recnum223 = i
+        if cek.GetFieldByName('LPOS.reference_code')=='393':
+          recnum393 = i
         if cek.GetFieldByName('LPOS.reference_code')=='445':
           recnum445 = i
         if cek.GetFieldByName('LPOS.reference_code')=='290':
           recnum290 = i
         if cek.GetFieldByName('LPOS.reference_code')=='490':
           recnum490 = i
-    if sATr<0:
+    if sATr<0:                                                             
       upd = ds.GetRecord(recnum230)
       upd.SetFieldByName('Value1', str(int(upd.GetFieldByName('Value1'))+(sATr*-1)))
       upd.SetFieldByName('Total', str(int(upd.GetFieldByName('Total'))+(sATr*-1)))
@@ -606,22 +613,31 @@ def FormOnSetDataEx(uideflist, params):
       upd = ds.GetRecord(recnum490)
       upd.SetFieldByName('Value1', str(int(upd.GetFieldByName('Value1'))+(sATv*-1)))
       upd.SetFieldByName('Total', str(int(upd.GetFieldByName('Total'))+(sATv*-1)))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    if sRAKr<0:                                                             
+      upd = ds.GetRecord(recnum393)
+      upd.SetFieldByName('Value1', str(int(upd.GetFieldByName('Value1'))+(sRAKr*-1)))
+      upd.SetFieldByName('Total', str(int(upd.GetFieldByName('Total'))+(sRAKr*-1)))
+      upd = ds.GetRecord(recnum490)
+      upd.SetFieldByName('Value1', str(int(upd.GetFieldByName('Value1'))+(sRAKr*-1)))
+      upd.SetFieldByName('Total', str(int(upd.GetFieldByName('Total'))+(sRAKr*-1)))
+      upd = ds.GetRecord(recnum223)
+      upd.SetFieldByName('Value1', '0')
+      upd.SetFieldByName('Total', str(int(upd.GetFieldByName('Total'))+(sRAKr)))
+      upd = ds.GetRecord(recnum290)
+      upd.SetFieldByName('Value1', str(int(upd.GetFieldByName('Value1'))+(sRAKr*-1)))
+      upd.SetFieldByName('Total', str(int(upd.GetFieldByName('Total'))+(sRAKr*-1)))
+    if sRAKv<0:
+      upd = ds.GetRecord(recnum393)
+      upd.SetFieldByName('Value1', str(int(upd.GetFieldByName('Value1'))+(sRAKv*-1)))
+      upd.SetFieldByName('Total', str(int(upd.GetFieldByName('Total'))+(sRAKv*-1)))
+      upd = ds.GetRecord(recnum490)
+      upd.SetFieldByName('Value1', str(int(upd.GetFieldByName('Value1'))+(sRAKv*-1)))
+      upd.SetFieldByName('Total', str(int(upd.GetFieldByName('Total'))+(sRAKv*-1)))
+      upd = ds.GetRecord(recnum223)
+      upd.SetFieldByName('Value1', '0')
+      upd.SetFieldByName('Total', str(int(upd.GetFieldByName('Total'))+(sRAKv)))
+      upd = ds.GetRecord(recnum290)
+      upd.SetFieldByName('Value1', str(int(upd.GetFieldByName('Value1'))+(sRAKv*-1)))
+      upd.SetFieldByName('Total', str(int(upd.GetFieldByName('Total'))+(sRAKv*-1)))
     #--
     
