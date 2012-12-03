@@ -48,7 +48,8 @@ def FormOnSetDataEx(uideflist, params):
     period = "%s-%s-%s" % (str(tgl),str(bln),str(thn))
     ds = uideflist.uipData.Dataset
     s = '''
-        select a.nomor_rekening,                                                   
+        select a.nomor_rekening, 
+        a.jml,                                                  
         r1.reference_code c1, 
         r1.reference_desc d1,
         r1.refdata_id i1,
@@ -63,16 +64,18 @@ def FormOnSetDataEx(uideflist, params):
         r4.reference_code c4, 
         r4.reference_desc d4,
         r4.refdata_id i4
-        from %s a join %s fa on (a.nomor_rekening=fa.nomor_rekening) 
+        from (select nomor_rekening, count(nomor_rekening) jml from %s
+        group by nomor_rekening) a join %s fa on (a.nomor_rekening=fa.nomor_rekening) 
         left outer join %s b on (a.nomor_rekening=b.nomor_rekening)
         left outer join %s c on (a.nomor_rekening=c.nomor_rekening)
         left outer join %s d on (b.nomor_nasabah=d.nomor_nasabah)
         left outer join %s e on (fa.facility_no=e.facility_no)
-        left outer join %s r1 on (r1.reference_code=decode(fa.restructure_counter,0,'20','10') and r1.reftype_id=219)
+        left outer join %s r1 on (r1.reference_code=decode(c.status_piutang,'10','10','20') and r1.reftype_id=219)
         left outer join %s r2 on (r2.reference_code=decode(e.currency_code,'IDR','360','USD','840','SIN','702') and r2.reftype_id=232)
         left outer join %s s1 on (d.ref_hub_bank=s1.id)
         left outer join %s r3 on (r3.reference_code=s1.kode_1 and r3.reftype_id=124)
         left outer join %s r4 on (to_number(r4.reference_code)=to_number(fa.overall_col_level) and r4.reftype_id=235)
+        where e.kode_cabang in (%s)
     ''' % ( 
            config.MapDBTableName('financing.finmurabahahaccount'),
            config.MapDBTableName('financing.finaccount'),
@@ -84,12 +87,14 @@ def FormOnSetDataEx(uideflist, params):
            config.MapDBTableName('enterprise.referencedata'),
            config.MapDBTableName('financing.sandi'),
            config.MapDBTableName('enterprise.referencedata'),
-           config.MapDBTableName('enterprise.referencedata')
+           config.MapDBTableName('enterprise.referencedata'),
+           listcabang
            )
     res = config.CreateSQL(s).RawResult
     while not res.Eof:
       ins = ds.AddRecord()
       ins.NomorRekening = res.nomor_rekening
+      ins.JumlahRekening = res.jml
       ins.SetFieldByName('LSTATUSPIUTANG.reference_code', res.c1)
       ins.SetFieldByName('LSTATUSPIUTANG.reference_desc', res.d1)
       ins.SetFieldByName('LSTATUSPIUTANG.refdata_id', res.i1)
