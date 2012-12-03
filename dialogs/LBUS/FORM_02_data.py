@@ -566,24 +566,24 @@ def FormOnSetDataEx(uideflist, params):
       sumres['435'][1] = valas*-1
     sumres['430'][2] = sumres['430'][0]+sumres['430'][1] 
     sumres['435'][2] = sumres['435'][0]+sumres['435'][1] 
-    rp = sumres['400'][0]-sumres['405'][0]+sumres['430'][0]-sumres['435'][0]
+    rp = sumres['400'][0]+sumres['405'][0]+sumres['430'][0]+sumres['435'][0]
     if rp>0:
       sumres['440'][0] = rp
     if rp<0:
       sumres['445'][0] = rp*-1 
-    valas = sumres['400'][1]-sumres['405'][1]+sumres['430'][1]-sumres['435'][1]
+    valas = sumres['400'][1]+sumres['405'][1]+sumres['430'][1]+sumres['435'][1]
     if valas>0:
       sumres['440'][1] = valas
     if valas<0:
       sumres['445'][1] = valas*-1
     sumres['430'][2] = sumres['440'][0]+sumres['440'][1] 
     sumres['445'][2] = sumres['445'][0]+sumres['445'][1] 
-    rp = sumres['440'][0]-sumres['445'][0]+sumres['447'][0]-sumres['448'][0]+sumres['451'][0]+sumres['455'][0]-sumres['461'][0]-sumres['465'][0]+sumres['470'][0]-sumres['475'][0]-sumres['480'][0]
+    rp = sumres['440'][0]+sumres['445'][0]+sumres['447'][0]+sumres['448'][0]+sumres['451'][0]+sumres['455'][0]+sumres['461'][0]+sumres['465'][0]+sumres['470'][0]+sumres['475'][0]+sumres['480'][0]
     if rp>0:
       sumres['490'][0] = rp
     if rp<0:
       sumres['500'][0] = rp*-1 
-    valas = sumres['440'][1]-sumres['445'][1]+sumres['447'][1]-sumres['448'][1]+sumres['451'][1]+sumres['455'][1]-sumres['461'][1]-sumres['465'][1]+sumres['470'][1]-sumres['475'][1]-sumres['480'][1]
+    valas = sumres['440'][1]+sumres['445'][1]+sumres['447'][1]+sumres['448'][1]+sumres['451'][1]+sumres['455'][1]+sumres['461'][1]+sumres['465'][1]+sumres['470'][1]+sumres['475'][1]+sumres['480'][1]
     if valas>0:
       sumres['490'][1] = valas
     if valas<0:
