@@ -91,8 +91,11 @@ def FormOnSetDataEx(uideflist, params):
           where c.kode_account in ('202010000001','202020000001','202030100001','202030100002','202030100003',
                                  '202030100004','202030100005','202030100006','202030200001','202030200002',
                                  '202030200003','202030200004','202030200005','202030200006')
+          and c.kode_interface in  ('glnomi', 'Saldo_Plus')
+          and d.status_rekening<>3
           and (extract(month from h.tanggal) = '%s' or extract(month from i.tanggal) = '%s')
           and d.kode_cabang in (%s)
+          order by rc1
      ''' % ( 
            config.MapDBTableName('core.rekeningcustomer'),
            config.MapDBTableName('core.rekeningliabilitas'),
@@ -110,40 +113,46 @@ def FormOnSetDataEx(uideflist, params):
     #raise Exception, s
     res = config.CreateSQL(s).RawResult
     #x = 0
-    totalgb = 0
-    jmlgb = 0
+    totalgbt = 0
+    jmlgbt = 0
+    totalgbd = 0
+    jmlgbd = 0
+    putpos = 0
     while not res.Eof:
       if res.total<5000000:
-        totalgb+=res.total
-        jmlgb+=1
-        if totalgb>=5000000:
-          ins = ds.AddRecord()
-          ins.JumlahRekening = jmlgb
-          ins.SetFieldByName('LJENIS.reference_code', res.rc1)
-          ins.SetFieldByName('LJENIS.reference_desc', res.rd1)
-          ins.SetFieldByName('LJENIS.refdata_id', res.ri1)
-          ins.SetFieldByName('LJENISVALUTA.reference_code', res.rc2)
-          ins.SetFieldByName('LJENISVALUTA.reference_desc', res.rd2)
-          ins.SetFieldByName('LJENISVALUTA.refdata_id', res.ri2)
-          ins.SetFieldByName('LHUBBANK.reference_code', res.rc3)
-          ins.SetFieldByName('LHUBBANK.reference_desc', res.rd3)
-          ins.SetFieldByName('LHUBBANK.refdata_id', res.ri3)
-          ins.SetFieldByName('LLOKASI.reference_code', res.rc4)
-          ins.SetFieldByName('LLOKASI.reference_desc', res.rd4)
-          ins.SetFieldByName('LLOKASI.refdata_id', res.ri4)
-          ins.Bulan = 0
-          ins.Hari = 0
-          ins.Nisbah = 0
-          ins.Persen = 0
-          t = int(totalgb/100000)
-          if int(str(t)[-1])>5:
-            t = (t/10)+1
-          else:
-            t = t/10 
-          ins.Jumlah = t
-          totalgb = 0
-          jmlgb = 0
+        if res.rc1=='21':
+          totalgbt+=res.total
+          jmlgbt+=1
+          trc1 = res.rc1
+          trd1 = res.rd1
+          tri1 = res.ri1
+          trc2 = res.rc2
+          trd2 = res.rd2
+          tri2 = res.ri2
+          trc3 = res.rc3
+          trd3 = res.rd3
+          tri3 = res.ri3
+          trc4 = res.rc4
+          trd4 = res.rd4
+          tri4 = res.ri4
+        if res.rc1=='22':
+          totalgbd+=res.total
+          jmlgbd+=1
+          drc1 = res.rc1
+          drd1 = res.rd1
+          dri1 = res.ri1
+          drc2 = res.rc2
+          drd2 = res.rd2
+          dri2 = res.ri2
+          drc3 = res.rc3
+          drd3 = res.rd3
+          dri3 = res.ri3
+          drc4 = res.rc4
+          drd4 = res.rd4
+          dri4 = res.ri4
       else:
+        if res.rc1=='21':
+          putpos+=1 
         ins = ds.AddRecord()
         ins.JumlahRekening = res.jml
         ins.SetFieldByName('LJENIS.reference_code', res.rc1)
@@ -171,6 +180,56 @@ def FormOnSetDataEx(uideflist, params):
           t = t/10 
         ins.Jumlah = t
       res.Next()
+    if jmlgbt>0:
+      ins = ds.InsertRecord(putpos)
+      ins.JumlahRekening = jmlgbt
+      ins.SetFieldByName('LJENIS.reference_code', trc1)
+      ins.SetFieldByName('LJENIS.reference_desc', trd1)
+      ins.SetFieldByName('LJENIS.refdata_id', tri1)
+      ins.SetFieldByName('LJENISVALUTA.reference_code', trc2)
+      ins.SetFieldByName('LJENISVALUTA.reference_desc', trd2)
+      ins.SetFieldByName('LJENISVALUTA.refdata_id', tri2)
+      ins.SetFieldByName('LHUBBANK.reference_code', trc3)
+      ins.SetFieldByName('LHUBBANK.reference_desc', trd3)
+      ins.SetFieldByName('LHUBBANK.refdata_id', tri3)
+      ins.SetFieldByName('LLOKASI.reference_code', trc4)
+      ins.SetFieldByName('LLOKASI.reference_desc', trd4)
+      ins.SetFieldByName('LLOKASI.refdata_id', tri4)
+      ins.Bulan = 0
+      ins.Hari = 0
+      ins.Nisbah = 0
+      ins.Persen = 0
+      t = int(totalgbt/100000)
+      if int(str(t)[-1])>5:
+        t = (t/10)+1
+      else:
+        t = t/10 
+      ins.Jumlah = t
+    if jmlgbd>0:
+      ins = ds.AddRecord()
+      ins.JumlahRekening = jmlgbd
+      ins.SetFieldByName('LJENIS.reference_code', drc1)
+      ins.SetFieldByName('LJENIS.reference_desc', drd1)
+      ins.SetFieldByName('LJENIS.refdata_id', dri1)
+      ins.SetFieldByName('LJENISVALUTA.reference_code', drc2)
+      ins.SetFieldByName('LJENISVALUTA.reference_desc', drd2)
+      ins.SetFieldByName('LJENISVALUTA.refdata_id', dri2)
+      ins.SetFieldByName('LHUBBANK.reference_code', drc3)
+      ins.SetFieldByName('LHUBBANK.reference_desc', drd3)
+      ins.SetFieldByName('LHUBBANK.refdata_id', dri3)
+      ins.SetFieldByName('LLOKASI.reference_code', drc4)
+      ins.SetFieldByName('LLOKASI.reference_desc', drd4)
+      ins.SetFieldByName('LLOKASI.refdata_id', dri4)
+      ins.Bulan = 0
+      ins.Hari = 0
+      ins.Nisbah = 0
+      ins.Persen = 0
+      t = int(totalgbd/100000)
+      if int(str(t)[-1])>5:
+        t = (t/10)+1
+      else:
+        t = t/10 
+      ins.Jumlah = t
     #raise Exception, x
 
     
