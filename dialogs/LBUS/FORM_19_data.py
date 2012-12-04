@@ -135,7 +135,12 @@ def FormOnSetDataEx(uideflist, params):
           ins.Hari = 0
           ins.Nisbah = 0
           ins.Persen = 0
-          ins.Jumlah = int(totalgb/1000000)
+          t = int(totalgb/100000)
+          if int(str(t)[-1])>5:
+            t = (t/10)+1
+          else:
+            t = t/10 
+          ins.Jumlah = t
           totalgb = 0
           jmlgb = 0
       else:
@@ -157,9 +162,14 @@ def FormOnSetDataEx(uideflist, params):
         ins.SetFieldByName('LLOKASI.refdata_id', res.ri4)
         ins.Bulan = res.bln
         ins.Hari = res.hari
-        ins.Nisbah = res.nisbah
-        ins.Persen = res.persen
-        ins.Jumlah = int(res.total/1000000)
+        ins.Nisbah = round(res.nisbah, 2)
+        ins.Persen = round(res.persen, 2)
+        t = int(res.total/100000)
+        if int(str(t)[-1])>5:
+          t = (t/10)+1
+        else:
+          t = t/10 
+        ins.Jumlah = t
       res.Next()
     #raise Exception, x
 

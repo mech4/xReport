@@ -179,8 +179,13 @@ def FormOnSetDataEx(uideflist, params):
       ins.SetFieldByName('LLOKASI.reference_code', res.rc4)
       ins.SetFieldByName('LLOKASI.reference_desc', res.rd4)
       ins.SetFieldByName('LLOKASI.refdata_id', res.ri4)
-      ins.PersenBonus = res.nisbah
-      ins.Jumlah = int(res.total/1000000)
+      ins.PersenBonus = round(res.nisbah, 2)
+      t = int(res.total/100000)
+      if int(str(t)[-1])>5:
+        t = (t/10)+1
+      else:
+        t = t/10 
+      ins.Jumlah = t
       res.Next()
 
     
