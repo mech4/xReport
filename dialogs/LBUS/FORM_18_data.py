@@ -122,27 +122,26 @@ def FormOnSetDataEx(uideflist, params):
           r4.refdata_id ri4,
           r4.reference_code rc4,
           r4.reference_desc rd4,
+          r5.refdata_id ri5,
+          r5.reference_code rc5,
+          r5.reference_desc rd5,
           case when (b.is_bagi_hasil_khusus='T') then b.nisbah_bagi_hasil else g.nisbah_bonus_dasar end nisbah,
           h.gdr*1.2*nisbah persen,
           d.saldo total 
-          from %s a, %s b, %s c, %s d, %s e, %s f, %s g, 
-          bagihasil_tabgir h, %s r1, %s r2, %s r3, %s r4
-          where a.nomor_rekening=b.nomor_rekening 
-          and b.kode_produk=c.kode_produk
-          and a.nomor_rekening=d.nomor_rekening
-          and a.nomor_nasabah=e.nomor_nasabah
-          and d.kode_cabang=f.kode_cabang
-          and b.kode_produk=g.kode_produk
-          and a.nomor_rekening=h.nomor_rekening
-          and decode(c.kode_account, '202010000001', '29', '202020000001', '21', '22')=r1.reference_code
-          and r1.reftype_id=120 
-          and decode(d.kode_valuta, 'IDR', '360', 'USD', '840', 'SGD', '702')=r2.reference_code
-          and r2.reftype_id=232
-          and decode(e.is_pihak_terkait, 'T', '1', '2') = r3.reference_code
-          and r3.reftype_id=124
-          and f.kode_lokasi=r4.reference_code
-          and r4.reftype_id=251
-          and c.kode_account in ('201020000001','201010000001','201010000002')
+          from %s a
+          left outer join %s b on (a.nomor_rekening=b.nomor_rekening) 
+          left outer join %s c on (b.kode_produk=c.kode_produk)
+          left outer join %s d on (a.nomor_rekening=d.nomor_rekening)
+          left outer join %s e on (a.nomor_nasabah=e.nomor_nasabah)
+          left outer join %s f on (d.kode_cabang=f.kode_cabang) 
+          left outer join %s g on (b.kode_produk=g.kode_produk)
+          left outer join bagihasil_tabgir h on (a.nomor_rekening=h.nomor_rekening)
+          left outer join %s r1 on (decode(c.kode_account, '201020000001', '20', '201010000001', '10', '201010000002', '10','99')=r1.reference_code and r1.reftype_id=115)
+          left outer join %s r2 on (decode(d.kode_valuta, 'IDR', '360', 'USD', '840', 'SGD', '702')=r2.reference_code and r2.reftype_id=232)
+          left outer join %s r3 on (decode(e.is_pihak_terkait, 'T', '1', '2') = r3.reference_code and r3.reftype_id=124)
+          left outer join %s r4 on (f.kode_lokasi=r4.reference_code and r4.reftype_id=251) 
+          left outer join %s r5 on (decode(c.kode_account, '201010000002', '4', '1')=r5.reference_code and r5.reftype_id=221) 
+          where c.kode_account in ('201020000001','201010000001','201010000002')
           and extract(month from h.tanggal) = '%s'
           and d.kode_cabang in (%s)
      ''' % ( 
@@ -157,6 +156,7 @@ def FormOnSetDataEx(uideflist, params):
            config.MapDBTableName('enterprise.referencedata'),
            config.MapDBTableName('enterprise.referencedata'),
            config.MapDBTableName('enterprise.referencedata'),
+           config.MapDBTableName('enterprise.referencedata'),
            str(bln), listcabang
            )
     #raise Exception, s
@@ -164,6 +164,9 @@ def FormOnSetDataEx(uideflist, params):
     while not res.Eof:
       ins = ds.AddRecord()
       ins.JumlahRekening = res.jml
+      ins.SetFieldByName('LSIFAT.reference_code', res.rc5)
+      ins.SetFieldByName('LSIFAT.reference_desc', res.rd5)
+      ins.SetFieldByName('LSIFAT.refdata_id', res.ri5)
       ins.SetFieldByName('LJENIS.reference_code', res.rc1)
       ins.SetFieldByName('LJENIS.reference_desc', res.rd1)
       ins.SetFieldByName('LJENIS.refdata_id', res.ri1)

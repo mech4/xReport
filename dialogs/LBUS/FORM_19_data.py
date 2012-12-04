@@ -70,29 +70,28 @@ def FormOnSetDataEx(uideflist, params):
                                  '202030200005', 12,'202030200006', 99) bln,
           decode(c.kode_account, '202030100001', 99, '202030200001', 99, 0) hari,
           case when (b.is_bagi_hasil_khusus='T') then b.nisbah_bagi_hasil else g.nisbah_bonus_dasar end nisbah,
-          h.gdr*1.2*nisbah persen,
+          decode(decode(d.kode_jenis, 'DEP', i.ekuivalen_rate , h.gdr*nisbah/100), 
+                 0, case when (b.is_bagi_hasil_khusus='T') then b.nisbah_bagi_hasil else g.nisbah_bonus_dasar end/10, 
+                 null, case when (b.is_bagi_hasil_khusus='T') then b.nisbah_bagi_hasil else g.nisbah_bonus_dasar end/10,
+                 decode(d.kode_jenis, 'DEP', i.ekuivalen_rate , h.gdr*nisbah/100)) persen,
           d.saldo total 
-          from %s a, %s b, %s c, %s d, %s e, %s f, %s g, 
-          bagihasil_tabgir h, %s r1, %s r2, %s r3, %s r4
-          where a.nomor_rekening=b.nomor_rekening 
-          and b.kode_produk=c.kode_produk
-          and a.nomor_rekening=d.nomor_rekening
-          and a.nomor_nasabah=e.nomor_nasabah
-          and d.kode_cabang=f.kode_cabang
-          and b.kode_produk=g.kode_produk
-          and a.nomor_rekening=h.nomor_rekening
-          and decode(c.kode_account, '202010000001', '29', '202020000001', '21', '22')=r1.reference_code
-          and r1.reftype_id=120 
-          and decode(d.kode_valuta, 'IDR', '360', 'USD', '840', 'SGD', '702')=r2.reference_code
-          and r2.reftype_id=232
-          and decode(e.is_pihak_terkait, 'T', '1', '2') = r3.reference_code
-          and r3.reftype_id=124
-          and f.kode_lokasi=r4.reference_code
-          and r4.reftype_id=251
-          and c.kode_account in ('202010000001','202020000001','202030100001','202030100002','202030100003',
+          from %s a
+          left outer join %s b on (a.nomor_rekening=b.nomor_rekening)
+          left outer join %s c on (b.kode_produk=c.kode_produk)
+          left outer join %s d on(a.nomor_rekening=d.nomor_rekening)
+          left outer join %s e on (a.nomor_nasabah=e.nomor_nasabah)
+          left outer join %s f on (d.kode_cabang=f.kode_cabang)
+          left outer join %s g on (b.kode_produk=g.kode_produk)
+          left outer join bagihasil_tabgir h on (a.nomor_rekening=h.nomor_rekening)
+          left outer join bagihasil_deposito i on (a.nomor_rekening=i.nomor_rekening)
+          left outer join %s r1 on (decode(c.kode_account, '202010000001', '29', '202020000001', '21', '22')=r1.reference_code and r1.reftype_id=120)
+          left outer join %s r2 on (decode(d.kode_valuta, 'IDR', '360', 'USD', '840', 'SGD', '702')=r2.reference_code and r2.reftype_id=232)
+          left outer join %s r3 on (decode(e.is_pihak_terkait, 'T', '1', '2') = r3.reference_code and r3.reftype_id=124)
+          left outer join %s r4 on (f.kode_lokasi=r4.reference_code and r4.reftype_id=251)
+          where c.kode_account in ('202010000001','202020000001','202030100001','202030100002','202030100003',
                                  '202030100004','202030100005','202030100006','202030200001','202030200002',
                                  '202030200003','202030200004','202030200005','202030200006')
-          and extract(month from h.tanggal) = '%s'
+          and (extract(month from h.tanggal) = '%s' or extract(month from i.tanggal) = '%s')
           and d.kode_cabang in (%s)
      ''' % ( 
            config.MapDBTableName('core.rekeningcustomer'),
@@ -106,30 +105,62 @@ def FormOnSetDataEx(uideflist, params):
            config.MapDBTableName('enterprise.referencedata'),
            config.MapDBTableName('enterprise.referencedata'),
            config.MapDBTableName('enterprise.referencedata'),
-           str(bln), listcabang
+           str(bln), str(bln), listcabang
            )
     #raise Exception, s
     res = config.CreateSQL(s).RawResult
+    #x = 0
+    totalgb = 0
+    jmlgb = 0
     while not res.Eof:
-      ins = ds.AddRecord()
-      ins.JumlahRekening = res.jml
-      ins.SetFieldByName('LJENIS.reference_code', res.rc1)
-      ins.SetFieldByName('LJENIS.reference_desc', res.rd1)
-      ins.SetFieldByName('LJENIS.refdata_id', res.ri1)
-      ins.SetFieldByName('LJENISVALUTA.reference_code', res.rc2)
-      ins.SetFieldByName('LJENISVALUTA.reference_desc', res.rd2)
-      ins.SetFieldByName('LJENISVALUTA.refdata_id', res.ri2)
-      ins.SetFieldByName('LHUBBANK.reference_code', res.rc3)
-      ins.SetFieldByName('LHUBBANK.reference_desc', res.rd3)
-      ins.SetFieldByName('LHUBBANK.refdata_id', res.ri3)
-      ins.SetFieldByName('LLOKASI.reference_code', res.rc4)
-      ins.SetFieldByName('LLOKASI.reference_desc', res.rd4)
-      ins.SetFieldByName('LLOKASI.refdata_id', res.ri4)
-      ins.Bulan = res.bln
-      ins.Hari = res.hari
-      ins.Nisbah = res.nisbah
-      ins.Persen = res.persen
-      ins.Jumlah = int(res.total/1000000)
+      if res.total<5000000:
+        totalgb+=res.total
+        jmlgb+=1
+        if totalgb>=5000000:
+          ins = ds.AddRecord()
+          ins.JumlahRekening = jmlgb
+          ins.SetFieldByName('LJENIS.reference_code', res.rc1)
+          ins.SetFieldByName('LJENIS.reference_desc', res.rd1)
+          ins.SetFieldByName('LJENIS.refdata_id', res.ri1)
+          ins.SetFieldByName('LJENISVALUTA.reference_code', res.rc2)
+          ins.SetFieldByName('LJENISVALUTA.reference_desc', res.rd2)
+          ins.SetFieldByName('LJENISVALUTA.refdata_id', res.ri2)
+          ins.SetFieldByName('LHUBBANK.reference_code', res.rc3)
+          ins.SetFieldByName('LHUBBANK.reference_desc', res.rd3)
+          ins.SetFieldByName('LHUBBANK.refdata_id', res.ri3)
+          ins.SetFieldByName('LLOKASI.reference_code', res.rc4)
+          ins.SetFieldByName('LLOKASI.reference_desc', res.rd4)
+          ins.SetFieldByName('LLOKASI.refdata_id', res.ri4)
+          ins.Bulan = 0
+          ins.Hari = 0
+          ins.Nisbah = 0
+          ins.Persen = 0
+          ins.Jumlah = int(totalgb/1000000)
+          totalgb = 0
+          jmlgb = 0
+      else:
+        ins = ds.AddRecord()
+        ins.JumlahRekening = res.jml
+        ins.SetFieldByName('LJENIS.reference_code', res.rc1)
+        #if res.rc1=='22':
+        #  x +=1
+        ins.SetFieldByName('LJENIS.reference_desc', res.rd1)
+        ins.SetFieldByName('LJENIS.refdata_id', res.ri1)
+        ins.SetFieldByName('LJENISVALUTA.reference_code', res.rc2)
+        ins.SetFieldByName('LJENISVALUTA.reference_desc', res.rd2)
+        ins.SetFieldByName('LJENISVALUTA.refdata_id', res.ri2)
+        ins.SetFieldByName('LHUBBANK.reference_code', res.rc3)
+        ins.SetFieldByName('LHUBBANK.reference_desc', res.rd3)
+        ins.SetFieldByName('LHUBBANK.refdata_id', res.ri3)
+        ins.SetFieldByName('LLOKASI.reference_code', res.rc4)
+        ins.SetFieldByName('LLOKASI.reference_desc', res.rd4)
+        ins.SetFieldByName('LLOKASI.refdata_id', res.ri4)
+        ins.Bulan = res.bln
+        ins.Hari = res.hari
+        ins.Nisbah = res.nisbah
+        ins.Persen = res.persen
+        ins.Jumlah = int(res.total/1000000)
       res.Next()
+    #raise Exception, x
 
     
