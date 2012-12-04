@@ -18,7 +18,6 @@ class LBUS_FORM_02:
       , 2: 'Value1'
       , 3: 'Value2'
       , 4: 'Total'
-      , 5: '@Rownum'
     } 
     self.useheader = 2 #1: true, 0:false, 2: row header only
     self.txttemplate = 'lbus/form02.txt'
@@ -33,7 +32,6 @@ class LBUS_FORM_02:
       , [12,1]
       , [12,1]
       , [12,1]
-      , [5,1]
     )
   #--
 
