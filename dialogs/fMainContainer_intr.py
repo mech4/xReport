@@ -48,6 +48,8 @@ class fReportContainer:
     res = self.FormObject.CallServerMethod('PeriodCheck', ph)
     self.FormContainer.Show()
     self.switchEdit(False)
+    self.uipMain.beginRow = 1
+    self.uipMain.endRow = 100
     
   def branchOnExit(self, sender):
     uapp = self.FormObject.ClientApplication.UserAppObject
@@ -178,12 +180,14 @@ class fReportContainer:
       self.repform.useheader = None
     self.setAttrList()
     
+    beginRow = self.uipMain.beginRow or 1
     ph = app.CreateValues(
       ["class_id", uipMain.GetFieldValue("reportclass.class_id")]
       , ["period_id", uipMain.GetFieldValue("period.period_id")]
       , ["branch_id", uipMain.GetFieldValue("branch.branch_id")]
       , ["group_code", self.group_code]
       , ["report_code", uipMain.GetFieldValue("reportclass.report_code")]
+      , ["beginRow", beginRow]
       , ["attrlist", str(self.load_attrlist)]
     )
     self.repform.FormObject.SetDataWithParameters(ph)
@@ -199,12 +203,16 @@ class fReportContainer:
       ["class_id", uMain.GetFieldValue("reportclass.class_id")]
       , ["period_id", uMain.GetFieldValue("period.period_id")]
       , ["branch_id", uMain.GetFieldValue("branch.branch_id")]
+      , ["group_code", self.group_code]
+      , ["report_code", uipMain.GetFieldValue("reportclass.report_code")]
     )
     ph = formObj.CallServerMethod('CheckRepExist', ph)
     status = ph.FirstRecord
+    uMain.totalRow = status.totalRow
     if status.IsErr == 1:
       self.pData_bDownload.enabled = 0
       self.pData_bGenerate.enabled = 0
+    #--
 
 
   def bNewRowOnClick(self, sender):
@@ -377,3 +385,10 @@ class fReportContainer:
               ) 
 
     #--
+    
+    
+
+  def beginRowOnExit(self, sender):
+    # procedure(sender: TrtfDBEdit)
+    self.uipMain.endRow = self.uipMain.beginRow + 99
+    

@@ -68,6 +68,18 @@ object:rpclass::TPClassUIDefList<
         >, object:rpclass::TCustomLoadedField<
           Name='branch.branch_id'
           DataTypeName='INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='beginRow'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='endRow'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='totalRow'
+          DataTypeName='integer'
+          DataLength=20
         >
       }
       CustomLoadedLinks={

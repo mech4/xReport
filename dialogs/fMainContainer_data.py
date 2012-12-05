@@ -131,7 +131,7 @@ def SaveReport(config, params, returns):
 
 def CheckRepExist(config, params, returns):
   helper = phelper.PObjectHelper(config)
-  status = returns.CreateValues(["IsErr", 0])
+  status = returns.CreateValues(["IsErr", 0], ["totalRow", 0])
   try :
     rec = params.FirstRecord
     reportAttr = {}
@@ -141,6 +141,19 @@ def CheckRepExist(config, params, returns):
     oReport   = helper.GetObjectByNames('Report', reportAttr)
     if oReport.isnull: 
       raise Exception, "Report not found!"
+    #--
+    
+    # count total record
+    itemName = "{0}_{1}".format(rec.group_code
+      , rec.report_code)
+    
+    res = config.CreateSQL('''
+      select count(*) from {0}
+      where report_id = {1}
+    '''.format(itemName, oReport.report_id)).rawresult
+    
+    if not res.Eof:
+      status.totalRow = res.GetFieldValueAt(0) or 0
     #--
   except:    
     status.IsErr = 1
@@ -331,9 +344,9 @@ def GenerateTxt(config, params, returns):
     ret = mlu.DecodeDate(d)
     return ret[2] 
     
-  if DEBUG_MODE:
-    app = config.AppObject
-    app.ConCreate('out')
+  #if DEBUG_MODE:
+  app = config.AppObject
+  app.ConCreate('out')
   #--
   
   helper = phelper.PObjectHelper(config)
@@ -383,7 +396,8 @@ def GenerateTxt(config, params, returns):
     fixMap()
       
     res = config.CreateSQL('''
-        select item_id from {0} where report_id = {1} 
+        select item_id from {0} where report_id = {1}
+        order by item_id 
     '''.format(itemName, report_id)).rawresult
       
     jml = 0
@@ -395,6 +409,7 @@ def GenerateTxt(config, params, returns):
           select -1 "item_id" from dual 
       ''').rawresult
     while not res.Eof:
+      if jml % 100 == 0: app.ConWriteln("Process data ke - {0}".format(jml))
       if res.item_id > 0:
         oItem = config.CreatePObjImplProxy(itemName)
         oItem.Key = res.item_id
