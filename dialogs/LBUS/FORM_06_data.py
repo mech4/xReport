@@ -50,7 +50,7 @@ def FormOnSetDataEx(uideflist, params):
     period = "%s-%s-%s" % (str(tgl),str(bln),str(thn))
     ds = uideflist.uipData.Dataset
     s = '''
-        select a.*, b.saldo, 
+        select a.*, c.p_saldo, 
         r1.reference_code c1, 
         r1.reference_desc d1,
         r1.refdata_id i1,
@@ -89,6 +89,7 @@ def FormOnSetDataEx(uideflist, params):
         r11.refdata_id i11
         from %(PrevMonth)s a join %(RekeningTransaksi)s b on (a.nomorrekening=b.nomor_rekening
                                          or substr(a.nomorrekening,1,3)||'A'||substr(a.nomorrekening,4,15)=b.nomor_rekening)
+        left outer join %(SaldoRekening)s c on (b.nomor_rekening=c.nomor_rekening)
         left outer join %(ReferenceData)s r1 on (r1.reference_code=a.statuspiutang and r1.reftype_id=219)
         left outer join %(ReferenceData)s r2 on (r2.reference_code=a.jenispenggunaan and r2.reftype_id=235)
         left outer join %(ReferenceData)s r3 on (r3.reference_code=a.orientasipenggunaan and r3.reftype_id=108)
@@ -105,6 +106,7 @@ def FormOnSetDataEx(uideflist, params):
            'PrevMonth' : config.MapDBTableName('lbus.lbus_form_06'),
            'RekeningTransaksi' :config.MapDBTableName('pbscore.rekeningtransaksi'),
            'ReferenceData' : config.MapDBTableName('enterprise.referencedata'),
+           'SaldoRekening' : config.MapDBTableName('tmp.cknom_base'),
            'ParamCabang' : listcabang
     }
     #query data bln lalu
@@ -158,7 +160,7 @@ def FormOnSetDataEx(uideflist, params):
       ins.SaldoHargaPokok = res.saldohargapokok
       ins.SaldoMargin = res.saldomargin
       ins.DebetBlnLalu = res.bakidebetbulanlapor
-      saldo = res.saldo/100000
+      saldo = res.p_saldo/100000
       if int(str(saldo)[-1])>5:
         saldo = int((saldo/10)+1)
       else:
@@ -170,9 +172,6 @@ def FormOnSetDataEx(uideflist, params):
       ins.PPAPDibentuk = res.ppap
       res.Next()
       #isi data bln lalu
-      
-def Tst(self):     
-      
     s = '''
         select a.nomor_rekening, 
         a.jml,                                                  
@@ -190,34 +189,38 @@ def Tst(self):
         r4.reference_code c4, 
         r4.reference_desc d4,
         r4.refdata_id i4
-        from (select nomor_rekening, count(nomor_rekening) jml from %s
-        group by nomor_rekening) a join %s fa on (a.nomor_rekening=fa.nomor_rekening) 
-        left outer join %s b on (a.nomor_rekening=b.nomor_rekening)
-        left outer join %s c on (a.nomor_rekening=c.nomor_rekening)
-        left outer join %s d on (b.nomor_nasabah=d.nomor_nasabah)
-        left outer join %s e on (fa.facility_no=e.facility_no)
-        left outer join %s r1 on (r1.reference_code=decode(c.status_piutang,'10','10','20') and r1.reftype_id=219)
-        left outer join %s r2 on (r2.reference_code=decode(e.currency_code,'IDR','360','USD','840','SIN','702') and r2.reftype_id=232)
-        left outer join %s s1 on (d.ref_hub_bank=s1.id)
-        left outer join %s r3 on (r3.reference_code=s1.kode_1 and r3.reftype_id=124)
-        left outer join %s r4 on (to_number(r4.reference_code)=to_number(fa.overall_col_level) and r4.reftype_id=235)
-        where e.kode_cabang in (%s)
-    ''' % ( 
-           config.MapDBTableName('financing.finmurabahahaccount'),
-           config.MapDBTableName('financing.finaccount'),
-           config.MapDBTableName('core.rekeningcustomer'),
-           config.MapDBTableName('financing.finaccadditionaldata'),
-           config.MapDBTableName('financing.fincustadditionaldata'),
-           config.MapDBTableName('financing.finfacility'),
-           config.MapDBTableName('enterprise.referencedata'),
-           config.MapDBTableName('enterprise.referencedata'),
-           config.MapDBTableName('financing.sandi'),
-           config.MapDBTableName('enterprise.referencedata'),
-           config.MapDBTableName('enterprise.referencedata'),
-           listcabang
-           )
+        from (select nomor_rekening, count(nomor_rekening) jml from %(FinMurabahah)s
+        group by nomor_rekening) a join %(FinAccount)s fa on (a.nomor_rekening=fa.nomor_rekening) 
+        left outer join %(RekeningCustomer)s b on (a.nomor_rekening=b.nomor_rekening)
+        left outer join %(AccAdditional)s c on (a.nomor_rekening=c.nomor_rekening)
+        left outer join %(CustAdditional)s d on (b.nomor_nasabah=d.nomor_nasabah)
+        left outer join %(FinFacility)s e on (fa.facility_no=e.facility_no)
+        left outer join %(Nasabah)s f on (b.nomor_nasabah=f.nomor_nasabah)
+        left outer join %(ReferenceData)s r1 on (r1.reference_code=decode(c.status_piutang,'10','10','20') and r1.reftype_id=219)
+        left outer join %(ReferenceData)s r2 on (r2.reference_code=decode(e.currency_code,'IDR','360','USD','840','SIN','702') and r2.reftype_id=232)
+        left outer join %(ReferenceData)s r3 on (decode(f.is_pihak_terkait, 'T', '1', '2') = r3.reference_code and r3.reftype_id=124)
+        left outer join %(ReferenceData)s r4 on (to_number(r4.reference_code)=to_number(fa.overall_col_level) and r4.reftype_id=235)
+        where e.kode_cabang in (%(ParamCabang)s)
+        and not exists (select null from %(PrevMonth)s ne where 
+                                    a.nomor_rekening=ne.nomorrekening or 
+                                    a.nomor_rekening=substr(ne.nomorrekening,1,3)||'A'||substr(ne.nomorrekening,4,15)
+                        )  
+    ''' % { 
+           'FinMurabahah' : config.MapDBTableName('financing.finmurabahahaccount'),
+           'FinAccount' : config.MapDBTableName('financing.finaccount'),
+           'RekeningCustomer' : config.MapDBTableName('core.rekeningcustomer'),
+           'AccAdditional' : config.MapDBTableName('financing.finaccadditionaldata'),
+           'CustAdditional' : config.MapDBTableName('financing.fincustadditionaldata'),
+           'FinFacility' : config.MapDBTableName('financing.finfacility'),
+           'ReferenceData' : config.MapDBTableName('enterprise.referencedata'),
+           'PrevMonth' : config.MapDBTableName('lbus.lbus_form_06'),
+           'Nasabah' : config.MapDBTableName('core.Nasabah'),
+           'ParamCabang' : listcabang
+    }
     res = config.CreateSQL(s).RawResult
     while not res.Eof:
+      a+=1
+      app.ConWriteln('Proc rec #%s' % str(a))     
       ins = ds.AddRecord()
       ins.NomorRekening = res.nomor_rekening
       ins.JumlahRekening = res.jml
@@ -236,3 +239,4 @@ def Tst(self):
       ins.SetFieldByName('LKOLEKTIBILITAS.reference_desc', res.d4)
       ins.SetFieldByName('LKOLEKTIBILITAS.refdata_id', res.i4)
       res.Next()
+    app.ConRead('ok')
