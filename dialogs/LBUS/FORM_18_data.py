@@ -145,6 +145,7 @@ def FormOnSetDataEx(uideflist, params):
           left outer join %(ReferenceData)s r5 on (decode(c.kode_account, '201010000002', '4', '1')=r5.reference_code and r5.reftype_id=221) 
           where c.kode_account in ('201020000001','201010000001','201010000002')
              and d.kode_cabang in (%(ParamCabang)s)
+             and d.status_rekening<>3
              and b.tanggal_buka <= to_date('%(TanggalLaporan)s','dd-mm-yyyy')
           order by rc1
      ''' % { 

@@ -95,6 +95,7 @@ def FormOnSetDataEx(uideflist, params):
                                  '202030200003','202030200004','202030200005','202030200006')
              and c.kode_interface in  ('glnomi', 'Saldo_Plus')
              and d.kode_cabang in (%(ParamCabang)s)
+             and d.status_rekening<>3
              and b.tanggal_buka <= to_date('%(TanggalLaporan)s','dd-mm-yyyy')
           order by rc1
      ''' % { 
