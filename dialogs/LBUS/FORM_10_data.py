@@ -63,19 +63,28 @@ def FormOnSetDataEx(uideflist, params):
         fa.due_date tgl_tempo,
         r4.reference_code c4, 
         r4.reference_desc d4,
-        r4.refdata_id i4
-        from (select nomor_rekening, count(nomor_rekening) jml from %s
-        group by nomor_rekening) a join %s fa on (a.nomor_rekening=fa.nomor_rekening) 
+        r4.refdata_id i4,
+        r5.reference_code c5, 
+        r5.reference_desc d5,
+        r5.refdata_id i5,
+        r6.reference_code c6, 
+        r6.reference_desc d6,
+        r6.refdata_id i6
+        from (select nomor_rekening, finmusyarakahaccount_type, count(nomor_rekening) jml from %s
+        group by nomor_rekening,finmusyarakahaccount_type) a join %s fa on (a.nomor_rekening=fa.nomor_rekening) 
         left outer join %s b on (a.nomor_rekening=b.nomor_rekening)
         left outer join %s c on (a.nomor_rekening=c.nomor_rekening)
         left outer join %s d on (b.nomor_nasabah=d.nomor_nasabah)
         left outer join %s e on (fa.facility_no=e.facility_no)
+        left outer join %s f on (b.nomor_nasabah=f.nomor_nasabah)
         left outer join %s r1 on (r1.reference_code=decode(c.status_piutang,'10','10','20') and r1.reftype_id=219)
         left outer join %s r2 on (r2.reference_code=decode(e.currency_code,'IDR','360','USD','840','SIN','702') and r2.reftype_id=232)
-        left outer join %s s1 on (d.ref_hub_bank=s1.id)
-        left outer join %s r3 on (r3.reference_code=s1.kode_1 and r3.reftype_id=124)
-        left outer join %s r4 on (to_number(r4.reference_code)=to_number(fa.overall_col_level) and r4.reftype_id=235)
-        where e.kode_cabang in (%s)
+        left outer join %s r3 on (r3.reference_code=decode(f.is_pihak_terkait, 'T','1','2') and r3.reftype_id=124)
+        left outer join %s r4 on (r4.reference_code=decode(fa.overall_col_level, 1,'1',2,'2',3,'3',4,'4',5,'5') and r4.reftype_id=230)
+        left outer join %s r5 on (r5.reference_code=decode(a.finmusyarakahaccount_type, 'D', '10', '20') and r5.reftype_id=236)
+        left outer join %s r6 on (r6.reference_code=decode(fa.financing_model, 'T', '9', '1') and r6.reftype_id=223)
+        where e.kode_cabang in (%s,'400')
+        and a.nomor_rekening = '40000122'
     ''' % ( 
            config.MapDBTableName('financing.finmusyarakahaccount'),
            config.MapDBTableName('financing.finaccount'),
@@ -83,15 +92,20 @@ def FormOnSetDataEx(uideflist, params):
            config.MapDBTableName('financing.finaccadditionaldata'),
            config.MapDBTableName('financing.fincustadditionaldata'),
            config.MapDBTableName('financing.finfacility'),
+           config.MapDBTableName('core.nasabah'),
            config.MapDBTableName('enterprise.referencedata'),
            config.MapDBTableName('enterprise.referencedata'),
-           config.MapDBTableName('financing.sandi'),
            config.MapDBTableName('enterprise.referencedata'),
-           config.MapDBTableName('enterprise.referencedata')
+           config.MapDBTableName('enterprise.referencedata'),
+           config.MapDBTableName('enterprise.referencedata'),
+           config.MapDBTableName('enterprise.referencedata'),
            listcabang
            )
     res = config.CreateSQL(s).RawResult
-    while not res.Eof:
+    i=0
+    while i<10 and not res.Eof:
+    #while not res.Eof:
+      i+=1
       ins = ds.AddRecord()
       ins.NomorRekening = res.nomor_rekening
       ins.JumlahRekening = res.jml
@@ -109,4 +123,10 @@ def FormOnSetDataEx(uideflist, params):
       ins.SetFieldByName('LKOLEKTIBILITAS.reference_code', res.c4)
       ins.SetFieldByName('LKOLEKTIBILITAS.reference_desc', res.d4)
       ins.SetFieldByName('LKOLEKTIBILITAS.refdata_id', res.i4)
+      ins.SetFieldByName('LJENIS.reference_code', res.c5)
+      ins.SetFieldByName('LJENIS.reference_desc', res.d5)
+      ins.SetFieldByName('LJENIS.refdata_id', res.i5)
+      ins.SetFieldByName('LSIFAT.reference_code', res.c6)
+      ins.SetFieldByName('LSIFAT.reference_desc', res.d6)
+      ins.SetFieldByName('LSIFAT.refdata_id', res.i6)
       res.Next()

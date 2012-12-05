@@ -45,7 +45,8 @@ def FormOnSetDataEx(uideflist, params):
     else:
       repdate = mlu.EncodeDate(thn+1, 1, tgl)
     repdate = repdate-1
-    (thn, bln, tgl) = mlu.DecodeDate(repdate)  
+    (thn, bln, tgl) = mlu.DecodeDate(repdate)
+      
     period = "%s-%s-%s" % (str(tgl),str(bln),str(thn))
     ds = uideflist.uipData.Dataset
     s = '''
@@ -74,51 +75,53 @@ def FormOnSetDataEx(uideflist, params):
                  0, case when (b.is_bagi_hasil_khusus='T') then b.nisbah_bagi_hasil else g.nisbah_bonus_dasar end/10, 
                  null, case when (b.is_bagi_hasil_khusus='T') then b.nisbah_bagi_hasil else g.nisbah_bonus_dasar end/10,
                  decode(d.kode_jenis, 'DEP', i.ekuivalen_rate , h.gdr*nisbah/100)) persen,
-          d.saldo total 
-          from %s a
-          left outer join %s b on (a.nomor_rekening=b.nomor_rekening)
-          left outer join %s c on (b.kode_produk=c.kode_produk)
-          left outer join %s d on(a.nomor_rekening=d.nomor_rekening)
-          left outer join %s e on (a.nomor_nasabah=e.nomor_nasabah)
-          left outer join %s f on (d.kode_cabang=f.kode_cabang)
-          left outer join %s g on (b.kode_produk=g.kode_produk)
-          left outer join bagihasil_tabgir h on (a.nomor_rekening=h.nomor_rekening)
-          left outer join bagihasil_deposito i on (a.nomor_rekening=i.nomor_rekening)
-          left outer join %s r1 on (decode(c.kode_account, '202010000001', '29', '202020000001', '21', '22')=r1.reference_code and r1.reftype_id=120)
-          left outer join %s r2 on (decode(d.kode_valuta, 'IDR', '360', 'USD', '840', 'SGD', '702')=r2.reference_code and r2.reftype_id=232)
-          left outer join %s r3 on (decode(e.is_pihak_terkait, 'T', '1', '2') = r3.reference_code and r3.reftype_id=124)
-          left outer join %s r4 on (f.kode_lokasi=r4.reference_code and r4.reftype_id=251)
+          j.saldo total 
+          from %(RekeningCustomer)s a
+          left outer join %(RekeningLiabilitas)s b on (a.nomor_rekening=b.nomor_rekening)
+          left outer join %(GLInterface)s c on (b.kode_produk=c.kode_produk)
+          left outer join %(RekeningTransaksi)s d on(a.nomor_rekening=d.nomor_rekening)
+          left outer join %(Nasabah)s e on (a.nomor_nasabah=e.nomor_nasabah)
+          left outer join %(Cabang)s f on (d.kode_cabang=f.kode_cabang)
+          left outer join %(Produk)s g on (b.kode_produk=g.kode_produk)
+          left outer join %(SaldoAkhirBulan)s j on (a.nomor_rekening=j.nomor_rekening) 
+          left outer join bagihasil_tabgir h on (a.nomor_rekening=h.nomor_rekening and extract(month from h.tanggal) = '%(BulanProses)s')
+          left outer join bagihasil_deposito i on (a.nomor_rekening=i.nomor_rekening and extract(month from i.tanggal) = '%(BulanProses)s')
+          left outer join %(ReferenceData)s r1 on (decode(c.kode_account, '202010000001', '29', '202020000001', '21', '22')=r1.reference_code and r1.reftype_id=120)
+          left outer join %(ReferenceData)s r2 on (decode(d.kode_valuta, 'IDR', '360', 'USD', '840', 'SGD', '702')=r2.reference_code and r2.reftype_id=232)
+          left outer join %(ReferenceData)s r3 on (decode(e.is_pihak_terkait, 'T', '1', '2') = r3.reference_code and r3.reftype_id=124)
+          left outer join %(ReferenceData)s r4 on (f.kode_lokasi=r4.reference_code and r4.reftype_id=251)
           where c.kode_account in ('202010000001','202020000001','202030100001','202030100002','202030100003',
                                  '202030100004','202030100005','202030100006','202030200001','202030200002',
                                  '202030200003','202030200004','202030200005','202030200006')
-          and c.kode_interface in  ('glnomi', 'Saldo_Plus')
-          and d.status_rekening<>3
-          and (extract(month from h.tanggal) = '%s' or extract(month from i.tanggal) = '%s')
-          and d.kode_cabang in (%s)
+             and c.kode_interface in  ('glnomi', 'Saldo_Plus')
+             and d.kode_cabang in (%(ParamCabang)s)
+             and b.tanggal_buka <= to_date('%(TanggalLaporan)s','dd-mm-yyyy')
           order by rc1
-     ''' % ( 
-           config.MapDBTableName('core.rekeningcustomer'),
-           config.MapDBTableName('core.rekeningliabilitas'),
-           config.MapDBTableName('core.glinterface'),
-           config.MapDBTableName('core.rekeningtransaksi'),
-           config.MapDBTableName('core.nasabah'),
-           config.MapDBTableName('enterprise.cabang'),
-           config.MapDBTableName('core.produk'),
-           config.MapDBTableName('enterprise.referencedata'),
-           config.MapDBTableName('enterprise.referencedata'),
-           config.MapDBTableName('enterprise.referencedata'),
-           config.MapDBTableName('enterprise.referencedata'),
-           str(bln), str(bln), listcabang
-           )
+     ''' % { 
+           'RekeningCustomer'   : config.MapDBTableName('core.rekeningcustomer'),
+           'RekeningLiabilitas' : config.MapDBTableName('core.rekeningliabilitas'),
+           'GLInterface' : config.MapDBTableName('core.glinterface'),
+           'RekeningTransaksi' : config.MapDBTableName('core.rekeningtransaksi'),
+           'Nasabah' : config.MapDBTableName('core.nasabah'),
+           'Cabang'  : config.MapDBTableName('enterprise.cabang'),
+           'Produk'  : config.MapDBTableName('core.produk'),
+           'SaldoAkhirBulan' : config.MapDBTableName('core.saldo_akhirbulan'),
+           'BulanProses' : str(bln),
+           'ReferenceData' : config.MapDBTableName('enterprise.referencedata'),
+           'ParamCabang' : listcabang,
+           'TanggalLaporan' : config.FormatDateTime('dd-mm-yyyy', repdate)
+           }
     #raise Exception, s
     res = config.CreateSQL(s).RawResult
-    #x = 0
+    x = 0.0
     totalgbt = 0
     jmlgbt = 0
     totalgbd = 0
     jmlgbd = 0
     putpos = 0
     while not res.Eof:
+      if res.rc1=='22':
+        x+= (res.total or 0.0)
       if res.total<5000000:
         if res.rc1=='21':
           totalgbt+=res.total

@@ -48,6 +48,28 @@ def FormOnSetDataEx(uideflist, params):
     period = "%s-%s-%s" % (str(tgl),str(bln),str(thn))
     ds = uideflist.uipData.Dataset
     s = '''
+        select a.*, b.saldo from %s a join %s b on (a.nomorrekening=b.nomor_rekening
+                                         or substr(a.nomorrekening,1,3)||'A'||substr(a.nomorrekening,4,15)=b.nomor_rekening) 
+        left outer join %s r1 on (r1.reference_code=a.statuspiutang and r1.reftype_id=219)
+        left outer join %s r2 on (r2.reference_code=a.jenispenggunaan and r2.reftype_id=235)
+        left outer join %s r3 on (r3.reference_code=a.orientasipenggunaan and r3.reftype_id=108)
+        left outer join %s r4 on (r4.reference_code=a.sandivaluta and r4.reftype_id=232)
+        left outer join %s r5 on (r5.reference_code=a.golongandebitur and r5.reftype_id=225)
+        left outer join %s r6 on (r6.reference_code=a.hubungandenganbank and r6.reftype_id=124)
+        where a.bakidebetbulanlapor>0; 
+    ''' % (config.MapDBTableName('lbus.lbus_form_06'),
+           config.MapDBTableName('pbscore.rekeningtransaksi'),
+           config.MapDBTableName('enterprise.referencedata'),
+           config.MapDBTableName('enterprise.referencedata'),
+           config.MapDBTableName('enterprise.referencedata'),
+           config.MapDBTableName('enterprise.referencedata')
+    )
+    #query data bln lalu
+    res = config.CreateSQL(s).RawResult
+    while not res.Eof:     
+      ins = ds.AddRecord()
+      #isi data bln lalu     
+    s = '''
         select a.nomor_rekening, 
         a.jml,                                                  
         r1.reference_code c1, 
