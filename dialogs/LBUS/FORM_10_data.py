@@ -213,6 +213,30 @@ def createData(config, rec, oReport):
   #-- while
   
   s = '''
+       select refdata_id from %s where reference_code='85' and reftype_id=235
+  ''' % config.MapDBTableName('enterprise.referencedata')
+  jenis_code = config.CreateSQL(s).RawResult.refdata_id    
+  s = '''
+       select refdata_id from %s where reference_code='9' and reftype_id=108
+  ''' % config.MapDBTableName('enterprise.referencedata')
+  ori_code = config.CreateSQL(s).RawResult.refdata_id    
+  s = '''
+       select refdata_id from %s where reference_code='20' and reftype_id=249
+  ''' % config.MapDBTableName('enterprise.referencedata')
+  gp_code = config.CreateSQL(s).RawResult.refdata_id    
+  s = '''
+       select refdata_id from %s where reference_code='886' and reftype_id=225
+  ''' % config.MapDBTableName('enterprise.referencedata')
+  gd_code = config.CreateSQL(s).RawResult.refdata_id    
+  s = '''
+       select refdata_id from %s where reference_code='9990' and reftype_id=224
+  ''' % config.MapDBTableName('enterprise.referencedata')
+  sektor_code = config.CreateSQL(s).RawResult.refdata_id    
+  s = '''
+       select refdata_id from %s where reference_code='000' and reftype_id=328
+  ''' % config.MapDBTableName('enterprise.referencedata')
+  penjamin_code = config.CreateSQL(s).RawResult.refdata_id    
+  s = '''
       select a.*,                                                   
       r1.reference_code c1, 
       r1.reference_desc d1,
@@ -304,6 +328,14 @@ def createData(config, rec, oReport):
     ins.LJENIS_refdata_id = res.i5
     ins.LSIFAT_refdata_id = res.i6
     ins.LLOKASIPROYEK_refdata_id = res.i7
+
+    ins.LJENISPENGGUNAAN_refdata_id = jenis_code
+    ins.LORIENTPENGGUNAAN_refdata_id = ori_code
+    ins.LSEKTOREKONOMI_refdata_id = sektor_code
+    ins.LGOLPENJAMIN_refdata_id = penjamin_code
+    ins.LGOLDEBITUR_refdata_id = gd_code
+    ins.LGOLPEMBIAYAAN_refdata_id = gp_code
+
     ins.Nisbah = res.pshare
     ins.PersenBagiHasil = res.teqv_rate
     ins.Plafond = Jutaan(res.dropping_amount)

@@ -301,19 +301,21 @@ def createData(config, rec, oReport):
     ins.JumlahRekening = res.jml
 
     ins.LSTATUSPIUTANG_refdata_id = res.i1
-    ins.LJENISPENGGUNAAN_refdata_id = jenis_code
-    ins.LORIENTPENGGUNAAN_refdata_id = ori_code
     ins.LJENISVALUTA_refdata_id = res.i2
-    ins.LGOLDEBITUR_refdata_id = gd_code
     ins.LHUBBANK_refdata_id = res.i3
 
     ins.Mulai = toDate(res.tgl_mulai)
     ins.JatuhTempo = toDate(res.tgl_tempo)
     ins.LKOLEKTIBILITAS_refdata_id = res.i4
+
+    ins.LJENISPENGGUNAAN_refdata_id = jenis_code
+    ins.LORIENTPENGGUNAAN_refdata_id = ori_code
+    ins.LGOLDEBITUR_refdata_id = gd_code
     ins.LGOLPIUTANG_refdata_id = gp_code
     ins.LSEKTOREKONOMI_refdata_id = sektor_code
-    ins.LLOKASIPROYEK_refdata_id = res.i5
     ins.LGOLPENJAMIN_refdata_id = penjamin_code
+
+    ins.LLOKASIPROYEK_refdata_id = res.i5
     ins.PersenMargin = res.targeted_eqv_rate 
     ins.BagDijamin = 0
     ins.HargaAwal = Jutaan(res.jual)
