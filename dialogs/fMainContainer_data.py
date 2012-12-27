@@ -170,9 +170,9 @@ def DownloadReport(config, params, returns):
     #-- for
   #-- def           
     
-  if DEBUG_MODE:
-    app = config.AppObject
-    app.ConCreate('out')
+  #if DEBUG_MODE:
+  app = config.AppObject
+  app.ConCreate('out')
   #--
   
   helper = phelper.PObjectHelper(config)
@@ -246,7 +246,9 @@ def DownloadReport(config, params, returns):
         select item_id from {0} where report_id = {1} 
       '''.format(itemName, report_id)).rawresult
       
+      i = 1
       while not res.Eof:
+        if i % 10 == 0: app.ConWriteln("Load data ke-{0}".format(i))
         oItem = config.CreatePObjImplProxy(itemName)
         oItem.Key = res.item_id
         colskip = 0
@@ -261,6 +263,7 @@ def DownloadReport(config, params, returns):
         #--
         row += 1
         res.Next()
+        i += 1
       #--
     #--
 

@@ -668,7 +668,7 @@ def FormOnSetDataEx(uideflist, params):
         value = None
       if value not in (None,'',0):
         #if value<0: value=value*-1
-        valas = int(value/1000000)
+        valas = int(value/100000)
         if int(str(valas)[-1])>4:
           if valas<0:
             valas = valas/10

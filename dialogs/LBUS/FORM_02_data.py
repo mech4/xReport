@@ -415,7 +415,10 @@ def FormOnSetDataEx(uideflist, params):
     tgl = 1
     bln = int(pCode[:2])
     thn = int(pCode[2:6])
-    repdate = mlu.EncodeDate(thn, bln+1, tgl)
+    if bln<12:
+      repdate = mlu.EncodeDate(thn, bln+1, tgl)
+    else:
+      repdate = mlu.EncodeDate(thn+1, 1, tgl)
     repdate = repdate-1
     (thn, bln, tgl) = mlu.DecodeDate(repdate)  
     period = "%s-%s-%s" % (str(tgl),str(bln),str(thn))
@@ -458,7 +461,7 @@ def FormOnSetDataEx(uideflist, params):
         value = None
       if value not in (None,'',0):
         #if value<0: value=value*-1
-        valas = int(value/1000000)
+        valas = int(value/100000)
         if int(str(valas)[-1])>4:
           if valas<0:
             valas = valas/10

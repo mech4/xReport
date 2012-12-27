@@ -18,6 +18,7 @@ def setData(uideflist, params):
   
   config = uideflist.config
   app = config.AppObject
+  app.ConCreate('out')
   helper = phelper.PObjectHelper(config)
 
   rec = params.FirstRecord
