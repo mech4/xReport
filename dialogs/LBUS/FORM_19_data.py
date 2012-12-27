@@ -83,7 +83,7 @@ def FormOnSetDataEx(uideflist, params):
           left outer join %(Nasabah)s e on (a.nomor_nasabah=e.nomor_nasabah)
           left outer join %(Cabang)s f on (d.kode_cabang=f.kode_cabang)
           left outer join %(Produk)s g on (b.kode_produk=g.kode_produk)
-          left outer join %(SaldoAkhirBulan)s j on (a.nomor_rekening=j.nomor_rekening) 
+          left outer join %(SaldoAkhirBulan)s j on (a.nomor_rekening=j.nomor_rekening and j.bulan=%(BulanProses)s and j.tahun=%(TahunProses)s) 
           left outer join bagihasil_tabgir h on (a.nomor_rekening=h.nomor_rekening and extract(month from h.tanggal) = '%(BulanProses)s')
           left outer join bagihasil_deposito i on (a.nomor_rekening=i.nomor_rekening and extract(month from i.tanggal) = '%(BulanProses)s')
           left outer join %(ReferenceData)s r1 on (decode(c.kode_account, '202010000001', '29', '202020000001', '21', '22')=r1.reference_code and r1.reftype_id=120)
@@ -109,6 +109,7 @@ def FormOnSetDataEx(uideflist, params):
            'Produk'  : config.MapDBTableName('core.produk'),
            'SaldoAkhirBulan' : config.MapDBTableName('core.saldo_akhirbulan'),
            'BulanProses' : str(bln),
+           'BulanProses' : str(thn),
            'ReferenceData' : config.MapDBTableName('enterprise.referencedata'),
            'ParamCabang' : listcabang,
            'TanggalLaporan' : config.FormatDateTime('dd-mm-yyyy', repdate)

@@ -310,14 +310,17 @@ def GenerateTxt(config, params, returns):
   def formTxtValue(val, size, tipe):
     if tipe==1:
       if val in(None,''): val=0
+      if str(type(val))=="<type 'str'>" and not val.isdigit(): val=0
       val = int(val)
     #--
     if tipe==2:
       if val in(None,''): val=0
+      if str(type(val))=="<type 'str'>" and not val.isdigit(): val=0
       val = int(val*100000)
     #--
     if tipe==3:
       if val in(None,''): val=0
+      if str(type(val))=="<type 'str'>" and not val.isdigit(): val=0
       val = int(val*100)
     if tipe==4:
       val = str(val)

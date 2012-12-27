@@ -54,7 +54,7 @@ def createData(config, rec, oReport):
         val = config.ModLibUtils.DecodeDate(val)
       return '%s%s' % (str(val[1]).zfill(2), str(val[0]))
     else:
-      return "''"
+      return "000000"
   def Jutaan(val):
     if val in (None,''):
       return 0
@@ -111,8 +111,8 @@ def createData(config, rec, oReport):
       r6.reference_code c6, 
       r6.reference_desc d6,
       r6.refdata_id i6,
-      to_char(a.jangkawaktubulanmulai, '00')||to_char(a.jangkawaktutahunmulai) jangkamulai, 
-      to_char(a.jangkawaktubulanjt, '00')||to_char(a.jangkawaktutahunjt) jangkajt, 
+      replace(to_char(a.jangkawaktubulanmulai, '00')||to_char(a.jangkawaktutahunmulai, '0000'),' ','')  jangkamulai, 
+      replace(to_char(a.jangkawaktubulanjt, '00')||to_char(a.jangkawaktutahunjt, '0000'),' ','') jangkajt, 
       decode(fa.overall_col_level, 1, 0.01, 2, 0.05, 3, 0.15, 4, 0.5, 5, 1) ppapval,
       c.p_saldo+c.p_arrear_balance+c.p_mmd_balance pokok,
       c.p_mmd_balance margin,
@@ -162,7 +162,7 @@ def createData(config, rec, oReport):
   a = 0
   while not res.Eof:
     a+=1
-    app.ConWriteln('Proses row data ke-%s' % str(a))     
+    if a % 100 == 0 : app.ConWriteln('Proses row data ke-%s' % str(a))     
     #ins = ds.AddRecord()
     ins = config.CreatePObject('LBUS_FORM06')
     ins.report_id = oReport.report_id
@@ -200,7 +200,30 @@ def createData(config, rec, oReport):
     res.Next()
     #isi data bln lalu
   #-- while
-  
+  s = '''
+       select refdata_id from %s where reference_code='85' and reftype_id=235
+  ''' % config.MapDBTableName('enterprise.referencedata')
+  jenis_code = config.CreateSQL(s).RawResult.refdata_id    
+  s = '''
+       select refdata_id from %s where reference_code='9' and reftype_id=108
+  ''' % config.MapDBTableName('enterprise.referencedata')
+  ori_code = config.CreateSQL(s).RawResult.refdata_id    
+  s = '''
+       select refdata_id from %s where reference_code='20' and reftype_id=247
+  ''' % config.MapDBTableName('enterprise.referencedata')
+  gp_code = config.CreateSQL(s).RawResult.refdata_id    
+  s = '''
+       select refdata_id from %s where reference_code='886' and reftype_id=225
+  ''' % config.MapDBTableName('enterprise.referencedata')
+  gd_code = config.CreateSQL(s).RawResult.refdata_id    
+  s = '''
+       select refdata_id from %s where reference_code='9990' and reftype_id=224
+  ''' % config.MapDBTableName('enterprise.referencedata')
+  sektor_code = config.CreateSQL(s).RawResult.refdata_id    
+  s = '''
+       select refdata_id from %s where reference_code='000' and reftype_id=328
+  ''' % config.MapDBTableName('enterprise.referencedata')
+  penjamin_code = config.CreateSQL(s).RawResult.refdata_id    
   s = '''
       select a.nomor_rekening, 
       1 jml,                                                  
@@ -218,6 +241,9 @@ def createData(config, rec, oReport):
       r4.reference_code c4, 
       r4.reference_desc d4,
       r4.refdata_id i4,
+      r5.reference_code c5, 
+      r5.reference_desc d5,
+      r5.refdata_id i5,
       fa.targeted_eqv_rate,
       a.base_price,
       a.mmd_balance_lama,
@@ -234,10 +260,12 @@ def createData(config, rec, oReport):
       left outer join %(Nasabah)s f on (b.nomor_nasabah=f.nomor_nasabah)
       left outer join %(SaldoRekening)s g on (a.nomor_rekening=g.nomor_rekening)
       left outer join %(Collateral)s h on (a.nomor_rekening=h.nomor_rekening)
+      left outer join %(Cabang)s i on (g.kode_cabang=i.kode_cabang)
       left outer join %(ReferenceData)s r1 on (r1.reference_code=decode(c.status_piutang,'10','10','20') and r1.reftype_id=219)
       left outer join %(ReferenceData)s r2 on (r2.reference_code=decode(e.currency_code,'IDR','360','USD','840','SIN','702') and r2.reftype_id=232)
       left outer join %(ReferenceData)s r3 on (decode(f.is_pihak_terkait, 'T', '1', '2') = r3.reference_code and r3.reftype_id=124)
       left outer join %(ReferenceData)s r4 on (to_number(r4.reference_code)=to_number(fa.overall_col_level) and r4.reftype_id=235)
+      left outer join %(ReferenceData)s r5 on (r5.reference_code=i.kode_lokasi and r4.reftype_id=365)
       where g.kode_cabang in (%(ParamCabang)s)
            and fa.dropping_date <= to_date('%(TanggalLaporan)s','dd-mm-yyyy')
            and not exists (select null from %(PrevMonth)s ne where 
@@ -255,6 +283,7 @@ def createData(config, rec, oReport):
          'PrevMonth' : config.MapDBTableName('lbus.lbus_form_06'),
          'Nasabah' : config.MapDBTableName('core.Nasabah'),
          'SaldoRekening' : config.MapDBTableName('tmp.cknom_base_pby'),
+         'Cabang'  : config.MapDBTableName('enterprise.cabang'),
          'ParamCabang' : listcabang,
          'Collateral' : config.MapDBTableName('financing.fincollateralasset'),
          'TanggalLaporan' : config.FormatDateTime('dd-mm-yyyy', repdate)
@@ -263,7 +292,7 @@ def createData(config, rec, oReport):
   res = config.CreateSQL(s).RawResult
   while not res.Eof:
     a+=1
-    app.ConWriteln('Proses row data ke-%s' % str(a))     
+    if a % 100 == 0 : app.ConWriteln('Proses row data ke-%s' % str(a))     
     #ins = ds.AddRecord()
     ins = config.CreatePObject('LBUS_FORM06')
     ins.report_id = oReport.report_id
@@ -272,12 +301,19 @@ def createData(config, rec, oReport):
     ins.JumlahRekening = res.jml
 
     ins.LSTATUSPIUTANG_refdata_id = res.i1
+    ins.LJENISPENGGUNAAN_refdata_id = jenis_code
+    ins.LORIENTPENGGUNAAN_refdata_id = ori_code
     ins.LJENISVALUTA_refdata_id = res.i2
+    ins.LGOLDEBITUR_refdata_id = gd_code
     ins.LHUBBANK_refdata_id = res.i3
 
     ins.Mulai = toDate(res.tgl_mulai)
     ins.JatuhTempo = toDate(res.tgl_tempo)
     ins.LKOLEKTIBILITAS_refdata_id = res.i4
+    ins.LGOLPIUTANG_refdata_id = gp_code
+    ins.LSEKTOREKONOMI_refdata_id = sektor_code
+    ins.LLOKASIPROYEK_refdata_id = res.i5
+    ins.LGOLPENJAMIN_refdata_id = penjamin_code
     ins.PersenMargin = res.targeted_eqv_rate 
     ins.BagDijamin = 0
     ins.HargaAwal = Jutaan(res.jual)

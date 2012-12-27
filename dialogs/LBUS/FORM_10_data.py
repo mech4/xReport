@@ -171,7 +171,7 @@ def createData(config, rec, oReport):
   a = 0
   while not res.Eof:
     a+=1
-    app.ConWriteln('Proses row data ke-%s' % str(a))     
+    if a % 100 == 0 : app.ConWriteln('Proses row data ke-%s' % str(a))     
     #ins = ds.AddRecord()
     ins = config.CreatePObject('LBUS_FORM10')
     ins.report_id = oReport.report_id
@@ -234,6 +234,9 @@ def createData(config, rec, oReport):
       r6.reference_code c6, 
       r6.reference_desc d6,
       r6.refdata_id i6,
+      r7.reference_code c7, 
+      r7.reference_desc d7,
+      r7.refdata_id i7,
       fa.dropping_amount,
       fa.payment_balance,
       round(a.profit_share,2) pshare,
@@ -247,12 +250,14 @@ def createData(config, rec, oReport):
       left outer join %(FinFacility)s e on (fa.facility_no=e.facility_no)
       left outer join %(Nasabah)s f on (b.nomor_nasabah=f.nomor_nasabah)
       left outer join %(SaldoRekening)s g on (a.nomor_rekening=g.nomor_rekening)
+      left outer join %(Cabang)s h on (g.kode_cabang=h.kode_cabang)
       left outer join %(ReferenceData)s r1 on (r1.reference_code=decode(c.status_piutang,'10','10','20') and r1.reftype_id=219)
       left outer join %(ReferenceData)s r2 on (r2.reference_code=decode(e.currency_code,'IDR','360','USD','840','SIN','702') and r2.reftype_id=232)
       left outer join %(ReferenceData)s r3 on (r3.reference_code=decode(f.is_pihak_terkait, 'T','1','2') and r3.reftype_id=124)
       left outer join %(ReferenceData)s r4 on (r4.reference_code=decode(fa.overall_col_level, 1,'1',2,'2',3,'3',4,'4',5,'5') and r4.reftype_id=230)
       left outer join %(ReferenceData)s r5 on (r5.reference_code=decode(a.finmusyarakahaccount_type, 'D', '10', '20') and r5.reftype_id=236)
       left outer join %(ReferenceData)s r6 on (r6.reference_code=decode(fa.financing_model, 'T', '9', '1') and r6.reftype_id=223)
+      left outer join %(ReferenceData)s r7 on (r7.reference_code=h.kode_lokasi and r7.reftype_id=365)
       where g.kode_cabang in (%(ParamCabang)s)
            and fa.dropping_date <= to_date('%(TanggalLaporan)s','dd-mm-yyyy')
            and not exists (select null from %(PrevMonth)s ne where 
@@ -270,6 +275,7 @@ def createData(config, rec, oReport):
        'ReferenceData' : config.MapDBTableName('enterprise.referencedata'),
        'PrevMonth' : config.MapDBTableName('lbus.lbus_form_10'),
        'Nasabah' : config.MapDBTableName('core.Nasabah'),
+       'Cabang'  : config.MapDBTableName('enterprise.cabang'),
        'SaldoRekening' : config.MapDBTableName('tmp.cknom_base_pby'),
        'ParamCabang' : listcabang,
        'Collateral' : config.MapDBTableName('financing.fincollateralasset'),
@@ -280,7 +286,7 @@ def createData(config, rec, oReport):
   while not res.Eof:
   #while not res.Eof:
     a+=1
-    app.ConWriteln('Proses Row data ke-%s' % str(a))
+    if a % 100 == 0 : app.ConWriteln('Proses Row data ke-%s' % str(a))
     #ins = ds.AddRecord()
     ins = config.CreatePObject('LBUS_FORM10')
     ins.report_id = oReport.report_id
@@ -295,9 +301,9 @@ def createData(config, rec, oReport):
     ins.BlnThnMulai = toDate(res.tgl_mulai)
     ins.BlnThnTempo = toDate(res.tgl_tempo)
     ins.LKOLEKTIBILITAS_refdata_id = res.i4
-
     ins.LJENIS_refdata_id = res.i5
     ins.LSIFAT_refdata_id = res.i6
+    ins.LLOKASIPROYEK_refdata_id = res.i7
     ins.Nisbah = res.pshare
     ins.PersenBagiHasil = res.teqv_rate
     ins.Plafond = Jutaan(res.dropping_amount)
