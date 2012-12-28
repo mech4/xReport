@@ -109,7 +109,7 @@ def FormOnSetDataEx(uideflist, params):
            'Produk'  : config.MapDBTableName('core.produk'),
            'SaldoAkhirBulan' : 'saldo_akhirbulan',
            'BulanProses' : str(bln),
-           'BulanProses' : str(thn),
+           'TahunProses' : str(thn),
            'ReferenceData' : config.MapDBTableName('enterprise.referencedata'),
            'ParamCabang' : listcabang,
            'TanggalLaporan' : config.FormatDateTime('dd-mm-yyyy', repdate)
@@ -118,7 +118,7 @@ def FormOnSetDataEx(uideflist, params):
     #app.ConCreate('out')
     #app.ConWriteln(s)
     #app.ConRead('ok')
-    #raise Exception, s
+    #raise Exception, s         
     res = config.CreateSQL(s).RawResult
     x = 0.0
     totalgbt = 0

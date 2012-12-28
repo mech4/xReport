@@ -157,7 +157,7 @@ def FormOnSetDataEx(uideflist, params):
            'Nasabah' : config.MapDBTableName('core.nasabah'),
            'Cabang'  : config.MapDBTableName('enterprise.cabang'),
            'Produk'  : config.MapDBTableName('core.produk'),
-           'SaldoAkhirBulan' : config.MapDBTableName('core.saldo_akhirbulan'),
+           'SaldoAkhirBulan' : 'saldo_akhirbulan',
            'BulanProses' : str(bln),
            'TahunProses' : str(thn),
            'ReferenceData' : config.MapDBTableName('enterprise.referencedata'),
