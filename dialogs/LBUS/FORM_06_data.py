@@ -237,7 +237,7 @@ def createData(config, rec, oReport):
       r3.reference_desc d3,
       r3.refdata_id i3,
       fa.dropping_date tgl_mulai,
-      fa.due_date tgl_tempo,
+      nvl(fa.due_date, fa.dropping_date+numtoyminterval(12,'month')) tgl_tempo,
       r4.reference_code c4, 
       r4.reference_desc d4,
       r4.refdata_id i4,
@@ -264,7 +264,7 @@ def createData(config, rec, oReport):
       left outer join %(ReferenceData)s r1 on (r1.reference_code=decode(c.status_piutang,'10','10','20') and r1.reftype_id=219)
       left outer join %(ReferenceData)s r2 on (r2.reference_code=decode(e.currency_code,'IDR','360','USD','840','SIN','702') and r2.reftype_id=232)
       left outer join %(ReferenceData)s r3 on (decode(f.is_pihak_terkait, 'T', '1', '2') = r3.reference_code and r3.reftype_id=124)
-      left outer join %(ReferenceData)s r4 on (to_number(r4.reference_code)=to_number(fa.overall_col_level) and r4.reftype_id=235)
+      left outer join %(ReferenceData)s r4 on (to_number(r4.reference_code)=to_number(fa.overall_col_level) and r4.reftype_id=230)
       left outer join %(ReferenceData)s r5 on (r5.reference_code=i.kode_lokasi and r4.reftype_id=365)
       where g.kode_cabang in (%(ParamCabang)s)
            and fa.dropping_date <= to_date('%(TanggalLaporan)s','dd-mm-yyyy')
@@ -272,6 +272,7 @@ def createData(config, rec, oReport):
                                   a.nomor_rekening=ne.nomorrekening or 
                                   a.nomor_rekening=substr(ne.nomorrekening,1,3)||'A'||substr(ne.nomorrekening,4,15)
            )  
+           and g.p_saldo>0
   ''' % { 
          'FinMurabahah' : config.MapDBTableName('financing.finmurabahahaccount'),
          'FinAccount' : config.MapDBTableName('financing.finaccount'),

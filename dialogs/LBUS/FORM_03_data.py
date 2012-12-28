@@ -66,6 +66,10 @@ def FormOnSetDataEx(uideflist, params):
     (thn, bln, tgl) = mlu.DecodeDate(repdate)  
     period = "%s-%s-%s" % (str(tgl),str(bln),str(thn))
     ds = uideflist.uipData.Dataset
+    s = '''
+         select * from %s where reference_code='360' and reftype_id=232
+    ''' % config.MapDBTableName('enterprise.referencedata')
+    val_code = config.CreateSQL(s).RawResult    
     s = "select * from %s a, %s b where a.reftype_id=b.reftype_id and b.reference_name='R_JENIS_PENEMPATAN_BI' order by a.refdata_id" % (
                 config.MapDBTableName('enterprise.referencedata'),    
                 config.MapDBTableName('enterprise.referencetype')
@@ -89,12 +93,15 @@ def FormOnSetDataEx(uideflist, params):
             rp = (rp/10)+1
           else:
             rp = rp/10
+        rec = ds.AddRecord()
+        rec.SetFieldByName('LJENIS.reference_desc', res.reference_desc)    
+        rec.SetFieldByName('LJENIS.reference_code', res.reference_code)    
+        rec.SetFieldByName('LJENIS.refdata_id', res.refdata_id)
+        rec.SetFieldByName('LJENISVALUTA.reference_desc', val_code.reference_desc)    
+        rec.SetFieldByName('LJENISVALUTA.reference_code', val_code.reference_code)    
+        rec.SetFieldByName('LJENISVALUTA.refdata_id', val_code.refdata_id)
+        rec.SetFieldByName('Jumlah', str(rp))    
       else:
         rp = 0
-      rec = ds.AddRecord()
-      rec.SetFieldByName('LJENIS.reference_desc', res.reference_desc)    
-      rec.SetFieldByName('LJENIS.reference_code', res.reference_code)    
-      rec.SetFieldByName('LJENIS.refdata_id', res.refdata_id)
-      rec.SetFieldByName('Jumlah', str(rp))    
       res.Next()
     #--

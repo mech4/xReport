@@ -80,11 +80,26 @@ def FormOnSetDataEx(uideflist, params):
                 config.MapDBTableName('enterprise.referencetype')
         )
     valcode = config.CreateSQL(s).RawResult.refdata_id 
+    s = "select a.refdata_id from %s a, %s b where a.reftype_id=b.reftype_id and b.reference_name='R_JENIS_VALUTA' and a.reference_code='959'" % (
+                config.MapDBTableName('enterprise.referencedata'),    
+                config.MapDBTableName('enterprise.referencetype')
+        )
+    valcode05 = config.CreateSQL(s).RawResult.refdata_id 
     s = "select a.refdata_id from %s a, %s b where a.reftype_id=b.reftype_id and b.reference_name='R_GOLONGAN_STATUS' and a.reference_code='49'" % (
                 config.MapDBTableName('enterprise.referencedata'),    
                 config.MapDBTableName('enterprise.referencetype')
         )
     opcode = config.CreateSQL(s).RawResult.refdata_id 
+    s = "select a.refdata_id from %s a, %s b where a.reftype_id=b.reftype_id and b.reference_name='R_GOLONGAN_STATUS' and a.reference_code='50'" % (
+                config.MapDBTableName('enterprise.referencedata'),    
+                config.MapDBTableName('enterprise.referencetype')
+        )
+    opcode05 = config.CreateSQL(s).RawResult.refdata_id 
+    s = "select a.refdata_id from %s a, %s b where a.reftype_id=b.reftype_id and b.reference_name='R_GOLONGAN_STATUS' and a.reference_code='10'" % (
+                config.MapDBTableName('enterprise.referencedata'),    
+                config.MapDBTableName('enterprise.referencetype')
+        )
+    opcode406570 = config.CreateSQL(s).RawResult.refdata_id 
 
     s = "select * from %s a, %s b where a.reftype_id=b.reftype_id and b.reference_name='R_RUPA_RUPA_AKTIVA' order by a.refdata_id" % (
                 config.MapDBTableName('enterprise.referencedata'),    
@@ -113,20 +128,35 @@ def FormOnSetDataEx(uideflist, params):
             rp = (rp/10)+1
           else:
             rp = rp/10
+        if rp<0:
+          rp = rp*-1
+        rec = ds.AddRecord()
+        if res.reference_code=='05':
+          rec.SetFieldByName('LGOLSTATUS.reference_desc', 'Bukan penduduk')    
+          rec.SetFieldByName('LGOLSTATUS.reference_code', '50')    
+          rec.SetFieldByName('LGOLSTATUS.refdata_id', opcode05)
+          rec.SetFieldByName('LJENISVALUTA.reference_desc', 'XAU - Gold')    
+          rec.SetFieldByName('LJENISVALUTA.reference_code', '959')    
+          rec.SetFieldByName('LJENISVALUTA.refdata_id', valcode05)
+        elif res.reference_code in ('40','65','70'):
+          rec.SetFieldByName('LGOLSTATUS.reference_desc', 'Penduduk - Pemerintah pusat')    
+          rec.SetFieldByName('LGOLSTATUS.reference_code', '10')    
+          rec.SetFieldByName('LGOLSTATUS.refdata_id', opcode406570)
+          rec.SetFieldByName('LJENISVALUTA.reference_desc', 'IDR - Indonesia Rupiah')    
+          rec.SetFieldByName('LJENISVALUTA.reference_code', '360')    
+          rec.SetFieldByName('LJENISVALUTA.refdata_id', valcode)
+        else:
+          rec.SetFieldByName('LGOLSTATUS.reference_desc', 'Penduduk - Lainnya')    
+          rec.SetFieldByName('LGOLSTATUS.reference_code', '49')    
+          rec.SetFieldByName('LGOLSTATUS.refdata_id', opcode)
+          rec.SetFieldByName('LJENISVALUTA.reference_desc', 'IDR - Indonesia Rupiah')    
+          rec.SetFieldByName('LJENISVALUTA.reference_code', '360')    
+          rec.SetFieldByName('LJENISVALUTA.refdata_id', valcode)
+        rec.SetFieldByName('LJENIS.reference_desc', res.reference_desc)    
+        rec.SetFieldByName('LJENIS.reference_code', res.reference_code)    
+        rec.SetFieldByName('LJENIS.refdata_id', res.refdata_id)
+        rec.SetFieldByName('Jumlah', str(rp))    
       else:
         rp = 0
-      if rp<0:
-        rp = rp*-1
-      rec = ds.AddRecord()
-      rec.SetFieldByName('LGOLSTATUS.reference_desc', 'Penduduk - Lainnya')    
-      rec.SetFieldByName('LGOLSTATUS.reference_code', '49')    
-      rec.SetFieldByName('LGOLSTATUS.refdata_id', opcode)
-      rec.SetFieldByName('LJENIS.reference_desc', res.reference_desc)    
-      rec.SetFieldByName('LJENIS.reference_code', res.reference_code)    
-      rec.SetFieldByName('LJENIS.refdata_id', res.refdata_id)
-      rec.SetFieldByName('LJENISVALUTA.reference_desc', 'IDR - Indonesia Rupiah')    
-      rec.SetFieldByName('LJENISVALUTA.reference_code', '360')    
-      rec.SetFieldByName('LJENISVALUTA.refdata_id', valcode)
-      rec.SetFieldByName('Jumlah', str(rp))    
       res.Next()
     #--

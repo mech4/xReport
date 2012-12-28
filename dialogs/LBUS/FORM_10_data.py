@@ -111,8 +111,8 @@ def createData(config, rec, oReport):
       r6.reference_code c6, 
       r6.reference_desc d6,
       r6.refdata_id i6,
-      to_char(a.jangkawaktubulanmulai, '00')||to_char(a.jangkawaktutahunmulai) jangkamulai, 
-      to_char(a.jangkawaktubulanjt, '00')||to_char(a.jangkawaktutahunjt) jangkajt, 
+      replace(to_char(a.jangkawaktubulanmulai, '00')||to_char(a.jangkawaktutahunmulai, '0000'),' ','')  jangkamulai, 
+      replace(to_char(a.jangkawaktubulanjt, '00')||to_char(a.jangkawaktutahunjt, '0000'),' ','') jangkajt, 
       decode(fa.overall_col_level, 1, 0.01, 2, 0.05, 3, 0.15, 4, 0.5, 5, 1) ppapval,
       c.p_saldo+c.p_arrear_balance+c.p_mmd_balance pokok,
       c.p_mmd_balance margin,
@@ -193,8 +193,8 @@ def createData(config, rec, oReport):
     ins.LSEKTOREKONOMI_refdata_id = res.i9
     ins.LLOKASIPROYEK_refdata_id = res.i10
     ins.LGOLPENJAMIN_refdata_id = res.i11
-    ins.LJENIS_refdata_id = res.i12
-    ins.LSIFAT_refdata_id = res.i13
+    ins.LSIFAT_refdata_id = res.i12
+    ins.LJENIS_refdata_id = res.i13
     ins.BagDijamin = res.bagianyangdijamin
     #ins.HargaAwal = res.hargajualawal
     #ins.SaldoHargaPokok = Jutaan(res.pokok)
