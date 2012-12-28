@@ -509,13 +509,6 @@ object:rtf::Form<
           Restrictions=''
           FieldBaseName='LSEKTOREKONOMI'
         >, object:rtf::FieldUIElmtSetting<
-          Name='TanggalHapusBuku'
-          Hidden=true
-          ReadOnlyControl=false
-          ControlCaption='Tanggal Hapus Buku'
-          DataTypeName='timestamp'
-          DataLength=20
-        >, object:rtf::FieldUIElmtSetting<
           Name='Jumlah'
           Hidden=false
           ReadOnlyControl=false
@@ -651,5 +644,5 @@ object:rtf::Form<
       RowControlGap=7
     >
   }
-  FormClassName='LBUS_FORM_03'
+  FormClassName='LBUS_FORM_37'
 >

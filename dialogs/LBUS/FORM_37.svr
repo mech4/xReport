@@ -121,10 +121,6 @@ object:rpclass::TPClassUIDefList<
           Name='LSEKTOREKONOMI.refdata_id'
           DataTypeName='enterprise.INTEGER'
         >, object:rpclass::TCustomLoadedField<
-          Name='TanggalHapusBuku'
-          DataTypeName='timestamp'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
           Name='Jumlah'
           DataTypeName='double'
           DataLength=20

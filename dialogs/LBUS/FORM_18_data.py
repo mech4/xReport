@@ -69,7 +69,7 @@ def xFormOnSetDataEx(uideflist, params):
       ins.Jumlah = res.total
       res.Next()
 
-def FormOnSetDataEx(uideflist, params):
+def FormOnSetDataEx(uideflist, params):   
   def toDate(val):
     if val not in (None,'',0):
       if type(val)==type(0.0):
