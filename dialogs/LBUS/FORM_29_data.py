@@ -126,25 +126,25 @@ def FormOnSetDataEx(uideflist, params):
             rp = (rp/10)+1
           else:
             rp = rp/10
+        if rp<0:
+          rp = rp*-1
+        rec = ds.AddRecord()
+        if res.reference_code in ('30','85'):
+          rec.SetFieldByName('LGOLSTAT.reference_desc', 'Penduduk - Pemerintah pusat')    
+          rec.SetFieldByName('LGOLSTAT.reference_code', '10')    
+          rec.SetFieldByName('LGOLSTAT.refdata_id', op2code)
+        else:
+          rec.SetFieldByName('LGOLSTAT.reference_desc', 'Penduduk - Lainnya')    
+          rec.SetFieldByName('LGOLSTAT.reference_code', '49')    
+          rec.SetFieldByName('LGOLSTAT.refdata_id', opcode)
+        rec.SetFieldByName('LJENIS.reference_desc', res.reference_desc)    
+        rec.SetFieldByName('LJENIS.reference_code', res.reference_code)    
+        rec.SetFieldByName('LJENIS.refdata_id', res.refdata_id)
+        rec.SetFieldByName('LJENISVALUTA.reference_desc', 'IDR - Indonesia Rupiah')    
+        rec.SetFieldByName('LJENISVALUTA.reference_code', '360')    
+        rec.SetFieldByName('LJENISVALUTA.refdata_id', valcode)
+        rec.SetFieldByName('Jumlah', str(rp))    
       else:
         rp = 0
-      if rp<0:
-        rp = rp*-1
-      rec = ds.AddRecord()
-      if res.reference_code in ('30','85'):
-        rec.SetFieldByName('LGOLSTAT.reference_desc', 'Penduduk - Pemerintah pusat')    
-        rec.SetFieldByName('LGOLSTAT.reference_code', '10')    
-        rec.SetFieldByName('LGOLSTAT.refdata_id', op2code)
-      else:
-        rec.SetFieldByName('LGOLSTAT.reference_desc', 'Penduduk - Lainnya')    
-        rec.SetFieldByName('LGOLSTAT.reference_code', '49')    
-        rec.SetFieldByName('LGOLSTAT.refdata_id', opcode)
-      rec.SetFieldByName('LJENIS.reference_desc', res.reference_desc)    
-      rec.SetFieldByName('LJENIS.reference_code', res.reference_code)    
-      rec.SetFieldByName('LJENIS.refdata_id', res.refdata_id)
-      rec.SetFieldByName('LJENISVALUTA.reference_desc', 'IDR - Indonesia Rupiah')    
-      rec.SetFieldByName('LJENISVALUTA.reference_code', '360')    
-      rec.SetFieldByName('LJENISVALUTA.refdata_id', valcode)
-      rec.SetFieldByName('Jumlah', str(rp))    
       res.Next()
     #--

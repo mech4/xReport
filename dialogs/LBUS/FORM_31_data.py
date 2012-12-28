@@ -81,13 +81,14 @@ def FormOnSetDataEx(uideflist, params):
           rp = (rp/10)+1
         else:
           rp = rp/10
+      if rp<0:
+        rp = rp*-1
+      if rp==0: rp+=1
+      rec = ds.AddRecord()
+      rec.SetFieldByName('LGOLPEMSAH.reference_desc', 'Penduduk - Lainnya')    
+      rec.SetFieldByName('LGOLPEMSAH.reference_code', '49')    
+      rec.SetFieldByName('LGOLPEMSAH.refdata_id', golcode)
+      rec.SetFieldByName('Jumlah', str(rp))    
     else:
       rp = 0
-    if rp<0:
-      rp = rp*-1
-    rec = ds.AddRecord()
-    rec.SetFieldByName('LGOLPEMSAH.reference_desc', 'Penduduk - Lainnya')    
-    rec.SetFieldByName('LGOLPEMSAH.reference_code', '49')    
-    rec.SetFieldByName('LGOLPEMSAH.refdata_id', golcode)
-    rec.SetFieldByName('Jumlah', str(rp))    
     #--

@@ -129,47 +129,47 @@ def FormOnSetDataEx(uideflist, params):
             rp = (rp/10)+1
           else:
             rp = rp/10
-      else:
-        rp = 0
-      if rp<0:
-        rp = rp*-1
-      if res.reference_code == '99':
+        if rp<0:
+          rp = rp*-1
+        if res.reference_code == '99':
+          rec = ds.AddRecord()
+          rec.SetFieldByName('LGOLPENAGIH.reference_desc', 'Baitul Maal Wa Tamwil (BMT)')    
+          rec.SetFieldByName('LGOLPENAGIH.reference_code', '862')    
+          rec.SetFieldByName('LGOLPENAGIH.refdata_id', op3code)
+          rec.SetFieldByName('LJENIS.reference_desc', res.reference_desc)    
+          rec.SetFieldByName('LJENIS.reference_code', res.reference_code)    
+          rec.SetFieldByName('LJENIS.refdata_id', res.refdata_id)
+          rec.SetFieldByName('LJENISVALUTA.reference_desc', 'IDR - Indonesia Rupiah')    
+          rec.SetFieldByName('LJENISVALUTA.reference_code', '360')    
+          rec.SetFieldByName('LJENISVALUTA.refdata_id', valcode)
+          rec.SetFieldByName('LHUBBANK.reference_desc', 'IDR - Indonesia Rupiah')    
+          rec.SetFieldByName('LHUBBANK.reference_code', '360')    
+          rec.SetFieldByName('LHUBBANK.refdata_id', hubcode)
+          rec.SetFieldByName('Jumlah', str(0))    
         rec = ds.AddRecord()
-        rec.SetFieldByName('LGOLPENAGIH.reference_desc', 'Baitul Maal Wa Tamwil (BMT)')    
-        rec.SetFieldByName('LGOLPENAGIH.reference_code', '862')    
-        rec.SetFieldByName('LGOLPENAGIH.refdata_id', op3code)
+        if res.reference_code == '10':
+          rec.SetFieldByName('LGOLPENAGIH.reference_desc', 'Kantor Perbendaharaan dan Kas Negara (KPKN)')    
+          rec.SetFieldByName('LGOLPENAGIH.reference_code', '801')    
+          rec.SetFieldByName('LGOLPENAGIH.refdata_id', op2code)
+        elif res.reference_code == '99':
+          rec.SetFieldByName('LGOLPENAGIH.reference_desc', 'Sektor swasta lainnya')    
+          rec.SetFieldByName('LGOLPENAGIH.reference_code', '889')    
+          rec.SetFieldByName('LGOLPENAGIH.refdata_id', op4code)
+        else:
+          rec.SetFieldByName('LGOLPENAGIH.reference_desc', 'Perseorangan')    
+          rec.SetFieldByName('LGOLPENAGIH.reference_code', '886')    
+          rec.SetFieldByName('LGOLPENAGIH.refdata_id', opcode)
         rec.SetFieldByName('LJENIS.reference_desc', res.reference_desc)    
         rec.SetFieldByName('LJENIS.reference_code', res.reference_code)    
         rec.SetFieldByName('LJENIS.refdata_id', res.refdata_id)
         rec.SetFieldByName('LJENISVALUTA.reference_desc', 'IDR - Indonesia Rupiah')    
         rec.SetFieldByName('LJENISVALUTA.reference_code', '360')    
         rec.SetFieldByName('LJENISVALUTA.refdata_id', valcode)
-        rec.SetFieldByName('LHUBBANK.reference_desc', 'IDR - Indonesia Rupiah')    
-        rec.SetFieldByName('LHUBBANK.reference_code', '360')    
+        rec.SetFieldByName('LHUBBANK.reference_desc', 'Tidak terkait dengan Bank')    
+        rec.SetFieldByName('LHUBBANK.reference_code', '2')    
         rec.SetFieldByName('LHUBBANK.refdata_id', hubcode)
-        rec.SetFieldByName('Jumlah', str(0))    
-      rec = ds.AddRecord()
-      if res.reference_code == '10':
-        rec.SetFieldByName('LGOLPENAGIH.reference_desc', 'Kantor Perbendaharaan dan Kas Negara (KPKN)')    
-        rec.SetFieldByName('LGOLPENAGIH.reference_code', '801')    
-        rec.SetFieldByName('LGOLPENAGIH.refdata_id', op2code)
-      elif res.reference_code == '99':
-        rec.SetFieldByName('LGOLPENAGIH.reference_desc', 'Sektor swasta lainnya')    
-        rec.SetFieldByName('LGOLPENAGIH.reference_code', '889')    
-        rec.SetFieldByName('LGOLPENAGIH.refdata_id', op4code)
+        rec.SetFieldByName('Jumlah', str(rp))    
       else:
-        rec.SetFieldByName('LGOLPENAGIH.reference_desc', 'Perseorangan')    
-        rec.SetFieldByName('LGOLPENAGIH.reference_code', '886')    
-        rec.SetFieldByName('LGOLPENAGIH.refdata_id', opcode)
-      rec.SetFieldByName('LJENIS.reference_desc', res.reference_desc)    
-      rec.SetFieldByName('LJENIS.reference_code', res.reference_code)    
-      rec.SetFieldByName('LJENIS.refdata_id', res.refdata_id)
-      rec.SetFieldByName('LJENISVALUTA.reference_desc', 'IDR - Indonesia Rupiah')    
-      rec.SetFieldByName('LJENISVALUTA.reference_code', '360')    
-      rec.SetFieldByName('LJENISVALUTA.refdata_id', valcode)
-      rec.SetFieldByName('LHUBBANK.reference_desc', 'Tidak terkait dengan Bank')    
-      rec.SetFieldByName('LHUBBANK.reference_code', '2')    
-      rec.SetFieldByName('LHUBBANK.refdata_id', hubcode)
-      rec.SetFieldByName('Jumlah', str(rp))    
+        rp = 0
       res.Next()
     #--

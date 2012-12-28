@@ -54,6 +54,7 @@ def FormOnSetDataEx(uideflist, params):
             rp = rp/10
         if rp<0:
           rp = rp*-1
+        if rp==0: rp+=1
         rec = ds.AddRecord()
         rec.SetFieldByName('No', str(no))
         rec.SetFieldByName('Uraian', str(res.account_name))
