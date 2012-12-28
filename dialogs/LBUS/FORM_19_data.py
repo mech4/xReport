@@ -64,6 +64,9 @@ def FormOnSetDataEx(uideflist, params):
           r4.refdata_id ri4,
           r4.reference_code rc4,
           r4.reference_desc rd4,
+          r5.refdata_id ri5,
+          r5.reference_code rc5,
+          r5.reference_desc rd5,
           decode(c.kode_account, '202010000001', 0, '202020000001', 0, '202030100001', 0, 
                                  '202030100002', 1, '202030100003', 3, '202030100004', 6,
                                  '202030100005', 12,'202030100006', 99,'202030200001', 0,
@@ -90,6 +93,7 @@ def FormOnSetDataEx(uideflist, params):
           left outer join %(ReferenceData)s r2 on (decode(d.kode_valuta, 'IDR', '360', 'USD', '840', 'SGD', '702')=r2.reference_code and r2.reftype_id=232)
           left outer join %(ReferenceData)s r3 on (decode(e.is_pihak_terkait, 'T', '1', '2') = r3.reference_code and r3.reftype_id=124)
           left outer join %(ReferenceData)s r4 on (f.kode_lokasi=r4.reference_code and r4.reftype_id=251)
+          left outer join %(ReferenceData)s r5 on (e.id_golongan_pemilik=r5.reference_code and r5.reftype_id=225)
           where c.kode_account in ('202010000001','202020000001','202030100001','202030100002','202030100003',
                                  '202030100004','202030100005','202030100006','202030200001','202030200002',
                                  '202030200003','202030200004','202030200005','202030200006')
@@ -145,6 +149,9 @@ def FormOnSetDataEx(uideflist, params):
           trc4 = res.rc4
           trd4 = res.rd4
           tri4 = res.ri4
+          trc5 = res.rc5
+          trd5 = res.rd5
+          tri5 = res.ri5
         if res.rc1=='22':
           totalgbd+=res.total
           jmlgbd+=1
@@ -160,6 +167,9 @@ def FormOnSetDataEx(uideflist, params):
           drc4 = res.rc4
           drd4 = res.rd4
           dri4 = res.ri4
+          drc5 = res.rc5
+          drd5 = res.rd5
+          dri5 = res.ri5
       else:
         if res.rc1=='21':
           putpos+=1 
@@ -179,6 +189,9 @@ def FormOnSetDataEx(uideflist, params):
         ins.SetFieldByName('LLOKASI.reference_code', res.rc4)
         ins.SetFieldByName('LLOKASI.reference_desc', res.rd4)
         ins.SetFieldByName('LLOKASI.refdata_id', res.ri4)
+        ins.SetFieldByName('LGOLPEMILIK.reference_code', res.rc5)
+        ins.SetFieldByName('LGOLPEMILIK.reference_desc', res.rd5)
+        ins.SetFieldByName('LGOLPEMILIK.refdata_id', res.ri5)
         ins.Bulan = res.bln
         ins.Hari = res.hari
         ins.Nisbah = round(res.nisbah, 2)
@@ -205,6 +218,9 @@ def FormOnSetDataEx(uideflist, params):
       ins.SetFieldByName('LLOKASI.reference_code', trc4)
       ins.SetFieldByName('LLOKASI.reference_desc', trd4)
       ins.SetFieldByName('LLOKASI.refdata_id', tri4)
+      ins.SetFieldByName('LGOLPEMILIK.reference_code', trc5)
+      ins.SetFieldByName('LGOLPEMILIK.reference_desc', trd5)
+      ins.SetFieldByName('LGOLPEMILIK.refdata_id', tri5)
       ins.Bulan = 0
       ins.Hari = 0
       ins.Nisbah = 0
@@ -230,6 +246,9 @@ def FormOnSetDataEx(uideflist, params):
       ins.SetFieldByName('LLOKASI.reference_code', drc4)
       ins.SetFieldByName('LLOKASI.reference_desc', drd4)
       ins.SetFieldByName('LLOKASI.refdata_id', dri4)
+      ins.SetFieldByName('LGOLPEMILIK.reference_code', drc5)
+      ins.SetFieldByName('LGOLPEMILIK.reference_desc', drd5)
+      ins.SetFieldByName('LGOLPEMILIK.refdata_id', dri5)
       ins.Bulan = 0
       ins.Hari = 0
       ins.Nisbah = 0

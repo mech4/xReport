@@ -125,6 +125,9 @@ def FormOnSetDataEx(uideflist, params):
           r5.refdata_id ri5,
           r5.reference_code rc5,
           r5.reference_desc rd5,
+          r6.refdata_id ri6,
+          r6.reference_code rc6,
+          r6.reference_desc rd6,
           case when (b.is_bagi_hasil_khusus='T') then b.nisbah_bagi_hasil else g.nisbah_bonus_dasar end nisbah,
           h.gdr*1.2*nisbah persen,
           j.saldo total 
@@ -143,6 +146,7 @@ def FormOnSetDataEx(uideflist, params):
           left outer join %(ReferenceData)s r3 on (decode(e.is_pihak_terkait, 'T', '1', '2') = r3.reference_code and r3.reftype_id=124)
           left outer join %(ReferenceData)s r4 on (f.kode_lokasi=r4.reference_code and r4.reftype_id=251) 
           left outer join %(ReferenceData)s r5 on (decode(c.kode_account, '201010000002', '4', '1')=r5.reference_code and r5.reftype_id=221) 
+          left outer join %(ReferenceData)s r6 on (e.id_golongan_pemilik=r6.reference_code and r6.reftype_id=225)
           where c.kode_account in ('201020000001','201010000001','201010000002')
              and d.kode_cabang in (%(ParamCabang)s)
              and j.status_rekening<>3
@@ -184,6 +188,9 @@ def FormOnSetDataEx(uideflist, params):
       ins.SetFieldByName('LLOKASI.reference_code', res.rc4)
       ins.SetFieldByName('LLOKASI.reference_desc', res.rd4)
       ins.SetFieldByName('LLOKASI.refdata_id', res.ri4)
+      ins.SetFieldByName('LGOLPEMILIK.reference_code', res.rc6)
+      ins.SetFieldByName('LGOLPEMILIK.reference_desc', res.rd6)
+      ins.SetFieldByName('LGOLPEMILIK.refdata_id', res.ri6)
       ins.PersenBonus = round(res.nisbah, 2)
       t = int(res.total/100000)
       if int(str(t)[-1])>5:
