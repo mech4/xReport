@@ -201,7 +201,7 @@ def createData(config, rec, oReport):
     #isi data bln lalu
   #-- while
   s = '''
-       select refdata_id from %s where reference_code='85' and reftype_id=235
+       select refdata_id from %s where reference_code='29' and reftype_id=235
   ''' % config.MapDBTableName('enterprise.referencedata')
   jenis_code = config.CreateSQL(s).RawResult.refdata_id    
   s = '''
@@ -217,7 +217,7 @@ def createData(config, rec, oReport):
   ''' % config.MapDBTableName('enterprise.referencedata')
   gd_code = config.CreateSQL(s).RawResult.refdata_id    
   s = '''
-       select refdata_id from %s where reference_code='9990' and reftype_id=224
+       select refdata_id from %s where reference_code='9900' and reftype_id=224
   ''' % config.MapDBTableName('enterprise.referencedata')
   sektor_code = config.CreateSQL(s).RawResult.refdata_id    
   s = '''
