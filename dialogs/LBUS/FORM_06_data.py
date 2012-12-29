@@ -244,6 +244,7 @@ def createData(config, rec, oReport):
       r5.reference_code c5, 
       r5.reference_desc d5,
       r5.refdata_id i5,
+      nvl(rse.refdata_id, %(id_sektor)s) id_se,
       fa.targeted_eqv_rate,
       a.base_price,
       a.mmd_balance_lama,
@@ -256,6 +257,9 @@ def createData(config, rec, oReport):
       left outer join %(RekeningCustomer)s b on (a.nomor_rekening=b.nomor_rekening)
       left outer join %(AccAdditional)s c on (a.nomor_rekening=c.nomor_rekening)
       left outer join %(CustAdditional)s d on (b.nomor_nasabah=d.nomor_nasabah)
+      left outer join %(Sandi)s s1 on (d.ref_sektor_ekonomi=s1.id)
+      left outer join map_sektor_ekonomi mse on (s1.kode_1=mse.sid)
+      left outer join %(ReferenceData)s rse on (mse.lbu=rse.reference_code and rse.reftype_id=224)
       left outer join %(FinFacility)s e on (fa.facility_no=e.facility_no)
       left outer join %(Nasabah)s f on (b.nomor_nasabah=f.nomor_nasabah)
       left outer join %(SaldoRekening)s g on (a.nomor_rekening=g.nomor_rekening)
@@ -287,6 +291,8 @@ def createData(config, rec, oReport):
          'Cabang'  : config.MapDBTableName('enterprise.cabang'),
          'ParamCabang' : listcabang,
          'Collateral' : config.MapDBTableName('financing.fincollateralasset'),
+         'Sandi' : config.MapDBTableName('financing.sandi'),
+         'id_sektor' : str(sektor_code),
          'TanggalLaporan' : config.FormatDateTime('dd-mm-yyyy', repdate)
   }
   #app.ConWriteln(s)
@@ -313,7 +319,7 @@ def createData(config, rec, oReport):
     ins.LORIENTPENGGUNAAN_refdata_id = ori_code
     ins.LGOLDEBITUR_refdata_id = gd_code
     ins.LGOLPIUTANG_refdata_id = gp_code
-    ins.LSEKTOREKONOMI_refdata_id = sektor_code
+    ins.LSEKTOREKONOMI_refdata_id = res.id_se
     ins.LGOLPENJAMIN_refdata_id = penjamin_code
 
     ins.LLOKASIPROYEK_refdata_id = res.i5
