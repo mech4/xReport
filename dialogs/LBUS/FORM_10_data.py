@@ -285,7 +285,7 @@ def createData(config, rec, oReport):
       left outer join %(ReferenceData)s r4 on (r4.reference_code=decode(fa.overall_col_level, 1,'1',2,'2',3,'3',4,'4',5,'5') and r4.reftype_id=230)
       left outer join %(ReferenceData)s r5 on (r5.reference_code=decode(a.finmusyarakahaccount_type, 'D', '10', '20') and r5.reftype_id=236)
       left outer join %(ReferenceData)s r6 on (r6.reference_code=decode(fa.financing_model, 'T', '9', '1') and r6.reftype_id=223)
-      left outer join %(ReferenceData)s r7 on (r7.reference_code=h.kode_lokasi and r7.reftype_id=365)
+      left outer join %(ReferenceData)s r7 on (r7.reference_code=h.kode_lokasi and r7.reftype_id=251)
       where g.kode_cabang in (%(ParamCabang)s)
            and fa.dropping_date <= to_date('%(TanggalLaporan)s','dd-mm-yyyy')
            and not exists (select null from %(PrevMonth)s ne where 
