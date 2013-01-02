@@ -93,7 +93,7 @@ def FormOnSetDataEx(uideflist, params):
           left outer join %(ReferenceData)s r2 on (decode(d.kode_valuta, 'IDR', '360', 'USD', '840', 'SGD', '702')=r2.reference_code and r2.reftype_id=232)
           left outer join %(ReferenceData)s r3 on (decode(e.is_pihak_terkait, 'T', '1', '2') = r3.reference_code and r3.reftype_id=124)
           left outer join %(ReferenceData)s r4 on (f.kode_lokasi=r4.reference_code and r4.reftype_id=251)
-          left outer join %(ReferenceData)s r5 on (e.id_golongan_pemilik=r5.reference_code and r5.reftype_id=225)
+          left outer join %(ReferenceData)s r5 on (e.id_golongan_pemilik=r5.refdata_id)
           where c.kode_account in ('202010000001','202020000001','202030100001','202030100002','202030100003',
                                  '202030100004','202030100005','202030100006','202030200001','202030200002',
                                  '202030200003','202030200004','202030200005','202030200006')
