@@ -171,33 +171,34 @@ def FormOnSetDataEx(uideflist, params):
     #raise Exception, s
     res = config.CreateSQL(s).RawResult
     while not res.Eof:
-      ins = ds.AddRecord()
-      ins.JumlahRekening = res.jml
-      ins.SetFieldByName('LSIFAT.reference_code', res.rc5)
-      ins.SetFieldByName('LSIFAT.reference_desc', res.rd5)
-      ins.SetFieldByName('LSIFAT.refdata_id', res.ri5)
-      ins.SetFieldByName('LJENIS.reference_code', res.rc1)
-      ins.SetFieldByName('LJENIS.reference_desc', res.rd1)
-      ins.SetFieldByName('LJENIS.refdata_id', res.ri1)
-      ins.SetFieldByName('LJENISVALUTA.reference_code', res.rc2)
-      ins.SetFieldByName('LJENISVALUTA.reference_desc', res.rd2)
-      ins.SetFieldByName('LJENISVALUTA.refdata_id', res.ri2)
-      ins.SetFieldByName('LHUBBANK.reference_code', res.rc3)
-      ins.SetFieldByName('LHUBBANK.reference_desc', res.rd3)
-      ins.SetFieldByName('LHUBBANK.refdata_id', res.ri3)
-      ins.SetFieldByName('LLOKASI.reference_code', res.rc4)
-      ins.SetFieldByName('LLOKASI.reference_desc', res.rd4)
-      ins.SetFieldByName('LLOKASI.refdata_id', res.ri4)
-      ins.SetFieldByName('LGOLPEMILIK.reference_code', res.rc6)
-      ins.SetFieldByName('LGOLPEMILIK.reference_desc', res.rd6)
-      ins.SetFieldByName('LGOLPEMILIK.refdata_id', res.ri6)
-      ins.PersenBonus = round(res.nisbah, 2)
-      t = int(res.total/100000)
-      if int(str(t)[-1])>5:
-        t = (t/10)+1
-      else:
-        t = t/10 
-      ins.Jumlah = t
+      if int(res.total)>700000:
+        ins = ds.AddRecord()
+        ins.JumlahRekening = res.jml
+        ins.SetFieldByName('LSIFAT.reference_code', res.rc5)
+        ins.SetFieldByName('LSIFAT.reference_desc', res.rd5)
+        ins.SetFieldByName('LSIFAT.refdata_id', res.ri5)
+        ins.SetFieldByName('LJENIS.reference_code', res.rc1)
+        ins.SetFieldByName('LJENIS.reference_desc', res.rd1)
+        ins.SetFieldByName('LJENIS.refdata_id', res.ri1)
+        ins.SetFieldByName('LJENISVALUTA.reference_code', res.rc2)
+        ins.SetFieldByName('LJENISVALUTA.reference_desc', res.rd2)
+        ins.SetFieldByName('LJENISVALUTA.refdata_id', res.ri2)
+        ins.SetFieldByName('LHUBBANK.reference_code', res.rc3)
+        ins.SetFieldByName('LHUBBANK.reference_desc', res.rd3)
+        ins.SetFieldByName('LHUBBANK.refdata_id', res.ri3)
+        ins.SetFieldByName('LLOKASI.reference_code', res.rc4)
+        ins.SetFieldByName('LLOKASI.reference_desc', res.rd4)
+        ins.SetFieldByName('LLOKASI.refdata_id', res.ri4)
+        ins.SetFieldByName('LGOLPEMILIK.reference_code', res.rc6)
+        ins.SetFieldByName('LGOLPEMILIK.reference_desc', res.rd6)
+        ins.SetFieldByName('LGOLPEMILIK.refdata_id', res.ri6)
+        ins.PersenBonus = round(res.nisbah, 2)
+        t = int(res.total/100000)
+        if int(str(t)[-1])>5:
+          t = (t/10)+1
+        else:
+          t = t/10 
+        ins.Jumlah = t
       res.Next()
 
     
