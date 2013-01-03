@@ -390,5 +390,5 @@ class fReportContainer:
 
   def beginRowOnExit(self, sender):
     # procedure(sender: TrtfDBEdit)
-    self.uipMain.endRow = self.uipMain.beginRow + 99
+    self.uipMain.endRow = self.uipMain.beginRow + 9999
     
