@@ -3,7 +3,7 @@ DEBUG_MODE    = False
 ATTR_ORACLE   = 0x01
 ATTR_MONGODB  = 0x02 
 ATTR_TYPE     = ATTR_ORACLE
-MaxLoad       = 100  
+MaxLoad       = 10000  
 
 import com.ihsan.foundation.pobjecthelper as phelper
 import com.ihsan.util.attrutil as attrutil
