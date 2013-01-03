@@ -208,7 +208,9 @@ class fReportContainer:
     )
     ph = formObj.CallServerMethod('CheckRepExist', ph)
     status = ph.FirstRecord
+    uMain.Edit()
     uMain.totalRow = status.totalRow
+    uMain.Post()
     if status.IsErr == 1:
       self.pData_bDownload.enabled = 0
       self.pData_bGenerate.enabled = 0
