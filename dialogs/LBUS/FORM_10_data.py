@@ -266,7 +266,7 @@ def createData(config, rec, oReport):
       fa.payment_balance,
       round(a.profit_share,2) pshare,
       round(fa.targeted_eqv_rate,2) teqv_rate,
-      0 valuation
+      nvl(agu.total_agunan, fa.dropping_amount) valuation
       from %(FinMusyarakah)s a join %(FinAccount)s fa on (a.nomor_rekening=fa.nomor_rekening) 
       join %(FinSchedule)s sch on (fa.id_schedule=sch.id_schedule and sch.completion_status='F')
       left outer join %(RekeningCustomer)s b on (a.nomor_rekening=b.nomor_rekening)
@@ -279,6 +279,10 @@ def createData(config, rec, oReport):
       left outer join %(Nasabah)s f on (b.nomor_nasabah=f.nomor_nasabah)
       left outer join %(SaldoRekening)s g on (a.nomor_rekening=g.nomor_rekening)
       left outer join %(Cabang)s h on (g.kode_cabang=h.kode_cabang)
+      left outer join (select fca.NOREK_FINACCOUNT, sum(fcs.valuation) total_agunan from %(ColMap)s fca, %(Collateral)s fcs
+                      where fca.NOREK_FINCOLLATERALASSET=fcs.nomor_rekening
+                      group by fca.NOREK_FINACCOUNT ) agu
+            on (a.nomor_rekening=agu.norek_finaccount)
       left outer join %(ReferenceData)s r1 on (r1.reference_code=decode(c.status_piutang,'10','10','20') and r1.reftype_id=219)
       left outer join %(ReferenceData)s r2 on (r2.reference_code=decode(e.currency_code,'IDR','360','USD','840','SIN','702') and r2.reftype_id=232)
       left outer join %(ReferenceData)s r3 on (r3.reference_code=decode(f.is_pihak_terkait, 'T','1','2') and r3.reftype_id=124)
@@ -307,6 +311,7 @@ def createData(config, rec, oReport):
        'SaldoRekening' : config.MapDBTableName('tmp.cknom_base_pby'),
        'ParamCabang' : listcabang,
        'Collateral' : config.MapDBTableName('financing.fincollateralasset'),
+       'Collateral' : config.MapDBTableName('financing.fincollateralaccount'),
        'Sandi' : config.MapDBTableName('financing.sandi'),
        'id_sektor' : str(sektor_code),
        'TanggalLaporan' : config.FormatDateTime('dd-mm-yyyy', repdate)
