@@ -49,7 +49,7 @@ class fReportContainer:
     self.FormContainer.Show()
     self.switchEdit(False)
     self.uipMain.beginRow = 1
-    self.uipMain.endRow = 100
+    self.uipMain.endRow = 10000
     
   def branchOnExit(self, sender):
     uapp = self.FormObject.ClientApplication.UserAppObject
