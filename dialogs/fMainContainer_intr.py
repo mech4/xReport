@@ -450,30 +450,12 @@ class fReportContainer:
     if formid == '' or periodid == '' or branchid == '':
       app.ShowMessage("Input not completed yet!")
       return
-           
-    self.repform = self.frReport.Activate(formid, app.CreatePacket(), None)
-    try:
-      check = self.repform.txttemplate
-    except:
-      self.repform.txttemplate = ''
-      self.repform.txtmap = ()
-      self.repform.useheader = None
-    self.setAttrList()
-    
-    if  self.pData_cbAllData.checked == 0:
-      beginRow = self.uipMain.beginRow or 1
-      limitRow = 0
-    else:
-      beginRow = 1
-      limitRow = 1
     ph = app.CreateValues(
       ["class_id", uipMain.GetFieldValue("reportclass.class_id")]
       , ["period_id", uipMain.GetFieldValue("period.period_id")]
       , ["branch_id", uipMain.GetFieldValue("branch.branch_id")]
       , ["group_code", self.group_code]
       , ["report_code", uipMain.GetFieldValue("reportclass.report_code")]
-      , ["beginRow", beginRow]
-      , ["limitRow", limitRow]
       , ["attrlist", str(self.load_attrlist)]
     )
     confirmed = app.ConfirmDialog('Anda yakin akan membuat ulang Form : %s' % uipMain.GetFieldValue("reportclass.report_name"))
@@ -485,31 +467,7 @@ class fReportContainer:
     status = st.FirstRecord
     if status.IsErr == 1:
       app.ShowMessage("ERROR! " + status.ErrMessage)
-    self.repform.FormObject.SetDataWithParameters(ph)
-    
-    if self.repform.paction not in (None,''):
-      self.pData_cbNihil.enabled = 1
-    else:
-      self.pData_cbNihil.checked = 0
-      self.pData_cbNihil.enabled = 0
-    self.switchEdit()
-    uMain = self.uipMain    
-    ph = app.CreateValues(
-      ["class_id", uMain.GetFieldValue("reportclass.class_id")]
-      , ["period_id", uMain.GetFieldValue("period.period_id")]
-      , ["branch_id", uMain.GetFieldValue("branch.branch_id")]
-      , ["group_code", self.group_code]
-      , ["report_code", uipMain.GetFieldValue("reportclass.report_code")]
-    )
-    ph = formObj.CallServerMethod('CheckRepExist', ph)
-    status = ph.FirstRecord
-    uMain.Edit()
-    uMain.totalRow = status.totalRow
-    uMain.Post()
-    if status.IsErr == 1:
-      self.pData_bDownload.enabled = 0
-      self.pData_bGenerate.enabled = 0
-      self.pData_bRecreate.enabled = 0
+    self.bLoadOnClick(self.pData_bLoad)
     #--
 
 

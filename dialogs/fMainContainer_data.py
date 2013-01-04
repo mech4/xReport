@@ -761,8 +761,10 @@ def CleanThisForm(config, params, returns):
       delete from {0}
       where report_id = {1}
     '''.format(itemName, oReport.report_id))
-    
-    oReport.Delete()
+    config.ExecSQL('''
+      delete from report
+      where report_id = {0}
+    '''.format(oReport.report_id))
     config.Commit()
     #--
   except:    
