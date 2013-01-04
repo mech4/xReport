@@ -49,7 +49,9 @@ class fReportContainer:
     self.FormContainer.Show()
     self.switchEdit(False)
     self.uipMain.beginRow = 1
-    self.uipMain.endRow = 10000
+    self.uipMain.endRow = 100
+    self.pData_endRow.enabled = 0
+    self.pData_totalRow.enabled = 0
     
   def branchOnExit(self, sender):
     uapp = self.FormObject.ClientApplication.UserAppObject
@@ -105,6 +107,7 @@ class fReportContainer:
     self.pData_bSave.enabled = swOn
     self.pData_bDownload.enabled = swOn
     self.pData_bGenerate.enabled = swOn
+    self.pData_bRecreate.enabled = swOn
     self.pData_bImport.enabled = swOn
     self.pAction_bSaveRow.enabled = swOn
     self.pAction_bNewrow.enabled = swOn
@@ -155,6 +158,8 @@ class fReportContainer:
       self.switchEdit(False)
       self.pData_bDownload.enabled = 1
       self.pData_bGenerate.enabled = 1
+      self.pData_bRecreate.enabled = 1
+      self.pData_bSave.enabled = 1
       self.pData_bImport.enabled = 1
       self.pAction_bNewrow.enabled = 1
       self.pAction_bDeleteRow.enabled = 1
@@ -180,7 +185,12 @@ class fReportContainer:
       self.repform.useheader = None
     self.setAttrList()
     
-    beginRow = self.uipMain.beginRow or 1
+    if  self.pData_cbAllData.checked == 0:
+      beginRow = self.uipMain.beginRow or 1
+      limitRow = 0
+    else:
+      beginRow = 1
+      limitRow = 1
     ph = app.CreateValues(
       ["class_id", uipMain.GetFieldValue("reportclass.class_id")]
       , ["period_id", uipMain.GetFieldValue("period.period_id")]
@@ -188,6 +198,7 @@ class fReportContainer:
       , ["group_code", self.group_code]
       , ["report_code", uipMain.GetFieldValue("reportclass.report_code")]
       , ["beginRow", beginRow]
+      , ["limitRow", limitRow]
       , ["attrlist", str(self.load_attrlist)]
     )
     self.repform.FormObject.SetDataWithParameters(ph)
@@ -209,11 +220,23 @@ class fReportContainer:
     ph = formObj.CallServerMethod('CheckRepExist', ph)
     status = ph.FirstRecord
     uMain.Edit()
+    if  self.pData_cbAllData.checked == 0:
+      uMain.endRow = uMain.beginRow + 99
+      if uMain.endRow > status.totalRow:
+        uMain.endRow = status.totalRow 
+    else:
+      uMain.beginRow = 1
+      uMain.endRow = status.totalRow
     uMain.totalRow = status.totalRow
     uMain.Post()
     if status.IsErr == 1:
+      uMain.Edit()
+      uMain.endRow = self.repform.uipData.RecordCount
+      uMain.totalRow = self.repform.uipData.RecordCount
+      uMain.Post()
       self.pData_bDownload.enabled = 0
       self.pData_bGenerate.enabled = 0
+      self.pData_bRecreate.enabled = 0
     #--
 
 
@@ -309,6 +332,10 @@ class fReportContainer:
 
   def bImportOnClick(self, sender):
     formobj = self.FormObject; app = formobj.ClientApplication
+    if  self.pData_cbAllData.checked == 0 or self.uipMain.beginRow<>1 or self.uipMain.endRow<>self.uipMain.totalRow:
+      app.ShowMessage('Harap pilih semua data dan load ulang form terlebih dahulu.')
+      return
+      
     filename = app.OpenFileDialog('Import Data', 'Excel Worksheet (*.xls)')
     if filename in (None,''):
       return
@@ -354,6 +381,18 @@ class fReportContainer:
       else:
         sat = 'Records'
       if app.ConfirmDialog("%d %s of Data Found.\nLoad Data into Form ?" % (recnum, sat)):
+        #pcln = app.CreateValues(
+        #  ["class_id", uMain.GetFieldValue("reportclass.class_id")]
+        #  , ["period_id", uMain.GetFieldValue("period.period_id")]
+        #  , ["branch_id", uMain.GetFieldValue("branch.branch_id")]
+        #  , ["group_code", self.group_code]
+        #  , ["report_code", uMain.GetFieldValue("reportclass.report_code")]
+        #  , ["attrlist", str(self.load_attrlist)]
+        #)
+        #st = formobj.CallServerMethod('CleanThisForm', pcln)
+        #status = st.FirstRecord
+        #if status.IsErr == 1:
+        #  app.ShowMessage("ERROR! " + status.ErrMessage)
         datamap = str(self.repform.xlsmap)
         oldData = self.repform.uipData 
         oldData.First()
@@ -385,12 +424,105 @@ class fReportContainer:
               putData.SetFieldValue(iData.Structure.GetFieldDef(j).FieldName.split('.')[0]+".reference_code",
                                     rLink.GetFieldByName(iData.Structure.GetFieldDef(j).FieldName.split('.')[0]+".reference_code")
               ) 
-
+        #self.bSaveOnClick(self.pData_bSave)
+        self.uipMain.Edit()
+        self.uipMain.beginRow = 1
+        self.uipMain.endRow = recnum
+        self.uipMain.totalRow = recnum
+        self.uipMain.Post()
     #--
     
     
 
   def beginRowOnExit(self, sender):
     # procedure(sender: TrtfDBEdit)
-    self.uipMain.endRow = self.uipMain.beginRow + 9999
+    self.uipMain.endRow = self.uipMain.beginRow + 99
+    
+
+  def bRecreateOnClick(self, sender):
+    # procedure(sender: TrtfButton)
+    formObj = self.FormObject; app = formObj.ClientApplication
+    uipMain = self.uipMain
+    
+    formid = uipMain.GetFieldValue("reportclass.form_id") or ''
+    periodid = uipMain.GetFieldValue("period.period_id") or ''
+    branchid = uipMain.GetFieldValue("branch.branch_id") or ''
+    if formid == '' or periodid == '' or branchid == '':
+      app.ShowMessage("Input not completed yet!")
+      return
+           
+    self.repform = self.frReport.Activate(formid, app.CreatePacket(), None)
+    try:
+      check = self.repform.txttemplate
+    except:
+      self.repform.txttemplate = ''
+      self.repform.txtmap = ()
+      self.repform.useheader = None
+    self.setAttrList()
+    
+    if  self.pData_cbAllData.checked == 0:
+      beginRow = self.uipMain.beginRow or 1
+      limitRow = 0
+    else:
+      beginRow = 1
+      limitRow = 1
+    ph = app.CreateValues(
+      ["class_id", uipMain.GetFieldValue("reportclass.class_id")]
+      , ["period_id", uipMain.GetFieldValue("period.period_id")]
+      , ["branch_id", uipMain.GetFieldValue("branch.branch_id")]
+      , ["group_code", self.group_code]
+      , ["report_code", uipMain.GetFieldValue("reportclass.report_code")]
+      , ["beginRow", beginRow]
+      , ["limitRow", limitRow]
+      , ["attrlist", str(self.load_attrlist)]
+    )
+    confirmed = app.ConfirmDialog('Anda yakin akan membuat ulang Form : %s' % uipMain.GetFieldValue("reportclass.report_name"))
+    if not confirmed:
+      self.bLoadOnClick(self.pData_bLoad)
+      return
+
+    st = formObj.CallServerMethod('CleanThisForm', ph)
+    status = st.FirstRecord
+    if status.IsErr == 1:
+      app.ShowMessage("ERROR! " + status.ErrMessage)
+    self.repform.FormObject.SetDataWithParameters(ph)
+    
+    if self.repform.paction not in (None,''):
+      self.pData_cbNihil.enabled = 1
+    else:
+      self.pData_cbNihil.checked = 0
+      self.pData_cbNihil.enabled = 0
+    self.switchEdit()
+    uMain = self.uipMain    
+    ph = app.CreateValues(
+      ["class_id", uMain.GetFieldValue("reportclass.class_id")]
+      , ["period_id", uMain.GetFieldValue("period.period_id")]
+      , ["branch_id", uMain.GetFieldValue("branch.branch_id")]
+      , ["group_code", self.group_code]
+      , ["report_code", uipMain.GetFieldValue("reportclass.report_code")]
+    )
+    ph = formObj.CallServerMethod('CheckRepExist', ph)
+    status = ph.FirstRecord
+    uMain.Edit()
+    uMain.totalRow = status.totalRow
+    uMain.Post()
+    if status.IsErr == 1:
+      self.pData_bDownload.enabled = 0
+      self.pData_bGenerate.enabled = 0
+      self.pData_bRecreate.enabled = 0
+    #--
+
+
+  def cbAllDataOnClick(self, sender):
+    # procedure(sender: TrtfCheckBox)
+    formObj = self.FormObject; app = formObj.ClientApplication
+    uipMain = self.uipMain
+    if sender.checked == 0:
+      self.pData_beginRow.enabled = 1
+      #self.pData_endRow.enabled = 1
+      #self.pData_totalRow.enabled = 1
+    else:
+      self.pData_beginRow.enabled = 0
+      self.pData_endRow.enabled = 0
+      self.pData_totalRow.enabled = 0
     

@@ -3,7 +3,7 @@ DEBUG_MODE    = False
 ATTR_ORACLE   = 0x01
 ATTR_MONGODB  = 0x02 
 ATTR_TYPE     = ATTR_ORACLE
-MaxLoad       = 10000  
+MaxLoad       = 100  
 
 import com.ihsan.foundation.pobjecthelper as phelper
 import com.ihsan.util.attrutil as attrutil
@@ -28,6 +28,7 @@ def setData(uideflist, params):
     , reportAttr, rec)
   attrlist = eval(rec.attrlist)
   beginRow = rec.beginRow
+  limitRow = rec.limitRow
 
   oReport   = helper.GetObjectByNames('Report', reportAttr)
   if oReport.isnull: return
@@ -71,7 +72,8 @@ def setData(uideflist, params):
         
         attrutil.transferAttributes(helper, attrlist, item, oItem)
       
-        lrow += 1
+        if not limitRow:
+          lrow += 1
         app.ConWriteln('Load data row ke-%s' % str(i))
       #--
       res.Next()

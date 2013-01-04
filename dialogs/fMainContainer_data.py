@@ -738,3 +738,34 @@ def ImportReport(config, params, returns):
     status.ErrMessage = errMessage 
     
   
+def CleanThisForm(config, params, returns):
+  helper = phelper.PObjectHelper(config)
+  status = returns.CreateValues(["IsErr", 0], ["totalRow", 0], ["ErrMessage", ''])
+  config.BeginTransaction()
+  try :
+    rec = params.FirstRecord
+    reportAttr = {}
+    attrutil.transferAttributes(helper, 
+      ['class_id', 'period_id', 'branch_id']
+      , reportAttr, rec)
+    oReport   = helper.GetObjectByNames('Report', reportAttr)
+    if oReport.isnull: 
+      raise Exception, "Report not found!"
+    #--
+    
+    # delete report
+    itemName = "{0}_{1}".format(rec.group_code
+      , rec.report_code)
+    
+    config.ExecSQL('''
+      delete from {0}
+      where report_id = {1}
+    '''.format(itemName, oReport.report_id))
+    
+    oReport.Delete()
+    config.Commit()
+    #--
+  except:    
+    config.Rollback()
+    status.IsErr = 1
+    status.ErrMessage = str(sys.exc_info()[1])

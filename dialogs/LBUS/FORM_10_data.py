@@ -311,7 +311,7 @@ def createData(config, rec, oReport):
        'SaldoRekening' : config.MapDBTableName('tmp.cknom_base_pby'),
        'ParamCabang' : listcabang,
        'Collateral' : config.MapDBTableName('financing.fincollateralasset'),
-       'Collateral' : config.MapDBTableName('financing.fincollateralaccount'),
+       'ColMap' : config.MapDBTableName('financing.fincollateralaccount'),
        'Sandi' : config.MapDBTableName('financing.sandi'),
        'id_sektor' : str(sektor_code),
        'TanggalLaporan' : config.FormatDateTime('dd-mm-yyyy', repdate)

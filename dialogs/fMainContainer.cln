@@ -314,26 +314,29 @@ object:rtf::Form<
           Left=8
           Width=61
           Height=21
-          ControlCaption='Data ke -'
+          ControlCaption='Tampilkan Data ke -'
+          LayoutOrder=20
           OnExit='beginRowOnExit'
         >, *object:rtf::DBEdit<
           Name='endRow'
           Layout=clAbsolute
           Top=96
-          Left=128
+          Left=180
           Width=67
           Height=21
           Color=-16777192
           ControlCaption='sampai ke -'
+          LayoutOrder=21
         >, *object:rtf::DBEdit<
           Name='totalRow'
           Layout=clAbsolute
           Top=96
-          Left=264
+          Left=328
           Width=66
           Height=21
           Color=-16777192
           ControlCaption='total data'
+          LayoutOrder=22
         >, object:rtf::Button<
           Name='bLoad'
           Layout=clAbsolute
@@ -373,8 +376,8 @@ object:rtf::Form<
           OnClick='bGenerateOnClick'
         >, object:rtf::CheckBox<
           Name='cbNihil'
-          Layout=clAbsolute
-          Top=40
+          Layout=clNextSide
+          Top=36
           Left=788
           Enabled=false
           ControlCaption='NIHIL'
@@ -387,6 +390,24 @@ object:rtf::Form<
           ControlCaption=''
           Caption='Import'
           OnClick='bImportOnClick'
+        >, object:rtf::Button<
+          Name='bRecreate'
+          Layout=clAbsolute
+          Top=64
+          Left=824
+          Width=89
+          Height=25
+          ControlCaption=''
+          Caption='Recreate'
+          OnClick='bRecreateOnClick'
+        >, object:rtf::CheckBox<
+          Name='cbAllData'
+          Layout=clAbsolute
+          Top=96
+          Left=464
+          ControlCaption='Seluruh Data'
+          LayoutOrder=23
+          OnClick='cbAllDataOnClick'
         >
       }
       ControlLeftMargin=8
