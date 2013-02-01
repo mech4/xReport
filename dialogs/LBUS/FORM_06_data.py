@@ -166,14 +166,14 @@ def createData(config, rec, oReport):
           round(b.reserved_common_balance/1000000, 0) ppap,
           seq_lbus_form06.nextval seq,
           %(ReportId)s report_id
-          from %(FinMurabahah)s a join %(FinAccount)s b on (a.nomor_rekening=b.nomor_rekening)
+          from %(FinMurabahah)s a left outer join %(FinAccount)s b on (a.nomor_rekening=b.nomor_rekening)
           join %(FinSchedule)s sch on (b.id_schedule=sch.id_schedule and sch.completion_status='F')
-          join %(RekeningCustomer)s c on (a.nomor_rekening=c.nomor_rekening)
-          join %(AdditionalAcc)s d on (a.nomor_rekening=d.nomor_rekening)
-          join %(AdditionalCust)s e on (c.nomor_nasabah=e.nomor_nasabah)
+          left outer join %(RekeningCustomer)s c on (a.nomor_rekening=c.nomor_rekening)
+          left outer join %(AdditionalAcc)s d on (a.nomor_rekening=d.nomor_rekening)
+          left outer join %(AdditionalCust)s e on (c.nomor_nasabah=e.nomor_nasabah)
           left outer join %(FinFacility)s f on (b.facility_no=f.facility_no)
-          join %(SaldoRekening)s g on (a.nomor_rekening=g.nomor_rekening and g.tanggal=to_date('%(TglLaporan)s', 'dd-mm-yyyy'))
-          join %(SaldoRekening)s h on (a.nomor_rekening=h.nomor_rekening and h.tanggal=to_date('%(TglBlnLalu)s', 'dd-mm-yyyy'))
+          left outer join %(SaldoRekening)s g on (a.nomor_rekening=g.nomor_rekening and g.tanggal=to_date('%(TglLaporan)s', 'dd-mm-yyyy'))
+          left outer join %(SaldoRekening)s h on (a.nomor_rekening=h.nomor_rekening and h.tanggal=to_date('%(TglBlnLalu)s', 'dd-mm-yyyy'))
           left outer join (select fca.NOREK_FINACCOUNT, sum(fcs.valuation) total_agunan from %(ColMap)s fca, %(ColAssets)s fcs
                           where fca.NOREK_FINCOLLATERALASSET=fcs.nomor_rekening
                           group by fca.NOREK_FINACCOUNT ) agu
