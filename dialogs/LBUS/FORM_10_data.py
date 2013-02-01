@@ -35,8 +35,7 @@ def FormOnSetDataEx(uideflist, params):
     config.BeginTransaction()
     try:
       oReport = helper.CreatePObject('Report', reportAttr)
-      createData(config, rec, oReport) 
-      
+      createData(config, rec, oReport)
       config.Commit()
     except:
       config.Rollback()
@@ -47,15 +46,14 @@ def FormOnSetDataEx(uideflist, params):
 
 def createData(config, rec, oReport):
   global app
-  
   def toDate(val):
     if val not in (None,'',0):
       if type(val)==type(0.0):
         val = config.ModLibUtils.DecodeDate(val)
       return '%s%s' % (str(val[1]).zfill(2), str(val[0]))
     else:
-      return "''"
-
+      return "000000"           
+      
   report_id = oReport.report_id
   mlu = config.ModLibUtils
   s = '''
@@ -111,36 +109,37 @@ def createData(config, rec, oReport):
        select refdata_id from %s where reference_code='000' and reftype_id=328
   ''' % config.MapDBTableName('enterprise.referencedata')
   penjamin_code = config.CreateSQL(s).RawResult.refdata_id    
+
   s = '''
           insert into lbus_form10 (
-          NOMORREKENING	,
-          JUMLAHREKENING	,
-          LSTATUSPEMBIAYAAN_REFDATA_ID	,
-          LSIFAT_REFDATA_ID	,
-          LJENIS_REFDATA_ID	,
-          LJENISPENGGUNAAN_REFDATA_ID	,
-          LORIENTPENGGUNAAN_REFDATA_ID	,
-          LJENISVALUTA_REFDATA_ID	,
-          LGOLDEBITUR_REFDATA_ID	,
-          LHUBBANK_REFDATA_ID	,
-          BLNTHNMULAI	,
-          BLNTHNTEMPO	,
-          LKOLEKTIBILITAS_REFDATA_ID	,
-          NISBAH	,
-          PERSENBAGIHASIL	,
-          LGOLPEMBIAYAAN_REFDATA_ID	,
-          LSEKTOREKONOMI_REFDATA_ID	,
-          LLOKASIPROYEK_REFDATA_ID	,
-          LGOLPENJAMIN_REFDATA_ID	,
-          BAGDIJAMIN	,
-          PLAFOND	,
-          KELONGGARANTARIK	,
-          DEBETBLNLALU	,
-          DEBETBLNLAP	,
-          AGUNANPPAP	,
-          PPAPDIBENTUK	,
-          ITEM_ID	,
-          REPORT_ID	
+          NOMORREKENING,
+          JUMLAHREKENING,
+          LSTATUSPEMBIAYAAN_REFDATA_ID,
+          LSIFAT_REFDATA_ID,
+          LJENIS_REFDATA_ID,
+          LJENISPENGGUNAAN_REFDATA_ID,
+          LORIENTPENGGUNAAN_REFDATA_ID,
+          LJENISVALUTA_REFDATA_ID,
+          LGOLDEBITUR_REFDATA_ID,
+          LHUBBANK_REFDATA_ID,
+          BLNTHNMULAI,
+          BLNTHNTEMPO,
+          LKOLEKTIBILITAS_REFDATA_ID,
+          NISBAH,
+          PERSENBAGIHASIL,
+          LGOLPEMBIAYAAN_REFDATA_ID,
+          LSEKTOREKONOMI_REFDATA_ID,
+          LLOKASIPROYEK_REFDATA_ID,
+          LGOLPENJAMIN_REFDATA_ID,
+          BAGDIJAMIN,
+          PLAFOND,
+          KELONGGARANTARIK,
+          DEBETBLNLALU,
+          DEBETBLNLAP,
+          AGUNANPPAP,
+          PPAPDIBENTUK,
+          ITEM_ID,
+          REPORT_ID
           )
           select
           a.nomor_rekening,
@@ -181,15 +180,15 @@ def createData(config, rec, oReport):
           left outer join %(SaldoRekening)s h on (a.nomor_rekening=h.nomor_rekening and h.tanggal=to_date('%(TglBlnLalu)s', 'dd-mm-yyyy'))
           left outer join %(Nasabah)s i on (c.nomor_nasabah=i.nomor_nasabah)
           left outer join (select fca.NOREK_FINACCOUNT, sum(fcs.valuation) total_agunan from %(ColMap)s fca, %(ColAsset)s fcs
-                      where fca.NOREK_FINCOLLATERALASSET=fcs.nomor_rekening
-                      group by fca.NOREK_FINACCOUNT ) agu
+              where fca.NOREK_FINCOLLATERALASSET=fcs.nomor_rekening
+              group by fca.NOREK_FINACCOUNT ) agu
             on (a.nomor_rekening=agu.norek_finaccount)
           left outer join %(ReferenceData)s r1 on (r1.reference_code=decode(b.restructure_counter,0,'20','10') and r1.reftype_id=220)
           left outer join %(ReferenceData)s r2 on (r2.reference_code=d.lbus_jenis_penggunaan and r2.reftype_id=235)
           left outer join %(ReferenceData)s r3 on (r3.reference_code=d.lbus_orientasi_penggunaan and r3.reftype_id=108)
-          left outer join %(ReferenceData)s r4 on (r2.reference_code=decode(f.currency_code,'IDR','360','USD','840','SIN','702', '360') and r4.reftype_id=232)
+          left outer join %(ReferenceData)s r4 on (r4.reference_code=decode(f.currency_code,'IDR','360','USD','840','SIN','702', '360') and r4.reftype_id=232)
           left outer join %(ReferenceData)s r5 on (r5.reference_code=e.lbus_golongan_debitur and r5.reftype_id=225)
-          left outer join %(ReferenceData)s r6 on (r3.reference_code=decode(i.is_pihak_terkait, 'T','1','2') and r6.reftype_id=124)
+          left outer join %(ReferenceData)s r6 on (r6.reference_code=decode(i.is_pihak_terkait, 'T','1','2') and r6.reftype_id=124)
           left outer join %(ReferenceData)s r11 on (r11.reference_code=decode(b.overall_col_level, 1,'1',2,'2',3,'3',4,'4',5,'5') and r11.reftype_id=230)
           left outer join %(ReferenceData)s r12 on (r12.reference_code=decode(a.finmusyarakahaccount_type, 'D', '10', '20') and r12.reftype_id=236)
           left outer join %(ReferenceData)s r13 on (r13.reference_code=decode(b.financing_model, 'T', '9', '1') and r13.reftype_id=223)
@@ -198,7 +197,7 @@ def createData(config, rec, oReport):
           left outer join %(ReferenceData)s r9 on (r9.reference_code=nvl(d.lbus_lokasi_proyek, e.sid_ref_dati2) and r9.reftype_id=251)
           left outer join %(ReferenceData)s r10 on (r10.reference_code=d.lbus_penjamin and r10.reftype_id=328)
           where g.kode_cabang in (%(ListCabang)s)
-          and b.dropping_date <= to_date('%(TglLaporan)s', 'dd-mm-yyyy');
+          and b.dropping_date <= to_date('%(TglLaporan)s', 'dd-mm-yyyy')
   ''' % {
           "jenis_code" : str(jenis_code),
           "ori_code" : str(ori_code),
@@ -224,6 +223,6 @@ def createData(config, rec, oReport):
           "ListCabang" : listcabang
   }
   #app.ConWriteln(s)
-  #app.ConRead('ok')
+  #app.ConRead('c')
   config.ExecSQL(s)
-
+  #--
