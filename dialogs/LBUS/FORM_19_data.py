@@ -50,6 +50,14 @@ def FormOnSetDataEx(uideflist, params):
     period = "%s-%s-%s" % (str(tgl),str(bln),str(thn))
     ds = uideflist.uipData.Dataset
     s = '''
+         select refdata_id from %s where reference_code='886' and reftype_id=225
+    ''' % config.MapDBTableName('enterprise.referencedata')
+    gpi_code = config.CreateSQL(s).RawResult.refdata_id    
+    s = '''
+         select refdata_id from %s where reference_code='889' and reftype_id=225
+    ''' % config.MapDBTableName('enterprise.referencedata')
+    gpk_code = config.CreateSQL(s).RawResult.refdata_id    
+    s = '''
           select 1 jml,
           a.nomor_rekening,
           r1.refdata_id ri1,
@@ -93,7 +101,7 @@ def FormOnSetDataEx(uideflist, params):
           left outer join %(ReferenceData)s r2 on (decode(d.kode_valuta, 'IDR', '360', 'USD', '840', 'SGD', '702')=r2.reference_code and r2.reftype_id=232)
           left outer join %(ReferenceData)s r3 on (decode(e.is_pihak_terkait, 'T', '1', '2') = r3.reference_code and r3.reftype_id=124)
           left outer join %(ReferenceData)s r4 on (f.kode_lokasi=r4.reference_code and r4.reftype_id=251)
-          left outer join %(ReferenceData)s r5 on (e.id_golongan_pemilik=r5.refdata_id)
+          left outer join %(ReferenceData)s r5 on (nvl(e.id_golongan_pemilik, decode(e.jenis_nasabah,'I',%(GPI)s,'K',%(GPK)s))=r5.refdata_id)
           where c.kode_account in ('202010000001','202020000001','202030100001','202030100002','202030100003',
                                  '202030100004','202030100005','202030100006','202030200001','202030200002',
                                  '202030200003','202030200004','202030200005','202030200006')
@@ -116,7 +124,9 @@ def FormOnSetDataEx(uideflist, params):
            'TahunProses' : str(thn),
            'ReferenceData' : config.MapDBTableName('enterprise.referencedata'),
            'ParamCabang' : listcabang,
-           'TanggalLaporan' : config.FormatDateTime('dd-mm-yyyy', repdate)
+           'TanggalLaporan' : config.FormatDateTime('dd-mm-yyyy', repdate),
+           'GPI' : gpi_code,
+           'GPK' : gpk_code
            }
     #app = config.AppObject
     #app.ConCreate('out')

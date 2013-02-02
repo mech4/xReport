@@ -108,6 +108,14 @@ def FormOnSetDataEx(uideflist, params):
     period = "%s-%s-%s" % (str(tgl),str(bln),str(thn))
     ds = uideflist.uipData.Dataset
     s = '''
+         select refdata_id from %s where reference_code='886' and reftype_id=225
+    ''' % config.MapDBTableName('enterprise.referencedata')
+    gpi_code = config.CreateSQL(s).RawResult.refdata_id    
+    s = '''
+         select refdata_id from %s where reference_code='889' and reftype_id=225
+    ''' % config.MapDBTableName('enterprise.referencedata')
+    gpk_code = config.CreateSQL(s).RawResult.refdata_id    
+    s = '''
           select 1 jml,
           a.nomor_rekening,
           r1.refdata_id ri1,
@@ -146,7 +154,7 @@ def FormOnSetDataEx(uideflist, params):
           left outer join %(ReferenceData)s r3 on (decode(e.is_pihak_terkait, 'T', '1', '2') = r3.reference_code and r3.reftype_id=124)
           left outer join %(ReferenceData)s r4 on (f.kode_lokasi=r4.reference_code and r4.reftype_id=251) 
           left outer join %(ReferenceData)s r5 on (decode(c.kode_account, '201010000002', '4', '1')=r5.reference_code and r5.reftype_id=221) 
-          left outer join %(ReferenceData)s r6 on (e.id_golongan_pemilik=r6.refdata_id)
+          left outer join %(ReferenceData)s r6 on (nvl(e.id_golongan_pemilik, decode(e.jenis_nasabah,'I',%(GPI)s,'K',%(GPK)s))=r6.refdata_id)
           where c.kode_account in ('201020000001','201010000001','201010000002')
              and d.kode_cabang in (%(ParamCabang)s)
              and j.status_rekening<>3
@@ -166,7 +174,9 @@ def FormOnSetDataEx(uideflist, params):
            'TahunProses' : str(thn),
            'ReferenceData' : config.MapDBTableName('enterprise.referencedata'),
            'ParamCabang' : listcabang,
-           'TanggalLaporan' : config.FormatDateTime('dd-mm-yyyy', repdate)
+           'TanggalLaporan' : config.FormatDateTime('dd-mm-yyyy', repdate),
+           'GPI' : gpi_code,
+           'GPK' : gpk_code
            }
     #raise Exception, s
     res = config.CreateSQL(s).RawResult
