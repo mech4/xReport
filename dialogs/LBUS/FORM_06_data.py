@@ -173,6 +173,7 @@ def createData(config, rec, oReport):
           left outer join %(FinFacility)s f on (b.facility_no=f.facility_no)
           left outer join %(SaldoRekening)s g on (a.nomor_rekening=g.nomor_rekening and g.tanggal=to_date('%(TglLaporan)s', 'dd-mm-yyyy'))
           left outer join %(SaldoRekening)s h on (a.nomor_rekening=h.nomor_rekening and h.tanggal=to_date('%(TglBlnLalu)s', 'dd-mm-yyyy'))
+          left outer join %(Cabang)s j on (g.kode_cabang=j.kode_cabang)
           left outer join (select fca.NOREK_FINACCOUNT, sum(fcs.valuation) total_agunan from %(ColMap)s fca, %(ColAssets)s fcs
                           where fca.NOREK_FINCOLLATERALASSET=fcs.nomor_rekening
                           group by fca.NOREK_FINACCOUNT ) agu
@@ -186,7 +187,7 @@ def createData(config, rec, oReport):
           left outer join %(RefData)s r6 on (r6.reference_code=decode(i.is_pihak_terkait, 'T','1','2') and r6.reftype_id=124)
           left outer join %(RefData)s r7 on (r7.reference_code=d.lbus_golongan_piutang and r7.reftype_id=247)
           left outer join %(RefData)s r8 on (r8.reference_code=d.lbus_sektor_ekonomi_sid and r8.reftype_id=224)
-          left outer join %(RefData)s r9 on (r9.reference_code=nvl(d.lbus_lokasi_proyek, e.sid_ref_dati2) and r9.reftype_id=251)
+          left outer join %(RefData)s r9 on (r9.reference_code=nvl(d.lbus_lokasi_proyek, j.kode_lokasi) and r9.reftype_id=251)
           left outer join %(RefData)s r10 on (r10.reference_code=d.lbus_penjamin and r10.reftype_id=328)
           left outer join %(RefData)s r11 on (r11.reference_code=decode(b.overall_col_level, 1,'1',2,'2',3,'3',4,'4',5,'5') and r11.reftype_id=230)
           where g.kode_cabang in (%(ListCabang)s)
@@ -212,6 +213,7 @@ def createData(config, rec, oReport):
           "RefData" : config.MapDBTableName('enterprise.referencedata'),
           "ColAssets" : config.MapDBTableName('financing.fincollateralasset'),
           "ColMap" : config.MapDBTableName('financing.fincollateralaccount'),
+          "Cabang" : config.MapDBTableName('enterprise.cabang'),
           "TglLaporan" : '%s-%s-%s' % (str(repdate[2]).zfill(2),str(repdate[1]).zfill(2),str(repdate[0]).zfill(4)),
           "TglBlnLalu" : '%s-%s-%s' % (str(lastmonthdate[2]).zfill(2),str(lastmonthdate[1]).zfill(2),str(lastmonthdate[0]).zfill(4)),
           "ListCabang" : listcabang

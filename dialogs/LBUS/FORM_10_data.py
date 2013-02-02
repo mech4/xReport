@@ -163,7 +163,7 @@ def createData(config, rec, oReport):
           nvl(r10.refdata_id, %(penjamin_code)s) id10_gol_penjamin,
           d.bagian_yang_dijamin bag_dijamin,
           round((b.dropping_amount)/1000000, 0) plafond,
-          round(nvl(b.dropping_amount+(g.p_saldo+g.p_arrear_balance), 0)/1000000, 0) kel_tarik,
+          nvl(round((b.dropping_amount)/1000000, 0)-round(((g.p_saldo+g.p_arrear_balance)*-1)/1000000, 0), 0) kel_tarik,
           round(((h.p_saldo+h.p_arrear_balance)*-1)/1000000, 0) baki_lalu,
           round(((g.p_saldo+g.p_arrear_balance)*-1)/1000000, 0) baki_lapor,
           round((agu.total_agunan)/1000000, 0) agunan,
@@ -178,6 +178,7 @@ def createData(config, rec, oReport):
           left outer join %(SaldoRekening)s g on (a.nomor_rekening=g.nomor_rekening and g.tanggal=to_date('%(TglLaporan)s', 'dd-mm-yyyy'))
           left outer join %(SaldoRekening)s h on (a.nomor_rekening=h.nomor_rekening and h.tanggal=to_date('%(TglBlnLalu)s', 'dd-mm-yyyy'))
           left outer join %(Nasabah)s i on (c.nomor_nasabah=i.nomor_nasabah)
+          left outer join %(Cabang)s j on (g.kode_cabang=j.kode_cabang)
           left outer join (select fca.NOREK_FINACCOUNT, sum(fcs.valuation) total_agunan from %(ColMap)s fca, %(ColAsset)s fcs
               where fca.NOREK_FINCOLLATERALASSET=fcs.nomor_rekening
               group by fca.NOREK_FINACCOUNT ) agu
@@ -193,7 +194,7 @@ def createData(config, rec, oReport):
           left outer join %(ReferenceData)s r13 on (r13.reference_code=decode(b.financing_model, 'T', '9', '1') and r13.reftype_id=223)
           left outer join %(ReferenceData)s r7 on (r7.reference_code=d.lbus_golongan_piutang and r7.reftype_id=247)
           left outer join %(ReferenceData)s r8 on (r8.reference_code=d.lbus_sektor_ekonomi_sid and r8.reftype_id=224)
-          left outer join %(ReferenceData)s r9 on (r9.reference_code=nvl(d.lbus_lokasi_proyek, e.sid_ref_dati2) and r9.reftype_id=251)
+          left outer join %(ReferenceData)s r9 on (r9.reference_code=nvl(d.lbus_lokasi_proyek, j.kode_lokasi) and r9.reftype_id=251)
           left outer join %(ReferenceData)s r10 on (r10.reference_code=d.lbus_penjamin and r10.reftype_id=328)
           where g.kode_cabang in (%(ListCabang)s)
           and b.dropping_date <= to_date('%(TglLaporan)s', 'dd-mm-yyyy')
@@ -218,6 +219,7 @@ def createData(config, rec, oReport):
           "ReferenceData" : config.MapDBTableName('enterprise.referencedata'),
           "ColAsset" : config.MapDBTableName('financing.fincollateralasset'),
           "ColMap" : config.MapDBTableName('financing.fincollateralaccount'),
+          "Cabang" : config.MapDBTableName('enterprise.cabang'),
           "TglLaporan" : '%s-%s-%s' % (str(repdate[2]).zfill(2),str(repdate[1]).zfill(2),str(repdate[0]).zfill(4)),
           "TglBlnLalu" : '%s-%s-%s' % (str(lastmonthdate[2]).zfill(2),str(lastmonthdate[1]).zfill(2),str(lastmonthdate[0]).zfill(4)),
           "ListCabang" : listcabang
