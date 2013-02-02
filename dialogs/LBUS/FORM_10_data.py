@@ -198,6 +198,7 @@ def createData(config, rec, oReport):
           left outer join %(ReferenceData)s r10 on (r10.reference_code=d.lbus_penjamin and r10.reftype_id=328)
           where g.kode_cabang in (%(ListCabang)s)
           and b.dropping_date <= to_date('%(TglLaporan)s', 'dd-mm-yyyy')
+          and (g.p_saldo+g.p_arrear_balance)<>0
   ''' % {
           "jenis_code" : str(jenis_code),
           "ori_code" : str(ori_code),

@@ -167,7 +167,6 @@ def createData(config, rec, oReport):
           seq_lbus_form06.nextval seq,
           %(ReportId)s report_id
           from %(FinMurabahah)s a left outer join %(FinAccount)s b on (a.nomor_rekening=b.nomor_rekening)
-          join %(FinSchedule)s sch on (b.id_schedule=sch.id_schedule and sch.completion_status='F')
           left outer join %(RekeningCustomer)s c on (a.nomor_rekening=c.nomor_rekening)
           left outer join %(AdditionalAcc)s d on (a.nomor_rekening=d.nomor_rekening)
           left outer join %(AdditionalCust)s e on (c.nomor_nasabah=e.nomor_nasabah)
@@ -192,6 +191,7 @@ def createData(config, rec, oReport):
           left outer join %(RefData)s r11 on (r11.reference_code=decode(b.overall_col_level, 1,'1',2,'2',3,'3',4,'4',5,'5') and r11.reftype_id=230)
           where g.kode_cabang in (%(ListCabang)s)
           and b.dropping_date <= to_date('%(TglLaporan)s', 'dd-mm-yyyy')
+          and (g.p_saldo+g.p_arrear_balance)<>0
   ''' % {
           "jenis_code" : str(jenis_code),
           "ori_code" : str(ori_code),
