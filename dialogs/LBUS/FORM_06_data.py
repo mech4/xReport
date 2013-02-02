@@ -182,7 +182,7 @@ def createData(config, rec, oReport):
           left outer join %(RefData)s r1 on (r1.reference_code=decode(b.restructure_counter,0,'20','10') and r1.reftype_id=219)
           left outer join %(RefData)s r2 on (r2.reference_code=d.lbus_jenis_penggunaan and r2.reftype_id=235)
           left outer join %(RefData)s r3 on (r3.reference_code=d.lbus_orientasi_penggunaan and r3.reftype_id=108)
-          left outer join %(RefData)s r4 on (r4.reference_code=decode(f.currency_code,'IDR','360','USD','840','SIN','702') and r4.reftype_id=232)
+          left outer join %(RefData)s r4 on (r4.reference_code=decode(f.currency_code,'IDR','360','USD','840','SIN','702','360') and r4.reftype_id=232)
           left outer join %(RefData)s r5 on (r5.reference_code=e.lbus_golongan_debitur and r5.reftype_id=225)
           left outer join %(RefData)s r6 on (r6.reference_code=decode(i.is_pihak_terkait, 'T','1','2') and r6.reftype_id=124)
           left outer join %(RefData)s r7 on (r7.reference_code=d.lbus_golongan_piutang and r7.reftype_id=247)
