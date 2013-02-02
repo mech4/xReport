@@ -171,7 +171,6 @@ def createData(config, rec, oReport):
           seq_lbus_form10.nextval seq,
           %(ReportId)s report_id
           from %(FinMusyarakah)s a left outer join %(FinAccount)s b on (a.nomor_rekening=b.nomor_rekening)
-          join %(FinSchedule)s sch on (b.id_schedule=sch.id_schedule and sch.completion_status='F')
           left outer join %(RekeningCustomer)s c on (a.nomor_rekening=c.nomor_rekening)
           left outer join %(AdditionalAcc)s d on (a.nomor_rekening=d.nomor_rekening)
           left outer join %(AdditionalCust)s e on (c.nomor_nasabah=e.nomor_nasabah)
