@@ -163,7 +163,7 @@ def createData(config, rec, oReport):
           nvl(r10.refdata_id, %(penjamin_code)s) id10_gol_penjamin,
           d.bagian_yang_dijamin bag_dijamin,
           round((b.dropping_amount)/1000000, 0) plafond,
-          round(nvl(f.total_facility_limit-f.total_facility_used, 0)/1000000, 0) kel_tarik,
+          round(nvl(b.dropping_amount+(g.p_saldo+g.p_arrear_balance), 0)/1000000, 0) kel_tarik,
           round(((h.p_saldo+h.p_arrear_balance)*-1)/1000000, 0) baki_lalu,
           round(((g.p_saldo+g.p_arrear_balance)*-1)/1000000, 0) baki_lapor,
           round((agu.total_agunan)/1000000, 0) agunan,
