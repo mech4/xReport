@@ -413,6 +413,22 @@ object:rtf::Form<
           DisplayFields='reference_desc;reference_code;refdata_id'
           Restrictions=''
           FieldBaseName='LJENISPENGELOLA'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJENISPUAS'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Instrumen PUAS (Akad)'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJENISPUAS'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='ImbalanPUAS'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Tingkat Imbalan Instrumen PUAS'
+          DataTypeName='varchar'
+          DataLength=8
         >
       }
       Name='panel1'
@@ -472,6 +488,27 @@ object:rtf::Form<
           DirectInput=true
           ButtonWidth=1
           ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LJENISPUAS'
+          Top=176
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Instrumen PUAS (Akad)'
+          FieldName='LJENISPUAS.reference_desc'
+          LookupField='LJENISPUAS.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='ImbalanPUAS'
+          Top=204
+          Left=8
+          ControlCaption='Tingkat Imbalan Instrumen PUAS'
         >
       }
       EqualCaptionWidth=200

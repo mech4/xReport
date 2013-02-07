@@ -4,11 +4,12 @@ REFMAP = {
   ,'LCURRENCY'                   : 'R_SANDI_VALUTA'
   ,'LJENISPENANAM'               : 'R_JENIS_KEG_BANK'
   ,'LJENISPENGELOLA'             : 'R_JENIS_KEG_BANK'
+  ,'LJENISPUAS'                  : 'R_PUAS'
 }
   
 class LHBU_FORM_102:
   def __init__(self, formObj, parentForm):
-    self.reflist  = ['LPENANAMDANA', 'LPENGELOLADANA', 'LCURRENCY', 'LJENISPENANAM', 'LJENISPENGELOLA']
+    self.reflist  = ['LPENANAMDANA', 'LPENGELOLADANA', 'LCURRENCY', 'LJENISPENANAM', 'LJENISPENGELOLA', 'LJENISPUAS']
     self.attrlist = [
       'IdOperasional'
       , 'NoReff'
@@ -20,6 +21,7 @@ class LHBU_FORM_102:
       , 'TglTempo'
       , 'Waktu'
       , 'JamTransaksi'
+      , 'ImbalanPUAS'
     ]
     self.paction     = None
     self.xlstemplate = 'lhbu/form102.xls'
@@ -40,6 +42,8 @@ class LHBU_FORM_102:
         , 13: 'JamTransaksi'
         , 14: 'LJENISPENANAM_reference_code'
         , 15: 'LJENISPENGELOLA_reference_code'
+        , 16: 'LJENISPUAS_reference_code'
+        , 17: 'ImbalanPUAS'
     }
     self.useheader = 3 #1: true LKPBU, 0:false, 2:row header only (LBUS), 3:header LHBU
     self.txttemplate = 'lhbu/form102.txt'
@@ -65,6 +69,8 @@ class LHBU_FORM_102:
         , [4,1]
         , [2,0]
         , [2,0]
+        , [3,0]
+        , [8,2]
   )
   #--
 

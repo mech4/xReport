@@ -124,6 +124,24 @@ object:rpclass::TPClassUIDefList<
         >, object:rpclass::TCustomLoadedField<
           Name='LJENISPENGELOLA.refdata_id'
           DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENISPUAS.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENISPUAS.reference_desc'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=60
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENISPUAS.reference_code'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENISPUAS.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='ImbalanPUAS'
+          DataTypeName='varchar'
+          DataLength=8
         >
       }
       CustomLoadedLinks={
@@ -145,6 +163,10 @@ object:rpclass::TPClassUIDefList<
           FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
         >, object:rpclass::TCustomLoadedLink<
           Name='LJENISPENGELOLA'
+          ClassTypeName='enterprise.ReferenceData'
+          FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
+        >, object:rpclass::TCustomLoadedLink<
+          Name='LJENISPUAS'
           ClassTypeName='enterprise.ReferenceData'
           FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
         >
