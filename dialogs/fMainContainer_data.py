@@ -628,6 +628,8 @@ def PeriodCheck(config, params, returns):
   thn = tgl[0]
   tglnum = tgl[2]
   period = periodGenerate(ptype, tglnum, bln, thn, hari)
+  config.BeginTransaction()
+  #raise Exception, period[0]
   s = "select * from period where period_code='%s' and period_type='%s'" % (period[0], ptype)
   res = config.CreateSQL(s).RawResult
   if not res.Eof:
@@ -635,8 +637,10 @@ def PeriodCheck(config, params, returns):
     pass
   else:
     #raise Exception, 'Belum Ada'
-    s = "insert into period (period_id, period_code, description, period_type) values (seq_period, '%s', '%s', '%s')" % (period[0], period[1], ptype)
+    s = "insert into period (period_id, period_code, description, period_type) values (seq_period.nextval, '%s', '%s', '%s')" % (period[0], period[1], ptype)
+    #raise Exception, s
     config.ExecSQL(s)
+    config.Commit()
   return 
   
 def ImportReport(config, params, returns):
