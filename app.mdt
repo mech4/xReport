@@ -1165,6 +1165,86 @@ object:ODL<
           DataType=$TYPEDECLS['VARCHAR']
           DataLength=20
         >, object:FieldMember<
+          MemberName='Hari15'
+          PhysicalName='HARI15'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Hari16'
+          PhysicalName='HARI16'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Hari17'
+          PhysicalName='HARI17'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Hari18'
+          PhysicalName='HARI18'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Hari19'
+          PhysicalName='HARI19'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Hari20'
+          PhysicalName='HARI20'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Hari21'
+          PhysicalName='HARI21'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Hari22'
+          PhysicalName='HARI22'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Hari23'
+          PhysicalName='HARI23'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Hari24'
+          PhysicalName='HARI24'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Hari25'
+          PhysicalName='HARI25'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Hari26'
+          PhysicalName='HARI26'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Hari27'
+          PhysicalName='HARI27'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Hari28'
+          PhysicalName='HARI28'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Hari29'
+          PhysicalName='HARI29'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='Hari30'
+          PhysicalName='HARI30'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
           MemberName='Minggu3'
           PhysicalName='MINGGU3'
           DataType=$TYPEDECLS['VARCHAR']
@@ -1303,6 +1383,11 @@ object:ODL<
           MemberName='LReport'
           LinkedClass=$TYPEDECLS['Report']
           AutoForeignKey=true
+        >, object:FieldMember<
+          MemberName='Keterangan'
+          PhysicalName='KETERANGAN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=100
         >
       }
       ClassID='{3B18D8C0-0D13-11E2-BF62-00140B44333B}'
@@ -9417,6 +9502,109 @@ object:ODL<
       }
       ClassID='{6A38496B-6456-4F11-967E-814DF5ED6228}'
       AutoPrimaryKey=$TYPEDECLS['AttrList'].MEMBERS['alist_id']
+    >, object:ClassTypeDecl<
+      TypeName='LHBU_FORM407'
+      PTableName='LHBU_FORM407'
+      Members={
+        object:FieldMember<
+          MemberName='item_id'
+          PhysicalName='ITEM_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:LinkMember<
+          MemberName='LReport'
+          LinkedClass=$TYPEDECLS['Report']
+          AutoForeignKey=true
+        >, object:FieldMember<
+          MemberName='LVALUTA_refdata_id'
+          PhysicalName='LVALUTA_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='LPLN_refdata_id'
+          PhysicalName='LPLN_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='LSEKTOR_refdata_id'
+          PhysicalName='LSEKTOR_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='LNEGARA_refdata_id'
+          PhysicalName='LNEGARA_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LNEGARA'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LHBU_FORM407'].MEMBERS['LNEGARA_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:LinkMember<
+          MemberName='LPLN'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LHBU_FORM407'].MEMBERS['LPLN_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:LinkMember<
+          MemberName='LSEKTOR'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LHBU_FORM407'].MEMBERS['LSEKTOR_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:LinkMember<
+          MemberName='LVALUTA'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LHBU_FORM407'].MEMBERS['LVALUTA_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='TglPosisi'
+          PhysicalName='TGLPOSISI'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='NominalPLN'
+          PhysicalName='NOMINALPLN'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=15
+        >, object:FieldMember<
+          MemberName='JangkaWaktu'
+          PhysicalName='JANGKAWAKTU'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=3
+        >, object:FieldMember<
+          MemberName='TglTempo'
+          PhysicalName='TGLTEMPO'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='TglMulai'
+          PhysicalName='TGLMULAI'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='TglModal'
+          PhysicalName='TGLMODAL'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:FieldMember<
+          MemberName='Modal'
+          PhysicalName='MODAL'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=15
+        >
+      }
+      ClassID='{54C31E06-BBD7-41CA-A39C-987985448DCE}'
     >
   }
   PhysicalDB=object:ODLDatabase<

@@ -1,5 +1,5 @@
 REFMAP = {
-  'LKOMPONEN'                   : 'R_KOMPONEN_VALAS'
+  'LKOMPONEN'                   : 'R_KATEGORI_PB'
 }
   
 class LHBU_FORM_406:
@@ -25,30 +25,61 @@ class LHBU_FORM_406:
       ,'Minggu3'
       ,'Minggu4'
       ,'sdbulan'
+      ,'Keterangan'
     ]
     self.paction     = None
     self.xlstemplate = 'lhbu/form406.xls'
     self.xlstopline  = 7
     self.xlsmap      = {
           1: 'LKOMPONEN_reference_code'
-        , 2: 'Hari1'
-        , 3: 'Hari2'
-        , 4: 'Hari3'
-        , 5: 'Hari4'
-        , 6: 'Hari5'
-        , 7: 'Hari6'
-        , 8: 'Hari7'
-        , 9: 'Hari8'
-        , 10: 'Hari9'
-        , 11: 'Hari10'
-        , 12: 'Hari11'
-        , 13: 'Hari12'
-        , 14: 'Hari13'
-        , 15: 'Hari14'
-        , 16: 'Minggu3'
-        , 17: 'Minggu4'
-        , 18: 'sdbulan'
+        , 2: 'sdbulan'
+        , 3: 'Hari1'
+        , 4: 'Hari2'
+        , 5: 'Hari3'
+        , 6: 'Hari4'
+        , 7: 'Hari5'
+        , 8: 'Hari6'
+        , 9: 'Hari7'
+        , 10: 'Hari8'
+        , 11: 'Hari9'
+        , 12: 'Hari10'
+        , 13: 'Hari11'
+        , 14: 'Hari12'
+        , 15: 'Hari13'
+        , 16: 'Hari14'
+        , 17: 'Minggu3'
+        , 18: 'Minggu4'
+        , 19: 'Keterangan'
     }
+    self.useheader = 3 #1: true LKPBU, 0:false, 2:row header only (LBUS), 3:header LHBU
+    self.txttemplate = 'lhbu/form406.txt'
+    #txtmap dimulai dari index 1 sesuai xlsmap (index 0 diisi [0,0]
+    #format [len, jenis] : 
+    #       jenis 0 untuk spasi 
+    #       jenis 1 untuk zerofill int
+    #       jenis 2 untuk zerofill x,5
+    #       jenis 3 untuk zerofill 99,99
+    self.txtmap      = ( [0,0]
+      , [4,0]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [100,0]
+  )
   #--
 
   def refExit(self, sender):

@@ -15,96 +15,106 @@ object:rpclass::TPClassUIDefList<
           DataTypeName='integer'
           DataLength=20
         >, object:rpclass::TCustomLoadedField<
-          Name='LKOMPONEN.refdata_id'
+          Name='TglPosisi'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rpclass::TCustomLoadedField<
+          Name='LVALUTA.refdata_id'
           DataTypeName='enterprise.INTEGER'
         >, object:rpclass::TCustomLoadedField<
-          Name='LKOMPONEN.reference_desc'
+          Name='LVALUTA.reference_desc'
           DataTypeName='enterprise.VARCHAR'
           DataLength=60
         >, object:rpclass::TCustomLoadedField<
-          Name='LKOMPONEN.reference_code'
+          Name='LVALUTA.reference_code'
           DataTypeName='enterprise.VARCHAR'
           DataLength=20
         >, object:rpclass::TCustomLoadedField<
-          Name='LKOMPONEN.refdata_id'
+          Name='LVALUTA.refdata_id'
           DataTypeName='enterprise.INTEGER'
         >, object:rpclass::TCustomLoadedField<
-          Name='sdbulan'
-          DataTypeName='varchar'
+          Name='LPLN.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LPLN.reference_desc'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=60
+        >, object:rpclass::TCustomLoadedField<
+          Name='LPLN.reference_code'
+          DataTypeName='enterprise.VARCHAR'
           DataLength=20
         >, object:rpclass::TCustomLoadedField<
-          Name='Hari1'
+          Name='LPLN.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='NominalPLN'
           DataTypeName='varchar'
+          DataLength=15
+        >, object:rpclass::TCustomLoadedField<
+          Name='JangkaWaktu'
+          DataTypeName='varchar'
+          DataLength=3
+        >, object:rpclass::TCustomLoadedField<
+          Name='TglTemp'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rpclass::TCustomLoadedField<
+          Name='TglMulai'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rpclass::TCustomLoadedField<
+          Name='TglModal'
+          DataTypeName='varchar'
+          DataLength=8
+        >, object:rpclass::TCustomLoadedField<
+          Name='Modal'
+          DataTypeName='varchar'
+          DataLength=15
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSEKTOR.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSEKTOR.reference_desc'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=60
+        >, object:rpclass::TCustomLoadedField<
+          Name='LSEKTOR.reference_code'
+          DataTypeName='enterprise.VARCHAR'
           DataLength=20
         >, object:rpclass::TCustomLoadedField<
-          Name='Hari2'
-          DataTypeName='varchar'
+          Name='LSEKTOR.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LNEGARA.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LNEGARA.reference_desc'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=60
+        >, object:rpclass::TCustomLoadedField<
+          Name='LNEGARA.reference_code'
+          DataTypeName='enterprise.VARCHAR'
           DataLength=20
         >, object:rpclass::TCustomLoadedField<
-          Name='Hari3'
-          DataTypeName='varchar'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='Hari4'
-          DataTypeName='varchar'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='Hari5'
-          DataTypeName='varchar'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='Hari6'
-          DataTypeName='varchar'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='Hari7'
-          DataTypeName='varchar'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='Hari8'
-          DataTypeName='varchar'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='Hari9'
-          DataTypeName='varchar'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='Hari10'
-          DataTypeName='varchar'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='Hari11'
-          DataTypeName='varchar'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='Hari12'
-          DataTypeName='varchar'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='Hari13'
-          DataTypeName='varchar'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='Hari14'
-          DataTypeName='varchar'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='Minggu3'
-          DataTypeName='varchar'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='Minggu4'
-          DataTypeName='varchar'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='Keterangan'
-          DataTypeName='varchar'
-          DataLength=100
+          Name='LNEGARA.refdata_id'
+          DataTypeName='enterprise.INTEGER'
         >
       }
       CustomLoadedLinks={
         object:rpclass::TCustomLoadedLink<
-          Name='LKOMPONEN'
+          Name='LVALUTA'
+          ClassTypeName='enterprise.ReferenceData'
+          FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
+        >, object:rpclass::TCustomLoadedLink<
+          Name='LPLN'
+          ClassTypeName='enterprise.ReferenceData'
+          FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
+        >, object:rpclass::TCustomLoadedLink<
+          Name='LSEKTOR'
+          ClassTypeName='enterprise.ReferenceData'
+          FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
+        >, object:rpclass::TCustomLoadedLink<
+          Name='LNEGARA'
           ClassTypeName='enterprise.ReferenceData'
           FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
         >

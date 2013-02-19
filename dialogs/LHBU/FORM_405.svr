@@ -29,6 +29,10 @@ object:rpclass::TPClassUIDefList<
           Name='LKOMPONEN.refdata_id'
           DataTypeName='enterprise.INTEGER'
         >, object:rpclass::TCustomLoadedField<
+          Name='sdbulan'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
           Name='Hari1'
           DataTypeName='varchar'
           DataLength=20
@@ -85,15 +89,67 @@ object:rpclass::TPClassUIDefList<
           DataTypeName='varchar'
           DataLength=20
         >, object:rpclass::TCustomLoadedField<
-          Name='Minggu3'
+          Name='Hari15'
           DataTypeName='varchar'
           DataLength=20
         >, object:rpclass::TCustomLoadedField<
-          Name='Minggu4'
+          Name='Hari16'
           DataTypeName='varchar'
           DataLength=20
         >, object:rpclass::TCustomLoadedField<
-          Name='sdbulan'
+          Name='Hari17'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='Hari18'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='Hari19'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='Hari20'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='Hari21'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='Hari22'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='Hari23'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='Hari24'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='Hari25'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='Hari26'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='Hari27'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='Hari28'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='Hari29'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='Hari30'
           DataTypeName='varchar'
           DataLength=20
         >

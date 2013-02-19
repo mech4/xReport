@@ -23,7 +23,7 @@ def FormOnSetDataEx(uideflist, params):
     #bln = int(pCode[5:7])
     #thn = int(pCode[1:5])
     ds = uideflist.uipData.Dataset
-    s = "select * from %s a, %s b where a.reftype_id=b.reftype_id and b.reference_name='R_KOMPONEN_RP' order by a.reference_code" % (
+    s = "select * from %s a, %s b where a.reftype_id=b.reftype_id and b.reference_name='R_KATEGORI_RM' order by a.refdata_id" % (
                 config.MapDBTableName('enterprise.referencedata'),    
                 config.MapDBTableName('enterprise.referencetype')
         )

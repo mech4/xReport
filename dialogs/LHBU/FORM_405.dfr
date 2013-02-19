@@ -66,15 +66,23 @@ object:rtf::Form<
           EnumeratedValues=''
           FieldName='LKOMPONEN.reference_code'
           DisplayFormat=''
-          TitleCaption='Komponen'
+          TitleCaption='Kategori'
           Width=64
+        >, object:rtf::GridColumn<
+          Name='gcsdbulan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='sdbulan'
+          DisplayFormat=''
+          TitleCaption='Remaining Maturity (T)'
+          Width=144
         >, object:rtf::GridColumn<
           Name='gcHari1'
           InputStyle=cisNormal
           EnumeratedValues=''
           FieldName='Hari1'
           DisplayFormat=''
-          TitleCaption='Hari 1 (dlm jt Rp)'
+          TitleCaption='T+1'
           Width=144
         >, object:rtf::GridColumn<
           Name='gcHari2'
@@ -82,7 +90,7 @@ object:rtf::Form<
           EnumeratedValues=''
           FieldName='Hari2'
           DisplayFormat=''
-          TitleCaption='Hari 2 (dlm jt Rp)'
+          TitleCaption='T+2'
           Width=144
         >, object:rtf::GridColumn<
           Name='gcHari3'
@@ -90,7 +98,7 @@ object:rtf::Form<
           EnumeratedValues=''
           FieldName='Hari3'
           DisplayFormat=''
-          TitleCaption='Hari 3 (dlm jt Rp)'
+          TitleCaption='T+3'
           Width=144
         >, object:rtf::GridColumn<
           Name='gcHari4'
@@ -98,7 +106,7 @@ object:rtf::Form<
           EnumeratedValues=''
           FieldName='Hari4'
           DisplayFormat=''
-          TitleCaption='Hari 4 (dlm jt Rp)'
+          TitleCaption='T+4'
           Width=144
         >, object:rtf::GridColumn<
           Name='gcHari5'
@@ -106,7 +114,7 @@ object:rtf::Form<
           EnumeratedValues=''
           FieldName='Hari5'
           DisplayFormat=''
-          TitleCaption='Hari 5 (dlm jt Rp)'
+          TitleCaption='T+5'
           Width=144
         >, object:rtf::GridColumn<
           Name='gcHari6'
@@ -114,7 +122,7 @@ object:rtf::Form<
           EnumeratedValues=''
           FieldName='Hari6'
           DisplayFormat=''
-          TitleCaption='Hari 6 (dlm jt Rp)'
+          TitleCaption='T+6'
           Width=144
         >, object:rtf::GridColumn<
           Name='gcHari7'
@@ -122,7 +130,7 @@ object:rtf::Form<
           EnumeratedValues=''
           FieldName='Hari7'
           DisplayFormat=''
-          TitleCaption='Hari 7 (dlm jt Rp)'
+          TitleCaption='T+7'
           Width=144
         >, object:rtf::GridColumn<
           Name='gcHari8'
@@ -130,7 +138,7 @@ object:rtf::Form<
           EnumeratedValues=''
           FieldName='Hari8'
           DisplayFormat=''
-          TitleCaption='Hari 8 (dlm jt Rp)'
+          TitleCaption='T+8'
           Width=144
         >, object:rtf::GridColumn<
           Name='gcHari9'
@@ -138,7 +146,7 @@ object:rtf::Form<
           EnumeratedValues=''
           FieldName='Hari9'
           DisplayFormat=''
-          TitleCaption='Hari 9 (dlm jt Rp)'
+          TitleCaption='T+9'
           Width=144
         >, object:rtf::GridColumn<
           Name='gcHari10'
@@ -146,64 +154,168 @@ object:rtf::Form<
           EnumeratedValues=''
           FieldName='Hari10'
           DisplayFormat=''
-          TitleCaption='Hari 10 (dlm jt Rp)'
-          Width=152
+          TitleCaption='T+10'
+          Width=144
         >, object:rtf::GridColumn<
           Name='gcHari11'
           InputStyle=cisNormal
           EnumeratedValues=''
           FieldName='Hari11'
           DisplayFormat=''
-          TitleCaption='Hari 11 (dlm jt Rp)'
-          Width=152
+          TitleCaption='T+11'
+          Width=144
         >, object:rtf::GridColumn<
           Name='gcHari12'
           InputStyle=cisNormal
           EnumeratedValues=''
           FieldName='Hari12'
           DisplayFormat=''
-          TitleCaption='Hari 12 (dlm jt Rp)'
-          Width=152
+          TitleCaption='T+12'
+          Width=144
         >, object:rtf::GridColumn<
           Name='gcHari13'
           InputStyle=cisNormal
           EnumeratedValues=''
           FieldName='Hari13'
           DisplayFormat=''
-          TitleCaption='Hari 13 (dlm jt Rp)'
-          Width=152
+          TitleCaption='T+13'
+          Width=144
         >, object:rtf::GridColumn<
           Name='gcHari14'
           InputStyle=cisNormal
           EnumeratedValues=''
           FieldName='Hari14'
           DisplayFormat=''
-          TitleCaption='Hari 14 (dlm jt Rp)'
-          Width=152
+          TitleCaption='T+14'
+          Width=144
         >, object:rtf::GridColumn<
-          Name='gcMinggu3'
+          Name='gcHari15'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='Minggu3'
+          FieldName='Hari15'
           DisplayFormat=''
-          TitleCaption='Minggu 3 (dlm jt Rp)'
-          Width=160
+          TitleCaption='T+15'
+          Width=144
         >, object:rtf::GridColumn<
-          Name='gcMinggu4'
+          Name='gcHari16'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='Minggu4'
+          FieldName='Hari16'
           DisplayFormat=''
-          TitleCaption='Minggu 4 (dlm jt Rp)'
-          Width=160
+          TitleCaption='T+16'
+          Width=144
         >, object:rtf::GridColumn<
-          Name='gcsdbulan'
+          Name='gcHari17'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='sdbulan'
+          FieldName='Hari17'
           DisplayFormat=''
-          TitleCaption='1 > sd 3 bulan (dlm jt Rp)'
-          Width=208
+          TitleCaption='T+17'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari18'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari18'
+          DisplayFormat=''
+          TitleCaption='T+18'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari19'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari19'
+          DisplayFormat=''
+          TitleCaption='T+19'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari20'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari20'
+          DisplayFormat=''
+          TitleCaption='T+20'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari21'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari21'
+          DisplayFormat=''
+          TitleCaption='T+21'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari22'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari22'
+          DisplayFormat=''
+          TitleCaption='T+22'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari23'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari23'
+          DisplayFormat=''
+          TitleCaption='T+23'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari24'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari24'
+          DisplayFormat=''
+          TitleCaption='T+24'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari25'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari25'
+          DisplayFormat=''
+          TitleCaption='T+25'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari26'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari26'
+          DisplayFormat=''
+          TitleCaption='T+26'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari27'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari27'
+          DisplayFormat=''
+          TitleCaption='T+27'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari28'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari28'
+          DisplayFormat=''
+          TitleCaption='T+28'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari29'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari29'
+          DisplayFormat=''
+          TitleCaption='T+29'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcHari30'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Hari30'
+          DisplayFormat=''
+          TitleCaption='T+30'
+          Width=144
         >
       }
       ReadOnly=true
@@ -223,6 +335,11 @@ object:rtf::Form<
           PageTitle='page 2'
           Container=$CONTAINERS['panel1']
           Index=1
+        >, object:rtf::Page<
+          PageName='page3'
+          PageTitle='page 3'
+          Container=$CONTAINERS['panel2']
+          Index=2
         >
       }
     >, object:rtf::Panel<
@@ -231,43 +348,70 @@ object:rtf::Form<
           Name='LKOMPONEN'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Komponen'
+          ControlCaption='Kategori'
           ClassTypeName='enterprise.ReferenceData'
           DisplayFields='reference_desc;reference_code;refdata_id'
           Restrictions=''
           FieldBaseName='LKOMPONEN'
         >, object:rtf::FieldUIElmtSetting<
+          Name='sdbulan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Remaining Maturity (T)'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
           Name='Hari1'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Hari 1 (dlm jt Rp)'
+          ControlCaption='T+1'
           DataTypeName='varchar'
           DataLength=20
         >, object:rtf::FieldUIElmtSetting<
           Name='Hari2'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Hari 2 (dlm jt Rp)'
+          ControlCaption='T+2'
         >, object:rtf::FieldUIElmtSetting<
           Name='Hari3'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Hari 3 (dlm jt Rp)'
+          ControlCaption='T+3'
         >, object:rtf::FieldUIElmtSetting<
           Name='Hari4'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Hari 4 (dlm jt Rp)'
+          ControlCaption='T+4'
         >, object:rtf::FieldUIElmtSetting<
           Name='Hari5'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Hari 5 (dlm jt Rp)'
+          ControlCaption='T+5'
         >, object:rtf::FieldUIElmtSetting<
           Name='Hari6'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Hari 6 (dlm jt Rp)'
+          ControlCaption='T+6'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari7'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='T+7'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari8'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='T+8'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari9'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='T+9'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari10'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='T+10'
         >
       }
       Name='pData'
@@ -281,7 +425,7 @@ object:rtf::Form<
           Left=8
           Width=250
           Height=21
-          ControlCaption='Komponen'
+          ControlCaption='Kategori'
           FieldName='LKOMPONEN.reference_desc'
           LookupField='LKOMPONEN.reference_code'
           DisplayLookupField=true
@@ -292,35 +436,60 @@ object:rtf::Form<
           ButtonWidth=1
           ManualInputCheck=true
         >, *object:rtf::DBEdit<
-          Name='Hari1'
+          Name='sdbulan'
           Top=36
           Left=8
-          ControlCaption='Hari 1 (dlm jt Rp)'
+          ControlCaption='Remaining Maturity (T)'
         >, *object:rtf::DBEdit<
-          Name='Hari2'
+          Name='Hari1'
           Top=64
           Left=8
-          ControlCaption='Hari 2 (dlm jt Rp)'
+          ControlCaption='T+1'
         >, *object:rtf::DBEdit<
-          Name='Hari3'
+          Name='Hari2'
           Top=92
           Left=8
-          ControlCaption='Hari 3 (dlm jt Rp)'
+          ControlCaption='T+2'
         >, *object:rtf::DBEdit<
-          Name='Hari4'
+          Name='Hari3'
           Top=120
           Left=8
-          ControlCaption='Hari 4 (dlm jt Rp)'
+          ControlCaption='T+3'
         >, *object:rtf::DBEdit<
-          Name='Hari5'
+          Name='Hari4'
           Top=148
           Left=8
-          ControlCaption='Hari 5 (dlm jt Rp)'
+          ControlCaption='T+4'
         >, *object:rtf::DBEdit<
-          Name='Hari6'
+          Name='Hari5'
           Top=176
           Left=8
-          ControlCaption='Hari 6 (dlm jt Rp)'
+          ControlCaption='T+5'
+        >, *object:rtf::DBEdit<
+          Name='Hari6'
+          Top=204
+          Left=8
+          ControlCaption='T+6'
+        >, *object:rtf::DBEdit<
+          Name='Hari7'
+          Top=232
+          Left=8
+          ControlCaption='T+7'
+        >, *object:rtf::DBEdit<
+          Name='Hari8'
+          Top=260
+          Left=8
+          ControlCaption='T+8'
+        >, *object:rtf::DBEdit<
+          Name='Hari9'
+          Top=288
+          Left=8
+          ControlCaption='T+9'
+        >, *object:rtf::DBEdit<
+          Name='Hari10'
+          Top=316
+          Left=8
+          ControlCaption='T+10'
         >
       }
       EqualCaptionWidth=150
@@ -332,60 +501,57 @@ object:rtf::Form<
     >, object:rtf::Panel<
       Elements={
         object:rtf::FieldUIElmtSetting<
-          Name='Hari7'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Hari 7 (dlm jt Rp)'
-        >, object:rtf::FieldUIElmtSetting<
-          Name='Hari8'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Hari 8 (dlm jt Rp)'
-        >, object:rtf::FieldUIElmtSetting<
-          Name='Hari9'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Hari 9 (dlm jt Rp)'
-        >, object:rtf::FieldUIElmtSetting<
-          Name='Hari10'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Hari 10 (dlm jt Rp)'
-        >, object:rtf::FieldUIElmtSetting<
           Name='Hari11'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Hari 11 (dlm jt Rp)'
+          ControlCaption='T+11'
+          DataTypeName='varchar'
+          DataLength=20
         >, object:rtf::FieldUIElmtSetting<
           Name='Hari12'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Hari 12 (dlm jt Rp)'
+          ControlCaption='T+12'
         >, object:rtf::FieldUIElmtSetting<
           Name='Hari13'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Hari 13 (dlm jt Rp)'
+          ControlCaption='T+13'
         >, object:rtf::FieldUIElmtSetting<
           Name='Hari14'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Hari 14 (dlm jt Rp)'
+          ControlCaption='T+14'
         >, object:rtf::FieldUIElmtSetting<
-          Name='Minggu3'
+          Name='Hari15'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Minggu 3 (dlm jt Rp)'
+          ControlCaption='T+15'
         >, object:rtf::FieldUIElmtSetting<
-          Name='Minggu4'
+          Name='Hari16'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Minggu 4 (dlm jt Rp)'
+          ControlCaption='T+16'
         >, object:rtf::FieldUIElmtSetting<
-          Name='sdbulan'
+          Name='Hari17'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='1 > sd 3 bulan (dlm jt Rp)'
+          ControlCaption='T+17'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari18'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='T+18'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari19'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='T+19'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari20'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='T+20'
         >
       }
       Name='panel1'
@@ -394,60 +560,174 @@ object:rtf::Form<
       UIPart=$UIPARTS['uipData']
       Controls={
         *object:rtf::DBEdit<
-          Name='Hari7'
+          Name='Hari11'
           Top=8
           Left=8
-          ControlCaption='Hari 7 (dlm jt Rp)'
-        >, *object:rtf::DBEdit<
-          Name='Hari8'
-          Top=36
-          Left=8
-          ControlCaption='Hari 8 (dlm jt Rp)'
-        >, *object:rtf::DBEdit<
-          Name='Hari9'
-          Top=64
-          Left=8
-          ControlCaption='Hari 9 (dlm jt Rp)'
-        >, *object:rtf::DBEdit<
-          Name='Hari10'
-          Top=92
-          Left=8
-          ControlCaption='Hari 10 (dlm jt Rp)'
-        >, *object:rtf::DBEdit<
-          Name='Hari11'
-          Top=120
-          Left=8
-          ControlCaption='Hari 11 (dlm jt Rp)'
+          ControlCaption='T+11'
         >, *object:rtf::DBEdit<
           Name='Hari12'
-          Top=148
+          Top=36
           Left=8
-          ControlCaption='Hari 12 (dlm jt Rp)'
+          ControlCaption='T+12'
         >, *object:rtf::DBEdit<
           Name='Hari13'
-          Top=176
+          Top=64
           Left=8
-          ControlCaption='Hari 13 (dlm jt Rp)'
+          ControlCaption='T+13'
         >, *object:rtf::DBEdit<
           Name='Hari14'
+          Top=92
+          Left=8
+          ControlCaption='T+14'
+        >, *object:rtf::DBEdit<
+          Name='Hari15'
+          Top=120
+          Left=8
+          ControlCaption='T+15'
+        >, *object:rtf::DBEdit<
+          Name='Hari16'
+          Top=148
+          Left=8
+          ControlCaption='T+16'
+        >, *object:rtf::DBEdit<
+          Name='Hari17'
+          Top=176
+          Left=8
+          ControlCaption='T+17'
+        >, *object:rtf::DBEdit<
+          Name='Hari18'
           Top=204
           Left=8
-          ControlCaption='Hari 14 (dlm jt Rp)'
+          ControlCaption='T+18'
         >, *object:rtf::DBEdit<
-          Name='Minggu3'
+          Name='Hari19'
           Top=232
           Left=8
-          ControlCaption='Minggu 3 (dlm jt Rp)'
+          ControlCaption='T+19'
         >, *object:rtf::DBEdit<
-          Name='Minggu4'
+          Name='Hari20'
           Top=260
           Left=8
-          ControlCaption='Minggu 4 (dlm jt Rp)'
-        >, *object:rtf::DBEdit<
-          Name='sdbulan'
-          Top=288
+          ControlCaption='T+20'
+        >
+      }
+      EqualCaptionWidth=150
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='Hari21'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='T+21'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari22'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='T+22'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari23'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='T+23'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari24'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='T+24'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari25'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='T+25'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari26'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='T+26'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari27'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='T+27'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari28'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='T+28'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari29'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='T+29'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Hari30'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='T+30'
+        >
+      }
+      Name='panel2'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='Hari21'
+          Top=8
           Left=8
-          ControlCaption='1 > sd 3 bulan (dlm jt Rp)'
+          ControlCaption='T+21'
+        >, *object:rtf::DBEdit<
+          Name='Hari22'
+          Top=36
+          Left=8
+          ControlCaption='T+22'
+        >, *object:rtf::DBEdit<
+          Name='Hari23'
+          Top=64
+          Left=8
+          ControlCaption='T+23'
+        >, *object:rtf::DBEdit<
+          Name='Hari24'
+          Top=92
+          Left=8
+          ControlCaption='T+24'
+        >, *object:rtf::DBEdit<
+          Name='Hari25'
+          Top=120
+          Left=8
+          ControlCaption='T+25'
+        >, *object:rtf::DBEdit<
+          Name='Hari26'
+          Top=148
+          Left=8
+          ControlCaption='T+26'
+        >, *object:rtf::DBEdit<
+          Name='Hari27'
+          Top=176
+          Left=8
+          ControlCaption='T+27'
+        >, *object:rtf::DBEdit<
+          Name='Hari28'
+          Top=204
+          Left=8
+          ControlCaption='T+28'
+        >, *object:rtf::DBEdit<
+          Name='Hari29'
+          Top=232
+          Left=8
+          ControlCaption='T+29'
+        >, *object:rtf::DBEdit<
+          Name='Hari30'
+          Top=260
+          Left=8
+          ControlCaption='T+30'
         >
       }
       EqualCaptionWidth=150

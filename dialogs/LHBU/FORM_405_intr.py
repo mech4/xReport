@@ -1,5 +1,5 @@
 REFMAP = {
-  'LKOMPONEN'                   : 'R_KOMPONEN_RP'
+  'LKOMPONEN'                   : 'R_KATEGORI_RM'
 }
   
 class LHBU_FORM_405:
@@ -22,8 +22,22 @@ class LHBU_FORM_405:
       ,'Hari12'
       ,'Hari13'
       ,'Hari14'
-      ,'Minggu3'
-      ,'Minggu4'
+      ,'Hari15'
+      ,'Hari16'
+      ,'Hari17'
+      ,'Hari18'
+      ,'Hari19'
+      ,'Hari20'
+      ,'Hari21'
+      ,'Hari22'
+      ,'Hari23'
+      ,'Hari24'
+      ,'Hari25'
+      ,'Hari26'
+      ,'Hari27'
+      ,'Hari28'
+      ,'Hari29'
+      ,'Hari30'
       ,'sdbulan'
     ]
     self.paction     = None
@@ -31,23 +45,37 @@ class LHBU_FORM_405:
     self.xlstopline  = 7
     self.xlsmap      = {
           1: 'LKOMPONEN_reference_code'
-        , 2: 'Hari1'
-        , 3: 'Hari2'
-        , 4: 'Hari3'
-        , 5: 'Hari4'
-        , 6: 'Hari5'
-        , 7: 'Hari6'
-        , 8: 'Hari7'
-        , 9: 'Hari8'
-        , 10: 'Hari9'
-        , 11: 'Hari10'
-        , 12: 'Hari11'
-        , 13: 'Hari12'
-        , 14: 'Hari13'
-        , 15: 'Hari14'
-        , 16: 'Minggu3'
-        , 17: 'Minggu4'
-        , 18: 'sdbulan'
+        , 2: 'sdbulan'
+        , 3: 'Hari1'
+        , 4: 'Hari2'
+        , 5: 'Hari3'
+        , 6: 'Hari4'
+        , 7: 'Hari5'
+        , 8: 'Hari6'
+        , 9: 'Hari7'
+        , 10: 'Hari8'
+        , 11: 'Hari9'
+        , 12: 'Hari10'
+        , 13: 'Hari11'
+        , 14: 'Hari12'
+        , 15: 'Hari13'
+        , 16: 'Hari14'
+        , 17: 'Hari15'
+        , 18: 'Hari16'
+        , 19: 'Hari17'
+        , 20: 'Hari18'
+        , 21: 'Hari19'
+        , 22: 'Hari20'
+        , 23: 'Hari21'
+        , 24: 'Hari22'
+        , 25: 'Hari23'
+        , 26: 'Hari24'
+        , 27: 'Hari25'
+        , 28: 'Hari26'
+        , 29: 'Hari27'
+        , 30: 'Hari28'
+        , 31: 'Hari29'
+        , 32: 'Hari30'
     }
     self.useheader = 3 #1: true LKPBU, 0:false, 2:row header only (LBUS), 3:header LHBU
     self.txttemplate = 'lhbu/form405.txt'
@@ -58,24 +86,38 @@ class LHBU_FORM_405:
     #       jenis 2 untuk zerofill x,5
     #       jenis 3 untuk zerofill 99,99
     self.txtmap      = ( [0,0]
-      , [5,0]
-      , [9,1]
-      , [9,1]
-      , [9,1]
-      , [9,1]
-      , [9,1]
-      , [9,1]
-      , [9,1]
-      , [9,1]
-      , [9,1]
-      , [9,1]
-      , [9,1]
-      , [9,1]
-      , [9,1]
-      , [9,1]
-      , [9,1]
-      , [9,1]
-      , [9,1]
+      , [4,0]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
   )
   #--
 
