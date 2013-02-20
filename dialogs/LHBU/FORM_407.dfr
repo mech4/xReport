@@ -43,8 +43,8 @@ object:rtf::Form<
   Containers={
     object:rtf::DualSplit<
       Name='dsMain'
-      Width=240
-      Height=96
+      Width=921
+      Height=425
       Container1=$CONTAINERS['grData']
       Container2=$CONTAINERS['pData']
       SplitDirection=sdrSplitLeftRight
@@ -195,7 +195,7 @@ object:rtf::Form<
           DataTypeName='varchar'
           DataLength=3
         >, object:rtf::FieldUIElmtSetting<
-          Name='TglTemp'
+          Name='TglTempo'
           Hidden=false
           ReadOnlyControl=false
           ControlCaption='Tgl Jatuh Tempo'
@@ -295,7 +295,7 @@ object:rtf::Form<
           Left=8
           ControlCaption='Jangka Waktu'
         >, *object:rtf::DBEdit<
-          Name='TglTemp'
+          Name='TglTempo'
           Top=148
           Left=8
           ControlCaption='Tgl Jatuh Tempo'

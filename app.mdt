@@ -662,6 +662,24 @@ object:ODL<
           MemberName='LReport'
           LinkedClass=$TYPEDECLS['Report']
           AutoForeignKey=true
+        >, object:FieldMember<
+          MemberName='LJENISPUAS_refdata_id'
+          PhysicalName='LJENISPUAS_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='ImbalanPUAS'
+          PhysicalName='IMBALANPUAS'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=8
+        >, object:LinkMember<
+          MemberName='LJENISPUAS'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LHBU_FORM102'].MEMBERS['LJENISPUAS_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
         >
       }
       ClassID='{3B11ACCF-0D13-11E2-8C25-00140B44333B}'
@@ -9605,6 +9623,7 @@ object:ODL<
         >
       }
       ClassID='{54C31E06-BBD7-41CA-A39C-987985448DCE}'
+      AutoPrimaryKey=$TYPEDECLS['LHBU_FORM407'].MEMBERS['item_id']
     >
   }
   PhysicalDB=object:ODLDatabase<

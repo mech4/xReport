@@ -55,7 +55,7 @@ object:rpclass::TPClassUIDefList<
           DataTypeName='varchar'
           DataLength=3
         >, object:rpclass::TCustomLoadedField<
-          Name='TglTemp'
+          Name='TglTempo'
           DataTypeName='varchar'
           DataLength=8
         >, object:rpclass::TCustomLoadedField<
