@@ -354,6 +354,20 @@ def GenerateTxt(config, params, returns):
   app = config.AppObject
   app.ConCreate('out')
   #--
+  FilterSandi = {
+    "405" : (None, '', ' ', '1051', '1058', '1065', '1066', '1085', '1120', '1135', '1147', '1170', '1171', '1174',
+             '1177', '1180', '1183', '1205', '1225', '1226', '1235', '1245', '1255', '1265', '1287', '1294', '1305',
+             '1315', '1325', '1335', '1357', '1365', '1375', '1385', '1395', '1405', '1427', '1475', '1485', '1495',
+             '1527', '1528', '1535', '1545', '1555', '1565', '1587', '1607', '1608', '1615', '1625', '1635', '1645',
+             '1667', '1668', '1675', '1685', '1695', '1705', '1727', '1728', '1735', '1755', '1765', '1745'
+             )
+    ,
+    "406" : (None, '', ' ', '3061', '3071', '3072', '3075', '3085', '3089', '3111', '3121', '3122', '3125', '3135',
+             '3136', '3139', '3161', '3164', '3186', '3205', '3227', '3235', '3257', '3265', '4051', '4075', '4085',
+             '4107', '4115', '4125', '4135', '4145', '4155'
+             )
+    ,
+  }
   
   helper = phelper.PObjectHelper(config)
   status = returns.CreateValues(["IsErr", 0], ["ErrMessage",""])
@@ -414,8 +428,11 @@ def GenerateTxt(config, params, returns):
       res = config.CreateSQL('''
           select -1 "item_id" from dual 
       ''').rawresult
+    lastoutnum = -1
     while not res.Eof:
-      if jml % 100 == 0: app.ConWriteln("Process data ke - {0}".format(jml))
+      if (jml % 100 == 0) and (jml<>lastoutnum): 
+        app.ConWriteln("Process data ke - {0}".format(jml))
+        lastoutnum = jml
       if res.item_id > 0:
         oItem = config.CreatePObjImplProxy(itemName)
         oItem.Key = res.item_id
@@ -460,8 +477,10 @@ def GenerateTxt(config, params, returns):
             totalrp+=svalue
           if (int(useheader)==4) and (no_form=='01  ') and (col==5):
             totalva+=svalue
-            
+        #raise Exception, no_form
         if int(useheader)==2 and no_form in ('01','02') and oItem.EvalMembers(datamap[1]) in (None,'', ' '):
+          pass
+        elif int(useheader)==3 and no_form in ('405','406') and oItem.EvalMembers(datamap[1]) in (FilterSandi[no_form]):
           pass
         else:
           contents += formTxtValue(svalue, txtmap[col][0], txtmap[col][1])          
@@ -485,9 +504,14 @@ def GenerateTxt(config, params, returns):
         contents += extra
       if int(useheader)==2 and no_form in ('01','02') and oItem.EvalMembers(datamap[1]) in (None,'', ' '):
         pass
+      elif int(useheader)==3 and no_form in ('405','406') and oItem.EvalMembers(datamap[1]) in (FilterSandi[no_form]):
+        pass
       else:
         contents += '\n'
-      jml+=1
+      if int(useheader)==3 and no_form in ('405','406') and oItem.EvalMembers(datamap[1]) in (FilterSandi[no_form]):
+        pass
+      else:
+        jml+=1
       res.Next()
     #--
     if (int(useheader)==4) and (no_form=='01  '):
@@ -559,6 +583,8 @@ def GenerateTxt(config, params, returns):
       contents += ''.zfill(602)+'\n'
     if int(useheader)==1:
       header += str(jml).zfill(9)[-9:]+'\n'
+    elif int(useheader)==3:
+      header += str(jml).zfill(8)[-8:]+'\n'
     else:
       header += str(jml).zfill(6)[-6:]+'\n'
     
