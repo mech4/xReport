@@ -32,7 +32,8 @@ def FormOnSetDataEx(uideflist, params):
       rec = ds.AddRecord()
       rec.SetFieldByName('LKOMPONEN.reference_desc', res.reference_desc)    
       rec.SetFieldByName('LKOMPONEN.reference_code', res.reference_code)    
-      rec.SetFieldByName('LKOMPONEN.refdata_id', res.refdata_id)    
+      rec.SetFieldByName('LKOMPONEN.refdata_id', res.refdata_id)
+      rec.Keterangan = 'sesuai pipeline'
       res.Next()
     #--
     
