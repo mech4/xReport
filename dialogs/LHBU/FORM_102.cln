@@ -215,6 +215,9 @@ object:rtf::Form<
           ControlCaption='ID Operasional'
           DataTypeName='varchar'
           DataLength=1
+          EnumeratedValues=['1=Baru'#13#10,
+            '2=Koreksi'#13#10,
+            '3=Hapus'#13#10]
         >, object:rtf::FieldUIElmtSetting<
           Name='NoReff'
           Hidden=false
@@ -407,7 +410,7 @@ object:rtf::Form<
       Height=433
       UIPart=$UIPARTS['uipData']
       Controls={
-        *object:rtf::DBEdit<
+        *object:rtf::DBComboBox<
           Name='IdOperasional'
           Top=8
           Left=8
