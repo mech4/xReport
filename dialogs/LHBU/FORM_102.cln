@@ -169,6 +169,22 @@ object:rtf::Form<
           DisplayFormat=''
           TitleCaption='Jenis Keg. Usaha Bank Pengelola Dana'
           Width=288
+        >, object:rtf::GridColumn<
+          Name='gcLJENISPUAS'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENISPUAS.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Instrumen PUAS (Akad)'
+          Width=288
+        >, object:rtf::GridColumn<
+          Name='gcImbalanPUAS'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='ImbalanPUAS'
+          DisplayFormat=''
+          TitleCaption='Tingkat Imbalan PUAS'
+          Width=160
         >
       }
       ReadOnly=true
