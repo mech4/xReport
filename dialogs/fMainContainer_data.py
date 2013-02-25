@@ -621,8 +621,19 @@ def GenerateTxt(config, params, returns):
   #--
   return 1
 
-
-def PeriodCheck(config, params, returns):
+def PeriodHandler(config, params, returns):
+  gtype = params.FirstRecord.group_code
+  config.BeginTransaction()
+  s = "select distinct a.periode_type from reportclass a, reportclassgroup b where a.group_id=b.group_id and b.group_code='%s'" % gtype
+  res = config.CreateSQL(s).RawResult
+  while not res.Eof:
+    PeriodCheck(config, res.periode_type)
+    res.Next()
+  #--
+  config.Commit()
+  return
+   
+def PeriodCheck(config, ptype):
   def periodGenerate(period_type, tgl, bln, thn, hari):
     mon = ('', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December')
     qtr = ('', '1st Quarter', '2nd Quarter', '3rd Quarter', '4th Quarter')
@@ -636,17 +647,16 @@ def PeriodCheck(config, params, returns):
       return str((bln/3)+1).zfill(2)+str(thn), qtr[(bln/3)+1]+' '+str(thn)
     elif period_type=='W':
       if tgl<8:
-        return '1'+str(thn)+str(bln).zfill(2), week[1]+' '+mon[bln]+' '+str(thn)
+        return str(thn)+str(bln).zfill(2)+'1', week[1]+' '+mon[bln]+' '+str(thn)
       elif tgl<16:
-        return '2'+str(thn)+str(bln).zfill(2), week[2]+' '+mon[bln]+' '+str(thn)
+        return str(thn)+str(bln).zfill(2)+'2', week[2]+' '+mon[bln]+' '+str(thn)
       elif tgl<24:
-        return '3'+str(thn)+str(bln).zfill(2), week[3]+' '+mon[bln]+' '+str(thn)
+        return str(thn)+str(bln).zfill(2)+'3', week[3]+' '+mon[bln]+' '+str(thn)
       else:
-        return '4'+str(thn)+str(bln).zfill(2), week[4]+' '+mon[bln]+' '+str(thn)
+        return str(thn)+str(bln).zfill(2)+'4', week[4]+' '+mon[bln]+' '+str(thn)
     else:
       return str(tgl).zfill(2)+str(bln).zfill(2)+str(thn), dayname[hari]+' '+str(tgl).zfill(2)+' '+mon[bln]+' '+str(thn)     
   #--
-  ptype = params.FirstRecord.period_type
   mlu = config.ModLibUtils
   tgl = mlu.DecodeDate(config.Now())
   hari = mlu.DayOfWeek(config.Now())
@@ -654,7 +664,6 @@ def PeriodCheck(config, params, returns):
   thn = tgl[0]
   tglnum = tgl[2]
   period = periodGenerate(ptype, tglnum, bln, thn, hari)
-  config.BeginTransaction()
   #raise Exception, period[0]
   s = "select * from period where period_code='%s' and period_type='%s'" % (period[0], ptype)
   res = config.CreateSQL(s).RawResult
@@ -666,8 +675,40 @@ def PeriodCheck(config, params, returns):
     s = "insert into period (period_id, period_code, description, period_type) values (seq_period.nextval, '%s', '%s', '%s')" % (period[0], period[1], ptype)
     #raise Exception, s
     config.ExecSQL(s)
-    config.Commit()
-  return 
+  if ptype=='D' and hari!=6:
+    selisih_hari = 6-hari
+    hari=6
+    tglnum = tglnum-selisih_hari
+    if bln<12:
+      nmbln = bln+1
+      nmthn = thn
+    else:
+      nmbln = 1
+      nmthn = thn+1
+    lastday = mlu.DecodeDate(mlu.EncodeDate(nmthn,nmbln,1)-1)
+    lastday = lastday[2]
+    if tglnum>lastday:
+      tglnum=tglnum-lastday
+      bln = nmbln
+      thn = nmthn
+    if tglnum<1:
+      lastday = mlu.DecodeDate(mlu.EncodeDate(thn,bln,1)-1)
+      thn = lastday[0]
+      bln = lastday[1]
+      tglnum = lastday[2]
+    period = periodGenerate(ptype, tglnum, bln, thn, hari)
+    #raise Exception, period[0]
+    s = "select * from period where period_code='%s' and period_type='%s'" % (period[0], ptype)
+    res = config.CreateSQL(s).RawResult
+    if not res.Eof:
+      #raise Exception, 'Ada'
+      pass
+    else:
+      #raise Exception, 'Belum Ada'
+      s = "insert into period (period_id, period_code, description, period_type) values (seq_period.nextval, '%s', '%s', '%s')" % (period[0], period[1], ptype)
+      #raise Exception, s
+      config.ExecSQL(s)
+  #return 
   
 def ImportReport(config, params, returns):
   def fixMap():
@@ -801,3 +842,410 @@ def CleanThisForm(config, params, returns):
     config.Rollback()
     status.IsErr = 1
     status.ErrMessage = str(sys.exc_info()[1])
+
+def DownloadF707(config, params, returns):
+  def fixMap():
+    for col in pos:
+      sfield = datamap[col]
+      
+      if sfield.split("_")[0] in reflist:
+        datamap[col] = "{0}.{1}".format(sfield.split("_")[0]
+          , sfield[sfield.find("_")+1:])
+      #--
+    #-- for
+  #-- def           
+    
+  #if DEBUG_MODE:
+  app = config.AppObject
+  app.ConCreate('out')
+  #--
+  
+  mlu = config.ModLibUtils
+  helper = phelper.PObjectHelper(config)
+  status = returns.CreateValues(["IsErr", 0], ["ErrMessage",""])
+  
+  try :
+    rec = params.FirstRecord
+    tmplDir  = "c:/dafapp/ibank2/report/regulatory/templates/"
+    tmplFile = tmplDir + rec.xlstemplate
+    owb = pyFlexcel.Open(tmplFile)
+    owb.ActivateWorksheet("report")
+    
+    rec = params.FirstRecord
+    reportAttr = {}
+    attrutil.transferAttributes(helper, 
+      ['class_id', 'period_id', 'branch_id']
+      , reportAttr, rec)
+  
+    oReport   = helper.GetObjectByNames('Report', reportAttr)
+    if oReport.isnull: 
+      raise Exception, "Report not found!"
+    #--
+    report_id = oReport.report_id or -1
+    
+    reportclass = helper.GetObject("ReportClass", rec.class_id)
+    period      = helper.GetObject("Period", rec.period_id)
+    branch      = helper.GetObject("Branch", rec.branch_id)
+    
+    repdate = int(period.period_code[:2])
+    repmon = int(period.period_code[2:4])
+    repyear = int(period.period_code[4:8])
+    period_desc = periodF707(mlu, repdate, repmon, repyear)
+    
+    owb.SetCellValue(5, 1, period_desc)
+    
+    row = int(rec.xlstopline)
+    datamap = eval(rec.xlsmap)
+    pos = datamap.keys()
+    reflist = eval(rec.reflist)     
+    itemName = "{0}_{1}".format(rec.group_code, rec.report_code)
+
+    fixMap()
+    
+    res = config.CreateSQL('''
+      select item_id from {0} where report_id = {1} 
+    '''.format(itemName, report_id)).rawresult
+    
+    i = 1
+    formulaField = ( '01', '02', '06', '11', '16', '21', '22', '23', '26', '31', '35', '40', '41')
+    while not res.Eof:
+      app.ConWriteln("Load data ke-{0}".format(i))
+      oItem = config.CreatePObjImplProxy(itemName)
+      oItem.Key = res.item_id
+      colskip = 0
+      if oItem.EvalMembers('LKOMPONEN.reference_code') not in formulaField:
+        for col in pos:
+          fieldname = datamap[col]
+          if fieldname[0]!='@':
+            svalue = oItem.EvalMembers(fieldname)
+            if svalue in (None,''):
+              svalue=0
+            owb.SetCellValue(row, col+1, svalue)
+          else:
+            colskip += 1          
+        #--
+      row += 1
+      res.Next()
+      i += 1
+    #--
+
+    storeDir  = config.UserHomeDirectory
+    storeFile = storeDir + rec.xlstemplate
+    if os.access(storeFile, os.F_OK) == 1: os.remove(storeFile)
+    spath = os.path.dirname(storeFile)
+    if not os.path.exists(spath): os.makedirs(spath)
+    owb.SaveAs(storeFile)
+
+    app = config.AppObject
+    sw = returns.AddStreamWrapper()
+    sw.LoadFromFile(storeFile)
+    sw.Name = "return"
+    sw.FileName = rec.xlstemplate
+    sw.MIMEType = app.GetMIMETypeFromExtension(storeFile)
+  except:    
+    config.Rollback()
+    status.IsErr = 1
+    if DEBUG_MODE:
+      errMessage = debug.getExcMsg()
+      #app.ConWriteln(errMessage)
+    else:
+      errMessage = str(sys.exc_info()[1])
+    #--
+    status.ErrMessage = errMessage 
+  #-- try.except
+  if DEBUG_MODE:
+    app.ConRead('Press any key')
+  #--
+  return 1
+
+def ImportF707(config, params, returns):
+  def fixMap():
+    for col in pos:
+      sfield = datamap[col].lstrip('@')
+      
+      if sfield.split("_")[0] in reflist:
+        datamap[col] = "{0}.{1}".format(sfield.split("_")[0]
+          , sfield[sfield.find("_")+1:])
+      #--
+    #-- for
+  #-- def           
+  rec = params.FirstRecord
+  row = int(rec.xlstopline)
+  datamap = eval(rec.xlsmap)
+  pos = datamap.keys()
+  reflist = eval(rec.reflist)     
+  f = open(config.GetHomeDir()+"dialogs\\"+rec.formid.replace("/","\\")+"_intr.py", "r")
+  refmap = f.read()
+  f.close()
+  f = None
+  refmap = eval(refmap.split("class")[0].replace("\n","").split("=")[-1])
+  #raise Exception, refmap
+  sw = params.GetStreamWrapper(0)
+  helper = phelper.PObjectHelper(config)
+  status = returns.CreateValues(["IsErr", 0], ["ErrMessage",""])
+  sdef = ''
+  rdef = ''
+  fixMap()
+  mlu = config.ModLibUtils
+  colcount = 0
+  for col in pos:
+    currdata = datamap[col].lstrip('@')
+    sdef += currdata+':string'
+    sdef += ';'
+    if (currdata.split('.')[0] in reflist) and (currdata.split('.')[0] not in rdef) :
+      rdef += currdata.split('.')[0]+'.refdata_id:integer;'
+      rdef += currdata.split('.')[0]+'.reference_desc:string;'
+      rdef += currdata.split('.')[0]+'.reference_code:string'
+      rdef += ';' 
+    colcount+=1
+  sdef = sdef.rstrip(';')
+  rdef = rdef.rstrip(';')
+  rd = returns.AddNewDatasetEx('iData', sdef)
+  if rdef not in (None,''):
+    rf = returns.AddNewDatasetEx('iReff', rdef) 
+  try:
+    tmplFile = config.UserHomeDirectory + sw.Name + '.xls'
+    sw.SaveToFile(tmplFile)
+    owb = pyFlexcel.Open(tmplFile)
+    owb.ActivateWorksheet("report")
+    c1 = 'Form 707 : Laporan Proyeksi Arus Kas'
+    period      = helper.GetObject("Period", rec.period_id)
+    repdate = int(period.period_code[:2])
+    repmon = int(period.period_code[2:4])
+    repyear = int(period.period_code[4:8])
+    period_desc = periodF707(mlu, repdate, repmon, repyear)
+    c2 = period_desc 
+    check1 = owb.GetCellValue(1,1)
+    check2 = owb.GetCellValue(5,1)
+    formulaField = ( '01', '02', '06', '11', '16', '21', '22', '23', '26', '31', '35', '40', '41')
+    if (check1!=c1) or (check2!=c2):
+      raise Exception, 'File Not Match.'
+
+    s = "select * from %s a, %s b where a.reftype_id=b.reftype_id and b.reference_name='R_ARUS_KAS' order by a.refdata_id" % (
+                config.MapDBTableName('enterprise.referencedata'),    
+                config.MapDBTableName('enterprise.referencetype')
+        )
+    res = config.CreateSQL(s).RawResult
+    while not res.Eof:
+      iData = rd.AddRecord()
+      iLink = rf.AddRecord()
+      iLink.SetFieldByName('LKOMPONEN.reference_desc', res.reference_desc)    
+      iLink.SetFieldByName('LKOMPONEN.reference_code', res.reference_code)    
+      iLink.SetFieldByName('LKOMPONEN.refdata_id', res.refdata_id)
+      iData.SetFieldByName('LKOMPONEN.reference_desc', res.reference_desc)
+      if res.reference_code not in formulaField:
+        iData.Hari1 = str(int(owb.GetCellValue(int(res.reference_code)+8,3)))      
+        iData.Hari2 = str(int(owb.GetCellValue(int(res.reference_code)+8,4)))      
+        iData.Hari3 = str(int(owb.GetCellValue(int(res.reference_code)+8,5)))      
+        iData.Hari4 = str(int(owb.GetCellValue(int(res.reference_code)+8,6)))      
+        iData.Hari5 = str(int(owb.GetCellValue(int(res.reference_code)+8,7)))      
+      res.Next()
+  except:    
+    status.IsErr = 1
+    errMessage = str(sys.exc_info()[1])
+    status.ErrMessage = errMessage 
+
+def periodF707(mlu, repdate, repmon, repyear):
+  namabln = ('', ' Januari', ' Februari', ' Maret', ' April', ' Mei', ' Juni', ' Juli', ' Agustus', ' September', ' Oktober', ' November', ' Desember')
+  dfrom = repdate+3
+  dto = repdate+7
+  if repmon<12:
+    cmon = repmon+1
+    cyear = repyear
+  else:
+    cmon = 1
+    cyear = repyear+1
+  ldom = mlu.DecodeDate(mlu.EncodeDate(cyear,cmon,1)-1)[2]
+  mfrom = namabln[repmon]
+  mto = namabln[repmon]
+  yfrom = ' '+str(repyear)
+  yto = ' '+str(repyear)
+  if dfrom>ldom:
+    dfrom = dfrom-ldom
+    mfrom = namabln[cmon]
+    yfrom = ' '+str(cyear)
+  if dto>ldom:
+    dto = dto-ldom
+    mto = namabln[cmon]
+    yto = ' '+str(cyear)
+  if mfrom==mto:
+    mfrom=''
+  if yfrom==yto:
+    yfrom=''
+  return "{0}{1}{2} - {3}{4}{5}".format(dfrom,mfrom,yfrom,dto,mto,yto)
+
+def GenerateF707(config, params, returns):
+  def fixMap():
+    for col in pos:
+      sfield = datamap[col]
+      
+      if sfield.split("_")[0] in reflist:
+        datamap[col] = "{0}.{1}".format(sfield.split("_")[0]
+          , sfield[sfield.find("_")+1:])
+      #--
+    #-- for
+  #-- def           
+    
+  #if DEBUG_MODE:
+  app = config.AppObject
+  app.ConCreate('out')
+  #--
+  
+  mlu = config.ModLibUtils
+  helper = phelper.PObjectHelper(config)
+  status = returns.CreateValues(["IsErr", 0], ["ErrMessage",""], ["storeFile", ""], ["fname", ""])
+  
+  try :
+    rec = params.FirstRecord
+    reportAttr = {}
+    attrutil.transferAttributes(helper, 
+      ['class_id', 'period_id', 'branch_id']
+      , reportAttr, rec)
+  
+    oReport   = helper.GetObjectByNames('Report', reportAttr)
+    if oReport.isnull: 
+      raise Exception, "Report not found!"
+    #--
+    report_id = oReport.report_id or -1
+    
+    reportclass = helper.GetObject("ReportClass", rec.class_id)
+    period      = helper.GetObject("Period", rec.period_id)
+    branch      = helper.GetObject("Branch", rec.branch_id)
+    
+    repdate = int(period.period_code[:2])
+    repmon = int(period.period_code[2:4])
+    repyear = int(period.period_code[4:8])
+
+    dayone = mlu.DayOfWeek(mlu.EncodeDate(repyear,repmon,1))
+    sixweek = [0,0,0,0,0,0]
+    j = 0
+    for i in range(6):
+      fday = 7-dayone+(7*i) 
+      if fday>0:
+        sixweek[j] = fday
+        j+=1
+
+    status.fname = '517000000F{0}{1}{2}A0707'.format(period.period_code[4:8],period.period_code[2:4],str(sixweek.index(repdate)).zfill(2))
+    period_desc = periodF707(mlu, repdate, repmon, repyear)
+    csv = "Form 707 : Laporan Proyeksi Arus Kas,,,,,,,\n"
+    csv += ",,,,,,,\n"
+    csv += "PT. BANK PANIN SYARIAH,,,,,,,\n"
+    csv += "PROYEKSI ARUS KAS,,,,,,,\n"
+    csv += "PERIODE %s,,,,,,,\n" % period_desc
+    csv += "(dalam Rp. Juta),,,,,,,\n"
+    csv += "Komponen,, Hari 1 , Hari 2 , Hari 3 , Hari 4 , Hari 5 ,\n"
+    csv += ",,,,,,,\n"
+    
+    row = int(rec.xlstopline)
+    datamap = eval(rec.xlsmap)
+    pos = datamap.keys()
+    reflist = eval(rec.reflist)     
+    itemName = "{0}_{1}".format(rec.group_code, rec.report_code)
+
+    fixMap()
+    
+    res = config.CreateSQL('''
+      select item_id from {0} where report_id = {1} 
+    '''.format(itemName, report_id)).rawresult
+    
+    i = 1
+    formulaField = ( '02', '06', '11', '16', '01', '21', '26', '31', '35', '40', '23', '22', '41')
+    CellFormula = { 
+             "01" : "v['02'][j]+v['05'][j]+v['06'][j]+v['09'][j]+v['10'][j]+v['11'][j]+v['15'][j]+v['16'][j]+v['19'][j]+v['20'][j]",
+             "02" : "v['03'][j]+v['04'][j]",
+             "06" : "v['07'][j]+v['08'][j]",
+             "11" : "v['12'][j]+v['13'][j]+v['14'][j]",
+             "16" : "v['17'][j]+v['18'][j]",
+             "21" : "",
+             "22" : "v['23'][j]+v['24'][j]+v['25'][j]+v['26'][j]+v['30'][j]+v['31'][j]+v['34'][j]+v['35'][j]+v['38'][j]+v['39'][j]",
+             "23" : "v['05'][j]+v['10'][j]+v['11'][j]+v['15'][j]-v['26'][j]-v['38'][j]-v['25'][j]",
+             "26" : "v['27'][j]+v['28'][j]+v['29'][j]",
+             "31" : "v['32'][j]+v['33'][j]",
+             "35" : "v['36'][j]+v['37'][j]",
+             "40" : "",
+             "41" : "v['01'][j]-v['22'][j]"
+    } 
+    CellMaps = {}
+    CellName = {}
+    while not res.Eof:
+      oItem = config.CreatePObjImplProxy(itemName)
+      oItem.Key = res.item_id
+      colskip = 0
+      cid = oItem.EvalMembers('LKOMPONEN.reference_code') 
+      CellMaps[cid] = [0,0,0,0,0]
+      CellName[cid] = oItem.EvalMembers('LKOMPONEN.reference_desc') 
+      if cid not in formulaField:
+        for col in pos:
+          fieldname = datamap[col]
+          if fieldname[0]!='@':
+            svalue = oItem.EvalMembers(fieldname)
+            if svalue in (None,''):
+              svalue=0
+            CellMaps[cid][col-2]=int(svalue)
+          else:
+            colskip += 1          
+        #--
+      row += 1
+      res.Next()
+      i += 1
+    #--
+    for codes in formulaField:
+      if codes not in ('21', '40'):
+        for j in range(5):
+          #raise Exception, eval(CellFormula[codes].replace('v','CellMaps')) 
+          CellMaps[codes][j] = eval(CellFormula[codes].replace('v','CellMaps'))
+
+    for codes in sorted(CellMaps.keys()):
+      if codes in ('21', '40'):
+        csv += ",,,,,,,\n"
+      else:
+        if CellName[codes][:5] == '     ':
+          csv += ','+CellName[codes].lstrip(' ')+','
+        else:
+          csv += CellName[codes]+',,'
+        for j in range(5):
+          if CellMaps[codes][j]==0:
+            csv += '-,'
+          else:
+            csv += str(CellMaps[codes][j])+','
+        csv += '\n' 
+
+    csv += ",,,,,,,\n"
+    csv += ",,,,,,,\n"
+    csv += ",,,,,,,\n"
+    csv += "PT. BANK PANIN SYARIAH,,,,,,,\n"
+    csv += "PROYEKSI ARUS KAS,,,,,,,\n"
+    csv += "PERIODE %s,,,,,,,\n" % period_desc
+    csv += "(dalam Ribuan USD) - NIHIL,,,,,,,\n"
+    csv += "Komponen,, Hari 1 , Hari 2 , Hari 3 , Hari 4 , Hari 5 ,\n"
+    csv += ",,,,,,,\n"
+
+    for codes in sorted(CellMaps.keys()):
+      if codes in ('21', '40'):
+        csv += ",,,,,,,\n"
+      else:
+        if CellName[codes][:5] == '     ':
+          csv += ','+CellName[codes].lstrip(' ')+','
+        else:
+          csv += CellName[codes]+',,'
+        for j in range(5):
+          csv += '-,'
+        csv += '\n' 
+
+    status.storeFile = csv
+    app = config.AppObject
+  except:    
+    config.Rollback()
+    status.IsErr = 1
+    if DEBUG_MODE:
+      errMessage = debug.getExcMsg()
+      #app.ConWriteln(errMessage)
+    else:
+      errMessage = str(sys.exc_info()[1])
+    #--
+    status.ErrMessage = errMessage
+  #-- try.except
+  if DEBUG_MODE:
+    app.ConRead('Press any key')
+  #--
+  return 1

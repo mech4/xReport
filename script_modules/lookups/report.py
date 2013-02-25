@@ -50,6 +50,10 @@ class lookupPeriod:
     self.config = config
     self.period_code = fr.period_code
     self.period_type = fr.period_type
+    try:
+      self.description = fr.description
+    except:
+      self.description = None
     
   def initQueryObject(self, rqsql):
     config = self.config
@@ -65,7 +69,11 @@ class lookupPeriod:
     '''.format(
       period_type=self.period_type
       , period_code='%'+self.period_code+'%%'
-    ) 
+    )
+    if self.description not in (None,'',0):
+      rqsql.WHEREClause += ''' 
+      and description LIKE {description!r}
+      '''.format(description='%'+self.description+'%%')
 
     #rqsql.GROUPBYClause = "GROUP BY acc.account_code, acc.account_name, acc.account_type" 
     rqsql.setAltOrderFieldNames("period_code;description;period_id")

@@ -9624,6 +9624,61 @@ object:ODL<
       }
       ClassID='{54C31E06-BBD7-41CA-A39C-987985448DCE}'
       AutoPrimaryKey=$TYPEDECLS['LHBU_FORM407'].MEMBERS['item_id']
+    >, object:ClassTypeDecl<
+      TypeName='LKPBU_FORM707'
+      PTableName='LKPBU_FORM707'
+      Members={
+        object:FieldMember<
+          MemberName='item_id'
+          PhysicalName='ITEM_ID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:FieldMember<
+          MemberName='LKOMPONEN_refdata_id'
+          PhysicalName='LKOMPONEN_REFDATA_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='LKOMPONEN'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['LKPBU_FORM707'].MEMBERS['LKOMPONEN_refdata_id']
+              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
+        >, object:FieldMember<
+          MemberName='Hari1'
+          PhysicalName='HARI1'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=15
+        >, object:FieldMember<
+          MemberName='Hari2'
+          PhysicalName='HARI2'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=15
+        >, object:FieldMember<
+          MemberName='Hari3'
+          PhysicalName='HARI3'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=15
+        >, object:FieldMember<
+          MemberName='Hari4'
+          PhysicalName='HARI4'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=15
+        >, object:FieldMember<
+          MemberName='Hari5'
+          PhysicalName='HARI5'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=15
+        >, object:LinkMember<
+          MemberName='LReport'
+          LinkedClass=$TYPEDECLS['Report']
+          AutoForeignKey=true
+        >
+      }
+      ClassID='{19F4A29D-50E7-4686-BFB3-4A6FAFE099C7}'
+      AutoPrimaryKey=$TYPEDECLS['LKPBU_FORM707'].MEMBERS['item_id']
     >
   }
   PhysicalDB=object:ODLDatabase<

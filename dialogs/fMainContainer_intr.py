@@ -43,15 +43,19 @@ class fReportContainer:
     self.group_code = group_code
     self.period_type = period_type
     ph = self.FormObject.ClientApplication.CreateValues(
-         ['period_type', period_type]
+         ['group_code', group_code]
     )
-    res = self.FormObject.CallServerMethod('PeriodCheck', ph)
+    res = self.FormObject.CallServerMethod('PeriodHandler', ph)
     self.FormContainer.Show()
     self.switchEdit(False)
     self.uipMain.beginRow = 1
     self.uipMain.endRow = 100
     self.pData_endRow.enabled = 0
     self.pData_totalRow.enabled = 0
+    if group_code == 'LBBU':
+      self.pData_cbNihil.Visible=1
+    else:
+      self.pData_cbNihil.Visible=0
     
   def branchOnExit(self, sender):
     uapp = self.FormObject.ClientApplication.UserAppObject
@@ -68,11 +72,16 @@ class fReportContainer:
     if self.uipMain.GetFieldValue("period.period_code") == '-':
       self.uipMain.ClearLink("period")
     else:  
-      res = uapp.stdLookup(sender, "report@lookupPeriod", "period", 
-        "period_code;description;period_id", None, 
-        {'period_type': self.period_type})
       form_no = self.uipMain.GetFieldValue('reportclass.report_code')
       if form_no==None : form_no=''
+      if self.group_code=='LKPBU' and form_no=='FORM707':
+        res = uapp.stdLookup(sender, "report@lookupPeriod", "period", 
+          "period_code;description;period_id", None, 
+          {'period_type': 'D', 'description' : 'Friday,'})
+      else:
+        res = uapp.stdLookup(sender, "report@lookupPeriod", "period", 
+          "period_code;description;period_id", None, 
+          {'period_type': self.period_type})
       if self.group_code=='LBBU' and form_no[-1:] not in ('1','2','3'):
         week = self.uipMain.GetFieldValue('period.period_code')
         if week==None: week=''
@@ -95,6 +104,10 @@ class fReportContainer:
         res = uapp.stdLookup(sender, "report@lookupReportClass", "reportclass", 
           "report_code;report_name;class_id;form_id;periode_type", None, 
           {'group_code': self.group_code})
+      if self.group_code=='LKPBU' and self.uipMain.GetFieldValue('reportclass.report_code')!='FORM707' and len(week)>6: 
+        self.uipMain.ClearLink("period")
+      if self.group_code=='LKPBU' and self.uipMain.GetFieldValue('reportclass.report_code')=='FORM707' and len(week)<7: 
+        self.uipMain.ClearLink("period")
       #self.period_type = self.uipMain.GetFieldValue("reportclass.periode_type")
       #self.uipMain.ClearLink("period")
         
@@ -289,7 +302,10 @@ class fReportContainer:
       , ["reflist", str(self.repform.reflist)]
     )
     
-    ph = formobj.CallServerMethod('DownloadReport', ph)
+    if self.repform.useheader > 10:
+      ph = formobj.CallServerMethod('DownloadF707', ph)
+    else:
+      ph = formobj.CallServerMethod('DownloadReport', ph)
     
     status = ph.FirstRecord
     if status.IsErr == 1:
@@ -302,30 +318,57 @@ class fReportContainer:
 
   def bGenerateOnClick(self, sender):
     formobj = self.FormObject; app = formobj.ClientApplication
+    filename = ''
     
     uMain = self.uipMain
         
-    ph = app.CreateValues(
-      ["class_id", uMain.GetFieldValue("reportclass.class_id")]
-      , ["period_id", uMain.GetFieldValue("period.period_id")]
-      , ["branch_id", uMain.GetFieldValue("branch.branch_id")]
-      , ["group_code", self.group_code]
-      , ["report_code", uMain.GetFieldValue("reportclass.report_code")]
-      , ["txttemplate", self.repform.txttemplate]
-      , ["txtmap", str(self.repform.txtmap)]
-      , ["xlsmap", str(self.repform.xlsmap)]
-      , ["reflist", str(self.repform.reflist)]
-      , ["useheader", str(self.repform.useheader)]
-    )
-    
-    ph = formobj.CallServerMethod('GenerateTxt', ph)
+    if self.repform.useheader > 10:
+      filename = app.SaveFileDialog("Simpan File CSV [Nama File Otomatis Sesuai Tanggal Laporan]", "CSV Files (*.csv)|*.csv")
+      if filename in (None,'',0):
+        return 
+      if filename[-4:].lower() != '.csv':
+        filename += '.csv'
+      ph = app.CreateValues(
+        ["class_id", uMain.GetFieldValue("reportclass.class_id")]
+        , ["period_id", uMain.GetFieldValue("period.period_id")]
+        , ["branch_id", uMain.GetFieldValue("branch.branch_id")]
+        , ["group_code", self.group_code]
+        , ["report_code", uMain.GetFieldValue("reportclass.report_code")]
+        , ["xlstemplate", self.repform.xlstemplate]
+        , ["xlstopline", str(self.repform.xlstopline)]
+        , ["xlsmap", str(self.repform.xlsmap)]
+        , ["reflist", str(self.repform.reflist)]
+      )
+      ph = formobj.CallServerMethod('GenerateF707', ph)
+    else:
+      ph = app.CreateValues(
+        ["class_id", uMain.GetFieldValue("reportclass.class_id")]
+        , ["period_id", uMain.GetFieldValue("period.period_id")]
+        , ["branch_id", uMain.GetFieldValue("branch.branch_id")]
+        , ["group_code", self.group_code]
+        , ["report_code", uMain.GetFieldValue("reportclass.report_code")]
+        , ["txttemplate", self.repform.txttemplate]
+        , ["txtmap", str(self.repform.txtmap)]
+        , ["xlsmap", str(self.repform.xlsmap)]
+        , ["reflist", str(self.repform.reflist)]
+        , ["useheader", str(self.repform.useheader)]
+      )
+      ph = formobj.CallServerMethod('GenerateTxt', ph)
     
     status = ph.FirstRecord
     if status.IsErr == 1:
       app.ShowMessage("ERROR! " + status.ErrMessage)
     else:
-      oPrint = app.GetClientClass('PrintLib','PrintLib')()
-      oPrint.doProcess(app, ph.packet, 1)    
+      if self.repform.useheader > 10:
+        fname = filename.split('\\')[-1]
+        filename = filename.split(fname)[0]+status.fname+'.csv'
+        f = open(filename, "w")
+        f.write(status.storeFile)
+        f.close()
+        app.ShowMessage("File %s telah tersimpan." % filename)
+      else:
+        oPrint = app.GetClientClass('PrintLib','PrintLib')()
+        oPrint.doProcess(app, ph.packet, 1)    
     #--
     
 
@@ -360,7 +403,10 @@ class fReportContainer:
     sw.LoadFromFile(filename)
     sw.Name = filename.split('.')[0].split('\\')[-1]
     
-    ph = formobj.CallServerMethod('ImportReport', ph)
+    if self.repform.useheader > 10:
+      ph = formobj.CallServerMethod('ImportF707', ph)
+    else:
+      ph = formobj.CallServerMethod('ImportReport', ph)
     
     status = ph.FirstRecord
     if status.IsErr == 1:
