@@ -221,4 +221,90 @@ def createData(config, rec, oReport):
   #app.ConWriteln(s)
   #app.ConRead('c')
   config.ExecSQL(s)
+  
+  #Balancing Sum Baki Bulan Laporan dengan Form 01 sandi 150
+  #Ambil nilai pada form01
+  s = '''
+       select round(sum(balancecumulative)/1000000, 0) "value" from table(%(Saldo)s(to_date('%(TglLaporan)s', 'dd-mm-yyyy')))
+       where (
+  ''' % {
+          "Saldo" : config.MapDBTableName('core.getdailybalanceat'),
+          "TglLaporan" : '%s-%s-%s' % (str(repdate[2]).zfill(2),str(repdate[1]).zfill(2),str(repdate[0]).zfill(4)),
+          "ListCabang" : listcabang
+  }
+  s+= '''
+       account_code like '108010110001%' or account_code like '108010110011%' or account_code like '108010120001%' or account_code like '108010120011%' or 
+       account_code like '108010130001%' or account_code like '108010130011%' or account_code like '108010210001%' or account_code like '108010210011%' or 
+       account_code like '108010220001%' or account_code like '108010220011%' or account_code like '108010230001%' or account_code like '108010230011%' or 
+       account_code like '108010300001%' or account_code like '108010300011%'
+  '''
+  s+= '''
+       ) 
+       and branch_code in (%(ListCabang)s)
+       and currency_code='IDR'
+  ''' % {
+          "Saldo" : config.MapDBTableName('core.getdailybalanceat'),
+          "TglLaporan" : '%s-%s-%s' % (str(repdate[2]).zfill(2),str(repdate[1]).zfill(2),str(repdate[0]).zfill(4)),
+          "ListCabang" : listcabang
+  }
+  totaldebetf1 = int(config.CreateSQL(s).RawResult.value)
+  #Hitung total pada Form06
+  s = '''
+        select sum(debetblnlap) "value" from lbus_form06 where report_id=%s
+  ''' % str(report_id)
+  totaldebetf6 = int(config.CreateSQL(s).RawResult.value)
+  #Hitung Selisih
+  selisihdebet = totaldebetf1-totaldebetf6
+  #app.ConWriteln('Tgl Laporan : %s-%s-%s' % (str(repdate[2]).zfill(2),str(repdate[1]).zfill(2),str(repdate[0]).zfill(4)))
+  #app.ConWriteln('total form 01 : %s' % str(totaldebetf1))
+  #app.ConWriteln('total form 06 : %s' % str(totaldebetf6))
+  #app.ConWriteln('Selisih : %s' % str(selisihdebet))
+
+  x_inc=1
+  #Jika selisih bernilai negatif (Form06 > Form01) ubah increment menjadi decrement
+  if selisihdebet<0:
+    selisihdebet=selisihdebet*-1
+    x_inc = -1
+
+  #Cari Kandidat Adjustment Row
+  s = '''
+      select debetblnlalu-debetblnlap val, count(*) jml from lbus_form06 
+      where report_id=%s 
+      group by debetblnlalu-debetblnlap
+      order by debetblnlalu-debetblnlap desc
+  ''' % str(report_id)
+  res = config.CreateSQL(s).RawResult
+  n = 0
+  val = 0
+  while n<selisihdebet and not res.Eof:
+    n += int(res.jml)
+    val = int(res.val)
+    app.ConWriteln('Val[%s] : %s' % (str(val),str(n)))
+    res.Next() 
+  config.Commit()
+  
+  #Update baki pada adjustment row
+  s = '''
+          update lbus_form06 set debetblnlap=debetblnlap+%(Increment)s
+          where nomorrekening in (
+          select nomorrekening from (
+          select rownum, a.* from (
+          select nomorrekening, debetblnlap, debetblnlalu, hargaawal 
+          from lbus_form06 
+          where report_id=%(ReportId)s 
+          and debetblnlalu-debetblnlap>=%(MinVal)s
+          order by debetblnlap desc) a
+          where rownum<=%(Selisih)s)) and report_id=%(ReportId)s
+  ''' % {
+          "Increment" : str(x_inc), 
+          "ReportId" : str(report_id), 
+          "MinVal" : str(val),
+          "Selisih" : str(selisihdebet)
+  }
+  app.ConWriteln('Balancing Summary')
+  #app.ConWriteln('Query : %s' % s)
+  config.ExecSQL(s)
+  config.Commit()
+  app.ConWriteln('OK')
+  #app.ConRead(' ')
   #--
