@@ -32,24 +32,25 @@ class LHBU_FORM_406:
     self.xlstopline  = 7
     self.xlsmap      = {
           1: 'LKOMPONEN_reference_code'
-        , 2: 'sdbulan'
-        , 3: 'Hari1'
-        , 4: 'Hari2'
-        , 5: 'Hari3'
-        , 6: 'Hari4'
-        , 7: 'Hari5'
-        , 8: 'Hari6'
-        , 9: 'Hari7'
-        , 10: 'Hari8'
-        , 11: 'Hari9'
-        , 12: 'Hari10'
-        , 13: 'Hari11'
-        , 14: 'Hari12'
-        , 15: 'Hari13'
-        , 16: 'Hari14'
-        , 17: 'Minggu3'
-        , 18: 'Minggu4'
-        , 19: 'Keterangan'
+        , 2: '!LKOMPONEN.reference_desc'  
+        , 3: 'sdbulan'
+        , 4: 'Hari1'
+        , 5: 'Hari2'
+        , 6: 'Hari3'
+        , 7: 'Hari4'
+        , 8: 'Hari5'
+        , 9: 'Hari6'
+        , 10: 'Hari7'
+        , 11: 'Hari8'
+        , 12: 'Hari9'
+        , 13: 'Hari10'
+        , 14: 'Hari11'
+        , 15: 'Hari12'
+        , 16: 'Hari13'
+        , 17: 'Hari14'
+        , 18: 'Minggu3'
+        , 19: 'Minggu4'
+        , 20: 'Keterangan'
     }
     self.useheader = 3 #1: true LKPBU, 0:false, 2:row header only (LBUS), 3:header LHBU
     self.txttemplate = 'lhbu/form406.txt'
@@ -61,6 +62,7 @@ class LHBU_FORM_406:
     #       jenis 3 untuk zerofill 99,99
     self.txtmap      = ( [0,0]
       , [4,0]
+      , [100,0]
       , [15,1]
       , [15,1]
       , [15,1]

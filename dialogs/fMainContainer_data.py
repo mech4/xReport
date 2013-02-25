@@ -255,6 +255,7 @@ def DownloadReport(config, params, returns):
         for col in pos:
           fieldname = datamap[col]
           if fieldname[0]!='@':
+            fieldname = fieldname.strip('!')
             svalue = oItem.EvalMembers(fieldname)
             
             owb.SetCellValue(row, col-colskip, svalue)
@@ -457,34 +458,36 @@ def GenerateTxt(config, params, returns):
       #raise Exception, pos
       for col in pos:
         fieldname = datamap[col]
-        fieldname = fieldname.strip('@')
-        if fieldname == 'Rownum':
-          svalue = str(jml+1).zfill(2)
-          if no_form[0:2]=='11':
-            svalue = str(jml+1)
-        elif fieldname == 'Endmonth':
-          svalue = str(Eom(periode_laporan[4:6], periode_laporan[0:4])).zfill(2)+periode_laporan[4:6]+periode_laporan[0:4]
-        else:
-          if res.item_id > 0:
-            svalue = oItem.EvalMembers(fieldname)
+        if fieldname[0] != '!':
+          fieldname = fieldname.strip('@')
+          if fieldname == 'Rownum':
+            svalue = str(jml+1).zfill(2)
+            if no_form[0:2]=='11':
+              svalue = str(jml+1)
+          elif fieldname == 'Endmonth':
+            svalue = str(Eom(periode_laporan[4:6], periode_laporan[0:4])).zfill(2)+periode_laporan[4:6]+periode_laporan[0:4]
           else:
-            if col==1:
-              svalue = 'NIHIL'
+            if res.item_id > 0:
+              svalue = oItem.EvalMembers(fieldname)
             else:
-              svalue = None
-          #sum rp dan va FORM1 LBBU
-          if (int(useheader)==4) and (no_form=='01  ') and (col==4):
-            totalrp+=svalue
-          if (int(useheader)==4) and (no_form=='01  ') and (col==5):
-            totalva+=svalue
-        #raise Exception, no_form
-        if int(useheader)==2 and no_form in ('01','02') and oItem.EvalMembers(datamap[1]) in (None,'', ' '):
-          pass
-        elif int(useheader)==3 and no_form in ('405','406') and oItem.EvalMembers(datamap[1]) in (FilterSandi[no_form]):
-          pass
-        else:
-          contents += formTxtValue(svalue, txtmap[col][0], txtmap[col][1])          
-        #--
+              if col==1:
+                svalue = 'NIHIL'
+              else:
+                svalue = None
+            #sum rp dan va FORM1 LBBU
+            if (int(useheader)==4) and (no_form=='01  ') and (col==4):
+              totalrp+=svalue
+            if (int(useheader)==4) and (no_form=='01  ') and (col==5):
+              totalva+=svalue
+          #raise Exception, no_form
+          if int(useheader)==2 and no_form in ('01','02') and oItem.EvalMembers(datamap[1]) in (None,'', ' '):
+            pass
+          elif int(useheader)==3 and no_form in ('405','406') and oItem.EvalMembers(datamap[1]) in (FilterSandi[no_form]):
+            pass
+          else:
+            contents += formTxtValue(svalue, txtmap[col][0], txtmap[col][1])          
+          #--
+      #-- End for col in pos
       if int(useheader)==2:
         if no_form in ('01','02') and oItem.EvalMembers(datamap[1]) in (None,'', ' '):
           if jml==skipped1strow:
@@ -741,7 +744,7 @@ def ImportReport(config, params, returns):
   colcount = 0
   for col in pos:
     if datamap[col][0] != '@':
-      sdef += datamap[col]+':string'
+      sdef += datamap[col].strip('!')+':string'
       sdef += ';'
       if (datamap[col].split('.')[0] in reflist) and (datamap[col].split('.')[0] not in rdef) :
         rdef += datamap[col].split('.')[0]+'.refdata_id:integer;'
@@ -767,6 +770,7 @@ def ImportReport(config, params, returns):
 
     test = 'test'
     jml = 0
+    #raise Exception, (sdef,rdef)
     while test not in (None,''):
       test = owb.GetCellValue(row,1)
       if test not in (None,''):
@@ -776,7 +780,11 @@ def ImportReport(config, params, returns):
           linkcounter = 0       
         colcount = 0     
         for col in pos:
-          if datamap[col][0] != '@':
+          if datamap[col][0] == '@':
+            pass
+          elif datamap[col][0] == '!':
+            colcount+=1
+          else: 
             iData.SetFieldAt(colcount, owb.GetCellValue(row, colcount+1))
             if rdef not in (None,''):
               if ((datamap[col].split('.')[0] in reflist) and ('code' in datamap[col])):

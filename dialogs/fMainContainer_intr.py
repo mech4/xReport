@@ -440,6 +440,7 @@ class fReportContainer:
         #if status.IsErr == 1:
         #  app.ShowMessage("ERROR! " + status.ErrMessage)
         datamap = str(self.repform.xlsmap)
+        datamap = eval(datamap)
         oldData = self.repform.uipData 
         oldData.First()
         item_id = oldData.item_id
@@ -457,19 +458,20 @@ class fReportContainer:
             rLink = iLink.GetRecord(i)
           putData.Append()
           for j in range(fieldnum):
-            putData.SetFieldValue(iData.Structure.GetFieldDef(j).FieldName,
-                                   rec.GetFieldByName(iData.Structure.GetFieldDef(j).FieldName)
-            )
-            if iData.Structure.GetFieldDef(j).FieldName.split('.')[0] in self.repform.reflist:
-              putData.SetFieldValue(iData.Structure.GetFieldDef(j).FieldName.split('.')[0]+".refdata_id",
-                                    rLink.GetFieldByName(iData.Structure.GetFieldDef(j).FieldName.split('.')[0]+".refdata_id")
-              ) 
-              putData.SetFieldValue(iData.Structure.GetFieldDef(j).FieldName.split('.')[0]+".reference_desc",
-                                    rLink.GetFieldByName(iData.Structure.GetFieldDef(j).FieldName.split('.')[0]+".reference_desc")
-              ) 
-              putData.SetFieldValue(iData.Structure.GetFieldDef(j).FieldName.split('.')[0]+".reference_code",
-                                    rLink.GetFieldByName(iData.Structure.GetFieldDef(j).FieldName.split('.')[0]+".reference_code")
-              ) 
+            if datamap.values()[j][0] != '!':
+              putData.SetFieldValue(iData.Structure.GetFieldDef(j).FieldName,
+                                     rec.GetFieldByName(iData.Structure.GetFieldDef(j).FieldName)
+              )
+              if iData.Structure.GetFieldDef(j).FieldName.split('.')[0] in self.repform.reflist:
+                putData.SetFieldValue(iData.Structure.GetFieldDef(j).FieldName.split('.')[0]+".refdata_id",
+                                      rLink.GetFieldByName(iData.Structure.GetFieldDef(j).FieldName.split('.')[0]+".refdata_id")
+                ) 
+                putData.SetFieldValue(iData.Structure.GetFieldDef(j).FieldName.split('.')[0]+".reference_desc",
+                                      rLink.GetFieldByName(iData.Structure.GetFieldDef(j).FieldName.split('.')[0]+".reference_desc")
+                ) 
+                putData.SetFieldValue(iData.Structure.GetFieldDef(j).FieldName.split('.')[0]+".reference_code",
+                                      rLink.GetFieldByName(iData.Structure.GetFieldDef(j).FieldName.split('.')[0]+".reference_code")
+                ) 
         #self.bSaveOnClick(self.pData_bSave)
         self.uipMain.Edit()
         self.uipMain.beginRow = 1
