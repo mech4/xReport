@@ -176,7 +176,9 @@ def DownloadReport(config, params, returns):
   #--
   
   helper = phelper.PObjectHelper(config)
+  mlu = config.ModLibUtils
   status = returns.CreateValues(["IsErr", 0], ["ErrMessage",""])
+  dayname = ('', 'Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu')
   
   try :
     rec = params.FirstRecord
@@ -200,6 +202,21 @@ def DownloadReport(config, params, returns):
     reportclass = helper.GetObject("ReportClass", rec.class_id)
     period      = helper.GetObject("Period", rec.period_id)
     branch      = helper.GetObject("Branch", rec.branch_id)
+    
+    if reportclass.group_id==2 and reportclass.report_code in ('FORM405','FORM406'):
+      pcode = str(period.period_code)
+      #raise Exception, (pcode[4:8],pcode[2:4],pcode[0:2])
+      tgllap = mlu.EncodeDate(int(pcode[4:8]),int(pcode[2:4]),int(pcode[0:2]))
+      if reportclass.report_code=='FORM405':
+        nrow = 30
+      else:
+        nrow = 14
+      for i in range(nrow):
+        tglplus = mlu.DecodeDate(tgllap+i+1)
+        hariplus = mlu.DayOfWeek(tgllap+i+1)
+        #raise Exception, (tglplus,hariplus)
+        owb.SetCellValue(3, i+4, dayname[hariplus])
+        owb.SetCellValue(4, i+4, '{0}-{1}-{2}'.format(tglplus[2],tglplus[1],tglplus[0]))
     
     owb.SetCellValue(2, 1, reportclass.report_name)
     owb.SetCellValue(3, 2, "{0} - {1}".format(branch.branch_code, branch.branch_name))
@@ -243,7 +260,7 @@ def DownloadReport(config, params, returns):
       fixMap()
       
       res = config.CreateSQL('''
-        select item_id from {0} where report_id = {1} 
+        select item_id from {0} where report_id = {1} order by item_id
       '''.format(itemName, report_id)).rawresult
       
       i = 1
@@ -678,10 +695,11 @@ def PeriodCheck(config, ptype):
     s = "insert into period (period_id, period_code, description, period_type) values (seq_period.nextval, '%s', '%s', '%s')" % (period[0], period[1], ptype)
     #raise Exception, s
     config.ExecSQL(s)
+  
   if ptype=='D' and hari!=6:
     selisih_hari = 6-hari
     hari=6
-    tglnum = tglnum-selisih_hari
+    tglnum = tglnum+selisih_hari
     if bln<12:
       nmbln = bln+1
       nmthn = thn
@@ -700,7 +718,7 @@ def PeriodCheck(config, ptype):
       bln = lastday[1]
       tglnum = lastday[2]
     period = periodGenerate(ptype, tglnum, bln, thn, hari)
-    #raise Exception, period[0]
+    #raise Exception, (period[0],ptype, tglnum, bln, thn, hari)
     s = "select * from period where period_code='%s' and period_type='%s'" % (period[0], ptype)
     res = config.CreateSQL(s).RawResult
     if not res.Eof:
