@@ -237,6 +237,7 @@ def createData(config, rec, oReport):
   
   #Balancing Sum Baki Bulan Laporan dengan Form 01 sandi 160+161
   #Ambil nilai pada form01
+  app.ConWriteln(str(jmlrec))
   s = '''
        select round(sum(balancecumulative)/1000000, 0) "value" from table(%(Saldo)s(to_date('%(TglLaporan)s', 'dd-mm-yyyy')))
        where (
@@ -266,6 +267,7 @@ def createData(config, rec, oReport):
           "ListCabang" : listcabang
   }
   totaldebetf1 = int(config.CreateSQL(s).RawResult.value)
+  app.ConWriteln(str(totaldebetf1))
   #Hitung total pada Form10
   s = '''
         select sum(debetblnlap) "value" from lbus_form10 where report_id=%s

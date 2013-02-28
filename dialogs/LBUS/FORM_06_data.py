@@ -254,6 +254,7 @@ def createData(config, rec, oReport):
           "TglLaporan" : '%s-%s-%s' % (str(repdate[2]).zfill(2),str(repdate[1]).zfill(2),str(repdate[0]).zfill(4)),
           "ListCabang" : listcabang
   }
+  #raise Exception, s
   totaldebetf1 = int(config.CreateSQL(s).RawResult.value)
   #Hitung total pada Form06
   s = '''
