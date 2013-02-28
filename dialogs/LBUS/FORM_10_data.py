@@ -228,6 +228,101 @@ def createData(config, rec, oReport):
   #app.ConRead('c')
   config.ExecSQL(s)
   config.Commit()
+  
+  #Fix pelaporan dari per rekening menjadi per fasilitas
+  #step 1 cleanup report_id=0
+  s = ''' delete from lbus_form10 where report_id=0 '''
+  config.ExecSQL(s)
+  config.Commit()
+  #step 2 pindah hasil generate per rekening ke id 0
+  s = '''update lbus_form10 set report_id=0 where report_id=%s''' % str(report_id)
+  config.ExecSQL(s)
+  config.Commit()
+  #step 3 regenerate laporan per fasilitas ke id yang tersimpan
+  s = '''
+          insert into lbus_form10 (
+          NOMORREKENING,
+          JUMLAHREKENING,
+          LSTATUSPEMBIAYAAN_REFDATA_ID,
+          LSIFAT_REFDATA_ID,
+          LJENIS_REFDATA_ID,
+          LJENISPENGGUNAAN_REFDATA_ID,
+          LORIENTPENGGUNAAN_REFDATA_ID,
+          LJENISVALUTA_REFDATA_ID,
+          LGOLDEBITUR_REFDATA_ID,
+          LHUBBANK_REFDATA_ID,
+          BLNTHNMULAI,
+          BLNTHNTEMPO,
+          LKOLEKTIBILITAS_REFDATA_ID,
+          NISBAH,
+          PERSENBAGIHASIL,
+          LGOLPEMBIAYAAN_REFDATA_ID,
+          LSEKTOREKONOMI_REFDATA_ID,
+          LLOKASIPROYEK_REFDATA_ID,
+          LGOLPENJAMIN_REFDATA_ID,
+          BAGDIJAMIN,
+          PLAFOND,
+          KELONGGARANTARIK,
+          DEBETBLNLALU,
+          DEBETBLNLAP,
+          AGUNANPPAP,
+          PPAPDIBENTUK,
+          ITEM_ID,
+          REPORT_ID
+          )
+            select 
+                      w.nomorrekening,
+                      w.jumlahrekening,
+                      w.lstatuspembiayaan_refdata_id,
+                      w.lsifat_refdata_id,
+                      w.ljenis_refdata_id,
+                      w.ljenispenggunaan_refdata_id,
+                      w.lorientpenggunaan_refdata_id,
+                      w.ljenisvaluta_refdata_id,
+                      w.lgoldebitur_refdata_id,
+                      w.lhubbank_refdata_id,
+                      w.blnthnmulai,
+                      w.blnthntempo,
+                      w.lkolektibilitas_refdata_id,
+                      w.nisbah,
+                      w.persenbagihasil,
+                      w.lgolpembiayaan_refdata_id,
+                      w.lsektorekonomi_refdata_id,
+                      w.llokasiproyek_refdata_id,
+                      w.lgolpenjamin_refdata_id,
+                      w.bagdijamin,
+                      q.plafond,
+                      q.plafond-q.bakilap kelonggarantarik,
+                      q.bakilalu debetblnlalu,
+                      q.bakilap debetblnlap,
+                      q.agunan agunanppap,
+                      q.ppap  ppapdibentuk,
+                      seq_lbus_form10.nextval item_id,
+                      %(ReportId)s report_id
+            from 
+            (select 
+            b.facility_no, 
+            min(rownum) rid, 
+            c.total_facility_limit plafond,
+            sum(a.debetblnlalu) bakilalu, 
+            sum(a.debetblnlap) bakilap,
+            sum(a.agunanppap) agunan,
+            sum(a.ppapdibentuk) ppap
+            from 
+              (select rownum, x.* from lbus_form10 x) a, %(FinAccount)s b, %(FinFacility)s c 
+            where a.nomorrekening=b.nomor_rekening and b.facility_no=c.facility_no and
+            a.report_id=0
+            group by b.facility_no, c.total_facility_limit) q, (select rownum z, x.* from lbus_form10 x) w
+            where q.rid=w.z
+  ''' % {
+          "ReportId" : str(report_id),
+          "FinAccount" : config.MapDBTableName('financing.finaccount'),
+          "FinFacility" : config.MapDBTableName('financing.finfacility')
+  }
+  config.ExecSQL(s)
+  config.Commit()
+  #laporan pada id yg digenerate sudah per fasilitas
+  
   try:
     #Hitung total row
     s = '''
