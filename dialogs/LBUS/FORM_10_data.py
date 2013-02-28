@@ -309,10 +309,10 @@ def createData(config, rec, oReport):
             sum(a.agunanppap) agunan,
             sum(a.ppapdibentuk) ppap
             from 
-              (select rownum, x.* from lbus_form10 x) a, %(FinAccount)s b, %(FinFacility)s c 
-                where a.nomorrekening=b.nomor_rekening and b.facility_no=c.facility_no and a.report_id=0
+              (select rownum, x.* from (select * from lbus_form10 where report_id=0) x) a, %(FinAccount)s b, %(FinFacility)s c 
+                where a.nomorrekening=b.nomor_rekening and b.facility_no=c.facility_no
                 group by b.facility_no, c.total_facility_limit) q, 
-              (select * from (select rownum z, x.* from lbus_form10 x) where report_id=0) w
+              (select rownum z, x.* from (select * from lbus_form10 where report_id=0) x) w
             where q.rid=w.z
   ''' % {
           "ReportId" : str(report_id),
