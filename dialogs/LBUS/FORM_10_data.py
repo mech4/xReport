@@ -297,8 +297,9 @@ def createData(config, rec, oReport):
     #Cari Kandidat Adjustment Row
     s = '''
         select debetblnlalu-debetblnlap val, count(*) jml from lbus_form10 
-        where report_id=%s 
+        where report_id=%s  
         group by debetblnlalu-debetblnlap
+        having debetblnlalu-debetblnlap is not null
         order by debetblnlalu-debetblnlap desc
     ''' % str(report_id)
     res = config.CreateSQL(s).RawResult
@@ -413,6 +414,7 @@ def createData(config, rec, oReport):
         select ppapdibentuk val, count(*) jml from lbus_form10 
         where report_id=%s 
         group by ppapdibentuk
+        having ppapdibentuk is not null
         order by ppapdibentuk
     ''' % str(report_id)
     res = config.CreateSQL(s).RawResult
