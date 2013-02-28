@@ -320,7 +320,7 @@ def createData(config, rec, oReport):
   #app.ConWriteln('Query : %s' % s)
   config.ExecSQL(s)
   #Jika dvcount tidak bernilai 0
-  if dvcount>0:
+  if dvcount!=0:
     s = '''
       update lbus_form06 set debetblnlap=debetblnlap+%s where report_id=%s
     ''' % (str(dvcount),str(report_id))
@@ -420,7 +420,7 @@ def createData(config, rec, oReport):
   config.ExecSQL(s)
   config.Commit()
   #Jika dvcount tidak bernilai 0
-  if dvcount>0:
+  if dvcount!=0:
     s = '''
       update lbus_form06 set saldomargin=saldomargin+%s where report_id=%s
     ''' % (str(dvcount),str(report_id))
@@ -531,7 +531,7 @@ def createData(config, rec, oReport):
   config.ExecSQL(s)
   #Jika dvcount tidak bernilai 0
   app.ConWriteln(str(dvcount))
-  if dvcount>0:        
+  if dvcount!=0:        
     s = '''
       update lbus_form06 set ppapdibentuk=ppapdibentuk+%s where report_id=%s
     ''' % (str(dvcount),str(report_id))

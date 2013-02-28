@@ -462,7 +462,7 @@ def createData(config, rec, oReport):
     #app.ConWriteln('Query : %s' % s)
     config.ExecSQL(s)
     #Jika dvcount tidak bernilai 0
-    if dvcount>0:
+    if dvcount!=0:
       s = '''
         update lbus_form10 set debetblnlap=debetblnlap+%(Increment)s 
         where report_id=%(ReportId)s and ljenis_refdata_id=%(Refdata_ID)s 
@@ -588,7 +588,7 @@ def createData(config, rec, oReport):
     #app.ConWriteln('Query : %s' % s)
     config.ExecSQL(s)
     #Jika dvcount tidak bernilai 0
-    if dvcount>0:
+    if dvcount!=0:
       s = '''
         update lbus_form10 set debetblnlap=debetblnlap+%(Increment)s 
         where report_id=%(ReportId)s and ljenis_refdata_id=%(Refdata_ID)s 
@@ -654,9 +654,37 @@ def createData(config, rec, oReport):
     #Jika selisih > jml row, hitung ulang increment dan isikan dvcount
     dvcount=0
     if selisihkeltarik>jmlrec:
-      dvcount = int(selisihkeltarik/jmlrec)*x_inc
-      selisihkeltarik = selisihkeltarik % jmlrec
+      #dvcount = int(selisihkeltarik/jmlrec)*x_inc
+      #selisihkeltarik = selisihkeltarik % jmlrec
+      #untuk selisih yg sangat besar 
+      s = '''
+        update lbus_form10 set kelonggarantarik=kelonggarantarik+round((kelonggarantarik/%(total)s)*%(selisih)s)
+        where report_id=%(ReportId)s
+      ''' % {
+        "total" : str(totalkeltarikf10),
+        "selisih" : str(selisihkeltarik*x_inc),
+        "ReportId" : str(report_id)
+      }
+      config.ExecSQL(s)
+      config.Commit()
+      s = '''
+            select sum(kelonggarantarik) jml from lbus_form10 where report_id=%(ReportId)s
+      ''' % {
+              "ReportId" : str(report_id),
+              "Refdata_ID" : str(refid)
+      }
+      totalkeltarikf10 = int(config.CreateSQL(s).RawResult.jml)
+      #app.ConWriteln(str(totaldebetf10))
+      #app.ConRead()
+      #Hitung Selisih
+      selisihkeltarik = totalkeltarikf1-totalkeltarikf10
   
+      x_inc=1
+      #Jika selisih bernilai negatif (Form06 > Form01) ubah increment menjadi decrement
+      if selisihkeltarik<0:
+        selisihkeltarik=selisihkeltarik*-1
+        x_inc = -1
+
     #Cari Kandidat Adjustment Row
     s = '''
         select debetblnlalu-debetblnlap val, count(*) jml from lbus_form10 
@@ -701,7 +729,7 @@ def createData(config, rec, oReport):
     #app.ConWriteln('Query : %s' % s)
     config.ExecSQL(s)
     #Jika dvcount tidak bernilai 0
-    if dvcount>0:
+    if dvcount!=0:
       s = '''
         update lbus_form10 set kelonggarantarik=kelonggarantarik+%(Increment)s 
         where report_id=%(ReportId)s
@@ -822,7 +850,7 @@ def createData(config, rec, oReport):
     #app.ConWriteln('Query : %s' % s)
     config.ExecSQL(s)
     #Jika dvcount tidak bernilai 0
-    if dvcount>0:
+    if dvcount!=0:
       s = '''
         update lbus_form10 set ppapdibentuk=ppapdibentuk+%s where report_id=%s
       ''' % (str(dvcount),str(report_id))
