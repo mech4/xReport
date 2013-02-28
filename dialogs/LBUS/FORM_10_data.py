@@ -227,6 +227,7 @@ def createData(config, rec, oReport):
   #app.ConWriteln(s)
   #app.ConRead('c')
   config.ExecSQL(s)
+  config.Commit()
 
   #Hitung total row
   s = '''
