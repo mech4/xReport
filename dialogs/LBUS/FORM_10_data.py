@@ -199,6 +199,7 @@ def createData(config, rec, oReport):
           where g.kode_cabang in (%(ListCabang)s)
           and b.dropping_date <= to_date('%(TglLaporan)s', 'dd-mm-yyyy')
           and nvl((g.p_saldo+g.p_arrear_balance)*-1,0)<>0
+          and b.product_code<>'MDRB7'
   ''' % {
           "jenis_code" : str(jenis_code),
           "ori_code" : str(ori_code),
@@ -228,7 +229,7 @@ def createData(config, rec, oReport):
   #app.ConRead('c')
   config.ExecSQL(s)
   config.Commit()
-  
+
   #Fix pelaporan dari per rekening menjadi per fasilitas
   #step 1 cleanup report_id=0
   s = ''' delete from lbus_form10 where report_id=0 '''
@@ -368,6 +369,25 @@ def createData(config, rec, oReport):
     }
     totaldebetf1 = int(config.CreateSQL(s).RawResult.value)
     #app.ConWriteln(str(totaldebetf1))
+    #pengurangan penempatan pada bank lain untuk jenis 10 (Mudharabah)
+    s = '''
+            select
+            sum(round(((g.p_saldo+g.p_arrear_balance)*-1)/1000000, 0)) "value"
+            from %(FinAccount)s a 
+            left outer join %(SaldoRekening)s g on (a.nomor_rekening=g.nomor_rekening and g.tanggal=to_date('%(TglLaporan)s', 'dd-mm-yyyy'))
+            where g.kode_cabang in (%(ListCabang)s)
+            and a.dropping_date <= to_date('%(TglLaporan)s', 'dd-mm-yyyy')
+            and nvl((g.p_saldo+g.p_arrear_balance)*-1,0)<>0
+            and a.product_code='MDRB7'
+    ''' % {
+            "FinAccount" : config.MapDBTableName('financing.finaccount'),
+            "SaldoRekening" : config.MapDBTableName('tmp.cknom_base_daily'),
+            "TglLaporan" : '%s-%s-%s' % (str(repdate[2]).zfill(2),str(repdate[1]).zfill(2),str(repdate[0]).zfill(4)),
+            "ListCabang" : listcabang
+    }
+    totalpenempatanf1 = int(config.CreateSQL(s).RawResult.value)
+    #Hitung total f01 160 dikurangi penempatan pada bank lain
+    totaldebetf1 = totaldebetf1-totalpenempatanf1
     #Hitung total pada Form10
     s = '''
           select sum(debetblnlap) jml from lbus_form10 where report_id=%(ReportId)s 
