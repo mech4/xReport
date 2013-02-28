@@ -334,8 +334,14 @@ def createData(config, rec, oReport):
     #Ambil refdata_id untuk Jenis 10
     s = '''select refdata_id from %s where reference_code='10' and reftype_id=236''' % config.MapDBTableName('enterprise.referencedata')
     refid = config.CreateSQL(s).RawResult.refdata_id
+    #Hitung jml row jenis 10
+    s = '''
+             select count(*) "jml" from lbus_form10 where report_id=%s and ljenis_refdata_id=%s
+    ''' % (str(report_id),str(refid))
+    jmlrec10 = config.CreateSQL(s).RawResult.jml
+
     #Ambil nilai pada form01
-    app.ConWriteln(str(jmlrec))
+    app.ConWriteln(str(jmlrec10))
     s = '''
          select round(sum(balancecumulative)/1000000, 0) "value" from table(%(Saldo)s(to_date('%(TglLaporan)s', 'dd-mm-yyyy')))
          where (
@@ -388,9 +394,9 @@ def createData(config, rec, oReport):
   
     #Jika selisih > jml row, hitung ulang increment dan isikan dvcount
     dvcount=0
-    if selisihdebet>jmlrec:
-      dvcount = int(selisihdebet/jmlrec)
-      selisihdebet = selisihdebet % jmlrec
+    if selisihdebet>jmlrec10:
+      dvcount = int(selisihdebet/jmlrec10)
+      selisihdebet = selisihdebet % jmlrec10
   
     #Cari Kandidat Adjustment Row
     s = '''
@@ -451,11 +457,17 @@ def createData(config, rec, oReport):
     #app.ConRead(' ')
 
     #Balancing Sum Baki Bulan Laporan jenis 20 dengan Form 01 sandi 161
-    #Ambil refdata_id untuk Jenis 10
+    #Ambil refdata_id untuk Jenis 20
     s = '''select refdata_id from %s where reference_code='20' and reftype_id=236''' % config.MapDBTableName('enterprise.referencedata')
     refid = config.CreateSQL(s).RawResult.refdata_id
+    #Hitung jml row jenis 20
+    s = '''
+             select count(*) "jml" from lbus_form10 where report_id=%s and ljenis_refdata_id=%s
+    ''' % (str(report_id),str(refid))
+    jmlrec20 = config.CreateSQL(s).RawResult.jml
+
     #Ambil nilai pada form01
-    app.ConWriteln(str(jmlrec))
+    app.ConWriteln(str(jmlrec20))
     s = '''
          select round(sum(balancecumulative)/1000000, 0) "value" from table(%(Saldo)s(to_date('%(TglLaporan)s', 'dd-mm-yyyy')))
          where (
@@ -508,9 +520,9 @@ def createData(config, rec, oReport):
   
     #Jika selisih > jml row, hitung ulang increment dan isikan dvcount
     dvcount=0
-    if selisihdebet>jmlrec:
-      dvcount = int(selisihdebet/jmlrec)
-      selisihdebet = selisihdebet % jmlrec
+    if selisihdebet>jmlrec20:
+      dvcount = int(selisihdebet/jmlrec20)
+      selisihdebet = selisihdebet % jmlrec20
   
     #Cari Kandidat Adjustment Row
     s = '''
@@ -799,5 +811,6 @@ def createData(config, rec, oReport):
     #app.ConRead(' ')
     #--
   except:
+    app.ConWriteln('Error !!!')
     app.ConWriteln(str(sys.exc_info()[1]))
     app.ConRead('Err')
