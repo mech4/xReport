@@ -390,7 +390,7 @@ def createData(config, rec, oReport):
   res = config.CreateSQL(s).RawResult
   n = 0
   val = 0
-  while n<selisihdebet and not res.Eof:
+  while n<selisihmargin and not res.Eof:
     n += int(res.jml)
     val = int(res.val)
     #app.ConWriteln('Val[%s] : %s' % (str(val),str(n)))
