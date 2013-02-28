@@ -267,14 +267,14 @@ def createData(config, rec, oReport):
           "ListCabang" : listcabang
   }
   totaldebetf1 = int(config.CreateSQL(s).RawResult.value)
-  app.ConWriteln(str(totaldebetf1))
+  #app.ConWriteln(str(totaldebetf1))
   #Hitung total pada Form10
   s = '''
-        select sum(debetblnlap) "value" from lbus_form10 where report_id=%s
+        select sum(debetblnlap) jml from lbus_form10 where report_id=%s
   ''' % str(report_id)
-  totaldebetf10 = config.CreateSQL(s).RawResult.value
-  app.ConWriteln(str(totaldebetf10))
-  app.ConRead()
+  totaldebetf10 = int(config.CreateSQL(s).RawResult.jml)
+  #app.ConWriteln(str(totaldebetf10))
+  #app.ConRead()
   #Hitung Selisih
   selisihdebet = totaldebetf1-totaldebetf10
   app.ConWriteln('Tgl Laporan : %s-%s-%s' % (str(repdate[2]).zfill(2),str(repdate[1]).zfill(2),str(repdate[0]).zfill(4)))
