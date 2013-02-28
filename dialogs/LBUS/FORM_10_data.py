@@ -188,7 +188,7 @@ def createData(config, rec, oReport):
           left outer join %(ReferenceData)s r3 on (r3.reference_code=d.lbus_orientasi_penggunaan and r3.reftype_id=108)
           left outer join %(ReferenceData)s r4 on (r4.reference_code=decode(f.currency_code,'IDR','360','USD','840','SIN','702', '360') and r4.reftype_id=232)
           left outer join %(ReferenceData)s r5 on (r5.reference_code=e.lbus_golongan_debitur and r5.reftype_id=225)
-          left outer join %(ReferenceData)s r6 on (r6.reference_code=decode(i.is_pihak_terkait, 'T','1','2') and r6.reftype_id=124)
+          left outer join %(ReferenceData)s r6 on (r6.reference_code=decode(i.status_keterkaitan, '1','1','2') and r6.reftype_id=124)
           left outer join %(ReferenceData)s r11 on (r11.reference_code=decode(b.overall_col_level, 1,'1',2,'2',3,'3',4,'4',5,'5') and r11.reftype_id=230)
           left outer join %(ReferenceData)s r12 on (r12.reference_code=decode(a.finmusyarakahaccount_type, 'D', '10', '20') and r12.reftype_id=236)
           left outer join %(ReferenceData)s r13 on (r13.reference_code=decode(b.financing_model, 'T', '9', '1') and r13.reftype_id=223)
@@ -304,7 +304,7 @@ def createData(config, rec, oReport):
             (select 
             b.facility_no, 
             min(rownum) rid, 
-            c.total_facility_limit plafond,
+            round((c.total_facility_limit)/1000000, 0) plafond,
             sum(a.debetblnlalu) bakilalu, 
             sum(a.debetblnlap) bakilap,
             sum(a.agunanppap) agunan,
@@ -712,6 +712,7 @@ def createData(config, rec, oReport):
       }
       config.ExecSQL(s)
     config.Commit()
+    #app.ConWriteln('Query : %s' % s)
     app.ConWriteln('OK')
     #app.ConRead(' ')
 
@@ -727,7 +728,7 @@ def createData(config, rec, oReport):
     config.ExecSQL(s)
     config.Commit()
     app.ConWriteln('OK')
-    #app.ConRead(' ')
+    app.ConRead(' ')
     #--
   
   
