@@ -372,7 +372,7 @@ def createData(config, rec, oReport):
     #pengurangan penempatan pada bank lain untuk jenis 10 (Mudharabah)
     s = '''
             select
-            round((sum(g.p_saldo+g.p_arrear_balance)*-1)/1000000, 0) "value"
+            round((sum(g.p_saldo+g.p_arrear_balance)*-1)/1000000, 0)-1 "value"
             from %(FinAccount)s a 
             left outer join %(SaldoRekening)s g on (a.nomor_rekening=g.nomor_rekening and g.tanggal=to_date('%(TglLaporan)s', 'dd-mm-yyyy'))
             where g.kode_cabang in (%(ListCabang)s)
@@ -728,7 +728,7 @@ def createData(config, rec, oReport):
     config.ExecSQL(s)
     config.Commit()
     app.ConWriteln('OK')
-    app.ConRead(' ')
+    #app.ConRead(' ')
     #--
   
   
