@@ -694,7 +694,7 @@ def createData(config, rec, oReport):
             "Increment" : str(x_inc), 
             "ReportId" : str(report_id), 
             "MinVal" : str(val),
-            "Selisih" : str(selisihdebet),
+            "Selisih" : str(selisihkeltarik),
             "Refdata_ID" : str(refid)
     }
     app.ConWriteln('Balancing Kelonggaran Tarik')
