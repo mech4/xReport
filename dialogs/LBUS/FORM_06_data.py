@@ -192,7 +192,7 @@ def createData(config, rec, oReport):
           left outer join %(RefData)s r11 on (r11.reference_code=decode(b.overall_col_level, 1,'1',2,'2',3,'3',4,'4',5,'5') and r11.reftype_id=230)
           where g.kode_cabang in (%(ListCabang)s)
           and b.dropping_date <= to_date('%(TglLaporan)s', 'dd-mm-yyyy')
-          and (g.p_saldo+g.p_arrear_balance)<>0
+          and (g.p_saldo+g.p_arrear_balance)<0
   ''' % {
           "jenis_code" : str(jenis_code),
           "ori_code" : str(ori_code),
@@ -277,7 +277,7 @@ def createData(config, rec, oReport):
   #Jika selisih > jml row, hitung ulang increment dan isikan dvcount
   dvcount=0
   if selisihdebet>jmlrec:
-    dvcount = int(selisihdebet/jmlrec)
+    dvcount = int(selisihdebet/jmlrec)*x_inc
     selisihdebet = selisihdebet % jmlrec
 
   #Cari Kandidat Adjustment Row
@@ -376,7 +376,7 @@ def createData(config, rec, oReport):
   #Jika selisih > jml row, hitung ulang increment dan isikan dvcount
   dvcount=0
   if selisihmargin>jmlrec:
-    dvcount = int(selisihmargin/jmlrec)
+    dvcount = int(selisihmargin/jmlrec)*x_inc
     selisihmargin = selisihmargin % jmlrec
 
   #Cari Kandidat Adjustment Row
@@ -487,7 +487,7 @@ def createData(config, rec, oReport):
   #Jika selisih > jml row, hitung ulang increment dan isikan dvcount
   dvcount=0
   if selisihppap>jmlrec:
-    dvcount = int(selisihppap/jmlrec)
+    dvcount = int(selisihppap/jmlrec)*x_inc
     selisihppap = selisihppap % jmlrec
 
   #Cari Kandidat Adjustment Row

@@ -415,7 +415,7 @@ def createData(config, rec, oReport):
     #Jika selisih > jml row, hitung ulang increment dan isikan dvcount
     dvcount=0
     if selisihdebet>jmlrec10:
-      dvcount = int(selisihdebet/jmlrec10)
+      dvcount = int(selisihdebet/jmlrec10)*x_inc
       selisihdebet = selisihdebet % jmlrec10
   
     #Cari Kandidat Adjustment Row
@@ -541,7 +541,7 @@ def createData(config, rec, oReport):
     #Jika selisih > jml row, hitung ulang increment dan isikan dvcount
     dvcount=0
     if selisihdebet>jmlrec20:
-      dvcount = int(selisihdebet/jmlrec20)
+      dvcount = int(selisihdebet/jmlrec20)*x_inc
       selisihdebet = selisihdebet % jmlrec20
   
     #Cari Kandidat Adjustment Row
@@ -643,7 +643,7 @@ def createData(config, rec, oReport):
     #app.ConWriteln('Tgl Laporan : %s-%s-%s' % (str(repdate[2]).zfill(2),str(repdate[1]).zfill(2),str(repdate[0]).zfill(4)))
     app.ConWriteln('total form 01(536+537+539) : %s' % str(totalkeltarikf1))
     app.ConWriteln('total form 10 : %s' % str(totalkeltarikf10))
-    app.ConWriteln('Selisih : %s' % str(selisihdebet))
+    app.ConWriteln('Selisih : %s' % str(selisihkeltarik))
   
     x_inc=1
     #Jika selisih bernilai negatif (Form06 > Form01) ubah increment menjadi decrement
@@ -654,7 +654,7 @@ def createData(config, rec, oReport):
     #Jika selisih > jml row, hitung ulang increment dan isikan dvcount
     dvcount=0
     if selisihkeltarik>jmlrec:
-      dvcount = int(selisihkeltarik/jmlrec)
+      dvcount = int(selisihkeltarik/jmlrec)*x_inc
       selisihkeltarik = selisihkeltarik % jmlrec
   
     #Cari Kandidat Adjustment Row
@@ -779,7 +779,7 @@ def createData(config, rec, oReport):
     #Jika selisih > jml row, hitung ulang increment dan isikan dvcount
     dvcount=0
     if selisihppap>jmlrec:
-      dvcount = int(selisihppap/jmlrec)
+      dvcount = int(selisihppap/jmlrec)*x_inc
       selisihppap = selisihppap % jmlrec
   
     #Cari Kandidat Adjustment Row
