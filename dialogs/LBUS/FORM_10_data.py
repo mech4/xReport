@@ -225,7 +225,7 @@ def createData(config, rec, oReport):
           "TglBlnLalu" : '%s-%s-%s' % (str(lastmonthdate[2]).zfill(2),str(lastmonthdate[1]).zfill(2),str(lastmonthdate[0]).zfill(4)),
           "ListCabang" : listcabang
   }
-  #config.SendDebugMsg(s)
+  config.SendDebugMsg(s)
   #app.ConWriteln(s)
   #raise Exception, 'aaa'
   #app.ConRead('c')
