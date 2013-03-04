@@ -422,10 +422,12 @@ def createData(config, rec, oReport):
       s = '''
         update lbus_form10 set debetblnlap=debetblnlap+round((debetblnlap/%(total)s)*%(selisih)s)
         where report_id=%(ReportId)s
+        and ljenis_refdata_id=%(Refdata_ID)s 
       ''' % {
         "total" : str(totaldebetf10),
         "selisih" : str(selisihdebet*x_inc),
         "ReportId" : str(report_id)
+        "Refdata_ID" : str(refid)
       }
       config.ExecSQL(s)
       config.Commit()
@@ -577,10 +579,12 @@ def createData(config, rec, oReport):
       s = '''
         update lbus_form10 set debetblnlap=debetblnlap+round((debetblnlap/%(total)s)*%(selisih)s)
         where report_id=%(ReportId)s
+        and ljenis_refdata_id=%(Refdata_ID)s 
       ''' % {
         "total" : str(totaldebetf10),
         "selisih" : str(selisihdebet*x_inc),
         "ReportId" : str(report_id)
+        "Refdata_ID" : str(refid)
       }
       config.ExecSQL(s)
       config.Commit()
