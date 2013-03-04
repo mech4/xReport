@@ -426,7 +426,7 @@ def createData(config, rec, oReport):
       ''' % {
         "total" : str(totaldebetf10),
         "selisih" : str(selisihdebet*x_inc),
-        "ReportId" : str(report_id)
+        "ReportId" : str(report_id),
         "Refdata_ID" : str(refid)
       }
       config.ExecSQL(s)
@@ -583,7 +583,7 @@ def createData(config, rec, oReport):
       ''' % {
         "total" : str(totaldebetf10),
         "selisih" : str(selisihdebet*x_inc),
-        "ReportId" : str(report_id)
+        "ReportId" : str(report_id),
         "Refdata_ID" : str(refid)
       }
       config.ExecSQL(s)
