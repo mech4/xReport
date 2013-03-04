@@ -323,6 +323,7 @@ def createData(config, rec, oReport):
           "FinAccount" : config.MapDBTableName('financing.finaccount'),
           "FinFacility" : config.MapDBTableName('financing.finfacility')
   }
+  config.SendDebugMsg(s)
   config.ExecSQL(s)
   config.Commit()
   #laporan pada id yg digenerate sudah per fasilitas
