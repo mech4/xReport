@@ -415,9 +415,38 @@ def createData(config, rec, oReport):
     #Jika selisih > jml row, hitung ulang increment dan isikan dvcount
     dvcount=0
     if selisihdebet>jmlrec10:
-      dvcount = int(selisihdebet/jmlrec10)*x_inc
-      selisihdebet = selisihdebet % jmlrec10
+      #dvcount = int(selisihdebet/jmlrec10)*x_inc
+      #selisihdebet = selisihdebet % jmlrec10
+      #untuk selisih yg sangat besar 
+      s = '''
+        update lbus_form10 set debetblnlap=debetblnlap+round((debetblnlap/%(total)s)*%(selisih)s)
+        where report_id=%(ReportId)s
+      ''' % {
+        "total" : str(totaldebetf10),
+        "selisih" : str(selisihdebet*x_inc),
+        "ReportId" : str(report_id)
+      }
+      config.ExecSQL(s)
+      config.Commit()
+      s = '''
+            select sum(debetblnlap) jml from lbus_form10 where report_id=%(ReportId)s
+            and ljenis_refdata_id=%(Refdata_ID)s 
+      ''' % {
+              "ReportId" : str(report_id),
+              "Refdata_ID" : str(refid)
+      }
+      totaldebetf10 = int(config.CreateSQL(s).RawResult.jml)
+      #app.ConWriteln(str(totaldebetf10))
+      #app.ConRead()
+      #Hitung Selisih
+      selisihdebet = totaldebetf1-totaldebetf10
   
+      x_inc=1
+      #Jika selisih bernilai negatif (Form06 > Form01) ubah increment menjadi decrement
+      if selisihdebet<0:
+        selisihdebet=selisihdebet*-1
+        x_inc = -1
+
     #Cari Kandidat Adjustment Row
     s = '''
         select debetblnlalu-debetblnlap val, count(*) jml from lbus_form10 
@@ -541,8 +570,37 @@ def createData(config, rec, oReport):
     #Jika selisih > jml row, hitung ulang increment dan isikan dvcount
     dvcount=0
     if selisihdebet>jmlrec20:
-      dvcount = int(selisihdebet/jmlrec20)*x_inc
-      selisihdebet = selisihdebet % jmlrec20
+      #dvcount = int(selisihdebet/jmlrec20)*x_inc
+      #selisihdebet = selisihdebet % jmlrec20
+      #untuk selisih yg sangat besar 
+      s = '''
+        update lbus_form10 set debetblnlap=debetblnlap+round((debetblnlap/%(total)s)*%(selisih)s)
+        where report_id=%(ReportId)s
+      ''' % {
+        "total" : str(totaldebetf10),
+        "selisih" : str(selisihdebet*x_inc),
+        "ReportId" : str(report_id)
+      }
+      config.ExecSQL(s)
+      config.Commit()
+      s = '''
+            select sum(debetblnlap) jml from lbus_form10 where report_id=%(ReportId)s
+            and ljenis_refdata_id=%(Refdata_ID)s 
+      ''' % {
+              "ReportId" : str(report_id),
+              "Refdata_ID" : str(refid)
+      }
+      totaldebetf10 = int(config.CreateSQL(s).RawResult.jml)
+      #app.ConWriteln(str(totaldebetf10))
+      #app.ConRead()
+      #Hitung Selisih
+      selisihdebet = totaldebetf1-totaldebetf10
+  
+      x_inc=1
+      #Jika selisih bernilai negatif (Form06 > Form01) ubah increment menjadi decrement
+      if selisihdebet<0:
+        selisihdebet=selisihdebet*-1
+        x_inc = -1
   
     #Cari Kandidat Adjustment Row
     s = '''
