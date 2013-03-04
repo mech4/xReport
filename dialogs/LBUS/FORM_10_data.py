@@ -227,7 +227,7 @@ def createData(config, rec, oReport):
   }
   config.SendDebugMsg(s)
   #app.ConWriteln(s)
-  #raise Exception, 'aaa'
+  raise Exception, 'aaa'
   #app.ConRead('c')
   config.ExecSQL(s)
   config.Commit()
