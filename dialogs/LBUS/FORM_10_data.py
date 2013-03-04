@@ -303,6 +303,7 @@ def createData(config, rec, oReport):
             from 
             (select 
             b.facility_no, 
+            a.ljenis_refdata_id, 
             min(rownum) rid, 
             round((c.total_facility_limit)/1000000, 0) plafond,
             sum(a.debetblnlalu) bakilalu, 
@@ -310,10 +311,10 @@ def createData(config, rec, oReport):
             sum(a.agunanppap) agunan,
             sum(a.ppapdibentuk) ppap
             from 
-              (select rownum, x.* from (select * from lbus_form10 where report_id=0) x) a, %(FinAccount)s b, %(FinFacility)s c 
+              (select rownum, x.* from (select * from lbus_form10 where report_id=0 order by nomorrekening) x) a, %(FinAccount)s b, %(FinFacility)s c 
                 where a.nomorrekening=b.nomor_rekening and b.facility_no=c.facility_no
-                group by b.facility_no, c.total_facility_limit) q, 
-              (select rownum z, x.* from (select * from lbus_form10 where report_id=0) x) w
+                group by b.facility_no, c.total_facility_limit,a.ljenis_refdata_id) q, 
+              (select rownum z, x.* from (select * from lbus_form10 where report_id=0 order by nomorrekening) x) w
             where q.rid=w.z
   ''' % {
           "ReportId" : str(report_id),
