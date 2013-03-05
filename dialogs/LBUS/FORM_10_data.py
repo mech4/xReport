@@ -306,6 +306,7 @@ def createData(config, rec, oReport):
             (select 
             b.facility_no, 
             a.ljenis_refdata_id, 
+            min(nomorrekening) norek,
             min(rownum) rid, 
             round((c.total_facility_limit)/1000000, 0) plafond,
             sum(a.debetblnlalu) bakilalu, 
@@ -317,7 +318,7 @@ def createData(config, rec, oReport):
                 where a.nomorrekening=b.nomor_rekening and b.facility_no=c.facility_no
                 group by b.facility_no, c.total_facility_limit,a.ljenis_refdata_id) q, 
               (select rownum z, x.* from (select * from lbus_form10 where report_id=0 order by nomorrekening) x) w
-            where q.rid=w.z
+            where q.norek=w.nomorrekening
   ''' % {
           "ReportId" : str(report_id),
           "FinAccount" : config.MapDBTableName('financing.finaccount'),
