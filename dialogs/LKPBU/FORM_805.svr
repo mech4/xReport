@@ -11,6 +11,10 @@ object:rpclass::TPClassUIDefList<
       Name='uipData'
       CustomLoadedFields={
         object:rpclass::TCustomLoadedField<
+          Name='item_id'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
           Name='LPEKERJAAN.refdata_id'
           DataTypeName='enterprise.INTEGER'
         >, object:rpclass::TCustomLoadedField<
@@ -90,6 +94,7 @@ object:rpclass::TPClassUIDefList<
         >
       }
       Mode=imMultiRow
+      DeleteOnDel=true
     >
   }
 >

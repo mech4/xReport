@@ -24,8 +24,20 @@ object:rtf::Form<
   OnEndProcessData=''
   UIParts={
     object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
       Name='uipData'
       MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
     >
   }
   Containers={
