@@ -45,4 +45,5 @@ object:rpclass::TPClassUIDefList<
       DeleteOnDel=true
     >
   }
+  OnSetDataEx='FormOnSetDataEx'
 >

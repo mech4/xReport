@@ -19,7 +19,7 @@ object:rtf::Form<
   OnProcessRawData=''
   OnBeginSetData=''
   OnEndSetData=''
-  OnSetDataEx=''
+  OnSetDataEx='FormOnSetDataEx'
   OnBeginProcessData=''
   OnEndProcessData=''
   UIParts={
@@ -43,8 +43,8 @@ object:rtf::Form<
   Containers={
     object:rtf::DualSplit<
       Name='dsMain'
-      Width=240
-      Height=96
+      Width=921
+      Height=425
       Container1=$CONTAINERS['grData']
       Container2=$CONTAINERS['pData']
       SplitDirection=sdrSplitLeftRight
