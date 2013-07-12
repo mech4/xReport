@@ -43,8 +43,8 @@ object:rtf::Form<
   Containers={
     object:rtf::DualSplit<
       Name='dsMain'
-      Width=921
-      Height=425
+      Width=240
+      Height=96
       Container1=$CONTAINERS['grData']
       Container2=$CONTAINERS['pData']
       SplitDirection=sdrSplitLeftRight
@@ -61,61 +61,37 @@ object:rtf::Form<
       Caption='FORM-302'
       Columns={
         object:rtf::GridColumn<
-          Name='gcLJENIS'
+          Name='gcLJenisData'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='LJENIS.reference_code'
+          FieldName='LJenisData.reference_code'
           DisplayFormat=''
-          TitleCaption='Jenis Mesin'
+          TitleCaption='Jenis Data'
           Width=88
         >, object:rtf::GridColumn<
-          Name='gcKeterangan'
+          Name='gcDataATM'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='Keterangan'
+          FieldName='Data ATM'
           DisplayFormat=''
           TitleCaption='Keterangan'
           Width=80
         >, object:rtf::GridColumn<
-          Name='gcLJENISVALUTA'
+          Name='gcDataATMDebit'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='LJENISVALUTA.reference_code'
+          FieldName='DataATMDEBIT'
           DisplayFormat=''
-          TitleCaption='Status Pemanfaatan Mesin'
+          TitleCaption='Data ATM + Debit'
           Width=192
         >, object:rtf::GridColumn<
-          Name='gcjumlah'
+          Name='gcDataEMoney'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='jumlah'
+          FieldName='DataEMoney'
           DisplayFormat=''
-          TitleCaption='Jumlah Mesin'
+          TitleCaption='Data Uang Elektronik'
           Width=96
-        >, object:rtf::GridColumn<
-          Name='gcJmlhMerchant'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='JmlhMerchant'
-          DisplayFormat=''
-          TitleCaption='Jumlah Merchant Yang Bekerja Sama'
-          Width=264
-        >, object:rtf::GridColumn<
-          Name='gcVolumeTR'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='VolumeTR'
-          DisplayFormat=''
-          TitleCaption='Volume Transaksi'
-          Width=128
-        >, object:rtf::GridColumn<
-          Name='gcNilaiTR'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='NilaiTR'
-          DisplayFormat=''
-          TitleCaption='Nilai Transaksi'
-          Width=120
         >
       }
       ReadOnly=true
@@ -124,56 +100,33 @@ object:rtf::Form<
     >, object:rtf::Panel<
       Elements={
         object:rtf::LinkUIElmtSetting<
-          Name='LJENIS'
+          Name='LJenisData'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Jenis Mesin'
+          ControlCaption='Jenis Data'
           ClassTypeName='enterprise.ReferenceData'
           DisplayFields='reference_desc;reference_code;refdata_id'
           Restrictions=''
-          FieldBaseName='LJENIS'
+          FieldBaseName='LJenisData'
         >, object:rtf::FieldUIElmtSetting<
-          Name='Keterangan'
+          Name='DataATM'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Keterangan'
-          DataTypeName='varchar'
-          DataLength=35
-        >, object:rtf::LinkUIElmtSetting<
-          Name='LJENISVALUTA'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Status Pemanfaatan Mesin'
-          ClassTypeName='enterprise.ReferenceData'
-          DisplayFields='reference_desc;reference_code'
-          Restrictions=''
-          FieldBaseName='LJENISVALUTA'
-        >, object:rtf::FieldUIElmtSetting<
-          Name='jumlah'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Jumlah Mesin'
+          ControlCaption='Data ATM'
           DataTypeName='integer'
-          DataLength=12
+          DataLength=15
         >, object:rtf::FieldUIElmtSetting<
-          Name='JmlhMerchant'
+          Name='DataATMDebit'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Jumlah Merchant Yang Bekerja Sama'
+          ControlCaption='Data ATM + Debit'
           DataTypeName='integer'
-          DataLength=12
+          DataLength=15
         >, object:rtf::FieldUIElmtSetting<
-          Name='VolumeTR'
+          Name='DataEMoney'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Volume Transaksi'
-          DataTypeName='integer'
-          DataLength=12
-        >, object:rtf::FieldUIElmtSetting<
-          Name='NilaiTR'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Nilai Transaksi'
+          ControlCaption='Data Uang Elektronik'
           DataTypeName='integer'
           DataLength=15
         >
@@ -184,14 +137,14 @@ object:rtf::Form<
       UIPart=$UIPARTS['uipData']
       Controls={
         *object:rtf::DBLookupEdit<
-          Name='LJENIS'
+          Name='LJenisData'
           Top=8
           Left=8
-          Width=250
+          Width=275
           Height=21
-          ControlCaption='Jenis Mesin'
-          FieldName='LJENIS.reference_desc'
-          LookupField='LJENIS.reference_code'
+          ControlCaption='Jenis Data'
+          FieldName='LJenisData.reference_desc'
+          LookupField='LJenisData.reference_code'
           DisplayLookupField=true
           OnExit='refExit'
           DisplayLookupColor=-16777192
@@ -200,45 +153,20 @@ object:rtf::Form<
           ButtonWidth=1
           ManualInputCheck=true
         >, *object:rtf::DBEdit<
-          Name='Keterangan'
+          Name='DataATM'
           Top=36
           Left=8
-          ControlCaption='Keterangan'
-        >, *object:rtf::DBLookupEdit<
-          Name='LJENISVALUTA'
+          ControlCaption='Data ATM'
+        >, *object:rtf::DBEdit<
+          Name='DataATMDebit'
           Top=64
           Left=8
-          Width=250
-          Height=21
-          ControlCaption='Status Pemanfaatan Mesin'
-          FieldName='LJENISVALUTA.reference_desc'
-          LookupField='LJENISVALUTA.reference_code'
-          DisplayLookupField=true
-          OnExit='refExit2'
-          DisplayLookupColor=-16777192
-          DisplayLookupWidth=50
-          DirectInput=true
-          ButtonWidth=1
+          ControlCaption='Data ATM + Debit'
         >, *object:rtf::DBEdit<
-          Name='jumlah'
+          Name='DataEMoney'
           Top=92
           Left=8
-          ControlCaption='Jumlah Mesin'
-        >, *object:rtf::DBEdit<
-          Name='JmlhMerchant'
-          Top=120
-          Left=8
-          ControlCaption='Jumlah Merchant Yang Bekerja Sama'
-        >, *object:rtf::DBEdit<
-          Name='VolumeTR'
-          Top=148
-          Left=8
-          ControlCaption='Volume Transaksi'
-        >, *object:rtf::DBEdit<
-          Name='NilaiTR'
-          Top=176
-          Left=8
-          ControlCaption='Nilai Transaksi'
+          ControlCaption='Data Uang Elektronik'
         >
       }
       EqualCaptionWidth=220

@@ -32,8 +32,8 @@ object:rtf::Form<
   Containers={
     object:rtf::DualSplit<
       Name='dsMain'
-      Width=921
-      Height=425
+      Width=240
+      Height=96
       Container1=$CONTAINERS['grData']
       Container2=$CONTAINERS['pData']
       SplitDirection=sdrSplitLeftRight
@@ -50,61 +50,29 @@ object:rtf::Form<
       Caption='FORM-304'
       Columns={
         object:rtf::GridColumn<
-          Name='gcLJENIS'
+          Name='gcLJenisMesin'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='LJENIS.reference_code'
+          FieldName='LJenisMesin.reference_code'
           DisplayFormat=''
-          TitleCaption='Jenis Kartu'
+          TitleCaption='Jenis Mesin'
           Width=88
         >, object:rtf::GridColumn<
-          Name='gcKeteranganJK'
+          Name='gcJmlMesin'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='KeteranganJK'
+          FieldName='JmlMesin'
           DisplayFormat=''
-          TitleCaption='Keterangan Jenis Kartu'
+          TitleCaption='Jumlah Mesin'
           Width=176
         >, object:rtf::GridColumn<
-          Name='gcLFRAUD'
+          Name='gcJmlMerchant'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='LFRAUD.reference_code'
+          FieldName='JmlMerchant'
           DisplayFormat=''
-          TitleCaption='Jenis Penyebab Fraud'
-          Width=160
-        >, object:rtf::GridColumn<
-          Name='gcKeterangan'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='Keterangan'
-          DisplayFormat=''
-          TitleCaption='Ketarangan Jenis Penyebab Fraud'
-          Width=248
-        >, object:rtf::GridColumn<
-          Name='gcJmlhKasus1'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='JmlhKasus1'
-          DisplayFormat=''
-          TitleCaption='Jumlah Kasus - Periode Laporan'
-          Width=240
-        >, object:rtf::GridColumn<
-          Name='gcJmlhKasus2'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='JmlhKasus2'
-          DisplayFormat=''
-          TitleCaption='Jumlah Kasus - Periode Sebelumnya'
-          Width=264
-        >, object:rtf::GridColumn<
-          Name='gcNominalKerugian'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='NominalKerugian'
-          DisplayFormat=''
-          TitleCaption='Nominal Kerugian'
-          Width=128
+          TitleCaption='Jumlah Merchant'
+          Width=178
         >
       }
       ReadOnly=true
@@ -113,14 +81,14 @@ object:rtf::Form<
     >, object:rtf::Panel<
       Elements={
         object:rtf::LinkUIElmtSetting<
-          Name='LJENIS'
+          Name='LJenisMesin'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Jenis Kartu'
+          ControlCaption='Jenis Mesin'
           ClassTypeName='enterprise.ReferenceData'
           KeyFields={
             object:rtf::FieldUIElmtSetting<
-              Name='LJENIS.refdata_id'
+              Name='LJenisMesin.refdata_id'
               Hidden=false
               ReadOnlyControl=false
               DataTypeName='enterprise.INTEGER'
@@ -132,7 +100,7 @@ object:rtf::Form<
           }
           DisplayedFields={
             object:rtf::FieldUIElmtSetting<
-              Name='LJENIS.reference_desc'
+              Name='LJenisMesin.reference_desc'
               Hidden=false
               ReadOnlyControl=false
               DataTypeName='enterprise.VARCHAR'
@@ -141,7 +109,7 @@ object:rtf::Form<
               KeyOrDisplayName='reference_desc'
               FinalDisplayFieldName='reference_desc'
             >, object:rtf::FieldUIElmtSetting<
-              Name='LJENIS.reference_code'
+              Name='LJenisMesin.reference_code'
               Hidden=false
               ReadOnlyControl=false
               DataTypeName='enterprise.VARCHAR'
@@ -150,7 +118,7 @@ object:rtf::Form<
               KeyOrDisplayName='reference_code'
               FinalDisplayFieldName='reference_code'
             >, object:rtf::FieldUIElmtSetting<
-              Name='LJENIS.refdata_id'
+              Name='LJenisMesin.refdata_id'
               Hidden=false
               ReadOnlyControl=false
               DataTypeName='enterprise.INTEGER'
@@ -161,92 +129,21 @@ object:rtf::Form<
             >
           }
           Restrictions=''
-          FieldBaseName='LJENIS'
+          FieldBaseName='LJenisMesin'
         >, object:rtf::FieldUIElmtSetting<
-          Name='KeteranganJK'
+          Name='JmlMesin'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Keterangan Jenis Kartu'
-          DataTypeName='varchar'
-          DataLength=35
-        >, object:rtf::LinkUIElmtSetting<
-          Name='LFRAUD'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Jenis Penyebab Fraud'
-          ClassTypeName='enterprise.ReferenceData'
-          KeyFields={
-            object:rtf::FieldUIElmtSetting<
-              Name='LFRAUD.refdata_id'
-              Hidden=false
-              ReadOnlyControl=false
-              DataTypeName='enterprise.INTEGER'
-              DataLength=0
-              UsedAsKey=true
-              KeyOrDisplayName='refdata_id'
-              FinalDisplayFieldName='refdata_id'
-            >
-          }
-          DisplayedFields={
-            object:rtf::FieldUIElmtSetting<
-              Name='LFRAUD.reference_desc'
-              Hidden=false
-              ReadOnlyControl=false
-              DataTypeName='enterprise.VARCHAR'
-              DataLength=60
-              UsedAsDisplay=true
-              KeyOrDisplayName='reference_desc'
-              FinalDisplayFieldName='reference_desc'
-            >, object:rtf::FieldUIElmtSetting<
-              Name='LFRAUD.reference_code'
-              Hidden=false
-              ReadOnlyControl=false
-              DataTypeName='enterprise.VARCHAR'
-              DataLength=20
-              UsedAsDisplay=true
-              KeyOrDisplayName='reference_code'
-              FinalDisplayFieldName='reference_code'
-            >, object:rtf::FieldUIElmtSetting<
-              Name='LFRAUD.refdata_id'
-              Hidden=false
-              ReadOnlyControl=false
-              DataTypeName='enterprise.INTEGER'
-              DataLength=0
-              UsedAsDisplay=true
-              KeyOrDisplayName='refdata_id'
-              FinalDisplayFieldName='refdata_id'
-            >
-          }
-          Restrictions=''
-          FieldBaseName='LFRAUD'
-        >, object:rtf::FieldUIElmtSetting<
-          Name='Keterangan'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Ketarangan Jenis Penyebab Fraud'
-          DataTypeName='varchar'
-          DataLength=35
-        >, object:rtf::FieldUIElmtSetting<
-          Name='JmlhKasus1'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Jumlah Kasus - Periode Laporan'
+          ControlCaption='Jumlah Mesin'
           DataTypeName='integer'
           DataLength=12
         >, object:rtf::FieldUIElmtSetting<
-          Name='JmlhKasus2'
+          Name='JmlMerchant'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Jumlah Kasus - Periode Sebelumnya'
+          ControlCaption='Jumlah Merchant'
           DataTypeName='integer'
           DataLength=12
-        >, object:rtf::FieldUIElmtSetting<
-          Name='NominalKerugian'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Nominal Kerugian'
-          DataTypeName='integer'
-          DataLength=15
         >
       }
       Name='pData'
@@ -255,14 +152,14 @@ object:rtf::Form<
       UIPart=$UIPARTS['uipData']
       Controls={
         *object:rtf::DBLookupEdit<
-          Name='LJENIS'
+          Name='LJenisMesin'
           Top=8
           Left=8
-          Width=250
+          Width=172
           Height=21
-          ControlCaption='Jenis Kartu'
-          FieldName='LJENIS.reference_desc'
-          LookupField='LJENIS.reference_code'
+          ControlCaption='Jenis Mesin'
+          FieldName='LJenisMesin.reference_desc'
+          LookupField='LJenisMesin.reference_code'
           DisplayLookupField=true
           OnExit='refExit'
           DisplayLookupColor=-16777192
@@ -271,48 +168,15 @@ object:rtf::Form<
           ButtonWidth=1
           ManualInputCheck=true
         >, *object:rtf::DBEdit<
-          Name='KeteranganJK'
+          Name='JmlMesin'
           Top=36
           Left=8
-          ControlCaption='Keterangan Jenis Kartu'
-          OnEnter='onenter'
-        >, *object:rtf::DBLookupEdit<
-          Name='LFRAUD'
+          ControlCaption='Jumlah Mesin'
+        >, *object:rtf::DBEdit<
+          Name='JmlMerchant'
           Top=64
           Left=8
-          Width=250
-          Height=21
-          ControlCaption='Jenis Penyebab Fraud'
-          FieldName='LFRAUD.reference_desc'
-          LookupField='LFRAUD.reference_code'
-          DisplayLookupField=true
-          OnExit='refExit'
-          DisplayLookupColor=-16777192
-          DisplayLookupWidth=50
-          DirectInput=true
-          ButtonWidth=1
-          ManualInputCheck=true
-        >, *object:rtf::DBEdit<
-          Name='Keterangan'
-          Top=92
-          Left=8
-          ControlCaption='Ketarangan Jenis Penyebab Fraud'
-          OnEnter='masuk'
-        >, *object:rtf::DBEdit<
-          Name='JmlhKasus1'
-          Top=120
-          Left=8
-          ControlCaption='Jumlah Kasus - Periode Laporan'
-        >, *object:rtf::DBEdit<
-          Name='JmlhKasus2'
-          Top=148
-          Left=8
-          ControlCaption='Jumlah Kasus - Periode Sebelumnya'
-        >, *object:rtf::DBEdit<
-          Name='NominalKerugian'
-          Top=176
-          Left=8
-          ControlCaption='Nominal Kerugian'
+          ControlCaption='Jumlah Merchant'
         >
       }
       EqualCaptionWidth=220

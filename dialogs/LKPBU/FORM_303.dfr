@@ -43,8 +43,8 @@ object:rtf::Form<
   Containers={
     object:rtf::DualSplit<
       Name='dsMain'
-      Width=921
-      Height=425
+      Width=240
+      Height=96
       Container1=$CONTAINERS['grData']
       Container2=$CONTAINERS['pData']
       SplitDirection=sdrSplitLeftRight
@@ -61,77 +61,37 @@ object:rtf::Form<
       Caption='FORM-303'
       Columns={
         object:rtf::GridColumn<
-          Name='gcLJENIS'
+          Name='gcLJenisKartu'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='LJENIS.reference_code'
+          FieldName='LJenisKartu.reference_code'
           DisplayFormat=''
-          TitleCaption='Bentuk Instrumen Prabayar'
-          Width=200
+          TitleCaption='Jenis Kartu'
+          Width=100
         >, object:rtf::GridColumn<
-          Name='gcLJENISVALUTA'
+          Name='gcLJenisTransaksi'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='LJENISVALUTA.reference_code'
+          FieldName='LJenisTransaksi.reference_code'
           DisplayFormat=''
-          TitleCaption='Jenis Media Penyimpanan Data'
-          Width=224
+          TitleCaption='Jenis Transaksi'
+          Width=100
         >, object:rtf::GridColumn<
-          Name='gcjumlah'
+          Name='gcVolTransaksi'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='jumlah'
-          DisplayFormat=''
-          TitleCaption='Jumlah Instrumen Prabayar Yang Beredar'
-          Width=304
-        >, object:rtf::GridColumn<
-          Name='gcMaksLimit'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='MaksLimit'
-          DisplayFormat=''
-          TitleCaption='Maksimum Limit'
-          Width=112
-        >, object:rtf::GridColumn<
-          Name='gcDanaFloat'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='DanaFloat'
-          DisplayFormat=''
-          TitleCaption='Dana Float'
-          Width=80
-        >, object:rtf::GridColumn<
-          Name='gcVolumeTR'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='VolumeTR'
+          FieldName='VolTransaksi'
           DisplayFormat=''
           TitleCaption='Volume Transaksi'
-          Width=128
+          Width=114
         >, object:rtf::GridColumn<
-          Name='gcNilaiTR'
+          Name='gcNilaiTransaksi'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='NilaiTR'
+          FieldName='NilaiTransaksi'
           DisplayFormat=''
           TitleCaption='Nilai Transaksi'
-          Width=120
-        >, object:rtf::GridColumn<
-          Name='gcJmlhMerchant'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='JmlhMerchant'
-          DisplayFormat=''
-          TitleCaption='Jumlah Merchant'
-          Width=120
-        >, object:rtf::GridColumn<
-          Name='gcJmlhTerminal'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='JmlhTerminal'
-          DisplayFormat=''
-          TitleCaption='Jumlah Terminal'
-          Width=120
+          Width=312
         >
       }
       ReadOnly=true
@@ -140,72 +100,37 @@ object:rtf::Form<
     >, object:rtf::Panel<
       Elements={
         object:rtf::LinkUIElmtSetting<
-          Name='LJENIS'
+          Name='LJenisKartu'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Bentuk Instrumen Prabayar'
+          ControlCaption='Jenis Kartu'
           ClassTypeName='enterprise.ReferenceData'
           DisplayFields='reference_desc;reference_code;refdata_id'
           Restrictions=''
-          FieldBaseName='LJENIS'
+          FieldBaseName='LJenisKartu'
         >, object:rtf::LinkUIElmtSetting<
-          Name='LJENISVALUTA'
+          Name='LJenisTransaksi'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Jenis Media Penyimpanan Data'
+          ControlCaption='Jenis Transaksi'
           ClassTypeName='enterprise.ReferenceData'
           DisplayFields='reference_desc;reference_code'
           Restrictions=''
-          FieldBaseName='LJENISVALUTA'
+          FieldBaseName='LJenisTransaksi'
         >, object:rtf::FieldUIElmtSetting<
-          Name='jumlah'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Jumlah Instrumen Prabayar Yang Beredar'
-          DataTypeName='integer'
-          DataLength=12
-        >, object:rtf::FieldUIElmtSetting<
-          Name='MaksLimit'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Maksimum Limit'
-          DataTypeName='integer'
-          DataLength=15
-        >, object:rtf::FieldUIElmtSetting<
-          Name='DanaFloat'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Dana Float'
-          DataTypeName='double'
-          DataLength=15
-        >, object:rtf::FieldUIElmtSetting<
-          Name='VolumeTR'
+          Name='VolTransaksi'
           Hidden=false
           ReadOnlyControl=false
           ControlCaption='Volume Transaksi'
           DataTypeName='integer'
           DataLength=12
         >, object:rtf::FieldUIElmtSetting<
-          Name='NilaiTR'
+          Name='NilaiTransaksi'
           Hidden=false
           ReadOnlyControl=false
           ControlCaption='Nilai Transaksi'
           DataTypeName='integer'
           DataLength=15
-        >, object:rtf::FieldUIElmtSetting<
-          Name='JmlhMerchant'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Jumlah Merchant'
-          DataTypeName='integer'
-          DataLength=12
-        >, object:rtf::FieldUIElmtSetting<
-          Name='JmlhTerminal'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Jumlah Terminal'
-          DataTypeName='integer'
-          DataLength=12
         >
       }
       Name='pData'
@@ -214,14 +139,14 @@ object:rtf::Form<
       UIPart=$UIPARTS['uipData']
       Controls={
         *object:rtf::DBLookupEdit<
-          Name='LJENIS'
+          Name='LJenisKartu'
           Top=8
           Left=8
-          Width=250
+          Width=172
           Height=21
-          ControlCaption='Bentuk Instrumen Prabayar'
-          FieldName='LJENIS.reference_desc'
-          LookupField='LJENIS.reference_code'
+          ControlCaption='Jenis Kartu'
+          FieldName='LJenisKartu.reference_desc'
+          LookupField='LJenisKartu.reference_code'
           DisplayLookupField=true
           OnExit='refExit'
           DisplayLookupColor=-16777192
@@ -230,55 +155,31 @@ object:rtf::Form<
           ButtonWidth=1
           ManualInputCheck=true
         >, *object:rtf::DBLookupEdit<
-          Name='LJENISVALUTA'
+          Name='LJenisTransaksi'
           Top=36
           Left=8
-          Width=250
+          Width=172
           Height=21
-          ControlCaption='Jenis Media Penyimpanan Data'
-          FieldName='LJENISVALUTA.reference_desc'
-          LookupField='LJENISVALUTA.reference_code'
+          ControlCaption='Jenis Transaksi'
+          FieldName='LJenisTransaksi.reference_desc'
+          LookupField='LJenisTransaksi.reference_code'
           DisplayLookupField=true
           OnExit='refExit'
           DisplayLookupColor=-16777192
           DisplayLookupWidth=50
           DirectInput=true
           ButtonWidth=1
+          ManualInputCheck=true
         >, *object:rtf::DBEdit<
-          Name='jumlah'
+          Name='VolTransaksi'
           Top=64
-          Left=8
-          ControlCaption='Jumlah Instrumen Prabayar Yang Beredar'
-        >, *object:rtf::DBEdit<
-          Name='MaksLimit'
-          Top=92
-          Left=8
-          ControlCaption='Maksimum Limit'
-        >, *object:rtf::DBEdit<
-          Name='DanaFloat'
-          Top=120
-          Left=8
-          ControlCaption='Dana Float'
-        >, *object:rtf::DBEdit<
-          Name='VolumeTR'
-          Top=148
           Left=8
           ControlCaption='Volume Transaksi'
         >, *object:rtf::DBEdit<
-          Name='NilaiTR'
-          Top=176
+          Name='NilaiTransaksi'
+          Top=92
           Left=8
           ControlCaption='Nilai Transaksi'
-        >, *object:rtf::DBEdit<
-          Name='JmlhMerchant'
-          Top=204
-          Left=8
-          ControlCaption='Jumlah Merchant'
-        >, *object:rtf::DBEdit<
-          Name='JmlhTerminal'
-          Top=232
-          Left=8
-          ControlCaption='Jumlah Terminal'
         >
       }
       EqualCaptionWidth=220

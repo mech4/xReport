@@ -55,6 +55,26 @@ object:rtf::Form<
           PageTitle='Page 2'
           Container=$CONTAINERS['pData2']
           Index=1
+        >, object:rtf::Page<
+          PageName='3'
+          PageTitle='Page 3'
+          Container=$CONTAINERS['pData3']
+          Index=2
+        >, object:rtf::Page<
+          PageName='4'
+          PageTitle='Page 4'
+          Container=$CONTAINERS['pData4']
+          Index=3
+        >, object:rtf::Page<
+          PageName='5'
+          PageTitle='Page 5'
+          Container=$CONTAINERS['pData5']
+          Index=4
+        >, object:rtf::Page<
+          PageName='6'
+          PageTitle='Page 6'
+          Container=$CONTAINERS['pData6']
+          Index=5
         >
       }
     >, object:rtf::DualSplit<
@@ -77,12 +97,12 @@ object:rtf::Form<
       Caption='FORM-301'
       Columns={
         object:rtf::GridColumn<
-          Name='gcLJENIS'
+          Name='gcLPPL'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='LJENIS.reference_code'
+          FieldName='LPPL.reference_code'
           DisplayFormat=''
-          TitleCaption='Jenis Kartu'
+          TitleCaption='Principle dan Private Label'
           Width=88
         >, object:rtf::GridColumn<
           Name='gcKeterangan'
@@ -93,172 +113,460 @@ object:rtf::Form<
           TitleCaption='Keterangan'
           Width=80
         >, object:rtf::GridColumn<
-          Name='gcChargeCard'
+          Name='gcJumlahKartu'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='ChargeCard'
+          FieldName='JumlahKartu'
           DisplayFormat=''
-          TitleCaption='Jumlah Kartu Kredit - Charge Card'
+          TitleCaption='Jumlah Kartu'
           Width=264
         >, object:rtf::GridColumn<
-          Name='gcCreditCrad'
+          Name='gcKartuBaru'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='CreditCrad'
+          FieldName='KartuBaru'
           DisplayFormat=''
-          TitleCaption='Jumlah Kartu Kredit - Credit Crad'
+          TitleCaption='Kartu Baru'
           Width=264
         >, object:rtf::GridColumn<
-          Name='gcKUtama'
+          Name='gcKartuTutup'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='KUtama'
+          FieldName='KartuTutup'
           DisplayFormat=''
-          TitleCaption='Jumlah Kartu Kredit - Kartu Utama'
+          TitleCaption='Kartu yang Ditutup'
           Width=264
         >, object:rtf::GridColumn<
-          Name='gcKTambahan'
+          Name='gcJumlahAccount'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='KTambahan'
+          FieldName='JumlahAccount'
           DisplayFormat=''
-          TitleCaption='Jumlah Kartu Kredit - Kartu Tambahan'
+          TitleCaption='Jumlah Account'
           Width=288
         >, object:rtf::GridColumn<
-          Name='gcKUtama2'
+          Name='gcKartuUtama'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='KUtama2'
+          FieldName='KartuUtama'
           DisplayFormat=''
-          TitleCaption='Iuran Tahunan - Kartu Utama'
+          TitleCaption='Jumlah Kartu Berdasarkan Status - Kartu Utama'
           Width=216
         >, object:rtf::GridColumn<
-          Name='gcKTambahan2'
+          Name='gcKartuTambahan'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='KTambahan2'
+          FieldName='KartuTambahan'
           DisplayFormat=''
-          TitleCaption='Iuran Tahunan - Kartu Tambahan'
+          TitleCaption='Jumlah Kartu Berdasarkan Status - Kartu Tambahan'
           Width=240
         >, object:rtf::GridColumn<
-          Name='gcVTTunai'
+          Name='gcKL05'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='VTTunai'
+          FieldName='KL05'
           DisplayFormat=''
-          TitleCaption='Jumlah Transaksi Tunai'
+          TitleCaption='Kredit Limit 0-5 Juta'
           Width=176
         >, object:rtf::GridColumn<
-          Name='gcVTBelanja'
+          Name='gcKL510'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='VTBelanja'
+          FieldName='KL510'
           DisplayFormat=''
-          TitleCaption='Jumlah Transaksi Belanja'
+          TitleCaption='Kredit Limit >5-10 Juta'
+          Width=176
+        >, object:rtf::GridColumn<
+          Name='gcKL1025'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='KL1025'
+          DisplayFormat=''
+          TitleCaption='Kredit Limit >10-25 Juta'
+          Width=176
+        >, object:rtf::GridColumn<
+          Name='gcKL2550'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='KL2550'
+          DisplayFormat=''
+          TitleCaption='Kredit Limit >25-50 Juta'
+          Width=176
+        >, object:rtf::GridColumn<
+          Name='gcKL50100'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='KL50100'
+          DisplayFormat=''
+          TitleCaption='Kredit Limit >50-100 Juta'
+          Width=176
+        >, object:rtf::GridColumn<
+          Name='gcKL100'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='KL100'
+          DisplayFormat=''
+          TitleCaption='Kredit Limit >100 Juta'
+          Width=176
+        >, object:rtf::GridColumn<
+          Name='gcIRRMin'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='IRRMin'
+          DisplayFormat=''
+          TitleCaption='Interest Rate Retail - Nilai Minimum'
           Width=192
         >, object:rtf::GridColumn<
-          Name='gcVTIntrabank'
+          Name='gcIRRMax'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='VTIntrabank'
+          FieldName='IRRMax'
           DisplayFormat=''
-          TitleCaption='Jumlah Transaksi Transfer Intrabank'
+          TitleCaption='Interest Rate Retail - Nilai Maksimum'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcIRCAMin'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='IRCAMin'
+          DisplayFormat=''
+          TitleCaption='Interest Rate Cash Advance - Nilai Minimum'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcIRCAMax'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='IRCAMax'
+          DisplayFormat=''
+          TitleCaption='Interest Rate Cash Advance - Nilai Maksimum'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcLateFeeMin'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LateFeeMin'
+          DisplayFormat=''
+          TitleCaption='Late Fee - Nilai Minimum'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcLateFeeMax'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LateFeeMax'
+          DisplayFormat=''
+          TitleCaption='Late Fee - Nilai Maksimum'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcOverLimitMin'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='OverLimitMin'
+          DisplayFormat=''
+          TitleCaption='Over Limit Fee - Nilai Minimum'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcOverLimitMax'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='OverLimitMax'
+          DisplayFormat=''
+          TitleCaption='Over Limit Fee - Nilai Maksimum'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcAnnualFeeMin'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='AnnualFeeMin'
+          DisplayFormat=''
+          TitleCaption='Annual Fee - Nilai Minimum'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcAnnualFeeMax'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='AnnualFeeMax'
+          DisplayFormat=''
+          TitleCaption='Annual Fee - Nilai Maksimum'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcBCAMin'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BCAMin'
+          DisplayFormat=''
+          TitleCaption='Biaya Cash Advance - Nilai Minimum'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcBCAMax'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BCAMax'
+          DisplayFormat=''
+          TitleCaption='Biaya Cash Advance - Nilai Maksimum'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcFPDefJumlah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='FPDefJumlah'
+          DisplayFormat=''
+          TitleCaption='First Payment Default - Jumlah Account'
           Width=280
         >, object:rtf::GridColumn<
-          Name='gcVTAntarbank'
+          Name='gcFPDefNominal'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='VTAntarbank'
+          FieldName='FPDefNominal'
           DisplayFormat=''
-          TitleCaption='Jumlah Transaksi Transfer Antarbank'
+          TitleCaption='First Payment Default - Nominal'
           Width=280
         >, object:rtf::GridColumn<
-          Name='gcSBTunai'
+          Name='gcWriteOffJumlah'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='SBTunai'
+          FieldName='WriteOffJumlah'
           DisplayFormat=''
-          TitleCaption='Suku Bunga - Tunai'
+          TitleCaption='Hapus Buku Write Off - Jumlah Account'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcWriteOffNominal'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='WriteOffNominal'
+          DisplayFormat=''
+          TitleCaption='Hapus Buku Write Off - Nominal'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcRecoveryJumlah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='RecoveryJumlah'
+          DisplayFormat=''
+          TitleCaption='Recovery - Jumlah Account'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcRecoveryNominal'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='RecoveryNominal'
+          DisplayFormat=''
+          TitleCaption='Recovery - Nominal'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcHapusTagihJumlah'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='HapusTagihJumlah'
+          DisplayFormat=''
+          TitleCaption='Hapus Tagih - Jumlah Account'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcHapusTagihNominal'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='HapusTagihNominal'
+          DisplayFormat=''
+          TitleCaption='Hapus Tagih - Nominal'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcBRNOCurrent'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BRNOCurrent'
+          DisplayFormat=''
+          TitleCaption='Bucket Receivables - Normal Outstanding - Current'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcBRNOXD'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BRNOXD'
+          DisplayFormat=''
+          TitleCaption='Bucket Receivables - Normal Outstanding - X Days'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcBRNO30D'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BRNO30D'
+          DisplayFormat=''
+          TitleCaption='Bucket Receivables - Normal Outstanding - 30 DPD'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcBRNO60D'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BRNO60D'
+          DisplayFormat=''
+          TitleCaption='Bucket Receivables - Normal Outstanding - 60 DPD'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcBRNO90D'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BRNO90D'
+          DisplayFormat=''
+          TitleCaption='Bucket Receivables - Normal Outstanding - 90 DPD'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcBRNO120D'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BRNO120D'
+          DisplayFormat=''
+          TitleCaption='Bucket Receivables - Normal Outstanding - 120 DPD'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcBRNO150D'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BRNO150D'
+          DisplayFormat=''
+          TitleCaption='Bucket Receivables - Normal Outstanding - 150 DPD'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcBRNO180D'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BRNO180D'
+          DisplayFormat=''
+          TitleCaption='Bucket Receivables - Normal Outstanding - 180 DPD'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcBRAOCurrent'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BRAOCurrent'
+          DisplayFormat=''
+          TitleCaption='Bucket Receivables - Account Outstanding - Current'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcBRAOXD'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BRAOXD'
+          DisplayFormat=''
+          TitleCaption='Bucket Receivables - Account Outstanding - X Days'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcBRAO30D'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BRAO30D'
+          DisplayFormat=''
+          TitleCaption='Bucket Receivables - Account Outstanding - 30 DPD'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcBRAO60D'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BRAO60D'
+          DisplayFormat=''
+          TitleCaption='Bucket Receivables - Account Outstanding - 60 DPD'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcBRAO90D'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BRAO90D'
+          DisplayFormat=''
+          TitleCaption='Bucket Receivables - Account Outstanding - 90 DPD'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcBRAO120D'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BRAO120D'
+          DisplayFormat=''
+          TitleCaption='Bucket Receivables - Account Outstanding - 120 DPD'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcBRAO150D'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BRAO150D'
+          DisplayFormat=''
+          TitleCaption='Bucket Receivables - Account Outstanding - 150 DPD'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcBRAO180D'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='BRAO180D'
+          DisplayFormat=''
+          TitleCaption='Bucket Receivables - Account Outstanding - 180 DPD'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcVolTunaiIntl'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='VolTunaiIntl'
+          DisplayFormat=''
+          TitleCaption='Volume Transaksi Tunai - Transaksi Internasional'
           Width=144
         >, object:rtf::GridColumn<
-          Name='gcSBBelanja'
+          Name='gcVolTunaiLokal'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='SBBelanja'
+          FieldName='VolTunaiLokal'
           DisplayFormat=''
-          TitleCaption='Suku Bunga - Belanja'
-          Width=160
-        >, object:rtf::GridColumn<
-          Name='gcNTTunai'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='NTTunai'
-          DisplayFormat=''
-          TitleCaption='Nilai Transaksi - Tunai'
-          Width=184
-        >, object:rtf::GridColumn<
-          Name='gcNTBelanja'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='NTBelanja'
-          DisplayFormat=''
-          TitleCaption='Nilai Transaksi - Belanja'
-          Width=200
-        >, object:rtf::GridColumn<
-          Name='gcNTTransferIntrabank'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='NTTransferIntrabank'
-          DisplayFormat=''
-          TitleCaption='Nilai Transaksi - Transfer Intrabank'
-          Width=288
-        >, object:rtf::GridColumn<
-          Name='gcNTTransferAntarbank'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='NTTransferAntarbank'
-          DisplayFormat=''
-          TitleCaption='Nilai Transaksi - Antarbank'
-          Width=216
-        >, object:rtf::GridColumn<
-          Name='gcLJNSDENDA'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='LJNSDENDA.reference_code'
-          DisplayFormat=''
-          TitleCaption='Jenis Biaya/Denda'
-          Width=136
-        >, object:rtf::GridColumn<
-          Name='gcKeterangan2'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='Keterangan2'
-          DisplayFormat=''
-          TitleCaption='Keterangan'
-          Width=80
-        >, object:rtf::GridColumn<
-          Name='gcVolume'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='Volume'
-          DisplayFormat=''
-          TitleCaption='Volume'
-          Width=48
-        >, object:rtf::GridColumn<
-          Name='gcOutstandingCredit'
-          InputStyle=cisNormal
-          EnumeratedValues=''
-          FieldName='OutstandingCredit'
-          DisplayFormat=''
-          TitleCaption='Outstanding Credit'
+          TitleCaption='Volume Transaksi Tunai - Transaksi Domestik'
           Width=144
         >, object:rtf::GridColumn<
-          Name='gcSelainKartuKredit'
+          Name='gcVolBelanjaIntl'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='SelainKartuKredit'
+          FieldName='VolBelanjaIntl'
           DisplayFormat=''
-          TitleCaption='Jumlah Kartu Selain Kartu Kredit'
+          TitleCaption='Volume Transaksi Belanja - Transaksi Internasional'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcVolBelanjaLokal'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='VolBelanjaLokal'
+          DisplayFormat=''
+          TitleCaption='Volume Transaksi Belanja - Transaksi Domestik'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcNilaiTunaiIntl'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NilaiTunaiIntl'
+          DisplayFormat=''
+          TitleCaption='Nilai Transaksi Tunai - Transaksi Internasional'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcNilaiTunaiLokal'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NilaiTunaiLokal'
+          DisplayFormat=''
+          TitleCaption='Nilai Transaksi Tunai - Transaksi Domestik'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcNilaiBelanjaIntl'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NilaiBelanjaIntl'
+          DisplayFormat=''
+          TitleCaption='Nilai Transaksi Belanja - Transaksi Internasional'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcNilaiBelanjaLokal'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NilaiBelanjaLokal'
+          DisplayFormat=''
+          TitleCaption='Nilai Transaksi Belanja - Transaksi Domestik'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcRevolvingRate'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='RevolvingRate'
+          DisplayFormat=''
+          TitleCaption='Revolving Rate'
           Width=256
         >
       }
@@ -268,105 +576,105 @@ object:rtf::Form<
     >, object:rtf::Panel<
       Elements={
         object:rtf::LinkUIElmtSetting<
-          Name='LJENIS'
+          Name='LPPL'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Jenis Kartu'
+          ControlCaption='Principle dan Private Label'
           ClassTypeName='enterprise.ReferenceData'
           DisplayFields='reference_desc;reference_code;refdata_id'
           Restrictions=''
-          FieldBaseName='LJENIS'
+          FieldBaseName='LPPL'
         >, object:rtf::FieldUIElmtSetting<
           Name='Keterangan'
           Hidden=false
           ReadOnlyControl=false
           ControlCaption='Keterangan'
           DataTypeName='varchar'
-          DataLength=35
+          DataLength=30
         >, object:rtf::FieldUIElmtSetting<
-          Name='ChargeCard'
+          Name='JumlahKartu'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Jumlah Kartu Kredit - Charge Card'
-          DataTypeName='varchar'
-          DataLength=12
-        >, object:rtf::FieldUIElmtSetting<
-          Name='CreditCrad'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Jumlah Kartu Kredit - Credit Crad'
-          DataTypeName='varchar'
-          DataLength=12
-        >, object:rtf::FieldUIElmtSetting<
-          Name='KUtama'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Jumlah Kartu Kredit - Kartu Utama'
-          DataTypeName='integer'
-          DataLength=12
-        >, object:rtf::FieldUIElmtSetting<
-          Name='KTambahan'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Jumlah Kartu Kredit - Kartu Tambahan'
-          DataTypeName='integer'
-          DataLength=12
-        >, object:rtf::FieldUIElmtSetting<
-          Name='KUtama2'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Iuran Tahunan - Kartu Utama'
-          DataTypeName='integer'
-          DataLength=12
-        >, object:rtf::FieldUIElmtSetting<
-          Name='KTambahan2'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Iuran Tahunan - Kartu Tambahan'
-          DataTypeName='integer'
-          DataLength=12
-        >, object:rtf::FieldUIElmtSetting<
-          Name='VTTunai'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Jumlah Transaksi Tunai'
+          ControlCaption='Jumlah Kartu'
           DataTypeName='integer'
           DataLength=20
         >, object:rtf::FieldUIElmtSetting<
-          Name='VTBelanja'
+          Name='KartuBaru'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Jumlah Transaksi Belanja'
+          ControlCaption='Kartu Baru'
           DataTypeName='integer'
           DataLength=20
         >, object:rtf::FieldUIElmtSetting<
-          Name='VTIntrabank'
+          Name='KartuTutup'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Jumlah Transaksi Transfer Intrabank'
+          ControlCaption='Kartu yang Ditutup'
           DataTypeName='integer'
           DataLength=20
         >, object:rtf::FieldUIElmtSetting<
-          Name='VTAntarbank'
+          Name='JumlahAccount'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Jumlah Transaksi Transfer Antarbank'
+          ControlCaption='Jumlah Account'
           DataTypeName='integer'
           DataLength=20
         >, object:rtf::FieldUIElmtSetting<
-          Name='SBTunai'
+          Name='KartuUtama'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Suku Bunga - Tunai'
+          ControlCaption='Jumlah Kartu Berdasarkan Status - Kartu Utama'
           DataTypeName='integer'
-          DataLength=4
+          DataLength=20
         >, object:rtf::FieldUIElmtSetting<
-          Name='SBBelanja'
+          Name='KartuTambahan'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Suku Bunga - Belanja'
+          ControlCaption='Jumlah Kartu Berdasarkan Status - Kartu Tambahan'
           DataTypeName='integer'
-          DataLength=4
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='KL05'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kredit Limit 0-5 Juta'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='KL510'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kredit Limit >5-10 Juta'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='KL1025'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kredit Limit >10-25 Juta'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='KL2550'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kredit Limit >25-50 Juta'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='KL50100'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kredit Limit >50-100 Juta'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='KL100'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Kredit Limit >100 Juta'
+          DataTypeName='integer'
+          DataLength=20
         >
       }
       Name='pData'
@@ -375,14 +683,14 @@ object:rtf::Form<
       UIPart=$UIPARTS['uipData']
       Controls={
         *object:rtf::DBLookupEdit<
-          Name='LJENIS'
+          Name='LPPL'
           Top=8
           Left=8
-          Width=250
+          Width=172
           Height=21
-          ControlCaption='Jenis Kartu'
-          FieldName='LJENIS.reference_desc'
-          LookupField='LJENIS.reference_code'
+          ControlCaption='Principle dan Private Label'
+          FieldName='LPPL.reference_desc'
+          LookupField='LPPL.reference_code'
           DisplayLookupField=true
           OnExit='refExit'
           DisplayLookupColor=-16777192
@@ -396,73 +704,73 @@ object:rtf::Form<
           Left=8
           ControlCaption='Keterangan'
         >, *object:rtf::DBEdit<
-          Name='ChargeCard'
+          Name='JumlahKartu'
           Top=64
           Left=8
           Width=117
           Height=21
-          ControlCaption='Jumlah Kartu Kredit - Charge Card'
+          ControlCaption='Jumlah Kartu'
         >, *object:rtf::DBEdit<
-          Name='CreditCrad'
+          Name='KartuBaru'
           Top=92
           Left=8
           Width=117
           Height=21
-          ControlCaption='Jumlah Kartu Kredit - Credit Crad'
+          ControlCaption='Kartu Baru'
           OnEnter='onenter'
         >, *object:rtf::DBEdit<
-          Name='KUtama'
+          Name='KartuTutup'
           Top=120
           Left=8
-          ControlCaption='Jumlah Kartu Kredit - Kartu Utama'
+          ControlCaption='Kartu yang Ditutup'
         >, *object:rtf::DBEdit<
-          Name='KTambahan'
+          Name='JumlahAccount'
           Top=148
           Left=8
-          ControlCaption='Jumlah Kartu Kredit - Kartu Tambahan'
+          ControlCaption='Jumlah Account'
         >, *object:rtf::DBEdit<
-          Name='KUtama2'
+          Name='KartuUtama'
           Top=176
           Left=8
-          ControlCaption='Iuran Tahunan - Kartu Utama'
+          ControlCaption='Jumlah Kartu Berdasarkan Status - Kartu Utama'
         >, *object:rtf::DBEdit<
-          Name='KTambahan2'
+          Name='KartuTambahan'
           Top=204
           Left=8
-          ControlCaption='Iuran Tahunan - Kartu Tambahan'
+          ControlCaption='Jumlah Kartu Berdasarkan Status - Kartu Tambahan'
         >, *object:rtf::DBEdit<
-          Name='VTTunai'
+          Name='KL05'
           Top=232
           Left=8
-          ControlCaption='Jumlah Transaksi Tunai'
+          ControlCaption='Kredit Limit 0-5 Juta'
         >, *object:rtf::DBEdit<
-          Name='VTBelanja'
+          Name='KL510'
           Top=260
           Left=8
-          ControlCaption='Jumlah Transaksi Belanja'
+          ControlCaption='Kredit Limit >5-10 Juta'
         >, *object:rtf::DBEdit<
-          Name='VTIntrabank'
+          Name='KL1025'
           Top=288
           Left=8
-          ControlCaption='Jumlah Transaksi Transfer Intrabank'
+          ControlCaption='Kredit Limit >10-25 Juta'
         >, *object:rtf::DBEdit<
-          Name='VTAntarbank'
+          Name='KL2550'
           Top=316
           Left=8
-          ControlCaption='Jumlah Transaksi Transfer Antarbank'
+          ControlCaption='Kredit Limit >25-50 Juta'
         >, *object:rtf::DBEdit<
-          Name='SBTunai'
+          Name='KL50100'
           Top=344
           Left=8
-          ControlCaption='Suku Bunga - Tunai'
+          ControlCaption='Kredit Limit >50-100 Juta'
         >, *object:rtf::DBEdit<
-          Name='SBBelanja'
+          Name='KL100'
           Top=372
           Left=8
-          ControlCaption='Suku Bunga - Belanja'
+          ControlCaption='Kredit Limit >100 Juta'
         >
       }
-      EqualCaptionWidth=200
+      EqualCaptionWidth=270
       ControlLeftMargin=8
       ControlTopMargin=8
       DefaultControlHeight=21
@@ -471,68 +779,89 @@ object:rtf::Form<
     >, object:rtf::Panel<
       Elements={
         object:rtf::FieldUIElmtSetting<
-          Name='NTTunai'
+          Name='IRRMin'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Nilai Transaksi - Tunai'
+          ControlCaption='Interest Rate Retail - Nilai Minimum'
           DataTypeName='double'
           DataLength=15
         >, object:rtf::FieldUIElmtSetting<
-          Name='NTBelanja'
+          Name='IRRMax'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Nilai Transaksi - Belanja'
+          ControlCaption='Interest Rate Retail - Nilai Maksimum'
           DataTypeName='double'
           DataLength=15
         >, object:rtf::FieldUIElmtSetting<
-          Name='NTTransferIntrabank'
+          Name='IRCAMin'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Nilai Transaksi - Transfer Intrabank'
+          ControlCaption='Interest Rate Cash Advance - Nilai Minimum'
           DataTypeName='double'
           DataLength=15
         >, object:rtf::FieldUIElmtSetting<
-          Name='NTTransferAntarbank'
+          Name='IRCAMax'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Nilai Transaksi - Antarbank'
+          ControlCaption='Interest Rate Cash Advance - Nilai Maksimum'
           DataTypeName='double'
           DataLength=15
-        >, object:rtf::LinkUIElmtSetting<
-          Name='LJNSDENDA'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Jenis Biaya/Denda'
-          ClassTypeName='enterprise.ReferenceData'
-          DisplayFields='reference_desc;reference_code'
-          Restrictions=''
-          FieldBaseName='LJNSDENDA'
         >, object:rtf::FieldUIElmtSetting<
-          Name='Keterangan2'
+          Name='LateFeeMin'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Keterangan'
-          DataTypeName='varchar'
-          DataLength=50
+          ControlCaption='Late Fee - Nilai Minimum'
+          DataTypeName='double'
+          DataLength=15
         >, object:rtf::FieldUIElmtSetting<
-          Name='Volume'
+          Name='LateFeeMax'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Volume'
-        >, object:rtf::FieldUIElmtSetting<
-          Name='OutstandingCredit'
-          Hidden=false
-          ReadOnlyControl=false
-          ControlCaption='Outstanding Credit'
+          ControlCaption='Late Fee - Nilai Maksimum'
           DataTypeName='integer'
           DataLength=15
         >, object:rtf::FieldUIElmtSetting<
-          Name='SelainKartuKredit'
+          Name='OverLimitMin'
           Hidden=false
           ReadOnlyControl=false
-          ControlCaption='Jumlah Kartu Selain Kartu Kredit'
+          ControlCaption='Over Limit Fee - Nilai Minimum'
           DataTypeName='integer'
-          DataLength=12
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='OverLimitMax'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Over Limit Fee - Nilai Maksimum'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='AnnualFeeMin'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Annual Fee - Nilai Minimum'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='AnnualFeeMax'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Annual Fee - Nilai Maksimum'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BCAMin'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Biaya Cash Advance - Nilai Minimum'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BCAMax'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Biaya Cash Advance - Nilai Maksimum'
+          DataTypeName='double'
+          DataLength=15
         >
       }
       Name='pData2'
@@ -541,66 +870,532 @@ object:rtf::Form<
       UIPart=$UIPARTS['uipData']
       Controls={
         *object:rtf::DBEdit<
-          Name='NTTunai'
+          Name='IRRMin'
           Top=8
           Left=8
-          ControlCaption='Nilai Transaksi - Tunai'
+          ControlCaption='Interest Rate Retail - Nilai Minimum'
         >, *object:rtf::DBEdit<
-          Name='NTBelanja'
+          Name='IRRMax'
           Top=36
           Left=8
-          ControlCaption='Nilai Transaksi - Belanja'
+          ControlCaption='Interest Rate Retail - Nilai Maksimum'
         >, *object:rtf::DBEdit<
-          Name='NTTransferIntrabank'
+          Name='IRCAMin'
           Top=64
           Left=8
-          ControlCaption='Nilai Transaksi - Transfer Intrabank'
+          ControlCaption='Interest Rate Cash Advance - Nilai Minimum'
         >, *object:rtf::DBEdit<
-          Name='NTTransferAntarbank'
+          Name='IRCAMax'
           Top=92
           Left=8
-          ControlCaption='Nilai Transaksi - Antarbank'
-        >, *object:rtf::DBLookupEdit<
-          Name='LJNSDENDA'
+          ControlCaption='Interest Rate Cash Advance - Nilai Maksimum'
+        >, *object:rtf::DBEdit<
+          Name='LateFeeMin'
           Top=120
           Left=8
-          Width=250
-          Height=21
-          ControlCaption='Jenis Biaya/Denda'
-          FieldName='LJNSDENDA.reference_desc'
-          LookupField='LJNSDENDA.reference_code'
-          DisplayLookupField=true
-          OnExit='refExit'
-          DisplayLookupColor=-16777192
-          DisplayLookupWidth=50
-          DirectInput=true
-          ButtonWidth=1
-          ManualInputCheck=true
+          ControlCaption='Late Fee - Nilai Minimum'
         >, *object:rtf::DBEdit<
-          Name='Keterangan2'
+          Name='LateFeeMax'
           Top=148
           Left=8
-          ControlCaption='Keterangan'
+          ControlCaption='Late Fee - Nilai Maksimum'
         >, *object:rtf::DBEdit<
-          Name='Volume'
+          Name='OverLimitMin'
           Top=176
           Left=8
-          Width=197
-          Height=21
-          ControlCaption='Volume'
+          ControlCaption='Over Limit Fee - Nilai Minimum'
         >, *object:rtf::DBEdit<
-          Name='OutstandingCredit'
+          Name='OverLimitMax'
           Top=204
           Left=8
-          ControlCaption='Outstanding Credit'
+          ControlCaption='Over Limit Fee - Nilai Maksimum'
         >, *object:rtf::DBEdit<
-          Name='SelainKartuKredit'
+          Name='AnnualFeeMin'
           Top=232
           Left=8
-          ControlCaption='Jumlah Kartu Selain Kartu Kredit'
+          ControlCaption='Annual Fee - Nilai Minimum'
+        >, *object:rtf::DBEdit<
+          Name='AnnualFeeMax'
+          Top=260
+          Left=8
+          ControlCaption='Annual Fee - Nilai Maksimum'
+        >, *object:rtf::DBEdit<
+          Name='BCAMin'
+          Top=288
+          Left=8
+          ControlCaption='Biaya Cash Advance - Nilai Minimum'
+        >, *object:rtf::DBEdit<
+          Name='BCAMax'
+          Top=316
+          Left=8
+          ControlCaption='Biaya Cash Advance - Nilai Maksimum'
         >
       }
-      EqualCaptionWidth=200
+      EqualCaptionWidth=270
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='FPDefJumlah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='First Payment Default - Jumlah Account'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='FPDefNominal'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='First Payment Default - Nominal'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='WriteOffJumlah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hapus Buku Write Off - Jumlah Account'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='WriteOffNominal'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hapus Buku Write Off - Nominal'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='RecoveryJumlah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Recovery - Jumlah Account'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='RecoveryNominal'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Recovery - Nominal'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='HapusTagihJumlah'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hapus Tagih - Jumlah Account'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='HapusTagihNominal'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Hapus Tagih - Nominal'
+          DataTypeName='integer'
+          DataLength=15
+        >
+      }
+      Name='pData3'
+      Width=593
+      Height=393
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='FPDefJumlah'
+          Top=8
+          Left=8
+          ControlCaption='First Payment Default - Jumlah Account'
+        >, *object:rtf::DBEdit<
+          Name='FPDefNominal'
+          Top=36
+          Left=8
+          ControlCaption='First Payment Default - Nominal'
+        >, *object:rtf::DBEdit<
+          Name='WriteOffJumlah'
+          Top=64
+          Left=8
+          ControlCaption='Hapus Buku Write Off - Jumlah Account'
+        >, *object:rtf::DBEdit<
+          Name='WriteOffNominal'
+          Top=92
+          Left=8
+          ControlCaption='Hapus Buku Write Off - Nominal'
+        >, *object:rtf::DBEdit<
+          Name='RecoveryJumlah'
+          Top=120
+          Left=8
+          ControlCaption='Recovery - Jumlah Account'
+        >, *object:rtf::DBEdit<
+          Name='RecoveryNominal'
+          Top=148
+          Left=8
+          ControlCaption='Recovery - Nominal'
+        >, *object:rtf::DBEdit<
+          Name='HapusTagihJumlah'
+          Top=176
+          Left=8
+          ControlCaption='Hapus Tagih - Nominal'
+        >, *object:rtf::DBEdit<
+          Name='HapusTagihNominal'
+          Top=204
+          Left=8
+          ControlCaption='Hapus Tagih - Nominal'
+        >
+      }
+      EqualCaptionWidth=270
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='BRNOCurrent'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bucket Receivables - Normal Outstanding - Current'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BRNOXD'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bucket Receivables - Normal Outstanding - X Days'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BRNO30D'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bucket Receivables - Normal Outstanding - 30 DPD'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BRNO60D'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bucket Receivables - Normal Outstanding - 60 DPD'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BRNO90D'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bucket Receivables - Normal Outstanding - 90 DPD'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BRNO120D'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bucket Receivables - Normal Outstanding - 120 DPD'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BRNO150D'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bucket Receivables - Normal Outstanding - 150 DPD'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BRNO180D'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bucket Receivables - Normal Outstanding - 180 DPD'
+          DataTypeName='integer'
+          DataLength=15
+        >
+      }
+      Name='pData4'
+      Width=593
+      Height=393
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='BRNOCurrent'
+          Top=8
+          Left=8
+          ControlCaption='Bucket Receivables - Normal Outstanding - Current'
+        >, *object:rtf::DBEdit<
+          Name='BRNOXD'
+          Top=36
+          Left=8
+          ControlCaption='Bucket Receivables - Normal Outstanding - X Days'
+        >, *object:rtf::DBEdit<
+          Name='BRNO30D'
+          Top=64
+          Left=8
+          ControlCaption='Bucket Receivables - Normal Outstanding - 30 DPD'
+        >, *object:rtf::DBEdit<
+          Name='BRNO60D'
+          Top=92
+          Left=8
+          ControlCaption='Bucket Receivables - Normal Outstanding - 60 DPD'
+        >, *object:rtf::DBEdit<
+          Name='BRNO90D'
+          Top=120
+          Left=8
+          ControlCaption='Bucket Receivables - Normal Outstanding - 90 DPD'
+        >, *object:rtf::DBEdit<
+          Name='BRNO120D'
+          Top=148
+          Left=8
+          ControlCaption='Bucket Receivables - Normal Outstanding - 120 DPD'
+        >, *object:rtf::DBEdit<
+          Name='BRNO150D'
+          Top=176
+          Left=8
+          ControlCaption='Bucket Receivables - Normal Outstanding - 150 DPD'
+        >, *object:rtf::DBEdit<
+          Name='BRNO180D'
+          Top=204
+          Left=8
+          ControlCaption='Bucket Receivables - Normal Outstanding - 180 DPD'
+        >
+      }
+      EqualCaptionWidth=270
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='BRAOCurrent'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bucket Receivables - Account Outstanding - Current'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BRAOXD'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bucket Receivables - Account Outstanding - X Days'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BRAO30D'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bucket Receivables - Account Outstanding - 30 DPD'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BRAO60D'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bucket Receivables - Account Outstanding - 60 DPD'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BRAO90D'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bucket Receivables - Account Outstanding - 90 DPD'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BRAO120D'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bucket Receivables - Account Outstanding - 120 DPD'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BRAO150D'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bucket Receivables - Account Outstanding - 150 DPD'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='BRAO180D'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Bucket Receivables - Account Outstanding - 180 DPD'
+          DataTypeName='integer'
+          DataLength=15
+        >
+      }
+      Name='pData5'
+      Width=593
+      Height=393
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='BRAOCurrent'
+          Top=8
+          Left=8
+          ControlCaption='Bucket Receivables - Account Outstanding - Current'
+        >, *object:rtf::DBEdit<
+          Name='BRAOXD'
+          Top=36
+          Left=8
+          ControlCaption='Bucket Receivables - Account Outstanding - X Days'
+        >, *object:rtf::DBEdit<
+          Name='BRAO30D'
+          Top=64
+          Left=8
+          ControlCaption='Bucket Receivables - Account Outstanding - 30 DPD'
+        >, *object:rtf::DBEdit<
+          Name='BRAO60D'
+          Top=92
+          Left=8
+          ControlCaption='Bucket Receivables - Account Outstanding - 60 DPD'
+        >, *object:rtf::DBEdit<
+          Name='BRAO90D'
+          Top=120
+          Left=8
+          ControlCaption='Bucket Receivables - Account Outstanding - 90 DPD'
+        >, *object:rtf::DBEdit<
+          Name='BRAO120D'
+          Top=148
+          Left=8
+          ControlCaption='Bucket Receivables - Account Outstanding - 120 DPD'
+        >, *object:rtf::DBEdit<
+          Name='BRAO150D'
+          Top=176
+          Left=8
+          ControlCaption='Bucket Receivables - Account Outstanding - 150 DPD'
+        >, *object:rtf::DBEdit<
+          Name='BRAO180D'
+          Top=204
+          Left=8
+          ControlCaption='Bucket Receivables - Account Outstanding - 180 DPD'
+        >
+      }
+      EqualCaptionWidth=270
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='VolTunaiIntl'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Volume Transaksi Tunai - Transaksi Internasional'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='VolTunaiLokal'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Volume Transaksi Tunai - Transaksi Domestik'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='VolBelanjaIntl'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Volume Transaksi Belanja - Transaksi Internasional'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='VolBelanjaLokal'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Volume Transaksi Belanja - Transaksi Domestik'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NilaiTunaiIntl'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nilai Transaksi Tunai - Transaksi Internasional'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NilaiTunaiLokal'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nilai Transaksi Tunai - Transaksi Domestik'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NilaiBelanjaIntl'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nilai Transaksi Belanja - Transaksi Internasional'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NilaiBelanjaLokal'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nilai Transaksi Belanja - Transaksi Domestik'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='RevolvingRate'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Revolving Rate'
+          DataTypeName='double'
+          DataLength=15
+        >
+      }
+      Name='pData6'
+      Width=593
+      Height=393
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='VolTunaiIntl'
+          Top=8
+          Left=8
+          ControlCaption='Volume Transaksi Tunai - Transaksi Internasional'
+        >, *object:rtf::DBEdit<
+          Name='VolTunaiLokal'
+          Top=36
+          Left=8
+          ControlCaption='Volume Transaksi Tunai - Transaksi Domestik'
+        >, *object:rtf::DBEdit<
+          Name='VolBelanjaIntl'
+          Top=64
+          Left=8
+          ControlCaption='Volume Transaksi Belanja - Transaksi Internasional'
+        >, *object:rtf::DBEdit<
+          Name='VolBelanjaLokal'
+          Top=92
+          Left=8
+          ControlCaption='Volume Transaksi Belanja - Transaksi Domestik'
+        >, *object:rtf::DBEdit<
+          Name='NilaiTunaiIntl'
+          Top=120
+          Left=8
+          ControlCaption='Nilai Transaksi Tunai - Transaksi Internasional'
+        >, *object:rtf::DBEdit<
+          Name='NilaiTunaiLokal'
+          Top=148
+          Left=8
+          ControlCaption='Nilai Transaksi Tunai - Transaksi Domestik'
+        >, *object:rtf::DBEdit<
+          Name='NilaiBelanjaIntl'
+          Top=176
+          Left=8
+          ControlCaption='Nilai Transaksi Belanja - Transaksi Internasional'
+        >, *object:rtf::DBEdit<
+          Name='NilaiBelanjaLokal'
+          Top=204
+          Left=8
+          ControlCaption='Nilai Transaksi Belanja - Transaksi Domestik'
+        >, *object:rtf::DBEdit<
+          Name='RevolvingRate'
+          Top=232
+          Left=8
+          ControlCaption='Revolving Rate'
+        >
+      }
+      EqualCaptionWidth=270
       ControlLeftMargin=8
       ControlTopMargin=8
       DefaultControlHeight=21

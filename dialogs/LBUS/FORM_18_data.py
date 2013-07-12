@@ -160,7 +160,7 @@ def FormOnSetDataEx(uideflist, params):
              and j.status_rekening<>3
              and b.tanggal_buka <= to_date('%(TanggalLaporan)s','dd-mm-yyyy')
              and exists (select null from %(SaldoAkhirBulan)s ck where ck.nomor_rekening=a.nomor_rekening) 
-          order by rc1
+          order by rc4 
      ''' % { 
            'RekeningCustomer'   : config.MapDBTableName('core.rekeningcustomer'),
            'RekeningLiabilitas' : config.MapDBTableName('core.rekeningliabilitas'),
@@ -180,8 +180,10 @@ def FormOnSetDataEx(uideflist, params):
            }
     #raise Exception, s
     res = config.CreateSQL(s).RawResult
+    gabungan = 0
+    totalGabung = 0.0
     while not res.Eof:
-      if int(res.total)>700000:
+      if int(res.total)>5000000:
         ins = ds.AddRecord()
         ins.JumlahRekening = res.jml
         ins.SetFieldByName('LSIFAT.reference_code', res.rc5)
@@ -209,6 +211,56 @@ def FormOnSetDataEx(uideflist, params):
         else:
           t = t/10 
         ins.Jumlah = t
+      else:
+        gabungan+=1
+        if gabungan == 1:
+          gc5 = res.rc5
+          gd5 = res.rd5 
+          gi5 = res.ri5
+          gc1 = res.rc1
+          gd1 = res.rd1
+          gi1 = res.ri1
+          gc2 = res.rc2
+          gd2 = res.rd2
+          gi2 = res.ri2
+          gc3 = res.rc3
+          gd3 = res.rd3
+          gi3 = res.ri3
+          gc4 = res.rc4
+          gd4 = res.rd4
+          gi4 = res.ri4
+          gc6 = res.rc6
+          gd6 = res.rd6
+          gi6 = res.ri6
+          gPersenBonus = round(res.nisbah, 2)
+        totalGabung += res.total
       res.Next()
-
+    if gabungan > 0:
+        ins = ds.AddRecord()
+        ins.JumlahRekening = gabungan
+        ins.SetFieldByName('LSIFAT.reference_code', gc5)
+        ins.SetFieldByName('LSIFAT.reference_desc', gd5)
+        ins.SetFieldByName('LSIFAT.refdata_id', gi5)
+        ins.SetFieldByName('LJENIS.reference_code', gc1)
+        ins.SetFieldByName('LJENIS.reference_desc', gd1)
+        ins.SetFieldByName('LJENIS.refdata_id', gi1)
+        ins.SetFieldByName('LJENISVALUTA.reference_code', gc2)
+        ins.SetFieldByName('LJENISVALUTA.reference_desc', gd2)
+        ins.SetFieldByName('LJENISVALUTA.refdata_id', gi2)
+        ins.SetFieldByName('LHUBBANK.reference_code', gc3)
+        ins.SetFieldByName('LHUBBANK.reference_desc', gd3)
+        ins.SetFieldByName('LHUBBANK.refdata_id', gi3)
+        ins.SetFieldByName('LLOKASI.reference_code', gc4)
+        ins.SetFieldByName('LLOKASI.reference_desc', gd4)
+        ins.SetFieldByName('LLOKASI.refdata_id', gi4)
+        ins.SetFieldByName('LGOLPEMILIK.reference_code', gc6)
+        ins.SetFieldByName('LGOLPEMILIK.reference_desc', gd6)
+        ins.SetFieldByName('LGOLPEMILIK.refdata_id', gi6)
+        ins.PersenBonus = gPersenBonus
+        t = int(totalGabung/100000)
+        if int(str(t)[-1])>5:
+          t = (t/10)+1
+        else:
+          t = t/10 
+        ins.Jumlah = t
     

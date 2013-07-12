@@ -47,6 +47,7 @@ object:rtf::Form<
       Height=425
       Container1=$CONTAINERS['grData']
       Container2=$CONTAINERS['pData']
+      DynamicSplit=true
       SplitDirection=sdrSplitLeftRight
     >, object:rtf::Grid<
       Name='grData'

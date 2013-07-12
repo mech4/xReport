@@ -1,29 +1,23 @@
 REFMAP = {
-  'LJENIS'           : 'R_JENIS_MESIN'
-  ,'LJENISVALUTA'    : 'R_STATUS_PEMANFAATANMESIN'
+  'LJenisData'           : 'R_JENIS_INFO'
 }
   
 class LKPBU_FORM_302:
   def __init__(self, formObj, parentForm):
-    self.reflist  = ['LJENIS', 'LJENISVALUTA']
+    self.reflist  = ['LJenisData']
     self.attrlist = [
-      'Keterangan'
-      , 'jumlah'
-      , 'JmlhMerchant'
-      , 'VolumeTR'
-      , 'NilaiTR'
+      'DataATM'
+      , 'DataATMDebit'
+      , 'DataEMoney'
     ]
     self.paction     = None
     self.xlstemplate = 'lkpbu/form302.xls'
     self.xlstopline  = 7
     self.xlsmap      = {
-        1: 'LJENIS_reference_code'  
-      , 2: 'Keterangan'
-      , 3: 'LJENISVALUTA_reference_code'
-      , 4: 'jumlah'
-      , 5: 'JmlhMerchant'
-      , 6: 'VolumeTR'
-      , 7: 'NilaiTR'
+        1: 'LJenisData_reference_code'  
+      , 2: 'DataATM'
+      , 3: 'DataATMDebit'
+      , 4: 'DataEMoney'
     }
     self.useheader = 1 #1: true, 0:false
     self.txttemplate = 'lkpbu/form302.txt'
@@ -33,12 +27,9 @@ class LKPBU_FORM_302:
     #       jenis 1 untuk zerofill int
     #       jenis 2 untuk zerofill x,5
     self.txtmap      = ( [0,0]
-      , [2,0]
-      , [35,0]  
       , [3,0]
-      , [12,1]
-      , [12,1]
-      , [12,1]
+      , [15,1]
+      , [15,1]
       , [15,1]
     )
   #--
@@ -50,6 +41,7 @@ class LKPBU_FORM_302:
     uapp = self.FormObject.ClientApplication.UserAppObject
     if self.uipData.GetFieldValue(reference_desc) == '-':
       self.uipData.ClearLink(sName)
+      return 1
     else:  
       res = uapp.stdLookup(sender, "reference@lookupRefByDesc", sName, 
         "reference_desc;reference_code;refdata_id", None, 

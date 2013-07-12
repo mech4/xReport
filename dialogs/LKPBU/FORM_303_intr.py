@@ -1,33 +1,23 @@
 REFMAP = {
-  'LJENIS'           : 'R_BENTUK_INSTRUMEN'
-  ,'LJENISVALUTA'    : 'R_JENIS_MEDIA' 
+  'LJenisKartu'           : 'R_JENIS_KARTU'
+  ,'LJenisTransaksi'    : 'R_TRX_KARTU' 
 }
   
 class LKPBU_FORM_303:
   def __init__(self, formObj, parentForm):
-    self.reflist  = ['LJENIS', 'LJENISVALUTA']
+    self.reflist  = ['LJenisKartu', 'LJenisTransaksi']
     self.attrlist = [
-      'jumlah'
-      , 'MaksLimit'
-      , 'DanaFloat'
-      , 'VolumeTR'
-      , 'NilaiTR'
-      , 'JmlhMerchant'
-      , 'JmlhTerminal'
+      'VolTransaksi'
+      , 'NilaiTransaksi'
     ]
     self.paction     = None
     self.xlstemplate = 'lkpbu/form303.xls'
     self.xlstopline  = 7
     self.xlsmap      = {
-        1: 'LJENIS_reference_code'
-      , 2: 'LJENISVALUTA_reference_code'
-      , 3: 'jumlah'
-      , 4: 'MaksLimit'
-      , 5: 'DanaFloat'
-      , 6: 'VolumeTR'
-      , 7: 'NilaiTR'
-      , 8: 'JmlhMerchant'
-      , 9: 'JmlhTerminal'
+        1: 'LJenisKartu_reference_code'
+      , 2: 'LJenisTransaksi_reference_code'
+      , 3: 'VolTransaksi'
+      , 4: 'NilaiTransaksi'
     }
     self.useheader = 1 #1: true, 0:false
     self.txttemplate = 'lkpbu/form303.txt'
@@ -41,11 +31,6 @@ class LKPBU_FORM_303:
       , [2,0]  
       , [12,1]
       , [15,1]
-      , [15,1]
-      , [15,1]
-      , [15,1]
-      , [12,1]
-      , [12,1]
     )
   #--
 
@@ -56,6 +41,7 @@ class LKPBU_FORM_303:
     uapp = self.FormObject.ClientApplication.UserAppObject
     if self.uipData.GetFieldValue(reference_desc) == '-':
       self.uipData.ClearLink(sName)
+      return 1
     else:  
       res = uapp.stdLookup(sender, "reference@lookupRefByDesc", sName, 
         "reference_desc;reference_code;refdata_id", None, 

@@ -1759,14 +1759,14 @@ object:ODL<
       PTableName='LKPBU_FORM301'
       Members={
         object:FieldMember<
-          MemberName='LJENIS_refdata_id'
-          PhysicalName='LJENIS_REFDATA_ID'
+          MemberName='LPPL_refdata_id'
+          PhysicalName='LPPL_REFDATA_ID'
           DataType=$TYPEDECLS['INTEGER']
         >, object:LinkMember<
-          MemberName='LJENIS'
+          MemberName='LPPL'
           AttrLinks={
             object:AttributeLink<
-              ThisField=$TYPEDECLS['LKPBU_FORM301'].MEMBERS['LJENIS_refdata_id']
+              ThisField=$TYPEDECLS['LKPBU_FORM301'].MEMBERS['LPPL_refdata_id']
               OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
             >
           }
@@ -1775,104 +1775,235 @@ object:ODL<
           MemberName='Keterangan'
           PhysicalName='KETERANGAN'
           DataType=$TYPEDECLS['VARCHAR']
-          DataLength=35
+          DataLength=30
         >, object:FieldMember<
-          MemberName='ChargeCard'
-          PhysicalName='CHARGECARD'
-          DataType=$TYPEDECLS['VARCHAR']
-          DataLength=12
-        >, object:FieldMember<
-          MemberName='CreditCrad'
-          PhysicalName='CREDITCRAD'
-          DataType=$TYPEDECLS['VARCHAR']
-          DataLength=12
-        >, object:FieldMember<
-          MemberName='KUtama'
-          PhysicalName='KUTAMA'
+          MemberName='JumlahKartu'
+          PhysicalName='JUMLAHKARTU'
           DataType=$TYPEDECLS['INTEGER']
         >, object:FieldMember<
-          MemberName='KTambahan'
-          PhysicalName='KTAMBAHAN'
+          MemberName='KartuBaru'
+          PhysicalName='KARTUBARU'
           DataType=$TYPEDECLS['INTEGER']
         >, object:FieldMember<
-          MemberName='KUtama2'
-          PhysicalName='KUTAMA2'
+          MemberName='KartuTutup'
+          PhysicalName='KARTUTUTUP'
           DataType=$TYPEDECLS['INTEGER']
         >, object:FieldMember<
-          MemberName='KTambahan2'
-          PhysicalName='KTAMBAHAN2'
+          MemberName='JumlahAccount'
+          PhysicalName='JUMLAHACCOUNT'
           DataType=$TYPEDECLS['INTEGER']
         >, object:FieldMember<
-          MemberName='VTTunai'
-          PhysicalName='VTTUNAI'
+          MemberName='KartuUtama'
+          PhysicalName='KARTUUTAMA'
           DataType=$TYPEDECLS['INTEGER']
         >, object:FieldMember<
-          MemberName='VTBelanja'
-          PhysicalName='VTBELANJA'
+          MemberName='KartuTambahan'
+          PhysicalName='KARTUTAMBAHAN'
           DataType=$TYPEDECLS['INTEGER']
         >, object:FieldMember<
-          MemberName='VTIntrabank'
-          PhysicalName='VTINTRABANK'
+          MemberName='KL05'
+          PhysicalName='KL05'
           DataType=$TYPEDECLS['INTEGER']
         >, object:FieldMember<
-          MemberName='VTAntarbank'
-          PhysicalName='VTANTARBANK'
+          MemberName='KL510'
+          PhysicalName='KL510'
           DataType=$TYPEDECLS['INTEGER']
         >, object:FieldMember<
-          MemberName='SBTunai'
-          PhysicalName='SBTUNAI'
+          MemberName='KL1025'
+          PhysicalName='KL1025'
           DataType=$TYPEDECLS['INTEGER']
         >, object:FieldMember<
-          MemberName='SBBelanja'
-          PhysicalName='SBBELANJA'
+          MemberName='KL2550'
+          PhysicalName='KL2550'
           DataType=$TYPEDECLS['INTEGER']
         >, object:FieldMember<
-          MemberName='NTTunai'
-          PhysicalName='NTTUNAI'
+          MemberName='KL50100'
+          PhysicalName='KL50100'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='KL100'
+          PhysicalName='KL100'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='IRRMin'
+          PhysicalName='IRRMIN'
           DataType=$TYPEDECLS['DOUBLE']
         >, object:FieldMember<
-          MemberName='NTBelanja'
-          PhysicalName='NTBELANJA'
+          MemberName='IRRMax'
+          PhysicalName='IRRMAX'
           DataType=$TYPEDECLS['DOUBLE']
         >, object:FieldMember<
-          MemberName='NTTransferIntrabank'
-          PhysicalName='NTTRANSFERINTRABANK'
+          MemberName='IRCAMin'
+          PhysicalName='IRCAMIN'
           DataType=$TYPEDECLS['DOUBLE']
         >, object:FieldMember<
-          MemberName='NTTransferAntarbank'
-          PhysicalName='NTTRANSFERANTARBANK'
+          MemberName='IRCAMax'
+          PhysicalName='IRCAMAX'
           DataType=$TYPEDECLS['DOUBLE']
         >, object:FieldMember<
-          MemberName='LJNSDENDA_refdata_id'
-          PhysicalName='LJNSDENDA_REFDATA_ID'
-          DataType=$TYPEDECLS['INTEGER']
-        >, object:LinkMember<
-          MemberName='LJNSDENDA'
-          AttrLinks={
-            object:AttributeLink<
-              ThisField=$TYPEDECLS['LKPBU_FORM301'].MEMBERS['LJNSDENDA_refdata_id']
-              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
-            >
-          }
-          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
-        >, object:FieldMember<
-          MemberName='Keterangan2'
-          PhysicalName='KETERANGAN2'
-          DataType=$TYPEDECLS['VARCHAR']
-          DataLength=50
-        >, object:FieldMember<
-          MemberName='Volume'
-          PhysicalName='VOLUME'
-          DataType=$TYPEDECLS['VARCHAR']
-          DataLength=20
-        >, object:FieldMember<
-          MemberName='OutstandingCredit'
-          PhysicalName='OUTSTANDINGCREDIT'
+          MemberName='LateFeeMin'
+          PhysicalName='LATEFEEMIN'
           DataType=$TYPEDECLS['INTEGER']
         >, object:FieldMember<
-          MemberName='SelainKartuKredit'
-          PhysicalName='SELAINKARTUKREDIT'
+          MemberName='LateFeeMax'
+          PhysicalName='LATEFEEMAX'
           DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='OverLimitMin'
+          PhysicalName='OVERLIMITMIN'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='OverLimitMax'
+          PhysicalName='OverLimitMAX'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='AnnualFeeMin'
+          PhysicalName='ANNUALFEEMIN'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='AnnualFeeMax'
+          PhysicalName='ANNUALFEEMAX'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='BCAMin'
+          PhysicalName='BCAMIN'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='BCAMax'
+          PhysicalName='BCAMAX'
+          DataType=$TYPEDECLS['DOUBLE']
+        >, object:FieldMember<
+          MemberName='FPDefJumlah'
+          PhysicalName='FPDEFJUMLAH'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='FPDefNominal'
+          PhysicalName='FPDEFNOMINAL'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='WriteOffJumlah'
+          PhysicalName='WRITEOFFJUMLAH'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='WriteOffNominal'
+          PhysicalName='WRITEOFFNOMINAL'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='RecoveryJumlah'
+          PhysicalName='RECOVERYJUMLAH'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='RecoveryNominal'
+          PhysicalName='RECOVERYNOMINAL'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='HapusTagihJumlah'
+          PhysicalName='HAPUSTAGIHJUMLAH'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='HapusTagihNominal'
+          PhysicalName='HAPUSTAGIHNOMINAL'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='BRNOCurrent'
+          PhysicalName='BRNOCURRENT'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='BRNOXD'
+          PhysicalName='BRNOXD'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='BRNO30D'
+          PhysicalName='BRNO30D'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='BRNO60D'
+          PhysicalName='BRNO60D'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='BRNO90D'
+          PhysicalName='BRNO90D'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='BRNO120D'
+          PhysicalName='BRNO120D'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='BRNO150D'
+          PhysicalName='BRNO150D'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='BRNO180D'
+          PhysicalName='BRNO180D'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='BRAOCurrent'
+          PhysicalName='BRAOCURRENT'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='BRAOXD'
+          PhysicalName='BRAOXD'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='BRAO30D'
+          PhysicalName='BRAO30D'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='BRAO60D'
+          PhysicalName='BRAO60D'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='BRAO90D'
+          PhysicalName='BRAO90D'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='BRAO120D'
+          PhysicalName='BRAO120D'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='BRAO150D'
+          PhysicalName='BRAO150D'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='BRAO180D'
+          PhysicalName='BRAO180D'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='VolTunaiIntl'
+          PhysicalName='VOLTUNAIINTL'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='VolTunaiLokal'
+          PhysicalName='VOLTUNAILOKAL'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='VolBelanjaIntl'
+          PhysicalName='VOLBELANJAINTL'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='VolBelanjaLokal'
+          PhysicalName='VOLBELANJALOKAL'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='NilaiTunaiIntl'
+          PhysicalName='NILAITUNAIINTL'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='NilaiTunaiLokal'
+          PhysicalName='NILAITUNAILOKAL'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='NilaiBelanjaIntl'
+          PhysicalName='NILAIBELANJAINTL'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='NilaiBelanjaLokal'
+          PhysicalName='NILAIBELANJALOKAL'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='RevolvingRate'
+          PhysicalName='REVOLVINGRATE'
+          DataType=$TYPEDECLS['DOUBLE']
         >, object:FieldMember<
           MemberName='item_id'
           PhysicalName='ITEM_ID'
@@ -1891,51 +2022,29 @@ object:ODL<
       PTableName='LKPBU_FORM302'
       Members={
         object:FieldMember<
-          MemberName='LJENIS_refdata_id'
-          PhysicalName='LJENIS_REFDATA_ID'
+          MemberName='LJENISDATA_refdata_id'
+          PhysicalName='LJENISDATA_REFDATA_ID'
           DataType=$TYPEDECLS['INTEGER']
         >, object:LinkMember<
-          MemberName='LJENIS'
+          MemberName='LJenisData'
           AttrLinks={
             object:AttributeLink<
-              ThisField=$TYPEDECLS['LKPBU_FORM302'].MEMBERS['LJENIS_refdata_id']
+              ThisField=$TYPEDECLS['LKPBU_FORM302'].MEMBERS['LJENISDATA_refdata_id']
               OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
             >
           }
           LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
         >, object:FieldMember<
-          MemberName='Keterangan'
-          PhysicalName='KETERANGAN'
-          DataType=$TYPEDECLS['VARCHAR']
-          DataLength=35
-        >, object:FieldMember<
-          MemberName='LJENISVALUTA_refdata_id'
-          PhysicalName='LJENISVALUTA_REFDATA_ID'
-          DataType=$TYPEDECLS['INTEGER']
-        >, object:LinkMember<
-          MemberName='LJENISVALUTA'
-          AttrLinks={
-            object:AttributeLink<
-              ThisField=$TYPEDECLS['LKPBU_FORM302'].MEMBERS['LJENISVALUTA_refdata_id']
-              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
-            >
-          }
-          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
-        >, object:FieldMember<
-          MemberName='jumlah'
-          PhysicalName='JUMLAH'
+          MemberName='DataATM'
+          PhysicalName='DATAATM'
           DataType=$TYPEDECLS['INTEGER']
         >, object:FieldMember<
-          MemberName='JmlhMerchant'
-          PhysicalName='JMLHMERCHANT'
+          MemberName='DataATMDebit'
+          PhysicalName='DATAATMDEBIT'
           DataType=$TYPEDECLS['INTEGER']
         >, object:FieldMember<
-          MemberName='VolumeTR'
-          PhysicalName='VOLUMETR'
-          DataType=$TYPEDECLS['INTEGER']
-        >, object:FieldMember<
-          MemberName='NilaiTR'
-          PhysicalName='NILAITR'
+          MemberName='DataEMoney'
+          PhysicalName='DATAEMONEY'
           DataType=$TYPEDECLS['INTEGER']
         >, object:FieldMember<
           MemberName='item_id'
@@ -1955,58 +2064,38 @@ object:ODL<
       PTableName='LKPBU_FORM303'
       Members={
         object:FieldMember<
-          MemberName='LJENIS_refdata_id'
-          PhysicalName='LJENIS_REFDATA_ID'
+          MemberName='LJENISKARTU_refdata_id'
+          PhysicalName='LJENISKARTU_REFDATA_ID'
           DataType=$TYPEDECLS['INTEGER']
         >, object:LinkMember<
-          MemberName='LJENIS'
+          MemberName='LJenisKartu'
           AttrLinks={
             object:AttributeLink<
-              ThisField=$TYPEDECLS['LKPBU_FORM303'].MEMBERS['LJENIS_refdata_id']
+              ThisField=$TYPEDECLS['LKPBU_FORM303'].MEMBERS['LJENISKARTU_refdata_id']
               OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
             >
           }
           LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
         >, object:FieldMember<
-          MemberName='LJENISVALUTA_refdata_id'
-          PhysicalName='LJENISVALUTA_REFDATA_ID'
+          MemberName='LJENISTRANSAKSI_refdata_id'
+          PhysicalName='LJENISTRANSAKSI_REFDATA_ID'
           DataType=$TYPEDECLS['INTEGER']
         >, object:LinkMember<
-          MemberName='LJENISVALUTA'
+          MemberName='LJenisTransaksi'
           AttrLinks={
             object:AttributeLink<
-              ThisField=$TYPEDECLS['LKPBU_FORM303'].MEMBERS['LJENISVALUTA_refdata_id']
+              ThisField=$TYPEDECLS['LKPBU_FORM303'].MEMBERS['LJENISTRANSAKSI_refdata_id']
               OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
             >
           }
           LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
         >, object:FieldMember<
-          MemberName='jumlah'
-          PhysicalName='JUMLAH'
+          MemberName='VolTransaksi'
+          PhysicalName='VOLTRANSAKSI'
           DataType=$TYPEDECLS['INTEGER']
         >, object:FieldMember<
-          MemberName='MaksLimit'
-          PhysicalName='MAKSLIMIT'
-          DataType=$TYPEDECLS['INTEGER']
-        >, object:FieldMember<
-          MemberName='DanaFloat'
-          PhysicalName='DANAFLOAT'
-          DataType=$TYPEDECLS['DOUBLE']
-        >, object:FieldMember<
-          MemberName='VolumeTR'
-          PhysicalName='VOLUMETR'
-          DataType=$TYPEDECLS['INTEGER']
-        >, object:FieldMember<
-          MemberName='NilaiTR'
-          PhysicalName='NILAITR'
-          DataType=$TYPEDECLS['INTEGER']
-        >, object:FieldMember<
-          MemberName='JmlhMerchant'
-          PhysicalName='JMLHMERCHANT'
-          DataType=$TYPEDECLS['INTEGER']
-        >, object:FieldMember<
-          MemberName='JmlhTerminal'
-          PhysicalName='JMLHTERMINAL'
+          MemberName='NilaiTransaksi'
+          PhysicalName='NILAITRANSAKSI'
           DataType=$TYPEDECLS['INTEGER']
         >, object:FieldMember<
           MemberName='item_id'
@@ -2026,52 +2115,26 @@ object:ODL<
       PTableName='LKPBU_FORM304'
       Members={
         object:FieldMember<
-          MemberName='LJENIS_refdata_id'
-          PhysicalName='LJENIS_REFDATA_ID'
+          MemberName='LJENISMESIN_refdata_id'
+          PhysicalName='LJENISMESIN_REFDATA_ID'
           DataType=$TYPEDECLS['INTEGER']
         >, object:LinkMember<
-          MemberName='LJENIS'
+          MemberName='LJenisMesin'
           AttrLinks={
             object:AttributeLink<
-              ThisField=$TYPEDECLS['LKPBU_FORM304'].MEMBERS['LJENIS_refdata_id']
+              ThisField=$TYPEDECLS['LKPBU_FORM304'].MEMBERS['LJENISMESIN_refdata_id']
               OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
             >
           }
           LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
         >, object:FieldMember<
-          MemberName='KeteranganJK'
-          PhysicalName='KETERANGANJK'
-          DataType=$TYPEDECLS['VARCHAR']
+          MemberName='JmlMesin'
+          PhysicalName='JMLMESIN'
+          DataType=$TYPEDECLS['INTEGER']
           DataLength=35
         >, object:FieldMember<
-          MemberName='LFRAUD_refdata_id'
-          PhysicalName='LFRAUD_REFDATA_ID'
-          DataType=$TYPEDECLS['INTEGER']
-        >, object:LinkMember<
-          MemberName='LFRAUD'
-          AttrLinks={
-            object:AttributeLink<
-              ThisField=$TYPEDECLS['LKPBU_FORM304'].MEMBERS['LFRAUD_refdata_id']
-              OriginPKey=$TYPEDECLS['enterprise.ReferenceData'].MEMBERS['refdata_id']
-            >
-          }
-          LinkedClass=$TYPEDECLS['enterprise.ReferenceData']
-        >, object:FieldMember<
-          MemberName='Keterangan'
-          PhysicalName='KETERANGAN'
-          DataType=$TYPEDECLS['VARCHAR']
-          DataLength=35
-        >, object:FieldMember<
-          MemberName='JmlhKasus1'
-          PhysicalName='JMLHKASUS1'
-          DataType=$TYPEDECLS['INTEGER']
-        >, object:FieldMember<
-          MemberName='JmlhKasus2'
-          PhysicalName='JMLHKASUS2'
-          DataType=$TYPEDECLS['INTEGER']
-        >, object:FieldMember<
-          MemberName='NominalKerugian'
-          PhysicalName='NOMINALKERUGIAN'
+          MemberName='JmlMerchant'
+          PhysicalName='JMLMERCHANT'
           DataType=$TYPEDECLS['INTEGER']
         >, object:FieldMember<
           MemberName='item_id'
@@ -9679,6 +9742,417 @@ object:ODL<
       }
       ClassID='{19F4A29D-50E7-4686-BFB3-4A6FAFE099C7}'
       AutoPrimaryKey=$TYPEDECLS['LKPBU_FORM707'].MEMBERS['item_id']
+    >, object:ClassTypeDecl<
+      TypeName='DTSFolder'
+      PTableName='DTSFOLDER'
+      Members={
+        object:FieldMember<
+          MemberName='DTSFolderId'
+          PhysicalName='DTSFOLDERID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:FieldMember<
+          MemberName='DTSFolderName'
+          PhysicalName='DTSFOLDERNAME'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=100
+        >, object:LinkMember<
+          MemberName='lParent'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['DTSFolder'].MEMBERS['ParentId']
+              OriginPKey=$TYPEDECLS['DTSFolder'].MEMBERS['DTSFolderId']
+            >
+          }
+          LinkedClass=$TYPEDECLS['DTSFolder']
+        >, object:FieldMember<
+          MemberName='ParentId'
+          PhysicalName='PARENTID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='lDTS'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['DTSFolder'].MEMBERS['DTSId']
+              OriginPKey=$TYPEDECLS['DTS'].MEMBERS['DTSId']
+            >
+          }
+          LinkedClass=$TYPEDECLS['DTS']
+        >, object:FieldMember<
+          MemberName='DTSId'
+          PhysicalName='DTSID'
+          DataType=$TYPEDECLS['INTEGER']
+        >
+      }
+      ClassID='{1ED75C69-5444-4B14-8424-18152A1B30EA}'
+      AutoPrimaryKey=$TYPEDECLS['DTSFolder'].MEMBERS['DTSFolderId']
+    >, object:ClassTypeDecl<
+      TypeName='DTSFile'
+      PTableName='DTSFILE'
+      Members={
+        object:FieldMember<
+          MemberName='DTSFileId'
+          PhysicalName='DTSFILEID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:FieldMember<
+          MemberName='DTSFolderId'
+          PhysicalName='DTSFOLDERID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='DTSFileName'
+          PhysicalName='DTSFILENAME'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=100
+        >, object:LinkMember<
+          MemberName='lFolder'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['DTSFile'].MEMBERS['DTSFolderId']
+              OriginPKey=$TYPEDECLS['DTSFolder'].MEMBERS['DTSFolderId']
+            >
+          }
+          LinkedClass=$TYPEDECLS['DTSFolder']
+        >, object:FieldMember<
+          MemberName='DTSFileType'
+          PhysicalName='DTSFILETYPE'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=5
+          IsClassifierField=true
+        >
+      }
+      ClassID='{C66094BA-0B1E-413D-83B3-4DB26BF02DFB}'
+      AutoPrimaryKey=$TYPEDECLS['DTSFile'].MEMBERS['DTSFileId']
+    >, object:ClassTypeDecl<
+      TypeName='DTS'
+      PTableName='DTS'
+      Members={
+        object:FieldMember<
+          MemberName='DTSId'
+          PhysicalName='DTSID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:FieldMember<
+          MemberName='DTSName'
+          PhysicalName='DTSNAME'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=100
+        >, object:FieldMember<
+          MemberName='PeriodType'
+          PhysicalName='PERIODTYPE'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=1
+        >, object:FieldMember<
+          MemberName='DTSLocation'
+          PhysicalName='DTSLOCATION'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=300
+        >, object:FieldMember<
+          MemberName='TemplateLocation'
+          PhysicalName='TEMPLATELOCATION'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=300
+        >
+      }
+      ClassID='{7D8092E8-540B-4857-80BF-339515FB19EF}'
+      AutoPrimaryKey=$TYPEDECLS['DTS'].MEMBERS['DTSId']
+    >, object:ClassTypeDecl<
+      TypeName='DTSAlias'
+      PTableName='DTSALIAS'
+      Members={
+        object:FieldMember<
+          MemberName='DTSAliasId'
+          PhysicalName='DTSALIASID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:LinkMember<
+          MemberName='lDTS'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['DTSAlias'].MEMBERS['DTSId']
+              OriginPKey=$TYPEDECLS['DTS'].MEMBERS['DTSId']
+            >
+          }
+          LinkedClass=$TYPEDECLS['DTS']
+        >, object:FieldMember<
+          MemberName='DTSId'
+          PhysicalName='DTSID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='DTSAliasLink'
+          PhysicalName='DTSALIASLINK'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=300
+        >, object:FieldMember<
+          MemberName='DTSAliasLoc'
+          PhysicalName='DTSALIASLOC'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='lFile'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['DTSAlias'].MEMBERS['DTSAliasLoc']
+              OriginPKey=$TYPEDECLS['DTSFile'].MEMBERS['DTSFileId']
+            >
+          }
+          LinkedClass=$TYPEDECLS['DTSFile']
+        >
+      }
+      ClassID='{64B820DA-59D4-420C-8A87-951A369C3AF9}'
+      AutoPrimaryKey=$TYPEDECLS['DTSAlias'].MEMBERS['DTSAliasId']
+    >, object:ClassTypeDecl<
+      TypeName='DTSEnum'
+      PTableName='DTSENUM'
+      Members={
+        object:FieldMember<
+          MemberName='DTSEnumName'
+          PhysicalName='DTSENUMNAME'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=50
+          IsPrimaryKey=true
+        >, object:FieldMember<
+          MemberName='DTSEnumValue'
+          PhysicalName='DTSENUMVALUE'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=50
+          IsPrimaryKey=true
+        >, object:FieldMember<
+          MemberName='DTSEnumDesc'
+          PhysicalName='DTSENUMDESC'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=300
+        >, object:FieldMember<
+          MemberName='DTSId'
+          PhysicalName='DTSID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='lDTS'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['DTSEnum'].MEMBERS['DTSId']
+              OriginPKey=$TYPEDECLS['DTS'].MEMBERS['DTSId']
+            >
+          }
+          LinkedClass=$TYPEDECLS['DTS']
+        >
+      }
+      ClassID='{CF5346BE-EF95-4730-8B10-CCAFF2D17E01}'
+    >, object:ClassTypeDecl<
+      TypeName='DTSForm'
+      PTableName='DTSFORM'
+      Members={
+        object:FieldMember<
+          MemberName='DTSFormCode'
+          PhysicalName='DTSFORMCODE'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=10
+        >, object:FieldMember<
+          MemberName='DTSFormDesc'
+          PhysicalName='DTSFORMDESC'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=200
+        >, object:FieldMember<
+          MemberName='DTSFormId'
+          PhysicalName='DTSFORMID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:FieldMember<
+          MemberName='TempReady'
+          PhysicalName='TEMPREADY'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=1
+        >, object:FieldMember<
+          MemberName='IsEmpty'
+          PhysicalName='ISEMPTY'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=1
+        >, object:FieldMember<
+          MemberName='FormType'
+          PhysicalName='FORMTYPE'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=1
+        >
+      }
+      Ancestors={
+        object:Inheritance<
+          ClassifierStringValue='form'
+          AncestorClass=$TYPEDECLS['DTSFile']
+          InhLinks={
+            object:InheritanceLink<
+              ThisPKey=$TYPEDECLS['DTSForm'].MEMBERS['DTSFormId']
+              OriginPKey=$TYPEDECLS['DTSFile'].MEMBERS['DTSFileId']
+            >
+          }
+        >
+      }
+      ClassID='{F8AB9257-0BAA-41AB-A43F-77AEBAC139F8}'
+      AutoPrimaryKey=$TYPEDECLS['DTSForm'].MEMBERS['DTSFormId']
+    >, object:ClassTypeDecl<
+      TypeName='DTSMap'
+      PTableName='DTSMAP'
+      Members={
+        object:FieldMember<
+          MemberName='DTSMapId'
+          PhysicalName='DTSMAPID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:LinkMember<
+          MemberName='lDTSForm'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['DTSMap'].MEMBERS['DTSFormId']
+              OriginPKey=$TYPEDECLS['DTSForm'].MEMBERS['DTSFormId']
+            >
+          }
+          LinkedClass=$TYPEDECLS['DTSForm']
+        >, object:FieldMember<
+          MemberName='DTSFormId'
+          PhysicalName='DTSFORMID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='DTSMapType'
+          PhysicalName='DTSMAPTYPE'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=5
+        >
+      }
+      ClassID='{465375F6-147B-461A-9C81-953D12090E62}'
+      AutoPrimaryKey=$TYPEDECLS['DTSMap'].MEMBERS['DTSMapId']
+    >, object:ClassTypeDecl<
+      TypeName='DTSMapQuery'
+      PTableName='DTSMAPQUERY'
+      Members={
+        object:FieldMember<
+          MemberName='DTSMapQueryId'
+          PhysicalName='DTSMAPQUERYID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:FieldMember<
+          MemberName='DTSMapId'
+          PhysicalName='DTSMAPID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='lDTSMap'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['DTSMapQuery'].MEMBERS['DTSMapId']
+              OriginPKey=$TYPEDECLS['DTSMap'].MEMBERS['DTSMapId']
+            >
+          }
+          LinkedClass=$TYPEDECLS['DTSMap']
+        >, object:FieldMember<
+          MemberName='QueryString'
+          PhysicalName='QUERYSTRING'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=500
+        >, object:FieldMember<
+          MemberName='AssignCode'
+          PhysicalName='ASSIGNCODE'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=50
+        >
+      }
+      ClassID='{951206C1-51F8-4F1A-9068-A8BB1E46E920}'
+      AutoPrimaryKey=$TYPEDECLS['DTSMapQuery'].MEMBERS['DTSMapQueryId']
+    >, object:ClassTypeDecl<
+      TypeName='DTSReport'
+      PTableName='DTSREPORT'
+      Members={
+        object:FieldMember<
+          MemberName='DTSReportId'
+          PhysicalName='DTSREPORTID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:LinkMember<
+          MemberName='lDTS'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['DTSReport'].MEMBERS['DTSId']
+              OriginPKey=$TYPEDECLS['DTS'].MEMBERS['DTSId']
+            >
+          }
+          LinkedClass=$TYPEDECLS['DTS']
+        >, object:FieldMember<
+          MemberName='DTSId'
+          PhysicalName='DTSID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='period_id'
+          PhysicalName='PERIOD_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='lperiod'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['DTSReport'].MEMBERS['period_id']
+              OriginPKey=$TYPEDECLS['Period'].MEMBERS['period_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['Period']
+        >, object:FieldMember<
+          MemberName='ReportLocation'
+          PhysicalName='REPORTLOCATION'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=300
+        >
+      }
+      ClassID='{663419DD-922E-4EFD-884B-8A589821EFF1}'
+      AutoPrimaryKey=$TYPEDECLS['DTSReport'].MEMBERS['DTSReportId']
+    >, object:ClassTypeDecl<
+      TypeName='DTSMeta'
+      PTableName='DTSMETA'
+      Members={
+        object:FieldMember<
+          MemberName='DTSMetaId'
+          PhysicalName='DTSMETAID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:FieldMember<
+          MemberName='DTSFormId'
+          PhysicalName='DTSFORMID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='lDTSForm'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['DTSMeta'].MEMBERS['DTSFormId']
+              OriginPKey=$TYPEDECLS['DTSForm'].MEMBERS['DTSFormId']
+            >
+          }
+          LinkedClass=$TYPEDECLS['DTSForm']
+        >, object:FieldMember<
+          MemberName='MetaLevel'
+          PhysicalName='METALEVEL'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='MetaName'
+          PhysicalName='METANAME'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='MetaType'
+          PhysicalName='METATYPE'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='MetaQName'
+          PhysicalName='METAQNAME'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=20
+        >, object:FieldMember<
+          MemberName='MetaDesc'
+          PhysicalName='METADESC'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=500
+        >, object:FieldMember<
+          MemberName='MetaEnum'
+          PhysicalName='METAENUM'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=50
+        >
+      }
+      ClassID='{CE5C8ADF-1AF0-4BCC-B8A7-0FD8D89E945F}'
+      AutoPrimaryKey=$TYPEDECLS['DTSMeta'].MEMBERS['DTSMetaId']
     >
   }
   PhysicalDB=object:ODLDatabase<

@@ -1,0 +1,612 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx='FormOnSetDataEx'
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::MultiPages<
+      Name='multipages1'
+      Width=607
+      Height=425
+      Pages={
+        object:rtf::Page<
+          PageName='1'
+          PageTitle='Page 1'
+          Container=$CONTAINERS['pData']
+        >, object:rtf::Page<
+          PageName='2'
+          PageTitle='Page 2'
+          Container=$CONTAINERS['pData2']
+          Index=1
+        >
+      }
+    >, object:rtf::DualSplit<
+      Name='dsMain'
+      Width=921
+      Height=425
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['multipages1']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-301'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcLJENIS'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJENIS.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Kartu'
+          Width=88
+        >, object:rtf::GridColumn<
+          Name='gcKeterangan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Keterangan'
+          DisplayFormat=''
+          TitleCaption='Keterangan'
+          Width=80
+        >, object:rtf::GridColumn<
+          Name='gcChargeCard'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='ChargeCard'
+          DisplayFormat=''
+          TitleCaption='Jumlah Kartu Kredit - Charge Card'
+          Width=264
+        >, object:rtf::GridColumn<
+          Name='gcCreditCrad'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='CreditCrad'
+          DisplayFormat=''
+          TitleCaption='Jumlah Kartu Kredit - Credit Crad'
+          Width=264
+        >, object:rtf::GridColumn<
+          Name='gcKUtama'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='KUtama'
+          DisplayFormat=''
+          TitleCaption='Jumlah Kartu Kredit - Kartu Utama'
+          Width=264
+        >, object:rtf::GridColumn<
+          Name='gcKTambahan'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='KTambahan'
+          DisplayFormat=''
+          TitleCaption='Jumlah Kartu Kredit - Kartu Tambahan'
+          Width=288
+        >, object:rtf::GridColumn<
+          Name='gcKUtama2'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='KUtama2'
+          DisplayFormat=''
+          TitleCaption='Iuran Tahunan - Kartu Utama'
+          Width=216
+        >, object:rtf::GridColumn<
+          Name='gcKTambahan2'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='KTambahan2'
+          DisplayFormat=''
+          TitleCaption='Iuran Tahunan - Kartu Tambahan'
+          Width=240
+        >, object:rtf::GridColumn<
+          Name='gcVTTunai'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='VTTunai'
+          DisplayFormat=''
+          TitleCaption='Jumlah Transaksi Tunai'
+          Width=176
+        >, object:rtf::GridColumn<
+          Name='gcVTBelanja'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='VTBelanja'
+          DisplayFormat=''
+          TitleCaption='Jumlah Transaksi Belanja'
+          Width=192
+        >, object:rtf::GridColumn<
+          Name='gcVTIntrabank'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='VTIntrabank'
+          DisplayFormat=''
+          TitleCaption='Jumlah Transaksi Transfer Intrabank'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcVTAntarbank'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='VTAntarbank'
+          DisplayFormat=''
+          TitleCaption='Jumlah Transaksi Transfer Antarbank'
+          Width=280
+        >, object:rtf::GridColumn<
+          Name='gcSBTunai'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='SBTunai'
+          DisplayFormat=''
+          TitleCaption='Suku Bunga - Tunai'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcSBBelanja'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='SBBelanja'
+          DisplayFormat=''
+          TitleCaption='Suku Bunga - Belanja'
+          Width=160
+        >, object:rtf::GridColumn<
+          Name='gcNTTunai'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NTTunai'
+          DisplayFormat=''
+          TitleCaption='Nilai Transaksi - Tunai'
+          Width=184
+        >, object:rtf::GridColumn<
+          Name='gcNTBelanja'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NTBelanja'
+          DisplayFormat=''
+          TitleCaption='Nilai Transaksi - Belanja'
+          Width=200
+        >, object:rtf::GridColumn<
+          Name='gcNTTransferIntrabank'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NTTransferIntrabank'
+          DisplayFormat=''
+          TitleCaption='Nilai Transaksi - Transfer Intrabank'
+          Width=288
+        >, object:rtf::GridColumn<
+          Name='gcNTTransferAntarbank'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NTTransferAntarbank'
+          DisplayFormat=''
+          TitleCaption='Nilai Transaksi - Antarbank'
+          Width=216
+        >, object:rtf::GridColumn<
+          Name='gcLJNSDENDA'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJNSDENDA.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Biaya/Denda'
+          Width=136
+        >, object:rtf::GridColumn<
+          Name='gcKeterangan2'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Keterangan2'
+          DisplayFormat=''
+          TitleCaption='Keterangan'
+          Width=80
+        >, object:rtf::GridColumn<
+          Name='gcVolume'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='Volume'
+          DisplayFormat=''
+          TitleCaption='Volume'
+          Width=48
+        >, object:rtf::GridColumn<
+          Name='gcOutstandingCredit'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='OutstandingCredit'
+          DisplayFormat=''
+          TitleCaption='Outstanding Credit'
+          Width=144
+        >, object:rtf::GridColumn<
+          Name='gcSelainKartuKredit'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='SelainKartuKredit'
+          DisplayFormat=''
+          TitleCaption='Jumlah Kartu Selain Kartu Kredit'
+          Width=256
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LJENIS'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Kartu'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJENIS'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Keterangan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Keterangan'
+          DataTypeName='varchar'
+          DataLength=35
+        >, object:rtf::FieldUIElmtSetting<
+          Name='ChargeCard'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Kartu Kredit - Charge Card'
+          DataTypeName='varchar'
+          DataLength=12
+        >, object:rtf::FieldUIElmtSetting<
+          Name='CreditCrad'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Kartu Kredit - Credit Crad'
+          DataTypeName='varchar'
+          DataLength=12
+        >, object:rtf::FieldUIElmtSetting<
+          Name='KUtama'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Kartu Kredit - Kartu Utama'
+          DataTypeName='integer'
+          DataLength=12
+        >, object:rtf::FieldUIElmtSetting<
+          Name='KTambahan'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Kartu Kredit - Kartu Tambahan'
+          DataTypeName='integer'
+          DataLength=12
+        >, object:rtf::FieldUIElmtSetting<
+          Name='KUtama2'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Iuran Tahunan - Kartu Utama'
+          DataTypeName='integer'
+          DataLength=12
+        >, object:rtf::FieldUIElmtSetting<
+          Name='KTambahan2'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Iuran Tahunan - Kartu Tambahan'
+          DataTypeName='integer'
+          DataLength=12
+        >, object:rtf::FieldUIElmtSetting<
+          Name='VTTunai'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Transaksi Tunai'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='VTBelanja'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Transaksi Belanja'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='VTIntrabank'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Transaksi Transfer Intrabank'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='VTAntarbank'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Transaksi Transfer Antarbank'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='SBTunai'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Suku Bunga - Tunai'
+          DataTypeName='integer'
+          DataLength=4
+        >, object:rtf::FieldUIElmtSetting<
+          Name='SBBelanja'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Suku Bunga - Belanja'
+          DataTypeName='integer'
+          DataLength=4
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LJENIS'
+          Top=8
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Kartu'
+          FieldName='LJENIS.reference_desc'
+          LookupField='LJENIS.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='Keterangan'
+          Top=36
+          Left=8
+          ControlCaption='Keterangan'
+        >, *object:rtf::DBEdit<
+          Name='ChargeCard'
+          Top=64
+          Left=8
+          Width=117
+          Height=21
+          ControlCaption='Jumlah Kartu Kredit - Charge Card'
+        >, *object:rtf::DBEdit<
+          Name='CreditCrad'
+          Top=92
+          Left=8
+          Width=117
+          Height=21
+          ControlCaption='Jumlah Kartu Kredit - Credit Crad'
+          OnEnter='onenter'
+        >, *object:rtf::DBEdit<
+          Name='KUtama'
+          Top=120
+          Left=8
+          ControlCaption='Jumlah Kartu Kredit - Kartu Utama'
+        >, *object:rtf::DBEdit<
+          Name='KTambahan'
+          Top=148
+          Left=8
+          ControlCaption='Jumlah Kartu Kredit - Kartu Tambahan'
+        >, *object:rtf::DBEdit<
+          Name='KUtama2'
+          Top=176
+          Left=8
+          ControlCaption='Iuran Tahunan - Kartu Utama'
+        >, *object:rtf::DBEdit<
+          Name='KTambahan2'
+          Top=204
+          Left=8
+          ControlCaption='Iuran Tahunan - Kartu Tambahan'
+        >, *object:rtf::DBEdit<
+          Name='VTTunai'
+          Top=232
+          Left=8
+          ControlCaption='Jumlah Transaksi Tunai'
+        >, *object:rtf::DBEdit<
+          Name='VTBelanja'
+          Top=260
+          Left=8
+          ControlCaption='Jumlah Transaksi Belanja'
+        >, *object:rtf::DBEdit<
+          Name='VTIntrabank'
+          Top=288
+          Left=8
+          ControlCaption='Jumlah Transaksi Transfer Intrabank'
+        >, *object:rtf::DBEdit<
+          Name='VTAntarbank'
+          Top=316
+          Left=8
+          ControlCaption='Jumlah Transaksi Transfer Antarbank'
+        >, *object:rtf::DBEdit<
+          Name='SBTunai'
+          Top=344
+          Left=8
+          ControlCaption='Suku Bunga - Tunai'
+        >, *object:rtf::DBEdit<
+          Name='SBBelanja'
+          Top=372
+          Left=8
+          ControlCaption='Suku Bunga - Belanja'
+        >
+      }
+      EqualCaptionWidth=200
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='NTTunai'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nilai Transaksi - Tunai'
+          DataTypeName='double'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NTBelanja'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nilai Transaksi - Belanja'
+          DataTypeName='double'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NTTransferIntrabank'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nilai Transaksi - Transfer Intrabank'
+          DataTypeName='double'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NTTransferAntarbank'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nilai Transaksi - Antarbank'
+          DataTypeName='double'
+          DataLength=15
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJNSDENDA'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Biaya/Denda'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code'
+          Restrictions=''
+          FieldBaseName='LJNSDENDA'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Keterangan2'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Keterangan'
+          DataTypeName='varchar'
+          DataLength=50
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Volume'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Volume'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='OutstandingCredit'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Outstanding Credit'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='SelainKartuKredit'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Kartu Selain Kartu Kredit'
+          DataTypeName='integer'
+          DataLength=12
+        >
+      }
+      Name='pData2'
+      Width=593
+      Height=393
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='NTTunai'
+          Top=8
+          Left=8
+          ControlCaption='Nilai Transaksi - Tunai'
+        >, *object:rtf::DBEdit<
+          Name='NTBelanja'
+          Top=36
+          Left=8
+          ControlCaption='Nilai Transaksi - Belanja'
+        >, *object:rtf::DBEdit<
+          Name='NTTransferIntrabank'
+          Top=64
+          Left=8
+          ControlCaption='Nilai Transaksi - Transfer Intrabank'
+        >, *object:rtf::DBEdit<
+          Name='NTTransferAntarbank'
+          Top=92
+          Left=8
+          ControlCaption='Nilai Transaksi - Antarbank'
+        >, *object:rtf::DBLookupEdit<
+          Name='LJNSDENDA'
+          Top=120
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Biaya/Denda'
+          FieldName='LJNSDENDA.reference_desc'
+          LookupField='LJNSDENDA.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='Keterangan2'
+          Top=148
+          Left=8
+          ControlCaption='Keterangan'
+        >, *object:rtf::DBEdit<
+          Name='Volume'
+          Top=176
+          Left=8
+          Width=197
+          Height=21
+          ControlCaption='Volume'
+        >, *object:rtf::DBEdit<
+          Name='OutstandingCredit'
+          Top=204
+          Left=8
+          ControlCaption='Outstanding Credit'
+        >, *object:rtf::DBEdit<
+          Name='SelainKartuKredit'
+          Top=232
+          Left=8
+          ControlCaption='Jumlah Kartu Selain Kartu Kredit'
+        >
+      }
+      EqualCaptionWidth=200
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LKPBU_FORM_301'
+>

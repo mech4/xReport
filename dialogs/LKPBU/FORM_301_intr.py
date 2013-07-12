@@ -1,61 +1,133 @@
 REFMAP = {
-  'LJENIS'           : 'R_JENIS_KARTU_APMK'
-  ,'LJNSDENDA'       : 'R_SANDI_BIAYA_DENDA' 
+  'LPPL'           : 'R_JENIS_KARTU_APMK2'
 }
   
 class LKPBU_FORM_301:
   def __init__(self, formObj, parentForm):
-    self.reflist  = ['LJENIS', 'LJNSDENDA']
+    self.reflist  = ['LPPL']
     self.attrlist = [
       'Keterangan'
-      , 'ChargeCard'
-      , 'CreditCrad'
-      , 'KUtama'
-      , 'KTambahan'
-      , 'KUtama2'
-      , 'KTambahan2'
-      , 'VTTunai'
-      , 'VTBelanja'
-      , 'VTIntrabank'
-      , 'VTAntarbank'
-      , 'SBTunai'
-      , 'SBBelanja'
-      , 'NTTunai'
-      , 'NTBelanja'
-      , 'NTTransferIntrabank'
-      , 'NTTransferAntarbank'
-      , 'Keterangan2'
-      , 'Volume'
-      , 'OutstandingCredit'
-      , 'SelainKartuKredit'
+      , 'JumlahKartu'
+      , 'KartuBaru'
+      , 'KartuTutup'
+      , 'JumlahAccount'
+      , 'KartuUtama'
+      , 'KartuTambahan'
+      , 'KL05'
+      , 'KL510'
+      , 'KL1025'
+      , 'KL2550'
+      , 'KL50100'
+      , 'KL100'
+      , 'IRRMin'
+      , 'IRRMax'
+      , 'IRCAMin'
+      , 'IRCAMax'
+      , 'LateFeeMin'
+      , 'LateFeeMax'
+      , 'OverLimitMin'
+      , 'OverLimitMax'
+      , 'AnnualFeeMin'
+      , 'AnnualFeeMax'
+      , 'BCAMin'
+      , 'BCAMax'
+      , 'FPDefJumlah'
+      , 'FPDefNominal'
+      , 'WriteOffJumlah'
+      , 'WriteOffNominal'
+      , 'RecoveryJumlah'
+      , 'RecoveryNominal'
+      , 'HapusTagihJumlah'
+      , 'HapusTagihNominal'
+      , 'BRNOCurrent'
+      , 'BRNOXD'
+      , 'BRNO30D'
+      , 'BRNO60D'
+      , 'BRNO90D'
+      , 'BRNO120D'
+      , 'BRNO150D'
+      , 'BRNO180D'
+      , 'BRAOCurrent'
+      , 'BRAOXD'
+      , 'BRAO30D'
+      , 'BRAO60D'
+      , 'BRAO90D'
+      , 'BRAO120D'
+      , 'BRAO150D'
+      , 'BRAO180D'
+      , 'VolTunaiIntl'
+      , 'VolTunaiLokal'
+      , 'VolBelanjaIntl'
+      , 'VolBelanjaLokal'
+      , 'NilaiTunaiIntl'
+      , 'NilaiTunaiLokal'
+      , 'NilaiBelanjaIntl'
+      , 'NilaiBelanjaLokal'
+      , 'RevolvingRate'
     ]
     self.paction     = None
     self.xlstemplate = 'lkpbu/form301.xls'
     self.xlstopline  = 7
     self.xlsmap      = {
-        1: 'LJENIS_reference_code'  
+        1: 'LPPL_reference_code'  
       , 2: 'Keterangan'
-      , 3: 'ChargeCard'
-      , 4: 'CreditCrad'
-      , 5: 'KUtama'
-      , 6: 'KTambahan'
-      , 7: 'KUtama2'
-      , 8: 'KTambahan2'
-      , 9: 'VTTunai'
-      , 10: 'VTBelanja'
-      , 11: 'VTIntrabank'
-      , 12: 'VTAntarbank'
-      , 13: 'SBTunai'
-      , 14: 'SBBelanja'
-      , 15: 'NTTunai'
-      , 16: 'NTBelanja'
-      , 17: 'NTTransferIntrabank'
-      , 18: 'NTTransferAntarbank'
-      , 19: 'LJNSDENDA_reference_code'
-      , 20: 'Keterangan2'
-      , 21: 'Volume'
-      , 22: 'OutstandingCredit'
-      , 23: 'SelainKartuKredit'
+      , 3: 'JumlahKartu'
+      , 4: 'KartuBaru'
+      , 5: 'KartuTutup'
+      , 6: 'JumlahAccount'
+      , 7: 'KartuUtama'
+      , 8: 'KartuTambahan'
+      , 9: 'KL05'
+      , 10: 'KL510'
+      , 11: 'KL1025'
+      , 12: 'KL2550'
+      , 13: 'KL50100'
+      , 14: 'KL100'
+      , 15: 'IRRMin'
+      , 16: 'IRRMax'
+      , 17: 'IRCAMin'
+      , 18: 'IRCAMax'
+      , 19: 'LateFeeMin'
+      , 20: 'LateFeeMax'
+      , 21: 'OverLimitMin'
+      , 22: 'OverLimitMax'
+      , 23: 'AnnualFeeMin'
+      , 24: 'AnnualFeeMax'
+      , 25: 'BCAMin'
+      , 26: 'BCAMax'
+      , 27: 'FPDefJumlah'
+      , 28: 'FPDefNominal'
+      , 29: 'WriteOffJumlah'
+      , 30: 'WriteOffNominal'
+      , 31: 'RecoveryJumlah'
+      , 32: 'RecoveryNominal'
+      , 33: 'HapusTagihJumlah'
+      , 34: 'HapusTagihNominal'
+      , 35: 'BRNOCurrent'
+      , 36: 'BRNOXD'
+      , 37: 'BRNO30D'
+      , 38: 'BRNO60D'
+      , 39: 'BRNO90D'
+      , 40: 'BRNO120D'
+      , 41: 'BRNO150D'
+      , 42: 'BRNO180D'
+      , 43: 'BRAOCurrent'
+      , 44: 'BRAOXD'
+      , 45: 'BRAO30D'
+      , 46: 'BRAO60D'
+      , 47: 'BRAO90D'
+      , 48: 'BRAO120D'
+      , 49: 'BRAO150D'
+      , 50: 'BRAO180D'
+      , 51: 'VolTunaiIntl'
+      , 52: 'VolTunaiLokal'
+      , 53: 'VolBelanjaIntl'
+      , 54: 'VolBelanjaLokal'
+      , 55: 'NilaiTunaiIntl'
+      , 56: 'NilaiTunaiLokal'
+      , 57: 'NilaiBelanjaIntl'
+      , 58: 'NilaiBelanjaLokal'
+      , 59: 'RevolvingRate'
     }
     self.useheader = 1 #1: true, 0:false
     self.txttemplate = 'lkpbu/form301.txt'
@@ -66,7 +138,7 @@ class LKPBU_FORM_301:
     #       jenis 2 untuk zerofill x,5
     self.txtmap      = ( [0,0]
       , [3,0]
-      , [35,0]  
+      , [30,0]  
       , [12,1]
       , [12,1]
       , [12,1]
@@ -77,17 +149,53 @@ class LKPBU_FORM_301:
       , [12,1]
       , [12,1]
       , [12,1]
-      , [2,1]
-      , [2,1]
+      , [12,1]
+      , [12,1]
+      , [5,2]
+      , [5,2]
+      , [5,2]
+      , [5,2]
       , [15,1]
       , [15,1]
       , [15,1]
       , [15,1]
-      , [2,0]
-      , [35,0]
-      , [12,0]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [5,2]
+      , [12,1]
       , [15,1]
       , [12,1]
+      , [15,1]
+      , [12,1]
+      , [15,1]
+      , [12,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [12,1]
+      , [12,1]
+      , [12,1]
+      , [12,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [15,1]
+      , [5,2]
     )
   #--
 

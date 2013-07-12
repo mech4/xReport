@@ -110,7 +110,7 @@ def FormOnSetDataEx(uideflist, params):
              and j.status_rekening<>3
              and b.tanggal_buka <= to_date('%(TanggalLaporan)s','dd-mm-yyyy')
              and exists (select null from %(SaldoAkhirBulan)s ck where ck.nomor_rekening=a.nomor_rekening) 
-          order by rc1
+          order by rc4, bln
      ''' % { 
            'RekeningCustomer'   : config.MapDBTableName('core.rekeningcustomer'),
            'RekeningLiabilitas' : config.MapDBTableName('core.rekeningliabilitas'),

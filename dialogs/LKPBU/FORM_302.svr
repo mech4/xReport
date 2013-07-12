@@ -15,61 +15,38 @@ object:rpclass::TPClassUIDefList<
           DataTypeName='integer'
           DataLength=20
         >, object:rpclass::TCustomLoadedField<
-          Name='LJENIS.refdata_id'
+          Name='LJenisData.refdata_id'
           DataTypeName='enterprise.INTEGER'
         >, object:rpclass::TCustomLoadedField<
-          Name='LJENIS.reference_desc'
+          Name='LJenisData.reference_desc'
           DataTypeName='enterprise.VARCHAR'
           DataLength=60
         >, object:rpclass::TCustomLoadedField<
-          Name='LJENIS.reference_code'
+          Name='LJenisData.reference_code'
           DataTypeName='enterprise.VARCHAR'
           DataLength=20
         >, object:rpclass::TCustomLoadedField<
-          Name='LJENIS.refdata_id'
+          Name='LJenisData.refdata_id'
           DataTypeName='enterprise.INTEGER'
         >, object:rpclass::TCustomLoadedField<
-          Name='Keterangan'
-          DataTypeName='varchar'
-          DataLength=35
-        >, object:rpclass::TCustomLoadedField<
-          Name='LJENISVALUTA.refdata_id'
-          DataTypeName='enterprise.INTEGER'
-        >, object:rpclass::TCustomLoadedField<
-          Name='LJENISVALUTA.reference_desc'
-          DataTypeName='enterprise.VARCHAR'
-          DataLength=60
-        >, object:rpclass::TCustomLoadedField<
-          Name='LJENISVALUTA.reference_code'
-          DataTypeName='enterprise.VARCHAR'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='jumlah'
+          Name='DataATM'
           DataTypeName='integer'
-          DataLength=12
+          DataLength=15
         >, object:rpclass::TCustomLoadedField<
-          Name='JmlhMerchant'
+          Name='DataATMDebit'
           DataTypeName='integer'
-          DataLength=12
+          DataLength=15
         >, object:rpclass::TCustomLoadedField<
-          Name='VolumeTR'
-          DataTypeName='integer'
-          DataLength=12
-        >, object:rpclass::TCustomLoadedField<
-          Name='NilaiTR'
+          Name='DataEMoney'
           DataTypeName='integer'
           DataLength=15
         >
       }
       CustomLoadedLinks={
         object:rpclass::TCustomLoadedLink<
-          Name='LJENIS'
+          Name='LJenisData'
           ClassTypeName='enterprise.ReferenceData'
           FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
-        >, object:rpclass::TCustomLoadedLink<
-          Name='LJENISVALUTA'
-          ClassTypeName='enterprise.ReferenceData'
-          FieldNames='refdata_id;reference_desc;reference_code'
         >
       }
       Mode=imMultiRow

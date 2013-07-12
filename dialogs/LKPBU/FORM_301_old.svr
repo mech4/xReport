@@ -1,0 +1,144 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{03AB2DCD-D5DA-4DD5-B07D-CD15AE22527E}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rpclass::TPClassUIDefList<
+  UIDefs={
+    object:rpclass::TPClassUIDef<
+      Name='uipData'
+      CustomLoadedFields={
+        object:rpclass::TCustomLoadedField<
+          Name='item_id'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENIS.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENIS.reference_desc'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=60
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENIS.reference_code'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJENIS.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='Keterangan'
+          DataTypeName='varchar'
+          DataLength=35
+        >, object:rpclass::TCustomLoadedField<
+          Name='ChargeCard'
+          DataTypeName='varchar'
+          DataLength=12
+        >, object:rpclass::TCustomLoadedField<
+          Name='CreditCrad'
+          DataTypeName='varchar'
+          DataLength=12
+        >, object:rpclass::TCustomLoadedField<
+          Name='KUtama'
+          DataTypeName='integer'
+          DataLength=12
+        >, object:rpclass::TCustomLoadedField<
+          Name='KTambahan'
+          DataTypeName='integer'
+          DataLength=12
+        >, object:rpclass::TCustomLoadedField<
+          Name='KUtama2'
+          DataTypeName='integer'
+          DataLength=12
+        >, object:rpclass::TCustomLoadedField<
+          Name='KTambahan2'
+          DataTypeName='integer'
+          DataLength=12
+        >, object:rpclass::TCustomLoadedField<
+          Name='VTTunai'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='VTBelanja'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='VTIntrabank'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='VTAntarbank'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='SBTunai'
+          DataTypeName='integer'
+          DataLength=4
+        >, object:rpclass::TCustomLoadedField<
+          Name='SBBelanja'
+          DataTypeName='integer'
+          DataLength=4
+        >, object:rpclass::TCustomLoadedField<
+          Name='NTTunai'
+          DataTypeName='double'
+          DataLength=15
+        >, object:rpclass::TCustomLoadedField<
+          Name='NTBelanja'
+          DataTypeName='double'
+          DataLength=15
+        >, object:rpclass::TCustomLoadedField<
+          Name='NTTransferIntrabank'
+          DataTypeName='double'
+          DataLength=15
+        >, object:rpclass::TCustomLoadedField<
+          Name='NTTransferAntarbank'
+          DataTypeName='double'
+          DataLength=15
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJNSDENDA.refdata_id'
+          DataTypeName='enterprise.INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJNSDENDA.reference_desc'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=60
+        >, object:rpclass::TCustomLoadedField<
+          Name='LJNSDENDA.reference_code'
+          DataTypeName='enterprise.VARCHAR'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='Keterangan2'
+          DataTypeName='varchar'
+          DataLength=50
+        >, object:rpclass::TCustomLoadedField<
+          Name='Volume'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='OutstandingCredit'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rpclass::TCustomLoadedField<
+          Name='SelainKartuKredit'
+          DataTypeName='integer'
+          DataLength=12
+        >
+      }
+      CustomLoadedLinks={
+        object:rpclass::TCustomLoadedLink<
+          Name='LJENIS'
+          ClassTypeName='enterprise.ReferenceData'
+          FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
+        >, object:rpclass::TCustomLoadedLink<
+          Name='LJNSDENDA'
+          ClassTypeName='enterprise.ReferenceData'
+          FieldNames='refdata_id;reference_desc;reference_code'
+        >
+      }
+      Mode=imMultiRow
+      DeleteOnDel=true
+    >
+  }
+  OnSetDataEx='FormOnSetDataEx'
+>

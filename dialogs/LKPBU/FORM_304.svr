@@ -15,62 +15,32 @@ object:rpclass::TPClassUIDefList<
           DataTypeName='integer'
           DataLength=20
         >, object:rpclass::TCustomLoadedField<
-          Name='LJENIS.refdata_id'
+          Name='LJenisMesin.refdata_id'
           DataTypeName='enterprise.INTEGER'
         >, object:rpclass::TCustomLoadedField<
-          Name='LJENIS.reference_desc'
+          Name='LJenisMesin.reference_desc'
           DataTypeName='enterprise.VARCHAR'
           DataLength=60
         >, object:rpclass::TCustomLoadedField<
-          Name='LJENIS.reference_code'
+          Name='LJenisMesin.reference_code'
           DataTypeName='enterprise.VARCHAR'
           DataLength=20
         >, object:rpclass::TCustomLoadedField<
-          Name='LJENIS.refdata_id'
+          Name='LJenisMesin.refdata_id'
           DataTypeName='enterprise.INTEGER'
         >, object:rpclass::TCustomLoadedField<
-          Name='KeteranganJK'
-          DataTypeName='varchar'
-          DataLength=35
-        >, object:rpclass::TCustomLoadedField<
-          Name='LFRAUD.refdata_id'
-          DataTypeName='enterprise.INTEGER'
-        >, object:rpclass::TCustomLoadedField<
-          Name='LFRAUD.reference_desc'
-          DataTypeName='enterprise.VARCHAR'
-          DataLength=60
-        >, object:rpclass::TCustomLoadedField<
-          Name='LFRAUD.reference_code'
-          DataTypeName='enterprise.VARCHAR'
-          DataLength=20
-        >, object:rpclass::TCustomLoadedField<
-          Name='LFRAUD.refdata_id'
-          DataTypeName='enterprise.INTEGER'
-        >, object:rpclass::TCustomLoadedField<
-          Name='Keterangan'
-          DataTypeName='varchar'
-          DataLength=35
-        >, object:rpclass::TCustomLoadedField<
-          Name='JmlhKasus1'
+          Name='JmlMesin'
           DataTypeName='integer'
           DataLength=12
         >, object:rpclass::TCustomLoadedField<
-          Name='JmlhKasus2'
+          Name='JmlMerchant'
           DataTypeName='integer'
           DataLength=12
-        >, object:rpclass::TCustomLoadedField<
-          Name='NominalKerugian'
-          DataTypeName='integer'
-          DataLength=15
         >
       }
       CustomLoadedLinks={
         object:rpclass::TCustomLoadedLink<
-          Name='LJENIS'
-          ClassTypeName='enterprise.ReferenceData'
-          FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
-        >, object:rpclass::TCustomLoadedLink<
-          Name='LFRAUD'
+          Name='LJenisMesin'
           ClassTypeName='enterprise.ReferenceData'
           FieldNames='refdata_id;reference_desc;reference_code;refdata_id'
         >
