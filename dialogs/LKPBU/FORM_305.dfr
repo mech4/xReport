@@ -1,0 +1,234 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx='FormOnSetDataEx'
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=240
+      Height=96
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-305'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcLJenisKartu'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJenisKartu.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Kartu'
+          Width=88
+        >, object:rtf::GridColumn<
+          Name='gcJmlPeserta'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='JmlPeserta'
+          DisplayFormat=''
+          TitleCaption='Jumlah Peserta'
+          Width=176
+        >, object:rtf::GridColumn<
+          Name='gcLJenisTransaksi'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJenisTransaksi.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Transaksi'
+          Width=160
+        >, object:rtf::GridColumn<
+          Name='gcVolTransaksi'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='VolTransaksi'
+          DisplayFormat=''
+          TitleCaption='Volume Transaksi'
+          Width=248
+        >, object:rtf::GridColumn<
+          Name='gcNominalTransaksi'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NominalTransaksi'
+          DisplayFormat=''
+          TitleCaption='Nominal Transaksi'
+          Width=240
+        >, object:rtf::GridColumn<
+          Name='gcNominalSettlement'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='NominalSettlement'
+          DisplayFormat=''
+          TitleCaption='Nominal Settlement'
+          Width=264
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LJenisKartu'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Kartu'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJenisKartu'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='JmlPeserta'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jumlah Peserta'
+          DataTypeName='integer'
+          DataLength=12
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJenisTransaksi'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Transaksi'
+          ClassTypeName='enterprise.ReferenceData'
+          DisplayFields='reference_desc;reference_code;refdata_id'
+          Restrictions=''
+          FieldBaseName='LJenisTransaksi'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='VolTransaksi'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Volume Transaksi'
+          DataTypeName='integer'
+          DataLength=12
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NominalTransaksi'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nominal Transaksi'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='NominalSettlement'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nominal Settlement'
+          DataTypeName='integer'
+          DataLength=15
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LJenisKartu'
+          Top=8
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Kartu'
+          FieldName='LJenisKartu.reference_desc'
+          LookupField='LJenisKartu.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='JmlPeserta'
+          Top=36
+          Left=8
+          ControlCaption='Jumlah Peserta'
+        >, *object:rtf::DBLookupEdit<
+          Name='LJenisTransaksi'
+          Top=64
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Transaksi'
+          FieldName='LJenisTransaksi.reference_desc'
+          LookupField='LJenisTransaksi.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='VolTransaksi'
+          Top=92
+          Left=8
+          ControlCaption='Volume Transaksi'
+        >, *object:rtf::DBEdit<
+          Name='NominalTransaksi'
+          Top=120
+          Left=8
+          ControlCaption='Nominal Transaksi'
+        >, *object:rtf::DBEdit<
+          Name='NominalSettlement'
+          Top=148
+          Left=8
+          ControlCaption='Nominal Settlement'
+        >
+      }
+      EqualCaptionWidth=220
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LKPBU_FORM_305'
+>

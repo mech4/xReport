@@ -1,0 +1,305 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dsMain']
+  Left=50
+  Top=50
+  Width=921
+  Height=425
+  UIParts={
+    object:rtf::PClassUI<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='item_id'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='uipData'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      DeleteInstanceOnDel=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dsMain'
+      Width=240
+      Height=96
+      Container1=$CONTAINERS['grData']
+      Container2=$CONTAINERS['pData']
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::Grid<
+      Name='grData'
+      Width=313
+      Height=240
+      UIPart=$UIPARTS['uipData']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='FORM-306'
+      Columns={
+        object:rtf::GridColumn<
+          Name='gcLJenisKartu'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJenisKartu.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Kartu'
+          Width=88
+        >, object:rtf::GridColumn<
+          Name='gcLJenisFraud'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='LJenisFraud.reference_code'
+          DisplayFormat=''
+          TitleCaption='Jenis Penyebab Fraud'
+          Width=176
+        >, object:rtf::GridColumn<
+          Name='gcActualVolume'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='ActualVolume'
+          DisplayFormat=''
+          TitleCaption='Volume Actual'
+          Width=160
+        >, object:rtf::GridColumn<
+          Name='gcActualNominal'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='ActualNominal'
+          DisplayFormat=''
+          TitleCaption='Nominal Actual'
+          Width=248
+        >, object:rtf::GridColumn<
+          Name='gcPotentialVolume'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PotentialVolume'
+          DisplayFormat=''
+          TitleCaption='Volume Potential'
+          Width=240
+        >, object:rtf::GridColumn<
+          Name='gcPotentialNominal'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='PotentialNominal'
+          DisplayFormat=''
+          TitleCaption='Nominal Potential'
+          Width=264
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::LinkUIElmtSetting<
+          Name='LJenisKartu'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Kartu'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJenisKartu.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJenisKartu.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJenisKartu.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJenisKartu.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LJenisKartu'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='LJenisFraud'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Jenis Penyebab Fraud'
+          ClassTypeName='enterprise.ReferenceData'
+          KeyFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJenisFraud.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsKey=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          DisplayedFields={
+            object:rtf::FieldUIElmtSetting<
+              Name='LJenisFraud.reference_desc'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=60
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_desc'
+              FinalDisplayFieldName='reference_desc'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJenisFraud.reference_code'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.VARCHAR'
+              DataLength=20
+              UsedAsDisplay=true
+              KeyOrDisplayName='reference_code'
+              FinalDisplayFieldName='reference_code'
+            >, object:rtf::FieldUIElmtSetting<
+              Name='LJenisFraud.refdata_id'
+              Hidden=false
+              ReadOnlyControl=false
+              DataTypeName='enterprise.INTEGER'
+              DataLength=0
+              UsedAsDisplay=true
+              KeyOrDisplayName='refdata_id'
+              FinalDisplayFieldName='refdata_id'
+            >
+          }
+          Restrictions=''
+          FieldBaseName='LJenisFraud'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='ActualVolume'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Fraud Volume (Actual)'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='ActualNominal'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Fraud Nominal (Actual)'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='PotentialVolume'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Fraud Volume (Potential)'
+          DataTypeName='integer'
+          DataLength=15
+        >, object:rtf::FieldUIElmtSetting<
+          Name='PotentialNominal'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Fraud Nominal (Potential)'
+          DataTypeName='integer'
+          DataLength=15
+        >
+      }
+      Name='pData'
+      Width=665
+      Height=433
+      UIPart=$UIPARTS['uipData']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='LJenisKartu'
+          Top=8
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Kartu'
+          FieldName='LJenisKartu.reference_desc'
+          LookupField='LJenisKartu.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='LJenisFraud'
+          Top=36
+          Left=8
+          Width=250
+          Height=21
+          ControlCaption='Jenis Penyebab Fraud'
+          FieldName='LJenisFraud.reference_desc'
+          LookupField='LJenisFraud.reference_code'
+          DisplayLookupField=true
+          OnExit='refExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBEdit<
+          Name='ActualVolume'
+          Top=64
+          Left=8
+          ControlCaption='Fraud Volume (Actual)'
+        >, *object:rtf::DBEdit<
+          Name='ActualNominal'
+          Top=92
+          Left=8
+          ControlCaption='Fraud Nominal (Actual)'
+        >, *object:rtf::DBEdit<
+          Name='PotentialVolume'
+          Top=120
+          Left=8
+          ControlCaption='Fraud Volume (Potential)'
+        >, *object:rtf::DBEdit<
+          Name='PotentialNominal'
+          Top=148
+          Left=8
+          ControlCaption='Fraud Nominal (Potential)'
+        >
+      }
+      EqualCaptionWidth=220
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='LKPBU_FORM_306'
+>
