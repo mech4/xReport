@@ -71,6 +71,7 @@ def createData(config, rec, oReport):
   tgl = 1
   bln = int(pCode[:2])
   thn = int(pCode[2:6])
+  app.ConWriteln('%s_%s' % (str(bln), str(thn)))
   bln_lalu = bln - 1
   if bln_lalu==0:
     bln_lalu = 12
@@ -189,7 +190,7 @@ def createData(config, rec, oReport):
           left outer join %(RefData)s r8 on (r8.reference_code=d.lbus_sektor_ekonomi_sid and r8.reftype_id=224)
           left outer join %(RefData)s r9 on (r9.reference_code=nvl(d.lbus_lokasi_proyek, j.kode_lokasi) and r9.reftype_id=251)
           left outer join %(RefData)s r10 on (r10.reference_code=d.lbus_penjamin and r10.reftype_id=328)
-          left outer join %(RefData)s r11 on (r11.reference_code=decode(b.overall_col_level, 1,'1',2,'2',3,'3',4,'4',5,'5') and r11.reftype_id=230)
+          left outer join %(RefData)s r11 on (r11.reference_code=decode(g.overall_col_level, 1,'1',2,'2',3,'3',4,'4',5,'5') and r11.reftype_id=230)
           where g.kode_cabang in (%(ListCabang)s)
           and b.dropping_date <= to_date('%(TglLaporan)s', 'dd-mm-yyyy')
           and (g.p_saldo+g.p_arrear_balance)<0
@@ -256,6 +257,7 @@ def createData(config, rec, oReport):
   }
   #raise Exception, s
   totaldebetf1 = int(config.CreateSQL(s).RawResult.value)
+
   #Hitung total pada Form06
   s = '''
         select sum(debetblnlap) "value" from lbus_form06 where report_id=%s
