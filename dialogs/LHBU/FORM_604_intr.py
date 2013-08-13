@@ -13,7 +13,7 @@ class LHBU_FORM_604:
       ,'Distribusi'
     ]
     self.paction     = None
-    self.xlstemplate = 'lbus/form604.xls'
+    self.xlstemplate = 'lhbu/form604.xls'
     self.xlstopline  = 7
     self.xlsmap      = {
           1: 'LJANGKA_reference_code'
