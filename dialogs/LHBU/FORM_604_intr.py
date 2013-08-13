@@ -31,9 +31,9 @@ class LHBU_FORM_604:
     #       jenis 3 untuk zerofill 99,99
     self.txtmap      = ( [0,0]
        , [2,0]
-       , [8,1]
-       , [8,1]
-       , [8,1]
+       , [8,2]
+       , [8,2]
+       , [8,2]
   )
   #--
 
