@@ -275,7 +275,8 @@ def createData(config, rec, oReport):
           )
             select 
                       w.nomorrekening,
-                      w.jumlahrekening,
+                      --w.jumlahrekening,
+                      q.jum_rekening,
                       w.lstatuspembiayaan_refdata_id,
                       w.lsifat_refdata_id,
                       w.ljenis_refdata_id,
@@ -307,6 +308,7 @@ def createData(config, rec, oReport):
             b.facility_no, 
             a.ljenis_refdata_id, 
             min(nomorrekening) norek,
+            count(*) jum_rekening,
             min(rownum) rid, 
             round((c.total_facility_limit)/1000000, 0) plafond,
             sum(a.debetblnlalu) bakilalu, 
