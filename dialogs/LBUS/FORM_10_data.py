@@ -275,8 +275,8 @@ def createData(config, rec, oReport):
           )
             select 
                       w.nomorrekening,
-                      --w.jumlahrekening,
-                      q.jum_rekening,
+                      w.jumlahrekening,
+                      --q.jum_rekening,
                       w.lstatuspembiayaan_refdata_id,
                       w.lsifat_refdata_id,
                       w.ljenis_refdata_id,
