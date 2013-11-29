@@ -164,7 +164,7 @@ def createData(config, rec, oReport):
           round(((h.p_saldo+h.p_arrear_balance)*-1)/1000000, 0) baki_lalu,
           round(((g.p_saldo+g.p_arrear_balance)*-1)/1000000, 0) baki_lapor,
           round((agu.total_agunan)/1000000, 0) agunan,
-          round((b.reserved_common_balance+b.reserved_loss_balance)/1000000, 0) ppap,
+          round((g.reserved_common_balance+g.reserved_loss_balance)/1000000, 0) ppap,
           seq_lbus_form06.nextval seq,
           %(ReportId)s report_id
           from %(FinMurabahah)s a left outer join %(FinAccount)s b on (a.nomor_rekening=b.nomor_rekening)
