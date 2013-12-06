@@ -442,6 +442,18 @@ def createData(config, rec, oReport):
   config.ExecSQL(s)
   config.Commit()
   app.ConWriteln('OK')
+  
+  s = '''
+          update lbus_form06 set saldohargapokok=1
+          where saldohargapokok < 0 and report_id=%(ReportId)s
+  ''' % {
+          "ReportId" : str(report_id)
+  }
+  app.ConWriteln('Balancing Harga Pokok < 0')
+  #app.ConWriteln('Query : %s' % s)
+  config.ExecSQL(s)
+  config.Commit()
+  app.ConWriteln('OK')
   #app.ConRead(' ')
   #--
 
