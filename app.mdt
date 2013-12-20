@@ -9971,6 +9971,11 @@ object:ODL<
           PhysicalName='FORMTYPE'
           DataType=$TYPEDECLS['VARCHAR']
           DataLength=1
+        >, object:FieldMember<
+          MemberName='DataSize'
+          PhysicalName='DATASIZE'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=1
         >
       }
       Ancestors={
@@ -10094,6 +10099,19 @@ object:ODL<
           PhysicalName='REPORTLOCATION'
           DataType=$TYPEDECLS['VARCHAR']
           DataLength=300
+        >, object:FieldMember<
+          MemberName='branch_id'
+          PhysicalName='BRANCH_ID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:LinkMember<
+          MemberName='lBranch'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['DTSReport'].MEMBERS['branch_id']
+              OriginPKey=$TYPEDECLS['Branch'].MEMBERS['branch_id']
+            >
+          }
+          LinkedClass=$TYPEDECLS['Branch']
         >
       }
       ClassID='{663419DD-922E-4EFD-884B-8A589821EFF1}'
@@ -10149,6 +10167,10 @@ object:ODL<
           PhysicalName='METAENUM'
           DataType=$TYPEDECLS['VARCHAR']
           DataLength=50
+        >, object:FieldMember<
+          MemberName='MetaParent'
+          PhysicalName='METAPARENT'
+          DataType=$TYPEDECLS['INTEGER']
         >
       }
       ClassID='{CE5C8ADF-1AF0-4BCC-B8A7-0FD8D89E945F}'
@@ -10294,6 +10316,98 @@ object:ODL<
       }
       ClassID='{F8B08CFE-EFB5-41E2-8E6F-43C514CCC292}'
       AutoPrimaryKey=$TYPEDECLS['LKPBU_FORM306'].MEMBERS['item_id']
+    >, object:ClassTypeDecl<
+      TypeName='DTSFormula'
+      PTableName='DTSFORMULA'
+      Members={
+        object:FieldMember<
+          MemberName='DTSFormulaId'
+          PhysicalName='DTSFORMULAID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:FieldMember<
+          MemberName='DTSId'
+          PhysicalName='DTSID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='DTSFormId'
+          PhysicalName='DTSFORMID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='FormulaName'
+          PhysicalName='FORMULANAME'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=50
+        >, object:FieldMember<
+          MemberName='Rumus'
+          PhysicalName='RUMUS'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=500
+        >, object:FieldMember<
+          MemberName='ApplyFor'
+          PhysicalName='APPLYFOR'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=10
+        >, object:FieldMember<
+          MemberName='Message'
+          PhysicalName='MESSAGE'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=500
+        >, object:FieldMember<
+          MemberName='FormulaType'
+          PhysicalName='FORMULATYPE'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=1
+        >, object:FieldMember<
+          MemberName='ExecType'
+          PhysicalName='EXECTYPE'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=1
+        >
+      }
+      ClassID='{B70D9AF3-558A-438C-BCCE-B5E9592E92AE}'
+      AutoPrimaryKey=$TYPEDECLS['DTSFormula'].MEMBERS['DTSFormulaId']
+    >, object:ClassTypeDecl<
+      TypeName='DTSFormulaVars'
+      PTableName='DTSFORMULAVARS'
+      Members={
+        object:FieldMember<
+          MemberName='VarId'
+          PhysicalName='VARID'
+          DataType=$TYPEDECLS['INTEGER']
+          IsPrimaryKey=true
+        >, object:FieldMember<
+          MemberName='DTSFormulaId'
+          PhysicalName='DTSFORMULAID'
+          DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='VarName'
+          PhysicalName='VARNAME'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=5
+        >, object:FieldMember<
+          MemberName='VarSource'
+          PhysicalName='VARSOURCE'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=200
+        >, object:LinkMember<
+          MemberName='LDTSFormula'
+          AttrLinks={
+            object:AttributeLink<
+              ThisField=$TYPEDECLS['DTSFormulaVars'].MEMBERS['DTSFormulaId']
+              OriginPKey=$TYPEDECLS['DTSFormula'].MEMBERS['DTSFormulaId']
+            >
+          }
+          LinkedClass=$TYPEDECLS['DTSFormula']
+        >, object:FieldMember<
+          MemberName='VarType'
+          PhysicalName='VARTYPE'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=1
+        >
+      }
+      ClassID='{B695320E-F1C2-43F7-8901-305A7796E0A1}'
+      AutoPrimaryKey=$TYPEDECLS['DTSFormulaVars'].MEMBERS['VarId']
     >
   }
   PhysicalDB=object:ODLDatabase<

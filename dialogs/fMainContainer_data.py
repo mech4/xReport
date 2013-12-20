@@ -657,14 +657,14 @@ def PeriodCheck(config, ptype):
   def periodGenerate(period_type, tgl, bln, thn, hari):
     mon = ('', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December')
     qtr = ('', '1st Quarter', '2nd Quarter', '3rd Quarter', '4th Quarter')
-    week = ('', '1st Week of', '2nd Week of', '3rd Week of', '4th Week of')
+    week = ('', '1st Week of', '2nd Week of', '3rd Week of', '4th Week of', '5th Week of')
     dayname = ('', 'Sunday,', 'Monday,', 'Tuesday,', 'Wednesday,', 'Thrusday,', 'Friday,', 'Saturday,')
     if period_type=='Y':
       return str(thn), str(thn)
     elif period_type=='M':
       return str(bln).zfill(2)+str(thn), mon[bln]+' '+str(thn)      
     elif period_type=='Q':
-      return str((bln/3)+1).zfill(2)+str(thn), qtr[(bln/3)+1]+' '+str(thn)
+      return str((bln/4)+1).zfill(2)+str(thn), qtr[(bln/4)+1]+' '+str(thn)
     elif period_type=='W':
       if tgl<8:
         return str(thn)+str(bln).zfill(2)+'1', week[1]+' '+mon[bln]+' '+str(thn)
@@ -678,13 +678,18 @@ def PeriodCheck(config, ptype):
       return str(tgl).zfill(2)+str(bln).zfill(2)+str(thn), dayname[hari]+' '+str(tgl).zfill(2)+' '+mon[bln]+' '+str(thn)     
   #--
   mlu = config.ModLibUtils
+  app = config.AppObject
+  app.ConCreate('out')
   tgl = mlu.DecodeDate(config.Now())
   hari = mlu.DayOfWeek(config.Now())
   bln = tgl[1]
   thn = tgl[0]
   tglnum = tgl[2]
+  #app.ConWriteln('{0} : {1} : {2}'.format(ptype,str(tgl),str((bln/3)+1).zfill(2)))
+  #app.ConRead('a')
   period = periodGenerate(ptype, tglnum, bln, thn, hari)
   #raise Exception, period[0]
+  #app.ConWriteln(str(period[0]))
   s = "select * from period where period_code='%s' and period_type='%s'" % (period[0], ptype)
   res = config.CreateSQL(s).RawResult
   if not res.Eof:

@@ -7,6 +7,7 @@ enterprise=c:\dafapp\ibank2\enterprise\default.mcf
 [liblist]
 mblob=blob
 mreport=report
+mdts=dts
 
 [classlist]
 blobregistration=mblob
@@ -17,3 +18,16 @@ period=mreport
 branch=mreport
 branchmember=mreport
 reportitem=mreport
+dts=mdts
+dtsfile=mdts
+dtsfolder=mdts
+dtsalias=mdts
+dtsenum=mdts
+dtsform=mdts
+dtsmap=mdts
+dtsmapquery=mdts
+dtsreport=mdts
+dtsmeta=mdts
+dtsdict=mdts
+dtsformula=mdts
+dtsformulavars=mdts

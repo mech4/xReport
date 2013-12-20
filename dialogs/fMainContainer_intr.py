@@ -61,6 +61,7 @@ class fReportContainer:
     uapp = self.FormObject.ClientApplication.UserAppObject
     if self.uipMain.GetFieldValue("branch.branch_code") == "-":
       self.uipMain.ClearLink("branch")
+      return 1
     else:  
       res = uapp.stdLookup(sender, "report@lookupBranch", "branch", 
         "branch_code;branch_name;branch_id")
@@ -71,6 +72,7 @@ class fReportContainer:
     uapp = self.FormObject.ClientApplication.UserAppObject
     if self.uipMain.GetFieldValue("period.period_code") == '-':
       self.uipMain.ClearLink("period")
+      return 1               
     else:  
       form_no = self.uipMain.GetFieldValue('reportclass.report_code')
       if form_no==None : form_no=''
@@ -93,6 +95,7 @@ class fReportContainer:
     uapp = self.FormObject.ClientApplication.UserAppObject
     if self.uipMain.GetFieldValue("reportclass.report_code") == '-':
       self.uipMain.ClearLink("reportclass")
+      return 1
     else:  
       week = self.uipMain.GetFieldValue('period.period_code')
       if week==None: week=''
@@ -108,6 +111,8 @@ class fReportContainer:
         self.uipMain.ClearLink("period")
       if self.group_code=='LKPBU' and self.uipMain.GetFieldValue('reportclass.report_code')=='FORM707' and len(week)<7: 
         self.uipMain.ClearLink("period")
+      self.period_type = self.uipMain.GetFieldValue('reportclass.periode_type')
+      self.uipMain.ClearLink("period")
       #self.period_type = self.uipMain.GetFieldValue("reportclass.periode_type")
       #self.uipMain.ClearLink("period")
         
