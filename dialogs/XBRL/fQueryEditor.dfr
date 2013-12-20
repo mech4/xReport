@@ -1,0 +1,314 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dualsplit1']
+  Caption='Query Mapping Editor'
+  State=rsMaximized
+  Left=50
+  Top=50
+  Width=889
+  Height=521
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx='FormOnSetDataEx'
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Name='uipQuery'
+      ClassTypeName='DTSMapQuery'
+      DataBinding=bmMaster
+      CreateInstanceOnNew=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dualsplit1'
+      Width=889
+      Height=521
+      Container1=$CONTAINERS['pMain']
+      Container2=$CONTAINERS['dualsplit2']
+    >, object:rtf::Panel<
+      ControlDefs={
+        object:rtf::MultiControlDef<
+          Action=caEdit
+          DataMembers=['AssignCode'#13#10,
+            'QueryString'#13#10]
+        >, object:rtf::ControlDef<
+          Action=caEdit
+          DataMember='DTSMapQueryId'
+        >, object:rtf::ControlDef<
+          Action=caEdit
+          DataMember='DTSMapId'
+        >
+      }
+      Elements={
+        *object:rtf::FieldUIElmtSetting<
+          Name='AssignCode'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Fieldgroup Identifier'
+        >, *object:rtf::FieldUIElmtSetting<
+          Name='QueryString'
+          Hidden=true
+          ReadOnlyControl=false
+          ControlCaption='Query Location'
+        >, *object:rtf::FieldUIElmtSetting<
+          Name='DTSMapQueryId'
+          Hidden=true
+          ReadOnlyControl=false
+        >, *object:rtf::FieldUIElmtSetting<
+          Name='DTSMapId'
+          Hidden=true
+          ReadOnlyControl=false
+        >, object:rtf::FieldUIElmtSetting<
+          Name='IsNew'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='varchar'
+          DataLength=1
+        >, object:rtf::FieldUIElmtSetting<
+          Name='dtsformid'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='qid'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='fieldNum'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='dtsid'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='pMain'
+      Width=929
+      Height=73
+      UIPart=$UIPARTS['uipQuery']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='AssignCode'
+          Top=8
+          Left=8
+          Width=475
+          Height=21
+          Enabled=false
+          ControlCaption='Form Code'
+        >, object:rtf::Button<
+          Name='bBrowse'
+          Layout=clNextSide
+          Top=36
+          Left=245
+          ControlCaption=''
+          LayoutOrder=4
+          Caption='&Import'
+          OnClick='bBrowseOnClick'
+        >, object:rtf::Button<
+          Name='bOpen'
+          Layout=clNewLine
+          Top=36
+          Left=8
+          ControlCaption=''
+          Caption='&Edit/New'
+          OnClick='bOpenOnClick'
+        >, object:rtf::Button<
+          Name='bSave'
+          Layout=clNextSide
+          Top=36
+          Left=87
+          ControlCaption=''
+          Caption='&Save'
+          OnClick='bSaveOnClick'
+        >, object:rtf::Label<
+          Name='spacer'
+          Layout=clNextSide
+          Top=36
+          Left=324
+          Width=275
+          Height=21
+          ControlCaption=''
+          LayoutOrder=5
+          WordWrap=true
+        >, object:rtf::Button<
+          Name='bStruct'
+          Layout=clNextSide
+          Top=36
+          Left=603
+          ControlCaption=''
+          LayoutOrder=6
+          Caption='View &Tabel'
+          OnClick='bStructOnClick'
+        >, object:rtf::Button<
+          Name='bEnum'
+          Layout=clNextSide
+          Top=36
+          Left=682
+          ControlCaption=''
+          LayoutOrder=7
+          Caption='View &Sandi'
+          OnClick='bEnumOnClick'
+        >, object:rtf::Button<
+          Name='bDelete'
+          Layout=clNextSide
+          Top=36
+          Left=166
+          ControlCaption=''
+          Caption='&Delete'
+          OnClick='bDeleteOnClick'
+        >
+      }
+      EqualCaptionWidth=120
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::DualSplit<
+      Name='dualsplit2'
+      Width=889
+      Height=447
+      Container1=$CONTAINERS['pEditor']
+      Container2=$CONTAINERS['pNote']
+    >, object:rtf::Panel<
+      Name='pEditor'
+      Width=897
+      Height=351
+      Controls={
+        object:rtf::Edit<
+          Name='qryEditor'
+          Layout=clAbsolute
+          Top=8
+          Left=0
+          Width=750
+          Height=330
+          Enabled=false
+          ControlCaption=''
+          MultiLine=true
+        >
+      }
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Panel<
+      Name='pNote'
+      Width=937
+      Height=100
+      UIPart=$UIPARTS['uipQuery']
+      Controls={
+        object:rtf::Label<
+          Name='title'
+          Layout=clNewLine
+          Top=8
+          Left=8
+          Width=121
+          Height=16
+          ControlCaption=''
+          Caption='Available Parameters :'
+          AutoSize=true
+          FontSize=8
+        >, object:rtf::Label<
+          Name='sd'
+          Layout=clNewLine
+          Top=28
+          Left=8
+          Width=100
+          Height=16
+          ControlCaption=''
+          Caption='_startdate'
+          WordWrap=true
+          FontSize=8
+        >, object:rtf::Label<
+          Name='ed'
+          Layout=clNewLine
+          Top=51
+          Left=8
+          Width=100
+          Height=16
+          ControlCaption=''
+          LayoutOrder=5
+          Caption='_enddate'
+          FontSize=8
+        >, object:rtf::Label<
+          Name='bg'
+          Layout=clNewLine
+          Top=74
+          Left=8
+          Width=100
+          Height=16
+          ControlCaption=''
+          LayoutOrder=7
+          Caption='_branchlist'
+          WordWrap=true
+          FontSize=8
+        >, object:rtf::Label<
+          Name='sd_desc'
+          Layout=clNextSide
+          Top=28
+          Left=112
+          Width=121
+          Height=16
+          ControlCaption=''
+          LayoutOrder=3
+          Caption='mewakili tanggal awal laporan / tanggal untuk laporan harian'
+          AutoSize=true
+          FontSize=8
+        >, object:rtf::Label<
+          Name='ed_desc'
+          Layout=clNextSide
+          Top=51
+          Left=112
+          Width=121
+          Height=16
+          ControlCaption=''
+          LayoutOrder=6
+          Caption='mewakili tanggal akhir laporan'
+          AutoSize=true
+          FontSize=8
+        >, object:rtf::Label<
+          Name='bg_desc'
+          Layout=clNextSide
+          Top=74
+          Left=112
+          Width=121
+          Height=16
+          ControlCaption=''
+          LayoutOrder=8
+          Caption='mewakili list kode cabang dalam grup cabang pelaporan'
+          AutoSize=true
+          FontSize=8
+        >
+      }
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='fQueryEditor'
+>

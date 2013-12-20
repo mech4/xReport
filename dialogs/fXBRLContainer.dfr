@@ -1,0 +1,71 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['multisplit1']
+  Left=50
+  Top=50
+  Width=849
+  Height=481
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx=''
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Name='uiMain'
+    >
+  }
+  Containers={
+    object:rtf::MultiSplit<
+      Name='multisplit1'
+      Width=849
+      Height=481
+      Side1Containers={
+        $CONTAINERS['panel1']
+
+      }
+      Side2Containers={
+        $CONTAINERS['panel2']
+
+      }
+      SpaceContainer=$CONTAINERS['frame1']
+    >, object:rtf::Panel<
+      Name='panel1'
+      Width=865
+      Height=145
+      UIPart=$UIPARTS['uiMain']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Frame<
+      Name='frame1'
+      Width=849
+      Height=335
+    >, object:rtf::Panel<
+      Name='panel2'
+      Width=849
+      Height=64
+      UIPart=$UIPARTS['uiMain']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='fXBRLContainer'
+>

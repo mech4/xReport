@@ -31,7 +31,7 @@ class lookupReport:
     config = self.config
     mlu = self.config.ModLibUtils
     rqsql.SELECTFROMClause = '''
-      SELECT a.DTSFormCode, a.DTSFormDesc, a.DTSFormId, b.DTSFolderId, b.DTSFileName, a.FormType, a.IsEmpty
+      SELECT a.DTSFormCode, a.DTSFormDesc, a.DTSFormId, b.DTSFolderId, b.DTSFileName, a.FormType, a.IsEmpty, a.DataSize
       FROM DTSForm a, DTSFile b, DTSFolder c
     '''
     rqsql.WHEREClause = '''
@@ -42,7 +42,7 @@ class lookupReport:
     '''.format(str(self.DTSId), '%'+ self.DTSFormCode +'%%')
 
     #rqsql.GROUPBYClause = "GROUP BY acc.account_code, acc.account_name, acc.account_type" 
-    rqsql.setAltOrderFieldNames("a.DTSFormCode;a.DTSFormDesc;a.DTSFormId;b.DTSFolderId;b.DTSFileName;a.FormType;a.IsEmpty")
+    rqsql.setAltOrderFieldNames("a.DTSFormCode;a.DTSFormDesc;a.DTSFormId;b.DTSFolderId;b.DTSFileName;a.FormType;a.IsEmpty;a.DataSize")
     rqsql.keyFieldName = "a.DTSFormId"
     rqsql.setBaseOrderFieldNames("a.DTSFormCode")
   #--

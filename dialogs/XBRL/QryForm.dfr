@@ -1,0 +1,102 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['query1']
+  Caption='Pengelolaan Form'
+  State=rsMaximized
+  Left=50
+  Top=50
+  Width=800
+  Height=400
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  AfterProcessServerData='FormAfterProcessServerData'
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx='FormOnSetDataEx'
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Name='uipMain'
+      AlwaysPostToServer=true
+      CreateInstanceOnNew=true
+    >
+  }
+  Containers={
+    object:rtf::Query<
+      Name='query1'
+      Width=800
+      Height=400
+      ContextMenuName='popupmenus/pMnuQryForm'
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Columns={
+        object:rtf::QueryColumn<
+          FieldName='DTSFORMID'
+          Caption='ID'
+        >, object:rtf::QueryColumn<
+          FieldName='DTSFORMCODE'
+          Caption='Kode'
+        >, object:rtf::QueryColumn<
+          FieldName='DTSFORMDESC'
+          Width=400
+          Caption='Deskripsi'
+        >, object:rtf::QueryColumn<
+          FieldName='TEMPREADY'
+          Caption='Aktif'
+        >, object:rtf::QueryColumn<
+          FieldName='ISEMPTY'
+          Caption='Nihil'
+        >, object:rtf::QueryColumn<
+          FieldName='FORMTYPE'
+          Caption='Jenis'
+        >, object:rtf::QueryColumn<
+          FieldName='DATASIZE'
+          Caption='Ukuran Data'
+        >
+      }
+      EnableColumns=true
+      ServerMethodID='runQuery'
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='dtsid'
+          Hidden=false
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='panel1'
+      Width=320
+      Height=240
+      Visible=false
+      UIPart=$UIPARTS['uipMain']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='dtsid'
+          ControlCaption='dtsid'
+        >
+      }
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='QryForm'
+>

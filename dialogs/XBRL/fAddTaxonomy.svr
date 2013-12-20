@@ -1,0 +1,53 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{03AB2DCD-D5DA-4DD5-B07D-CD15AE22527E}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rpclass::TPClassUIDefList<
+  UIDefs={
+    object:rpclass::TPClassUIDef<
+      Name='uipMain'
+      CustomLoadedFields={
+        object:rpclass::TCustomLoadedField<
+          Name='pathName'
+          DataTypeName='varchar'
+          DataLength=300
+        >, object:rpclass::TCustomLoadedField<
+          Name='dtsName'
+          DataTypeName='varchar'
+          DataLength=50
+        >, object:rpclass::TCustomLoadedField<
+          Name='periodetype'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='procFlag'
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Mode=imSingleRow
+    >, object:rpclass::TPClassUIDef<
+      Name='uipDTS'
+      CustomLoadedFields={
+        object:rpclass::TCustomLoadedField<
+          Name='formCode'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='formName'
+          DataTypeName='varchar'
+          DataLength=200
+        >, object:rpclass::TCustomLoadedField<
+          Name='formProcess'
+          DataTypeName='varchar'
+          DataLength=5
+        >
+      }
+      Mode=imMultiRow
+    >
+  }
+  OnSetDataEx='FormOnSetDataEx'
+>

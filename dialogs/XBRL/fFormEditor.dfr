@@ -1,0 +1,368 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dualsplit1']
+  Caption='Form Setting'
+  State=rsMaximized
+  Left=50
+  Top=50
+  Width=897
+  Height=521
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx='FormOnSetDataEx'
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Name='uipDetail'
+      AlwaysPostToServer=true
+      CreateInstanceOnNew=true
+    >, object:rtf::PClassUI<
+      Name='uipForm'
+      ClassTypeName='DTSForm'
+      DataBinding=bmMaster
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      CreateInstanceOnNew=true
+    >, object:rtf::PClassUI<
+      Name='uipField'
+      MultiLine=true
+      AlwaysPostToServer=true
+      PostLinkValues=true
+      CreateInstanceOnNew=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dualsplit1'
+      Width=897
+      Height=521
+      Container1=$CONTAINERS['dualsplit2']
+      Container2=$CONTAINERS['pNav']
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='fieldLoaded'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='pNav'
+      Width=881
+      Height=57
+      UIPart=$UIPARTS['uipDetail']
+      Controls={
+        object:rtf::Button<
+          Name='bSave'
+          Layout=clNewLine
+          Top=8
+          Left=8
+          ControlCaption=''
+          Caption='&Save'
+          OnClick='bSaveOnClick'
+        >, object:rtf::Button<
+          Name='bCancel'
+          Layout=clNextSide
+          Top=8
+          Left=87
+          Visible=false
+          ControlCaption=''
+          Caption='&Cancel'
+          ExitAction=eaQuitCancel
+          OnClick='bCancelOnClick'
+        >
+      }
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::Grid<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='fieldLevel'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Level'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='fieldCode'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Field Code'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='fieldDesc'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Field Description'
+          DataTypeName='varchar'
+          DataLength=500
+        >
+      }
+      Name='formFields'
+      Width=897
+      Height=261
+      UIPart=$UIPARTS['uipField']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='Form Entities'
+      Columns={
+        *object:rtf::GridColumn<
+          Name='fieldLevel'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='fieldLevel'
+          DisplayFormat=''
+          TitleCaption='Level'
+        >, *object:rtf::GridColumn<
+          Name='fieldCode'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='fieldCode'
+          DisplayFormat=''
+          TitleCaption='Field Code'
+        >, *object:rtf::GridColumn<
+          Name='fieldDesc'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='fieldDesc'
+          DisplayFormat=''
+          TitleCaption='Field Description'
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      ControlDefs={
+        object:rtf::MultiControlDef<
+          Action=caEdit
+          DataMembers=['IsEmpty'#13#10,
+            'FormType'#13#10]
+        >, object:rtf::ControlDef<
+          Action=caEdit
+          DataMember='DataSize'
+        >
+      }
+      Elements={
+        *object:rtf::FieldUIElmtSetting<
+          Name='IsEmpty'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Empty Form'
+          DataTypeName='VARCHAR'
+          DataLength=1
+          EnumeratedValues=['T=True'#13#10,
+            'F=False'#13#10]
+        >, *object:rtf::FieldUIElmtSetting<
+          Name='FormType'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Form Type'
+          DataTypeName='varchar'
+          DataLength=1
+          EnumeratedValues=['F=Flat'#13#10,
+            'T=Table'#13#10,
+            'M=Multiple Table'#13#10,
+            'N=Null'#13#10]
+        >, *object:rtf::FieldUIElmtSetting<
+          Name='DataSize'
+          Hidden=true
+          ReadOnlyControl=false
+          ControlCaption='Validation Status'
+          DataTypeName='varchar'
+          DataLength=1
+          EnumeratedValues=['S=Use Validation'#13#10,
+            'L=Skip Validation'#13#10]
+        >, object:rtf::FieldUIElmtSetting<
+          Name='mapType'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Mappng Type'
+          DataTypeName='varchar'
+          DataLength=1
+          EnumeratedValues=['A=Automatic'#13#10,
+            'M=Manual'#13#10]
+        >, object:rtf::FieldUIElmtSetting<
+          Name='changed'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='varchar'
+          DataLength=1
+        >, object:rtf::FieldUIElmtSetting<
+          Name='OldMapType'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='varchar'
+          DataLength=1
+        >, object:rtf::FieldUIElmtSetting<
+          Name='tempLoc'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='varchar'
+          DataLength=300
+        >, object:rtf::FieldUIElmtSetting<
+          Name='oldDataSize'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='varchar'
+          DataLength=1
+        >
+      }
+      Name='pDetail'
+      Width=897
+      Height=137
+      UIPart=$UIPARTS['uipForm']
+      Controls={
+        *object:rtf::DBComboBox<
+          Name='IsEmpty'
+          Top=20
+          Left=8
+          ControlCaption='Empty Form'
+          OnChange='IsEmptyOnChange'
+        >, *object:rtf::DBComboBox<
+          Name='FormType'
+          Top=48
+          Left=8
+          ControlCaption='Form Type'
+          OnChange='FormTypeOnChange'
+        >, *object:rtf::DBComboBox<
+          Name='mapType'
+          Top=76
+          Left=8
+          ControlCaption='Mapping Type'
+          OnChange='mapTypeOnChange'
+        >, object:rtf::Button<
+          Name='bLoad'
+          Layout=clNewLine
+          Top=104
+          Left=8
+          Width=175
+          Height=25
+          ControlCaption=''
+          Caption='&Load Form Structure'
+          OnClick='bLoadOnClick'
+        >, object:rtf::Button<
+          Name='bQuery'
+          Layout=clNextSide
+          Top=104
+          Left=187
+          Width=175
+          Height=25
+          Enabled=false
+          ControlCaption=''
+          Caption='Edit Mapping Query'
+          OnClick='editQuery'
+        >, object:rtf::CheckBox<
+          Name='cb1'
+          Layout=clAbsolute
+          Top=24
+          Left=736
+          Width=120
+          Height=17
+          ControlCaption='recreate template'
+        >
+      }
+      EqualCaptionWidth=120
+      ControlLeftMargin=8
+      ControlTopMargin=20
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='Form Parameter Setup'
+    >, object:rtf::DualSplit<
+      Name='dualsplit3'
+      Width=897
+      Height=399
+      Container1=$CONTAINERS['pDetail']
+      Container2=$CONTAINERS['formFields']
+    >, object:rtf::DualSplit<
+      Name='dualsplit2'
+      Width=240
+      Height=497
+      Container1=$CONTAINERS['pForm']
+      Container2=$CONTAINERS['dualsplit3']
+    >, object:rtf::Panel<
+      ControlDefs={
+        object:rtf::MultiControlDef<
+          Action=caView
+          DataMembers=['DTSFormId'#13#10,
+            'DTSFormCode'#13#10,
+            'DTSFormDesc'#13#10]
+        >
+      }
+      Elements={
+        *object:rtf::FieldUIElmtSetting<
+          Name='DTSFormId'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Form ID'
+        >, *object:rtf::FieldUIElmtSetting<
+          Name='DTSFormCode'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Form Code'
+        >, *object:rtf::FieldUIElmtSetting<
+          Name='DTSFormDesc'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Form Description'
+        >
+      }
+      Name='pForm'
+      Width=897
+      Height=97
+      UIPart=$UIPARTS['uipForm']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='DTSFormId'
+          Top=8
+          Left=8
+          Color=-16777192
+          ControlCaption='Form ID'
+        >, *object:rtf::DBEdit<
+          Name='DTSFormCode'
+          Top=36
+          Left=8
+          Width=120
+          Height=21
+          Color=-16777192
+          ControlCaption='Form Code'
+        >, *object:rtf::DBEdit<
+          Name='DTSFormDesc'
+          Top=64
+          Left=8
+          Width=400
+          Height=21
+          Color=-16777192
+          ControlCaption='Form Description'
+        >
+      }
+      EqualCaptionWidth=120
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='fFormEditor'
+>

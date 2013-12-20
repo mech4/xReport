@@ -1,0 +1,218 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dualsplit1']
+  Caption='DTS Processor'
+  State=rsMaximized
+  Left=50
+  Top=50
+  Width=921
+  Height=513
+  UIParts={
+    object:rtf::PClassUI<
+      Name='uipMain'
+    >, object:rtf::PClassUI<
+      Name='uipDTS'
+      MultiLine=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dualsplit1'
+      Width=921
+      Height=513
+      Container1=$CONTAINERS['panel1']
+      Container2=$CONTAINERS['dualsplit2']
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='pathName'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='DTS Location'
+          DataTypeName='varchar'
+          DataLength=300
+        >, object:rtf::FieldUIElmtSetting<
+          Name='dtsName'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='DTS Name'
+          DataTypeName='varchar'
+          DataLength=50
+        >, object:rtf::FieldUIElmtSetting<
+          Name='periodetype'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Report Periode'
+          DataTypeName='varchar'
+          DataLength=20
+          EnumeratedValues=['M=Monthly'#13#10,
+            'D=Daily'#13#10,
+            'Q=Quarterly'#13#10,
+            'Y=Annualy'#13#10]
+        >, object:rtf::FieldUIElmtSetting<
+          Name='procFlag'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='panel1'
+      Width=921
+      Height=129
+      UIPart=$UIPARTS['uipMain']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='pathName'
+          Top=8
+          Left=8
+          ControlCaption='DTS Location'
+        >, *object:rtf::DBEdit<
+          Name='dtsName'
+          Top=40
+          Left=8
+          ControlCaption='DTS Name'
+          LayoutOrder=3
+        >, *object:rtf::DBComboBox<
+          Name='periodetype'
+          Top=68
+          Left=8
+          ControlCaption='Report Periode'
+          LayoutOrder=4
+        >, object:rtf::Button<
+          Name='bBrowse'
+          Layout=clNextSide
+          Top=8
+          Left=336
+          ControlCaption=''
+          LayoutOrder=2
+          Caption='B&rowse'
+          OnClick='bBrowseOnClick'
+        >, object:rtf::Button<
+          Name='bUpload'
+          Layout=clNewLine
+          Top=96
+          Left=8
+          ControlCaption=''
+          LayoutOrder=5
+          Caption='&Upload'
+          OnClick='bUploadOnClick'
+        >, object:rtf::CheckBox<
+          Name='cbProcess'
+          Layout=clNextSide
+          Top=96
+          Left=87
+          Width=300
+          Height=21
+          Visible=false
+          ControlCaption='Process All Form Directly (Unattended)'
+          LayoutOrder=6
+          OnClick='cbProcessOnClick'
+        >
+      }
+      EqualCaptionWidth=120
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::DualSplit<
+      Name='dualsplit2'
+      Width=921
+      Height=383
+      Container1=$CONTAINERS['grid1']
+      Container2=$CONTAINERS['panel2']
+    >, object:rtf::Grid<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='formCode'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Form ID'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='formName'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Form Name'
+          DataTypeName='varchar'
+          DataLength=200
+        >, object:rtf::FieldUIElmtSetting<
+          Name='formProcess'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Process'
+          DataTypeName='varchar'
+          DataLength=5
+        >
+      }
+      Name='grid1'
+      Width=240
+      Height=353
+      UIPart=$UIPARTS['uipDTS']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='DTS Content (Upload DTS First)'
+      Columns={
+        *object:rtf::GridColumn<
+          Name='formCode'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='formCode'
+          DisplayFormat=''
+          TitleCaption='Form ID'
+        >, *object:rtf::GridColumn<
+          Name='formName'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='formName'
+          DisplayFormat=''
+          TitleCaption='Form Name'
+          Width=700
+        >, *object:rtf::GridColumn<
+          Name='formProcess'
+          InputStyle=cisNormal
+          EnumeratedValues=''
+          FieldName='formProcess'
+          DisplayFormat=''
+          TitleCaption='Process'
+        >
+      }
+      ReadOnly=true
+      RowSelect=true
+      SuppressHelpLine=true
+    >, object:rtf::Panel<
+      Name='panel2'
+      Width=921
+      Height=208
+      Controls={
+        object:rtf::Button<
+          Name='button1'
+          Layout=clNewLine
+          Top=8
+          Left=8
+          Visible=false
+          ControlCaption=''
+          Caption='Test'
+          OnClick='button1OnClick'
+        >
+      }
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='fAddTaxonomy'
+>

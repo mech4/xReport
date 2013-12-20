@@ -1,0 +1,82 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dualsplit1']
+  Caption='XBRL Instance Data Editor'
+  Left=50
+  Top=50
+  Width=921
+  Height=521
+  UIParts={
+    object:rtf::PClassUI<
+      Name='uipMain'
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dualsplit1'
+      Width=921
+      Height=521
+      Container1=$CONTAINERS['pNav']
+      Container2=$CONTAINERS['xbrli']
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='testPath'
+          Hidden=false
+          ReadOnlyControl=false
+          DataTypeName='varchar'
+          DataLength=200
+        >
+      }
+      Name='pNav'
+      Width=921
+      Height=73
+      UIPart=$UIPARTS['uipMain']
+      Controls={
+        *object:rtf::DBEdit<
+          Name='testPath'
+          Top=8
+          Left=8
+          ControlCaption='testpath'
+        >, object:rtf::Button<
+          Name='bSave'
+          Layout=clNewLine
+          Top=36
+          Left=8
+          ControlCaption=''
+          Caption='&Save'
+        >, object:rtf::Button<
+          Name='bClose'
+          Layout=clNextSide
+          Top=36
+          Left=87
+          ControlCaption=''
+          Caption='&Close'
+        >
+      }
+      EqualCaptionWidth=120
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::OleContainer<
+      Name='xbrli'
+      Width=921
+      Height=447
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      AutoActivate=0
+    >
+  }
+  FormClassName='fReportEditor'
+>

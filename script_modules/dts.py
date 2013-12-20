@@ -61,3 +61,21 @@ class DTSMeta(pobject.PObject):
   pobject_classname = 'DTSMeta' # AS DEFINED IN METADATA
   pobject_keys = ['DTSMetaId'] # AS DEFINED IN METADATA
 #--
+
+class DTSDict(pobject.PObject):
+  # static variable
+  pobject_classname = 'DTSDict' # AS DEFINED IN METADATA
+  pobject_keys = ['DTSId', 'DictName'] # AS DEFINED IN METADATA
+#--
+
+class DTSFormula(pobject.PObject):
+  # static variable
+  pobject_classname = 'DTSFormula' # AS DEFINED IN METADATA
+  pobject_keys = ['DTSFormulaId'] # AS DEFINED IN METADATA
+#--
+
+class DTSFormulaVars(pobject.PObject):
+  # static variable
+  pobject_classname = 'DTSFormulaVars' # AS DEFINED IN METADATA
+  pobject_keys = ['VarId'] # AS DEFINED IN METADATA
+#--

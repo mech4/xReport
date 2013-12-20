@@ -1,0 +1,99 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{03AB2DCD-D5DA-4DD5-B07D-CD15AE22527E}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rpclass::TPClassUIDefList<
+  UIDefs={
+    object:rpclass::TPClassUIDef<
+      Name='uipart1'
+      CustomLoadedFields={
+        object:rpclass::TCustomLoadedField<
+          Name='lDTS.DTSId'
+          DataTypeName='INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='lDTS.DTSName'
+          DataTypeName='VARCHAR'
+          DataLength=100
+        >, object:rpclass::TCustomLoadedField<
+          Name='lDTS.PeriodType'
+          DataTypeName='VARCHAR'
+          DataLength=1
+        >, object:rpclass::TCustomLoadedField<
+          Name='lDTS.DTSId'
+          DataTypeName='INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='lperiod.period_id'
+          DataTypeName='INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='lperiod.period_code'
+          DataTypeName='VARCHAR'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='lperiod.description'
+          DataTypeName='VARCHAR'
+          DataLength=32
+        >, object:rpclass::TCustomLoadedField<
+          Name='lperiod.period_id'
+          DataTypeName='INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='lperiod.period_type'
+          DataTypeName='VARCHAR'
+          DataLength=1
+        >, object:rpclass::TCustomLoadedField<
+          Name='lbranch.branch_id'
+          DataTypeName='INTEGER'
+        >, object:rpclass::TCustomLoadedField<
+          Name='lbranch.branch_code'
+          DataTypeName='VARCHAR'
+          DataLength=10
+        >, object:rpclass::TCustomLoadedField<
+          Name='lbranch.branch_name'
+          DataTypeName='VARCHAR'
+          DataLength=32
+        >, object:rpclass::TCustomLoadedField<
+          Name='lbranch.branch_id'
+          DataTypeName='INTEGER'
+        >
+      }
+      CustomLoadedLinks={
+        object:rpclass::TCustomLoadedLink<
+          Name='lDTS'
+          ClassTypeName='DTS'
+          FieldNames='DTSId;DTSName;PeriodType;DTSId'
+        >, object:rpclass::TCustomLoadedLink<
+          Name='lperiod'
+          ClassTypeName='Period'
+          FieldNames='period_id;period_code;description;period_id;period_type'
+        >, object:rpclass::TCustomLoadedLink<
+          Name='lbranch'
+          ClassTypeName='Branch'
+          FieldNames='branch_id;branch_code;branch_name;branch_id'
+        >
+      }
+      Mode=imSingleRow
+      CreateInstanceOnNew=true
+    >, object:rpclass::TPClassUIDef<
+      Name='uipart2'
+      CustomLoadedFields={
+        object:rpclass::TCustomLoadedField<
+          Name='formCode'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='reportName'
+          DataTypeName='varchar'
+          DataLength=200
+        >, object:rpclass::TCustomLoadedField<
+          Name='reportStatus'
+          DataTypeName='varchar'
+          DataLength=1
+        >
+      }
+      Mode=imMultiRow
+      CreateInstanceOnNew=true
+    >
+  }
+>

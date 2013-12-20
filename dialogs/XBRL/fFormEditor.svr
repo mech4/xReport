@@ -1,0 +1,73 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{03AB2DCD-D5DA-4DD5-B07D-CD15AE22527E}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rpclass::TPClassUIDefList<
+  UIDefs={
+    object:rpclass::TPClassUIDef<
+      Name='uipDetail'
+      CustomLoadedFields={
+        object:rpclass::TCustomLoadedField<
+          Name='fieldLoaded'
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Mode=imSingleRow
+      CreateInstanceOnNew=true
+    >, object:rpclass::TPClassUIDef<
+      Name='uipForm'
+      PClassName='DTSForm'
+      LoadedFieldList='IsEmpty;FormType;DataSize;DTSFormId;DTSFormCode;DTSFormDesc'
+      StoredFieldList='IsEmpty;FormType;DataSize'
+      CustomLoadedFields={
+        object:rpclass::TCustomLoadedField<
+          Name='mapType'
+          DataTypeName='varchar'
+          DataLength=1
+        >, object:rpclass::TCustomLoadedField<
+          Name='changed'
+          DataTypeName='varchar'
+          DataLength=1
+        >, object:rpclass::TCustomLoadedField<
+          Name='OldMapType'
+          DataTypeName='varchar'
+          DataLength=1
+        >, object:rpclass::TCustomLoadedField<
+          Name='tempLoc'
+          DataTypeName='varchar'
+          DataLength=300
+        >, object:rpclass::TCustomLoadedField<
+          Name='oldDataSize'
+          DataTypeName='varchar'
+          DataLength=1
+        >
+      }
+      Mode=imSingleRow
+      CreateInstanceOnNew=true
+    >, object:rpclass::TPClassUIDef<
+      Name='uipField'
+      CustomLoadedFields={
+        object:rpclass::TCustomLoadedField<
+          Name='fieldLevel'
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='fieldCode'
+          DataTypeName='varchar'
+          DataLength=20
+        >, object:rpclass::TCustomLoadedField<
+          Name='fieldDesc'
+          DataTypeName='varchar'
+          DataLength=500
+        >
+      }
+      Mode=imMultiRow
+      CreateInstanceOnNew=true
+    >
+  }
+  OnSetDataEx='FormOnSetDataEx'
+>

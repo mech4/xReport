@@ -1,0 +1,70 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dualsplit1']
+  Caption='Form Elements'
+  State=rsMaximized
+  Left=50
+  Top=50
+  Width=937
+  Height=545
+  AfterProcessServerData='FormAfterProcessServerData'
+  UIParts={
+    object:rtf::PClassUI<
+      Name='uipart1'
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dualsplit1'
+      Width=937
+      Height=545
+      Container1=$CONTAINERS['panel1']
+      Container2=$CONTAINERS['query1']
+    >, object:rtf::Query<
+      Name='query1'
+      Width=937
+      Height=514
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      EncodeC=true
+      EnableColumns=true
+      HideSearchPanel=true
+      ServerMethodID='runQuery'
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='fid'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='fName'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='varchar'
+          DataLength=200
+        >
+      }
+      Name='panel1'
+      Width=320
+      Height=30
+      UIPart=$UIPARTS['uipart1']
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='QryMeta'
+>

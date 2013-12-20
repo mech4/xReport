@@ -1,0 +1,278 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dualsplit1']
+  Caption='XBRL Instance Data Editor'
+  State=rsMaximized
+  Left=50
+  Top=50
+  Width=921
+  Height=521
+  BeforeDeleteRow=''
+  BeforeResultSent=''
+  OnGeneralSetData=''
+  AfterSetData=''
+  OnGeneralProcessData=''
+  OnProcessRawData=''
+  OnBeginSetData=''
+  OnEndSetData=''
+  OnSetDataEx=''
+  OnBeginProcessData=''
+  OnEndProcessData=''
+  UIParts={
+    object:rtf::PClassUI<
+      Name='uipMain'
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dualsplit1'
+      Width=921
+      Height=521
+      Container1=$CONTAINERS['pNav']
+      Container2=$CONTAINERS['dualsplit2']
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='dataPath'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='varchar'
+          DataLength=200
+        >, object:rtf::LinkUIElmtSetting<
+          Name='lDTS'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='DTS'
+          ClassTypeName='DTS'
+          DisplayFields='DTSName;PeriodType;DTSId'
+          Restrictions=''
+          FieldBaseName='lDTS'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='lReport'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Report Form'
+          ClassTypeName='DTSForm'
+          DisplayFields='DTSFormCode;DTSFormDesc;DTSFormId;DTSFolderId;DTSFileName;FormType;IsEmpty;DataSize'
+          Restrictions=''
+          FieldBaseName='lReport'
+        >, object:rtf::FieldUIElmtSetting<
+          Name='fType'
+          Hidden=false
+          ReadOnlyControl=false
+          DataTypeName='varchar'
+          DataLength=1
+          EnumeratedValues=['F=Flat [Closed Table]'#13#10,
+            'T=Table [Open Table]'#13#10,
+            'M=Multitable [Open Table]'#13#10,
+            'N=Nihil'#13#10]
+        >, object:rtf::LinkUIElmtSetting<
+          Name='lperiod'
+          Hidden=false
+          ReadOnlyControl=false
+          ClassTypeName='Period'
+          DisplayFields='period_code;description;period_id;period_type'
+          Restrictions=''
+          FieldBaseName='lperiod'
+        >, object:rtf::LinkUIElmtSetting<
+          Name='lbranch'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Wilayah'
+          ClassTypeName='Branch'
+          DisplayFields='branch_code;branch_name;branch_id'
+          Restrictions=''
+          FieldBaseName='lbranch'
+        >
+      }
+      Name='pNav'
+      Width=921
+      Height=153
+      UIPart=$UIPARTS['uipMain']
+      Controls={
+        *object:rtf::DBLookupEdit<
+          Name='lDTS'
+          Top=8
+          Left=8
+          Width=400
+          Height=21
+          ControlCaption='DTS'
+          FieldName='lDTS.DTSName'
+          LookupField='lDTS.PeriodType'
+          DisplayLookupField=true
+          OnExit='refDTSExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=50
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='lReport'
+          Top=36
+          Left=8
+          Width=100
+          Height=21
+          ControlCaption='Report Form'
+          FieldName='lReport.DTSFormCode'
+          LookupField='lReport.DTSFormDesc'
+          DisplayLookupField=true
+          OnExit='refReportExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=350
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBComboBox<
+          Name='fType'
+          Layout=clNextSide
+          Top=36
+          Left=586
+          Width=212
+          Height=21
+          Enabled=false
+          ControlCaption=''
+        >, *object:rtf::DBLookupEdit<
+          Name='lperiod'
+          Top=64
+          Left=8
+          Width=100
+          Height=21
+          ControlCaption='Periode'
+          FieldName='lperiod.period_code'
+          LookupField='lperiod.description'
+          DisplayLookupField=true
+          OnExit='refPeriodExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=350
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, *object:rtf::DBLookupEdit<
+          Name='lbranch'
+          Top=92
+          Left=8
+          Width=100
+          Height=21
+          ControlCaption='Wilayah'
+          FieldName='lbranch.branch_code'
+          LookupField='lbranch.branch_name'
+          DisplayLookupField=true
+          OnExit='refBranchExit'
+          DisplayLookupColor=-16777192
+          DisplayLookupWidth=350
+          DirectInput=true
+          ButtonWidth=1
+          ManualInputCheck=true
+        >, object:rtf::Button<
+          Name='bOpen'
+          Layout=clNewLine
+          Top=120
+          Left=8
+          ControlCaption=''
+          LayoutOrder=6
+          Caption='&Open'
+          OnClick='bOpenOnClick'
+        >, object:rtf::Button<
+          Name='bSave'
+          Layout=clNextSide
+          Top=120
+          Left=166
+          Visible=false
+          Enabled=false
+          ControlCaption=''
+          LayoutOrder=7
+          Caption='&Save'
+          OnClick='bSaveOnClick'
+        >, object:rtf::Button<
+          Name='bGen'
+          Layout=clNextSide
+          Top=120
+          Left=245
+          ControlCaption=''
+          LayoutOrder=8
+          Caption='&Generate'
+          OnClick='bGenOnClick'
+        >, object:rtf::Button<
+          Name='bSet'
+          Layout=clNextSide
+          Top=120
+          Left=324
+          ControlCaption=''
+          LayoutOrder=9
+          Caption='&Upload'
+          OnClick='bSetOnClick'
+        >, object:rtf::CheckBox<
+          Name='cb1'
+          Layout=clAbsolute
+          Top=128
+          Left=800
+          Width=97
+          Height=17
+          ControlCaption='recreate report'
+        >, object:rtf::Button<
+          Name='bGet'
+          Layout=clNextSide
+          Top=120
+          Left=87
+          ControlCaption=''
+          Caption='&Download'
+          OnClick='bGetOnClick'
+        >
+      }
+      EqualCaptionWidth=120
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >, object:rtf::DualSplit<
+      Name='dualsplit2'
+      Width=921
+      Height=367
+      Container1=$CONTAINERS['xbrli']
+      Container2=$CONTAINERS['pLog']
+      DynamicSplit=true
+      SplitDirection=sdrSplitLeftRight
+    >, object:rtf::OleContainer<
+      Name='xbrli'
+      Width=700
+      Height=240
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      AutoActivate=1
+    >, object:rtf::Panel<
+      Name='pLog'
+      Width=441
+      Height=393
+      Controls={
+        object:rtf::Edit<
+          Name='logMemo'
+          Layout=clNewLine
+          Top=20
+          Left=8
+          Width=409
+          Height=329
+          ControlCaption=''
+          ReadOnly=true
+          MultiLine=true
+        >
+      }
+      ControlLeftMargin=8
+      ControlTopMargin=20
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      Caption='Log Message'
+    >
+  }
+  FormClassName='fReportEditor'
+>

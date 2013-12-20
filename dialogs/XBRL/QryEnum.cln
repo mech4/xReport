@@ -1,0 +1,103 @@
+document <
+  libversionID='{34FC4F41-D74A-11D5-AB5B-FB56D633B52C}'
+  DocumentTypeID='{781210D2-E6AA-49BD-934A-EF8503DE20B0}'
+  DocumentID=''
+  MajorVersion='0'
+  MinorVersion='0'
+>
+object:rtf::Form<
+  MainContainer=$CONTAINERS['dualsplit1']
+  Caption='Daftar Sandi pada DTS'
+  State=rsMaximized
+  Left=50
+  Top=50
+  Width=800
+  Height=400
+  AfterProcessServerData='FormAfterProcessServerData'
+  OnClose='FormOnClose'
+  UIParts={
+    object:rtf::PClassUI<
+      Name='uipart1'
+      CreateInstanceOnNew=true
+    >
+  }
+  Containers={
+    object:rtf::DualSplit<
+      Name='dualsplit1'
+      Width=800
+      Height=400
+      Container1=$CONTAINERS['panel1']
+      Container2=$CONTAINERS['query1']
+    >, object:rtf::Query<
+      Name='query1'
+      Width=800
+      Height=366
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+      ServerMethodID='runQuery'
+    >, object:rtf::Panel<
+      Elements={
+        object:rtf::FieldUIElmtSetting<
+          Name='dtsid'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='enumIndex'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >, object:rtf::FieldUIElmtSetting<
+          Name='Test'
+          Hidden=false
+          ReadOnlyControl=false
+          ControlCaption='Nama Sandi'
+          DataTypeName='varchar'
+          DataLength=20
+          EnumeratedValues=['a=a'#13#10,
+            'b=b'#13#10]
+        >, object:rtf::FieldUIElmtSetting<
+          Name='fid'
+          Hidden=true
+          ReadOnlyControl=false
+          DataTypeName='integer'
+          DataLength=20
+        >
+      }
+      Name='panel1'
+      Width=801
+      Height=33
+      UIPart=$UIPARTS['uipart1']
+      Controls={
+        *object:rtf::DBComboBox<
+          Name='Test'
+          Top=8
+          Left=8
+          Width=300
+          Height=21
+          ControlCaption='Nama Sandi'
+          OnChange='TestOnChange'
+        >, object:rtf::Button<
+          Name='button1'
+          Layout=clNewLine
+          Top=36
+          Left=8
+          ControlCaption=''
+        >
+      }
+      EqualCaptionWidth=120
+      ControlLeftMargin=8
+      ControlTopMargin=8
+      DefaultControlHeight=21
+      HorizontalControlGap=4
+      RowControlGap=7
+    >
+  }
+  FormClassName='QryEnum'
+  DefaultShowMode=2
+>
