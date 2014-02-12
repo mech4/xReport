@@ -4,6 +4,7 @@ import com.ihsan.util.xmlio as xutil
 import sys, shutil, os
 import pyFlexcel
 from openpyxl import load_workbook as xloader
+import traceback
 
 def OpenReport(config, parameter, returns):
   # config: ISysConfig object
@@ -346,6 +347,7 @@ def GenReport(config, parameter, returns):
   #--
   def vaResult(root, rumus, mType, app=None):
     frm = rumus[0] + ' '
+    frm=frm.replace('number', 'int')
     varlist = rumus[2]
     leftside, rightside = frm.split('=')
     for key in varlist.keys():
@@ -354,9 +356,17 @@ def GenReport(config, parameter, returns):
       if cvar in rightside:
         valueContainers = root.seek(csou)
         for vc in valueContainers:
-          rightside=rightside.replace('$%s' % cvar, vc.text)
+          if csou[0] in ('s','d') and csou!='dummy':
+            rightside=rightside.replace('$%s' % cvar, '"'+str(vc.text)+'"')
+          else:
+            rightside=rightside.replace('$%s' % cvar, str(vc.text))
       else:
-        leftside=leftside.replace('$%s' % cvar, csou)
+        if csou[0] in ('s','d') and csou!='dummy':
+          valueContainers = root.seek(csou)
+          for vc in valueContainers:
+            leftside=leftside.replace('$%s' % cvar, '"'+str(vc.text)+'"')
+        else:
+          leftside=leftside.replace('$%s' % cvar, csou)
     if rightside.find('$') > -1 or leftside.find('$') > -1:
       if app:
         app.ConWriteln(rightside)
@@ -377,17 +387,33 @@ def GenReport(config, parameter, returns):
       return 1
   #-- 
   def vaCheck(root, rumus, mType, app=None):
-    frm = rumus[0] + ' '
+    frm = str(rumus[0]) + ' '
     #manfix rumus
     frm=frm.replace(' = ',' == ')
+    frm=frm.replace('number', 'int')
+    if 'sum' in  frm:
+      return 0
     varlist = rumus[2]
     for key in varlist.keys():
-      cvar = key + ' '
+      skey = str(key)
+      cvar = skey + ' '
+      b = frm.split(skey)
+      for c in range(len(b)):
+        if not b[c][0].isdigit():
+          if b[c][0] != ' ':
+            b[c] = ' '+b[c]
+      frm = skey.join(b)
       csou = varlist[key]
       valueContainers = root.seek(csou)
+      if app:
+        app.ConWriteln(str(valueContainers))
       for vc in valueContainers:
-        frm=frm.replace('$%s' % cvar, vc.text)
+          if csou[0] in ('s','d') and csou!='dummy':
+            frm=frm.replace('$%s' % cvar, '"'+str(vc.text)+'"')
+          else:
+            frm=frm.replace('$%s' % cvar, str(vc.text))
     if app:
+      app.ConWriteln('pass')
       app.ConWriteln(frm)
     if frm.find('$') > -1:
       return 0
@@ -395,7 +421,7 @@ def GenReport(config, parameter, returns):
       try:
         res = eval(frm)
       except:
-        raise Exception, frm
+        raise Exception, "Error formula %s" % frm
       if app:
         app.ConWriteln('tested %s' % str(res))
       if res:
@@ -650,9 +676,12 @@ def GenReport(config, parameter, returns):
         # exec post-va formula
         for vf in vflist.keys():
           #run all
-          vares = vaCheck(iForm.rootElement, vflist[vf], formType)
+          vares = vaCheck(iForm.rootElement, vflist[vf], formType, app)
           if vares<1:
-            raise Exception, 'Unable to calculate'
+            #app.ConWriteln(vflist[vf][0])
+            #raise Exception, 'Unable to calculate'
+            #skip IV
+            break
           if vares<2: 
             raise Exception, vflist[vf][1] # raise error message
         # run ea formula
@@ -788,9 +817,12 @@ def GenReport(config, parameter, returns):
             #run all
             vares = vaCheck(testRoot, vflist[vf], formType)
             if vares<1:
+              #app.ConWriteln(str(vflist[vf]))
               raise Exception, 'Unable to calculate'
             if vares<2: 
-              raise Exception, vflist[vf][1] # raise error message
+              erm = vflist[vf][1]
+              erm = erm.replace('{$v1/../@id}', str(contentNum)) 
+              raise Exception, erm # raise error message
           # exec ea formula (r)
           for ef in eflist.keys():
             eares = eaCheck(testRoot, eflist[ef], formType)
@@ -825,6 +857,7 @@ def GenReport(config, parameter, returns):
         # exec pre-va formula
         for vf in vflist.keys():
           #trap assignment
+          #app.ConWriteln(str(vflist[vf]))
           if 'if' not in vflist[vf][0] and '<' not in vflist[vf][0] and '>' not in vflist[vf][0]:
             if len(vflist[vf][0].split('=')) == 2:
               if vflist[vf][0].split('=')[0].count('$') == 1:
@@ -865,7 +898,9 @@ def GenReport(config, parameter, returns):
         # exec post-va formula
         for vf in vflist.keys():
           #run all
-          vares = vaCheck(iForm.rootElement, vflist[vf], formType)
+          #app.ConWriteln(str(vflist))
+          #vares = vaCheck(iForm.rootElement, vflist[vf], formType, app) iv-formula skipp !!!!!!!!!
+          vares = 3
           if vares<1:
             raise Exception, 'Unable to calculate'
           if vares<2: 
@@ -893,14 +928,14 @@ def GenReport(config, parameter, returns):
           res.Next()
         # exec ea formula
         for ef in eflist.keys():
-          eares = eaCheck(iForm.rootElement, eflist[ef], formType)
+          eares = eaCheck(iForm.rootElement, eflist[ef], formType, app)
           if eares<1:
             raise Exception, eflist[ef][1] # raise error message
       elif formType == 'M':
         schemaMeta = iForm.readMeta()
         tstmeta = iForm.schema.metaStructure
-        app.ConWriteln(str(tstmeta.getMeta(False)))
-        app.ConWriteln(str(schemaMeta))
+        #app.ConWriteln(str(tstmeta.getMeta(False)))
+        #app.ConWriteln(str(schemaMeta))
         subName = None
         for lv, entity, QN, dType, mDesc in schemaMeta:
           if lv==1 and (dType=='Table' or dType=='Empty'):
@@ -918,7 +953,7 @@ def GenReport(config, parameter, returns):
         xcol = 0
         xlsStartRow = 2
         contentNum = 1
-        xrow = xlsStartRow 
+        xrow = xlsStartRow
         valueTester = ows.cell(row=xrow, column=0).value
         #######READ FORMULA FOR ROW HERE !!!!!!!!!##############
         # read va formula (r)
@@ -984,10 +1019,10 @@ def GenReport(config, parameter, returns):
         while xlskey not in (None,'','None'):
           xlsElement.append((xcol, ows.cell(row=0, column=xcol).value, getMetaLv(schemaMeta, ows.cell(row=0, column=xcol).value)))    
           xcol +=1
-          xlskey = ows.cell(row=0, column=xcol)
+          xlskey = ows.cell(row=0, column=xcol).value
         LastRow = None
         while valueTester not in (None,'','None'):
-          app.ConWriteln(str(valueTester))
+          #app.ConWriteln(str(valueTester))
           if valueTester != LastRow:
             subCount = 1
             contentId = 'ID_{0}'.format(str(contentNum))
@@ -995,20 +1030,20 @@ def GenReport(config, parameter, returns):
             contentParam = {}
             contentRow = { contentId : {}}
             for elementCol in xlsElement:
-              app.ConWriteln(elementCol[1])
+              #app.ConWriteln("{0} ; {1}".format(elementCol[1],elementCol[2]))
               thisValue = ows.cell(row=xrow, column=elementCol[0]).value
               if str(thisValue).replace('.','').isdigit():
                 if thisValue == int(thisValue):
                   thisValue = int(thisValue) 
               if elementCol[2]==2:
                 if not contentRow[contentId].has_key(subName):
-                  app.ConWriteln('creating subname %s' % subName)
+                  #app.ConWriteln('creating subname %s' % subName)
                   contentRow[contentId][subName] = {}
                 else:
                   if contentRow[contentId][subName].__class__.__name__ != 'dict':
                     contentRow[contentId][subName] = {}
                 if not contentRow[contentId][subName].has_key(subCount):
-                  app.ConWriteln('creating subcount %s' % str(subCount))
+                  #app.ConWriteln('creating subcount %s' % str(subCount))
                   contentRow[contentId][subName][subCount] = {}
                 contentRow[contentId][subName][subCount][elementCol[1]] = thisValue
               else:
@@ -1028,44 +1063,49 @@ def GenReport(config, parameter, returns):
               else:
                 contentRow[contentId][elementCol[1]] = thisValue
           LastRow = valueTester
-          testRoot = advSeek(iForm.rootElement, DTSFormCode, 'id', contentId)[0]
-          # exec pre-va formula (r)
-          for vf in vflist.keys():
-            #trap assignment
-            if 'if' not in vflist[vf][0] and '<' not in vflist[vf][0] and '>' not in vflist[vf][0]:
-              if len(vflist[vf][0].split('=')) == 2:
-                if vflist[vf][0].split('=')[0].count('$') == 1:
-                  vares = vaResult(testRoot, vflist[vf], formType)
-                  if vares<1:
-                    app.ConWriteln("skipped assignment #{2} : {0} for {1}".format(vflist[vf][0], vflist[vf][3], str(vf)))
-                    vfSkipFlag += 1
-          # exec calc formula (r)
-          for cf in cflist.keys():
-            calcres = calcResult(testRoot, cflist[cf], formType)
-            if calcres<1:
-              app.ConWriteln("skipped calculation #{2} : {0} for {1}".format(cflist[cf][0], cflist[cf][3], str(cf)))
-              cfSkipFlag += 1
-          # exec post-va formula (r)
-          for vf in vflist.keys():
-            #run all
-            vares = vaCheck(testRoot, vflist[vf], formType)
-            if vares<1:
-              raise Exception, 'Unable to calculate'
-            if vares<2: 
-              raise Exception, vflist[vf][1] # raise error message
-          # exec ea formula (r)
-          for ef in eflist.keys():
-            eares = eaCheck(testRoot, eflist[ef], formType)
-            if eares<1:
-              raise Exception, eflist[ef][1] # raise error message
           xrow+=1
-          valueTester = ows.cell(row=xrow, column=0)
+          valueTester = ows.cell(row=xrow, column=0).value
           subCount+=1
           if valueTester != LastRow:
             contentParam[cxId] = contentRow 
             iForm.addContent(contentParam)
+            #app.ConWriteln(str(len(advSeek(iForm.rootElement, DTSFormCode, 'id', contentId))))
+            #app.ConWriteln(iForm.rootElement.writeXML())
+            testRoot = advSeek(iForm.rootElement, DTSFormCode, 'id', contentId)[0]
+            # exec pre-va formula (r)
+            for vf in vflist.keys():
+              #trap assignment
+              if 'if' not in vflist[vf][0] and '<' not in vflist[vf][0] and '>' not in vflist[vf][0]:
+                if len(vflist[vf][0].split('=')) == 2:
+                  if vflist[vf][0].split('=')[0].count('$') == 1:
+                    vares = vaResult(testRoot, vflist[vf], formType)
+                    if vares<1:
+                      app.ConWriteln("skipped assignment #{2} : {0} for {1}".format(vflist[vf][0], vflist[vf][3], str(vf)))
+                      vfSkipFlag += 1
+            # exec calc formula (r)
+            for cf in cflist.keys():
+              calcres = calcResult(testRoot, cflist[cf], formType)
+              if calcres<1:
+                app.ConWriteln("skipped calculation #{2} : {0} for {1}".format(cflist[cf][0], cflist[cf][3], str(cf)))
+                cfSkipFlag += 1
+            # exec post-va formula (r)
+            for vf in vflist.keys():
+              #run all
+              vares = vaCheck(testRoot, vflist[vf], formType)
+              if vares<1:
+                raise Exception, 'Unable to calculate'
+              if vares<2:
+                errstr = vflist[vf][1].replace('{$v1/../@id}', str(contentNum-1)) 
+                raise Exception, errstr # raise error message
+            # exec ea formula (r)
+            #app.ConWriteln('exec ea(r)')
+            for ef in eflist.keys():
+              eares = eaCheck(testRoot, eflist[ef], formType)
+              if eares<1:
+                raise Exception, eflist[ef][1] # raise error message
         #######ADD FORMULA HERE !!!!!!!!!(Porting from table to multi)##############
         # run pre-va formula
+        app.ConWriteln('aqwe')
         vfSkipFlag = 0
         # read va formula
         s = '''
@@ -1130,7 +1170,8 @@ def GenReport(config, parameter, returns):
         # exec post-va formula
         for vf in vflist.keys():
           #run all
-          vares = vaCheck(iForm.rootElement, vflist[vf], formType)
+          #vares = vaCheck(iForm.rootElement, vflist[vf], formType) iv formula skip !!!!!!!!!!
+          vares = 3
           if vares<1:
             raise Exception, 'Unable to calculate'
           if vares<2: 
@@ -1184,7 +1225,12 @@ def GenReport(config, parameter, returns):
     config.Commit()
   except:
     app.ConWriteln('Error : %s' % str(sys.exc_info()[1]))
-    app.ConRead('a')
+    app.ConWriteln('Traceback')
+    _errmsg = traceback.format_exc().splitlines()
+    for line in _errmsg : 
+      app.ConWriteln(str(line))
+    #app.ConWriteln(iForm.rootElement.writeXML())
+    app.ConRead('Error')
     config.Rollback()
     status.Is_Err = str(sys.exc_info()[1]) + ' '
 

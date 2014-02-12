@@ -283,6 +283,8 @@ def LoadStructure(config, parameter, returns):
       #--
       def formulaToEval(frmstr):
         retstr = frmstr.strip()
+        #change nilled()
+        retstr = retstr.replace('nilled','"" == ')
         #change ge
         retstr = retstr.replace('ge','>=')
         #change le
@@ -495,6 +497,7 @@ def LoadStructure(config, parameter, returns):
         iVa.Message = msgtext
         #''' 
         vava = advSeek(flinkbase.rootElement, 'variableArc', 'xlink:from', forid)    # variableArc
+        prevVars = []
         for vafv in vava:
           varname = vafv.attrib['name']
           # varname : varname@dtsformulavars
@@ -517,6 +520,8 @@ def LoadStructure(config, parameter, returns):
                 iVaVar.VarSource = fieldCodeTag
                 iVaVar.VarType = "s"
                 #''' 
+                pvrec = (varname, fieldCodeTag, 's')
+                prevVars.append(pvrec)
           if fieldCodeTag<>'':
             rumusolah = rumusolah.replace('$%s' % varname, fieldCodeTag)
             varchanged += 1
@@ -557,6 +562,12 @@ def LoadStructure(config, parameter, returns):
                     iVa.FormulaType = "v"
                     iVa.Rumus = rumus
                     #'''
+                    for pvrec in prevVars:
+                      ipVar = helper.CreatePObject('DTSFormulaVars')
+                      ipVar.DTSFormulaId = iVa.DTSFormulaId
+                      ipVar.VarName = pvrec[0]
+                      ipVar.VarSource = pvrec[1]
+                      ipVar.VarType = pvrec[2]
                     if fDebug:
                       app.ConWriteln("    exc : {0}".format("row" if exectype=="r" else "form"))
                       app.ConWriteln(' ')

@@ -113,86 +113,10 @@ class fiobsms56:
     pass
 
 
-  def generateXml(self, sender):
+  def button1OnClick(self, sender):
     app = self.FormObject.ClientApplication
     ph = app.CreateValues()
     ph = self.FormObject.CallServerMethod('GenereateInstance', ph)
-    sw = ph.packet.GetStreamWrapper(0)
-    extension = app.GetExtensionFromMIMEType(sw.MIMEType)
-    fileName = app.SaveFileDialog("Save as...", "*.zip")
-    if fileName != None and fileName != "":
-      sw.SaveToFile(fileName)
-    #app.ShowMessage('Download instance pada laporan rawdata MIS')
+    app.ShowMessage('Download instance pada laporan rawdata MIS')
     #  return
-    pass
-    
-  def ctl1GetOnClick(self, sender):
-    app = self.FormObject.ClientApplication
-    ph = app.CreateValues()
-    ph = self.FormObject.CallServerMethod('GenereateCtl', ph)
-    sw = ph.packet.GetStreamWrapper(0)
-    extension = app.GetExtensionFromMIMEType(sw.MIMEType)
-    fileName = app.SaveFileDialog("Save as...", "*.zip")
-    if fileName != None and fileName != "":
-      sw.SaveToFile(fileName)
-    #app.ShowMessage('Download instance pada laporan rawdata MIS')
-    #  return
-    pass
-
-  def ctl1SetOnClick(self, sender):
-    # procedure(sender: TrtfButton)
-    app = self.FormObject.ClientApplication
-    filename = app.OpenFileDialog('Open data file', 'ZIP File|*.zip')
-    if filename in (None,'',0):
-      return
-    filename = filename.rstrip('.zip') + '.zip'
-    if not app.ConfirmDialog('Anda yakin akan upload file %s ?\nSeluruh data pada database akan direplace.' % filename):
-      return
-    ph = app.CreateValues()
-    sw = ph.Packet.AddStreamWrapper()
-    sw.LoadFromFile(filename)
-    ph = self.FormObject.CallServerMethod('SetCTLData1', ph)
-    status = ph.FirstRecord
-    if status.Err not in (None,'',0):
-      app.ShowMessage('Server Error : ' % status.Err)
-      return
-    app.ShowMessage('File %s uploaded.' % filename)
-    clicker = self.panel1_bView
-    self.bViewOnClick(clicker)
-    pass
-    
-  def ctl2GetOnClick(self, sender):
-    app = self.FormObject.ClientApplication
-    ph = app.CreateValues()
-    ph = self.FormObject.CallServerMethod('GenereateCtl2', ph)
-    sw = ph.packet.GetStreamWrapper(0)
-    extension = app.GetExtensionFromMIMEType(sw.MIMEType)
-    fileName = app.SaveFileDialog("Save as...", "*.zip")
-    if fileName != None and fileName != "":
-      sw.SaveToFile(fileName)
-    #app.ShowMessage('Download instance pada laporan rawdata MIS')
-    #  return
-    pass
-
-
-  def ctl2SetOnClick(self, sender):
-    # procedure(sender: TrtfButton)
-    app = self.FormObject.ClientApplication
-    filename = app.OpenFileDialog('Open data file', 'ZIP File|*.zip')
-    if filename in (None,'',0):
-      return
-    filename = filename.rstrip('.zip') + '.zip'
-    if not app.ConfirmDialog('Anda yakin akan upload file %s ?\nSeluruh data pada database akan direplace.' % filename):
-      return
-    ph = app.CreateValues()
-    sw = ph.Packet.AddStreamWrapper()
-    sw.LoadFromFile(filename)
-    ph = self.FormObject.CallServerMethod('SetCTLData2', ph)
-    status = ph.FirstRecord
-    if status.Err not in (None,'',0):
-      app.ShowMessage('Server Error : ' % status.Err)
-      return
-    app.ShowMessage('File %s uploaded.' % filename)
-    clicker = self.panel1_bView
-    self.bViewOnClick(clicker)
     pass

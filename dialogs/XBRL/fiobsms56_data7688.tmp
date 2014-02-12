@@ -423,7 +423,7 @@ def SetCSVData(config, params, returns):
     status.Err = str(sys.exc_info()[1])
     app.ConRead('a')
     
-def GenereateInstance(config, params, returns):
+def SetCSVData(config, params, returns):
   app = config.AppObject
 
   SQL = '''
@@ -461,6 +461,14 @@ def GenereateInstance(config, params, returns):
         to_char(TUNGGAKAN_MARGIN) 	          as TUNGGAKAN_MARGIN,
         to_char(IMBALAN_DITERIMA) 	          as IMBALAN_DITERIMA,
         to_char(KOLEKTIBILITAS) 	          as KOLEKTIBILITAS,
+        to_char(JENIS_ASSET) 	          as JENIS_ASSET,
+        to_char(NO_AGUNAN) 	          as NO_AGUNAN,
+        to_char(SIFAT_AGUNAN) 	          as SIFAT_AGUNAN,
+        to_char(GOLONGAN_PENERBIT) 	          as GOLONGAN_PENERBIT,
+        to_char(TGL_PENILAIAN) 	          as TGL_PENILAIAN,
+        to_char(NILAI_AGUNAN) 	          as NILAI_AGUNAN,
+        to_char(DPT_DIPERHITUNGKAN) 	          as DPT_DIPERHITUNGKAN,
+        to_char(BAGIAN_DIJAMINKAN) 	          as BAGIAN_DIJAMINKAN,
         to_char(CKPN_INDIVIDUAL) 	          as CKPN_INDIVIDUAL,
         to_char(CKPN_KOLEKTIF) 	          as CKPN_KOLEKTIF
         from {1}
@@ -471,7 +479,8 @@ def GenereateInstance(config, params, returns):
   
   rSQL =config.CreateSQL(SQL).RawResult   
   
-  ResultDir = 'c:/dafapp/rawdata/'
+  if ResultDir == '' :                                
+    ResultDir = 'c:/dafapp/rawdata/'
 
   sBaseFileName = '517001000-2013-12-31-MM-BSMS56.xml'
   sFileName = ResultDir + sBaseFileName
@@ -600,13 +609,15 @@ def GenereateInstance(config, params, returns):
         to_char(SIFAT_AGUNAN) 	          as SIFAT_AGUNAN,
         to_char(GOLONGAN_PENERBIT) 	          as GOLONGAN_PENERBIT,
         to_char(TGL_PENILAIAN) 	          as TGL_PENILAIAN,
-        to_char(NILAI_AGUNAN) 	          as NILAI_AGUNAN
+        to_char(NILAI_AGUNAN) 	          as NILAI_AGUNAN,
+        to_char(DPT_DIPERHITUNGKAN) 	          as DPT_DIPERHITUNGKAN,
+        to_char(BAGIAN_DIJAMINKAN) 	          as BAGIAN_DIJAMINKAN,
         from {0} where nomor_rekening = '{1}'
         '''.format(
           config.MapDBTableName('tmp.TMP_LS10_agunan'), #0 
           rSQL.NOMOR_REKENING # 0
         )
-      rSQL_a =config.CreateSQL(SQL_agunan).RawResult  
+      rSQL_a =config.CreateSQL(SQL).RawResult  
       while not rSQL_a.Eof:
       
           oFile.write(txt_form2.format(
@@ -616,8 +627,8 @@ def GenereateInstance(config, params, returns):
             rSQL_a.GOLONGAN_PENERBIT, # 3
             rSQL_a.TGL_PENILAIAN, # 4
             rSQL_a.NILAI_AGUNAN, # 5
-            '',#rSQL_a.DPT_DIPERHITUNGKAN, # 6
-            '',#rSQL_a.BAGIAN_DIJAMINKAN, # 7      
+            rSQL_a.DPT_DIPERHITUNGKAN, # 6
+            rSQL_a.BAGIAN_DIJAMINKAN, # 7      
             '' # 
           ))
           rSQL_a.Next()
@@ -648,324 +659,5 @@ def GenereateInstance(config, params, returns):
     zf.write(sFileName, sBaseFileName,zipfile.ZIP_DEFLATED)
     zf.close()
     os.remove(sFileName)
-    sw = returns.AddStreamWrapper()
-    sw.LoadFromFile(ztmp)
-    sw.MIMEType = 'zip'
-    
-def GenereateCtl(config, params, returns):
-  app = config.AppObject
-
-  SQL = '''
-      select
-        to_char(NOMOR_NASABAH) 	          as NOMOR_NASABAH,
-        to_char(GOLONGAN_DEBITUR) 	          as GOLONGAN_DEBITUR,
-        to_char(HUB_DGN_BANK) 	          as HUB_DGN_BANK,
-        to_char(NASABAH_STATUS) 	          as NASABAH_STATUS,
-        to_char(KATEGORI_USAHA) 	          as KATEGORI_USAHA,
-        to_char(NOMOR_REKENING) 	          as NOMOR_REKENING,
-        to_char(JENIS_VALUTA) 	          as JENIS_VALUTA,
-        to_char(BLNTHN_MULAI) 	          as BLNTHN_MULAI,
-        to_char(BLNTHN_JATUH_TEMPO) 	          as BLNTHN_JATUH_TEMPO,
-        to_char(SUMBER_DANA) 	          as SUMBER_DANA,
-        to_char(LOKASI_PROYEK) 	          as LOKASI_PROYEK,
-        to_char(JENIS_PIUTANG) 	          as JENIS_PIUTANG,
-        to_char(SIFAT_PIUTANG) 	          as SIFAT_PIUTANG,
-        to_char(JENIS_PENGGUNAAN) 	          as JENIS_PENGGUNAAN,
-        to_char(ORIENTASI_PENGGUNANAN) 	          as ORIENTASI_PENGGUNANAN,
-        to_char(SEKTOR_EKONOMI) 	          as SEKTOR_EKONOMI,
-        to_char(KATEGORI_PORTOFOLIO) 	          as KATEGORI_PORTOFOLIO,
-        to_char(LEMBAGA_PEMERINGKAT) 	          as LEMBAGA_PEMERINGKAT,
-        to_char(NILAI_PERINGKAT) 	          as NILAI_PERINGKAT,
-        to_char(TGL_PERINGKAT) 	          as TGL_PERINGKAT,
-        to_char(NILAI_KONTRAK) 	          as NILAI_KONTRAK,
-        to_char(PERSEN_AWAL) 	          as PERSEN_AWAL,
-        to_char(PERSEN_AKHIR) 	          as PERSEN_AKHIR,
-        to_char(PIUTANG) 	          as PIUTANG,
-        to_char(POKOK) 	          as POKOK,
-        to_char(MARGIN) 	          as MARGIN,
-        to_char(BAKI_LALU) 	          as BAKI_LALU,
-        to_char(BAKI_LAPOR) 	          as BAKI_LAPOR,
-        to_char(TUNGGAKAN_HARI) 	          as TUNGGAKAN_HARI,
-        to_char(TUNGGAKAN_POKOK) 	          as TUNGGAKAN_POKOK,
-        to_char(TUNGGAKAN_MARGIN) 	          as TUNGGAKAN_MARGIN,
-        to_char(IMBALAN_DITERIMA) 	          as IMBALAN_DITERIMA,
-        to_char(KOLEKTIBILITAS) 	          as KOLEKTIBILITAS,
-        to_char(CKPN_INDIVIDUAL) 	          as CKPN_INDIVIDUAL,
-        to_char(CKPN_KOLEKTIF) 	          as CKPN_KOLEKTIF
-        from {1}
-  '''.format(
-    config.MapDBTableName('financing.finaccount'), # 0
-    config.MapDBTableName('tmp.TMP_LS10')                     
-  )
-  
-  rSQL =config.CreateSQL(SQL).RawResult   
-  
-  ResultDir = 'c:/dafapp/rawdata/'
-
-  sBaseFileName = 'BSMS56.ctl'
-  sFileName = ResultDir + sBaseFileName
-  
-  i = 0
-  txt_header ="""LOAD DATA
-INFILE *
-TRUNCATE
-INTO TABLE pbstmp.tmp_ls10
-FIELDS TERMINATED BY '|'
-TRAILING NULLCOLS ( 
-NOMOR_NASABAH,
-GOLONGAN_DEBITUR,
-HUB_DGN_BANK,
-NASABAH_STATUS,
-KATEGORI_USAHA,
-NOMOR_REKENING,
-JENIS_VALUTA,
-BLNTHN_MULAI,
-BLNTHN_JATUH_TEMPO,
-SUMBER_DANA,
-LOKASI_PROYEK,
-JENIS_PIUTANG,
-SIFAT_PIUTANG,
-JENIS_PENGGUNAAN,
-ORIENTASI_PENGGUNANAN,
-SEKTOR_EKONOMI,
-KATEGORI_PORTOFOLIO,
-LEMBAGA_PEMERINGKAT,
-NILAI_PERINGKAT,
-TGL_PERINGKAT,
-NILAI_KONTRAK,
-PERSEN_AWAL,
-PERSEN_AKHIR,
-PIUTANG,
-POKOK,
-MARGIN,
-BAKI_LALU,
-BAKI_LAPOR,
-TUNGGAKAN_HARI,
-TUNGGAKAN_POKOK,
-TUNGGAKAN_MARGIN,
-IMBALAN_DITERIMA,
-KOLEKTIBILITAS,
-DPT_DIPERHITUNGKAN,
-BAGIAN_DIJAMINKAN,
-CKPN_INDIVIDUAL,
-CKPN_KOLEKTIF)
-BEGINDATA\n"""
-  
-  txt_form1 = """{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}|{9}|{10}|{11}|{12}|{13}|{14}|{15}|{16}|{17}|{18}|{19}|{20}|{21}|{22}|{23}|{24}|{25}|{26}|{27}|{28}|{29}|{30}|{31}|{32}|{33}|{34}|{35}
-"""
-
-  oFile = open(sFileName,'w')
-  try:
-    oFile.write(txt_header)
-    _startLine = 1 
-    while not rSQL.Eof:
-      i = i+1 
-      oFile.write(txt_form1.format(
-        _startLine, #0
-        rSQL.NOMOR_NASABAH, # 1
-        rSQL.GOLONGAN_DEBITUR, # 1
-        rSQL.HUB_DGN_BANK, # 1
-        rSQL.NASABAH_STATUS, # 1
-        rSQL.KATEGORI_USAHA, # 1
-        rSQL.NOMOR_REKENING, # 1
-        rSQL.JENIS_VALUTA, # 1
-        rSQL.BLNTHN_MULAI, # 1
-        rSQL.BLNTHN_JATUH_TEMPO, # 1
-        rSQL.SUMBER_DANA, # 1
-        rSQL.LOKASI_PROYEK, # 1
-        rSQL.JENIS_PIUTANG, # 1
-        rSQL.SIFAT_PIUTANG, # 1
-        rSQL.JENIS_PENGGUNAAN, # 1
-        rSQL.ORIENTASI_PENGGUNANAN, # 1
-        rSQL.SEKTOR_EKONOMI, # 1
-        rSQL.KATEGORI_PORTOFOLIO, # 1
-        rSQL.LEMBAGA_PEMERINGKAT, # 1
-        rSQL.NILAI_PERINGKAT, # 1
-        rSQL.TGL_PERINGKAT, # 1
-        rSQL.NILAI_KONTRAK, # 1
-        rSQL.PERSEN_AWAL, # 1
-        rSQL.PERSEN_AKHIR, # 1
-        rSQL.PIUTANG, # 1
-        rSQL.POKOK, # 1
-        rSQL.MARGIN, # 1
-        rSQL.BAKI_LALU, # 1
-        rSQL.BAKI_LAPOR, # 1
-        rSQL.TUNGGAKAN_HARI, # 1
-        rSQL.TUNGGAKAN_POKOK, # 1
-        rSQL.TUNGGAKAN_MARGIN, # 1
-        rSQL.IMBALAN_DITERIMA, # 1
-        rSQL.KOLEKTIBILITAS, # 1
-        '', # 
-        '', # 
-        rSQL.CKPN_INDIVIDUAL, # 0
-        rSQL.CKPN_KOLEKTIF, # 1
-        '' # 
-      ))        
-
-      if (i%100 == 0):
-        printOut("Proses data ke-%d " % i)
-
-      _startLine=_startLine+1
-      rSQL.Next()
-    #--
-
-    
-    if ResultDir == '' :                                
-      ResultDir = 'c:/dafapp/rawdata/'
-
-  finally:
-    oFile.close()
-    ztmp = sFileName.replace('.ctl','.zip')
-    zf = zipfile.ZipFile(ztmp, mode='w')
-    zf.write(sFileName, sBaseFileName,zipfile.ZIP_DEFLATED)
-    zf.close()
-    os.remove(sFileName)
-    sw = returns.AddStreamWrapper()
-    sw.LoadFromFile(ztmp)
-    sw.MIMEType = 'zip'
-    
-def GenereateCtl2(config, params, returns):
-  app = config.AppObject
-
-  SQL = '''
-      select
-        to_char(NOMOR_NASABAH) 	          as NOMOR_NASABAH,
-        to_char(GOLONGAN_DEBITUR) 	          as GOLONGAN_DEBITUR,
-        to_char(HUB_DGN_BANK) 	          as HUB_DGN_BANK,
-        to_char(NASABAH_STATUS) 	          as NASABAH_STATUS,
-        to_char(KATEGORI_USAHA) 	          as KATEGORI_USAHA,
-        to_char(NOMOR_REKENING) 	          as NOMOR_REKENING,
-        to_char(JENIS_VALUTA) 	          as JENIS_VALUTA,
-        to_char(BLNTHN_MULAI) 	          as BLNTHN_MULAI,
-        to_char(BLNTHN_JATUH_TEMPO) 	          as BLNTHN_JATUH_TEMPO,
-        to_char(SUMBER_DANA) 	          as SUMBER_DANA,
-        to_char(LOKASI_PROYEK) 	          as LOKASI_PROYEK,
-        to_char(JENIS_PIUTANG) 	          as JENIS_PIUTANG,
-        to_char(SIFAT_PIUTANG) 	          as SIFAT_PIUTANG,
-        to_char(JENIS_PENGGUNAAN) 	          as JENIS_PENGGUNAAN,
-        to_char(ORIENTASI_PENGGUNANAN) 	          as ORIENTASI_PENGGUNANAN,
-        to_char(SEKTOR_EKONOMI) 	          as SEKTOR_EKONOMI,
-        to_char(KATEGORI_PORTOFOLIO) 	          as KATEGORI_PORTOFOLIO,
-        to_char(LEMBAGA_PEMERINGKAT) 	          as LEMBAGA_PEMERINGKAT,
-        to_char(NILAI_PERINGKAT) 	          as NILAI_PERINGKAT,
-        to_char(TGL_PERINGKAT) 	          as TGL_PERINGKAT,
-        to_char(NILAI_KONTRAK) 	          as NILAI_KONTRAK,
-        to_char(PERSEN_AWAL) 	          as PERSEN_AWAL,
-        to_char(PERSEN_AKHIR) 	          as PERSEN_AKHIR,
-        to_char(PIUTANG) 	          as PIUTANG,
-        to_char(POKOK) 	          as POKOK,
-        to_char(MARGIN) 	          as MARGIN,
-        to_char(BAKI_LALU) 	          as BAKI_LALU,
-        to_char(BAKI_LAPOR) 	          as BAKI_LAPOR,
-        to_char(TUNGGAKAN_HARI) 	          as TUNGGAKAN_HARI,
-        to_char(TUNGGAKAN_POKOK) 	          as TUNGGAKAN_POKOK,
-        to_char(TUNGGAKAN_MARGIN) 	          as TUNGGAKAN_MARGIN,
-        to_char(IMBALAN_DITERIMA) 	          as IMBALAN_DITERIMA,
-        to_char(KOLEKTIBILITAS) 	          as KOLEKTIBILITAS,
-        to_char(CKPN_INDIVIDUAL) 	          as CKPN_INDIVIDUAL,
-        to_char(CKPN_KOLEKTIF) 	          as CKPN_KOLEKTIF
-        from {1}
-  '''.format(
-    config.MapDBTableName('financing.finaccount'), # 0
-    config.MapDBTableName('tmp.TMP_LS10_AGUNAN')                     
-  )
-  
-  rSQL =config.CreateSQL(SQL).RawResult   
-  
-  ResultDir = 'c:/dafapp/rawdata/'
-
-  sBaseFileName = 'BSMS56_a.ctl'
-  sFileName = ResultDir + sBaseFileName
-  
-  i = 0
-  txt_header ="""LOAD DATA
-INFILE *
-TRUNCATE
-INTO TABLE pbstmp.tmp_ls10_agunan
-FIELDS TERMINATED BY '|'
-TRAILING NULLCOLS ( 
-NOMOR_REKENING,
-JENIS_ASSET,
-NO_AGUNAN,
-SIFAT_AGUNAN,
-GOLONGAN_PENERBIT,
-TGL_PENILAIAN,
-NILAI_AGUNAN)
-BEGINDATA\n"""
-  
-  txt_form1 = """{1}|{2}|{3}|{4}|{5}|{6}|{7}
-"""
-
-  oFile = open(sFileName,'w')
-  try:
-    oFile.write(txt_header)
-    _startLine = 1 
-    while not rSQL.Eof:
-      i = i+1 
-      oFile.write(txt_form1.format(
-        _startLine, #0
-        rSQL.NOMOR_REKENING,
-        rSQL.JENIS_ASSET,
-        rSQL.NO_AGUNAN,
-        rSQL.SIFAT_AGUNAN,
-        rSQL.GOLONGAN_PENERBIT,
-        rSQL.TGL_PENILAIAN,
-        rSQL.NILAI_AGUNAN
-      ))        
-
-      if (i%100 == 0):
-        printOut("Proses data ke-%d " % i)
-
-      _startLine=_startLine+1
-      rSQL.Next()
-    #--
-
-    
-    if ResultDir == '' :                                
-      ResultDir = 'c:/dafapp/rawdata/'
-
-  finally:
-    oFile.close()
-    ztmp = sFileName.replace('.ctl','.zip')
-    zf = zipfile.ZipFile(ztmp, mode='w')
-    zf.write(sFileName, sBaseFileName,zipfile.ZIP_DEFLATED)
-    zf.close()
-    os.remove(sFileName)
-    sw = returns.AddStreamWrapper()
-    sw.LoadFromFile(ztmp)
-    sw.MIMEType = 'zip'
-    
-def SetCTLData1(config, params, returns):
-  status = returns.CreateValues(['Err', ''])
-  mlu = config.ModLibUtils
-  app = config.AppObject
-  app.ConCreate('out')
-  rtmp = config.HomeDir + 'templates\\BSMS56.ctl'
-  rname = 'BSMS56.ctl'
-  ztmp = config.HomeDir + 'templates\\BSMS56.zip'
-  tmploc = config.HomeDir + 'templates' 
-  config.BeginTransaction()
-  try:
-    if params.StreamWrapperCount > 0:
-        sw = params.GetStreamWrapper(0)
-    else:
-        raise Exception, 'PERINGATAN!. Download stream not found'
-    sw.SaveToFile(ztmp)
-    zf = zipfile.ZipFile(ztmp)
-    zf.extract(rname, tmploc)
-    zf.close()
-    #app.ConWriteln('Cleanup existing rekening data...')
-    #s = '''
-    #      delete from pbstmp.tmp_ls10
-    #'''
-    #config.ExecSQL(s)
-    config.Commit()
-  except:
-    config.Rollback()
-    status.Err = str(sys.exc_info()[1])
-    app.ConRead('a')
-    
-    
-
 
 

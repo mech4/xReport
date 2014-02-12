@@ -72,6 +72,16 @@ object:rtf::Form<
           WordWrap=true
           FontSize=12
           FontStyleBold=true
+        >, object:rtf::Button<
+          Name='button1'
+          Layout=clAbsolute
+          Top=0
+          Left=8
+          Width=123
+          Height=25
+          ControlCaption=''
+          Caption='Generate'
+          OnClick='generateXml'
         >
       }
       ControlLeftMargin=8
@@ -81,7 +91,7 @@ object:rtf::Form<
       RowControlGap=7
     >, object:rtf::DualSplit<
       Name='dualsplit3'
-      Width=921
+      Width=240
       Height=108
       Container1=$CONTAINERS['panel1']
       Container2=$CONTAINERS['pCSV']
@@ -140,21 +150,61 @@ object:rtf::Form<
           Layout=clNewLine
           Top=8
           Left=8
-          Width=377
+          Width=185
           Height=25
           ControlCaption=''
           Caption='Download CSV (Zipped)'
           OnClick='csvGetOnClick'
         >, object:rtf::Button<
           Name='csvSet'
-          Layout=clNewLine
-          Top=40
-          Left=8
-          Width=377
+          Layout=clAbsolute
+          Top=8
+          Left=208
+          Width=177
           Height=25
           ControlCaption=''
           Caption='Upload CSV (Zipped)'
           OnClick='csvSetOnClick'
+        >, object:rtf::Button<
+          Name='button1'
+          Layout=clAbsolute
+          Top=40
+          Left=8
+          Width=185
+          Height=25
+          ControlCaption=''
+          Caption='Download CTL Account (Zipped)'
+          OnClick='ctl1GetOnClick'
+        >, object:rtf::Button<
+          Name='button2'
+          Layout=clAbsolute
+          Top=40
+          Left=208
+          Width=177
+          Height=25
+          ControlCaption=''
+          Caption='Upload CTL Account (Zipped)'
+          OnClick='ctl1SetOnClick'
+        >, object:rtf::Button<
+          Name='button3'
+          Layout=clAbsolute
+          Top=72
+          Left=8
+          Width=185
+          Height=25
+          ControlCaption=''
+          Caption='Download CTL Agunan (Zipped)'
+          OnClick='ctl2GetOnClick'
+        >, object:rtf::Button<
+          Name='button4'
+          Layout=clAbsolute
+          Top=72
+          Left=208
+          Width=177
+          Height=25
+          ControlCaption=''
+          Caption='Upload CTL Agunan (Zipped)'
+          OnClick='ctl2GetOnClick'
         >
       }
       ControlLeftMargin=8

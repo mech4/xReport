@@ -230,6 +230,9 @@ class fReportEditor:
                           ['IsEmpty', IsEmpty],
                           ['dataSize', dataSize]
     )
+    if xl_filename in (None,'',0):
+      app.ShowMessage('Harap buka report terlebih dahulu dengan menggunakan tombol Open.')
+      return 1
     if IsEmpty != 'T':
       sw = ph.Packet.AddStreamWrapper()
       #sw.LoadFromFile(localfile)
