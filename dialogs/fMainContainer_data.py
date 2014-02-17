@@ -10,6 +10,7 @@ import com.ihsan.util.attrutil as attrutil
 import com.ihsan.foundation.pobjecthelper as phelper
 import sys, os
 import pyFlexcel
+import decimal
 '''
 if ATTR_TYPE == ATTR_MONGODB: 
   from pymongo import Connection
@@ -334,7 +335,7 @@ def GenerateTxt(config, params, returns):
     if tipe==2:
       if val in(None,''): val=0
       if str(type(val))=="<type 'str'>" and not val.isdigit(): val=0
-      val = int(val*100000)
+      val = int(decimal.Decimal(str(val))*100000)      
     #--
     if tipe==3:
       if val in(None,''): val=0
