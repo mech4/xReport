@@ -741,6 +741,8 @@ def GenReport(config, parameter, returns):
         contentParam[cxId] = {'ID_1' : {}} 
         for elementRow in xlsElement:
           thisValue = ows.cell(row=elementRow[0], column=xlsStartCol).value
+          if thisValue in (None,'',"None"):
+            thisValue = '0'
           if str(thisValue).replace('.','').replace('e+','').isdigit():
             if thisValue == int(thisValue):
               thisValue = int(thisValue) 
@@ -815,7 +817,7 @@ def GenReport(config, parameter, returns):
         # exec post-va formula
         for vf in vflist.keys():
           #run all
-          vares = vaCheck(iForm.rootElement, vflist[vf], formType, app)
+          vares = vaCheck(iForm.rootElement, vflist[vf], formType)
           if vares<1:
             #app.ConWriteln(vflist[vf][0])
             #raise Exception, 'Unable to calculate'
@@ -941,6 +943,8 @@ def GenReport(config, parameter, returns):
           contentRow = { contentId : {}}
           for elementCol in xlsElement:
             thisValue = ows.cell(row=xrow, column=elementCol[0]).value
+            if thisValue in (None,'',"None"):
+              thisValue = ''
             if str(thisValue).replace('.','').isdigit():
               if thisValue == int(thisValue):
                 thisValue = int(thisValue) 
@@ -1064,7 +1068,7 @@ def GenReport(config, parameter, returns):
         for vf in vflist.keys():
           #run all
           #app.ConWriteln(str(vflist))
-          vares = vaCheck(iForm.rootElement, vflist[vf], formType, app) #iv-formula skipp !!!!!!!!!
+          vares = vaCheck(iForm.rootElement, vflist[vf], formType) #iv-formula skipp !!!!!!!!!
           #vares = 3
           if vares<1:
             accerr += '{0}. '.format(str(aercount).rjust(5))
@@ -1101,7 +1105,7 @@ def GenReport(config, parameter, returns):
           res.Next()
         # exec ea formula
         for ef in eflist.keys():
-          eares = eaCheck(iForm.rootElement, eflist[ef], formType, app)
+          eares = eaCheck(iForm.rootElement, eflist[ef], formType)
           if eares<1:
             #raise Exception, eflist[ef][1] # raise error message
             accerr += '{0}. '.format(str(aercount).rjust(5))
@@ -1210,6 +1214,8 @@ def GenReport(config, parameter, returns):
             for elementCol in xlsElement:
               #app.ConWriteln("{0} ; {1}".format(elementCol[1],elementCol[2]))
               thisValue = ows.cell(row=xrow, column=elementCol[0]).value
+              if thisValue in (None,'',"None"):
+                thisValue = ''
               if str(thisValue).replace('.','').isdigit():
                 if thisValue == int(thisValue):
                   thisValue = int(thisValue) 
@@ -1229,6 +1235,8 @@ def GenReport(config, parameter, returns):
           else:
             for elementCol in xlsElement:
               thisValue = ows.cell(row=xrow, column=elementCol[0]).value
+              if thisValue in (None,'',"None"):
+                thisValue = ''
               if str(thisValue).replace('.','').isdigit():
                 if thisValue == int(thisValue):
                   thisValue = int(thisValue) 
@@ -1256,7 +1264,7 @@ def GenReport(config, parameter, returns):
               if 'if' not in vflist[vf][0] and '<' not in vflist[vf][0] and '>' not in vflist[vf][0]:
                 if len(vflist[vf][0].split('=')) == 2:
                   if vflist[vf][0].split('=')[0].count('$') == 1:
-                    vares = vaResult(testRoot, vflist[vf], formType, app)
+                    vares = vaResult(testRoot, vflist[vf], formType)
                     if vares<1:
                       app.ConWriteln("skipped assignment #{2} : {0} for {1}".format(vflist[vf][0], vflist[vf][3], str(vf)))
                       vfSkipFlag += 1
@@ -1434,10 +1442,10 @@ def GenReport(config, parameter, returns):
     app.ConWriteln('Error : %s' % str(sys.exc_info()[1]))
     #app.ConWriteln('Traceback')
     _errmsg = traceback.format_exc().splitlines()
-    for line in _errmsg : 
-      app.ConWriteln(str(line))
+    #for line in _errmsg : 
+    #  app.ConWriteln(str(line))
     #app.ConWriteln(iForm.rootElement.writeXML())
-    app.ConRead('Error')
+    #app.ConRead('Error')
     config.Rollback()
     status.Is_Err = str(sys.exc_info()[1]) + ' '
 

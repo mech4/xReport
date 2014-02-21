@@ -84,7 +84,7 @@ class fReportContainer:
         res = uapp.stdLookup(sender, "report@lookupPeriod", "period", 
           "period_code;description;period_id", None, 
           {'period_type': self.period_type})
-      if self.group_code=='LBBU' and form_no[-1:] not in ('1','2','3'):
+      if self.group_code=='LBBU' and (form_no[-1:] not in ('1','2','3') or form_no[-2:] in ('10','11')):
         week = self.uipMain.GetFieldValue('period.period_code')
         if week==None: week=''
         if week[-1:] in ('1','2','3'):

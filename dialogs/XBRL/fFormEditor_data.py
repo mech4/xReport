@@ -317,7 +317,7 @@ def LoadStructure(config, parameter, returns):
         #change false
         retstr = retstr.replace('false','False')
         #number handled natively
-        retstr = retstr.replace('number','')
+        #retstr = retstr.replace('number','')
         if retstr[:2]=='if':
           #matches using in
           while len(retstr.split('matches'))>1: 
