@@ -262,6 +262,7 @@ def GenReport(config, parameter, returns):
           rbVal.append(ele)
     return rbVal
   #--
+
   def getTag(rootSearch, attrib, value, app=None):
     if app!=None:
       app.ConWriteln('search tag on element with %s = %s' % (attrib,value))
@@ -391,8 +392,6 @@ def GenReport(config, parameter, returns):
     #manfix rumus
     frm=frm.replace(' = ',' == ')
     frm=frm.replace('number', 'int')
-    if 'sum' in  frm:
-      return 0
     varlist = rumus[2]
     for key in varlist.keys():
       skey = str(key)
@@ -404,18 +403,49 @@ def GenReport(config, parameter, returns):
             b[c] = ' '+b[c]
       frm = skey.join(b)
       csou = varlist[key]
-      valueContainers = root.seek(csou)
-      if app:
-        app.ConWriteln(str(valueContainers))
-      for vc in valueContainers:
-          if csou[0] in ('s','d') and csou!='dummy':
-            frm=frm.replace('$%s' % cvar, '"'+str(vc.text)+'"')
-          else:
-            frm=frm.replace('$%s' % cvar, str(vc.text))
+      VarIsLink = True if ":" in csou or "/" in csou or "(" in csou else False 
+      if VarIsLink:
+        LinkCode = csou.find('(')
+        if LinkCode == 3:
+          LinkVal = get_doc(csou)
+          frm=frm.replace('$%s' % cvar, str(LinkVal))
+        elif LinkCode == 5:
+          LinkVal = get_count(root)
+          frm=frm.replace('$%s' % cvar, str(LinkVal))
+        elif LinkCode == 7:
+          LinkVal = "{0}-{1}-{2}".format(thn,bln,tgl)
+          frm=frm.replace('$%s' % cvar, LinkVal)
+        elif LinkCode == 9:
+          LinkVal = get_substring()
+          frm=frm.replace('$%s' % cvar, LinkVal)
+        else:
+          csou = csou.split(':')[-1]
+          valueContainers = root.seek(csou)
+          for vc in valueContainers:
+              if csou[0] in ('s','d') and csou!='dummy':
+                frm=frm.replace('$%s' % cvar, '"'+str(vc.text)+'"')
+              else:
+                frm=frm.replace('$%s' % cvar, str(vc.text))
+      else:
+        if 'sum' in  frm:
+          if app:
+            app.ConWriteln(frm)
+            app.ConWriteln('sum skip')
+          return 2
+        else:
+          valueContainers = root.seek(csou)
+          for vc in valueContainers:
+              if csou[0] in ('s','d') and csou!='dummy':
+                frm=frm.replace('$%s' % cvar, '"'+str(vc.text)+'"')
+              else:
+                frm=frm.replace('$%s' % cvar, str(vc.text))
     if app:
       app.ConWriteln('pass')
       app.ConWriteln(frm)
     if frm.find('$') > -1:
+      if app:
+        app.ConWriteln(frm)
+        app.ConWriteln('return 0')
       return 0
     else:
       try:
@@ -428,6 +458,91 @@ def GenReport(config, parameter, returns):
         return 2
       return 1
   #-- 
+  #IV section dev
+  def get_count(rootSearch):
+    eContainer = rootSearch.seek('contextRef', category='attrib', exact=True, fromRoot=True)
+    cCount = len(eContainer)
+    return str(cCount)
+  #--
+  def get_substring():
+    return bCode[0:3] 
+  #--  
+  def get_date():
+    return thn,bln,tgl
+  #--
+  def get_doc(vlink):
+    #fix untidy vlink
+    vlink = vlink.split('&')[0]
+    if vlink.find('[')>0:
+      use_condition = True
+    else:
+      use_condition = False
+    vtarget = vlink.split('$in')[1].split(' ')[0]
+    targetCol = vlink.split(':')[-1]
+    targetRoot = IVInstance[vtarget].rootElement
+    if use_condition:
+      #parseCondition(vlink)
+      cPhrase = vlink[vlink.find('[')+1:vlink.find(']')]
+      result = str(get_sum(targetRoot, targetCol, vtarget, cPhrase))
+    else:
+      if vtarget in vlink.split('xbrli:xbrl')[-1]:
+        #csum
+        result = str(get_sum(targetRoot, targetCol, vtarget))
+      else:
+        #single
+        res = targetRoot.seek(targetCol)
+        if len(res)>0:
+         res = res[0]
+        else:
+         raise Exception, 'Field {0} on {1} not found.'.format(targetCol, vtarget)
+        result = res.text
+    return result
+  #--
+
+  def get_sum(rootSearch, sum_field, table_name, condition=None):
+    #define initial sum_value
+    sum_value = 0.0
+    if condition:
+      rows = rootSearch.seek(table_name, category='tag', exact=True, fromRoot=True)
+      cFields = []
+      #reformat condition phrase
+      condition = condition.replace('eq','=')
+      condition = condition.replace('=','==')
+      tidyCondition = condition
+      step1 = condition.split('==')
+      for idx in range(len(step1)):
+        if idx>0:
+          step2 = step1[idx].lstrip()
+          tidyCondition = tidyCondition.replace(' '+step2.split(' ')[0]+' ','"{0}"'.format(step2.split(' ')[0]))
+      #get lookups condition fields
+      lFields = condition.split('base:')
+      for idx in range(len(lFields)):
+        if idx>0 and lFields[idx].split(' ')[0] not in cFields:
+          cFields.append(lFields[idx].split(' ')[0])
+      #create valueContainer = {row1 : [sum_field, cond1, cond2, .., condN], row2 : [sum_field, cond1, cond2, .., condN], .., rowN : [sum_field, cond1, cond2, .., condN]}
+      #ga jd create valueContainer, diganti realtime sum
+      for row in rows:
+        testCondition = tidyCondition
+        for look in cFields:
+          res = row.seek(look, category='tag', exact=True, fromRoot=False)
+          testCondition = testCondition.replace('base:'+look, '"{0}"'.format(res.text))
+        testPassed = eval("True if "+testCondition+" else False")
+        if testPassed:
+          getvalue = row.seek(sum_field, category='tag', exact=True, fromRoot=False)
+          result_element = getvalue[0]
+          sum_value += float(result_element.text) 
+    else:
+      rows = rootSearch.seek(sum_field, category='tag', exact=True, fromRoot=True)
+      for row in rows:
+        sum_value += float(row.text)
+    #-- endif
+    return sum_value
+  #--
+  
+  def get_none(vlink):
+    return vlink.split(':')[-1]
+  #--
+
   rec = parameter.FirstRecord
   DTSFormId = rec.DTSFormId
   DTSFileName = rec.DTSFileName
@@ -446,7 +561,8 @@ def GenReport(config, parameter, returns):
   instanceDir = config.HomeDir+'data\\instance\\'
   status = returns.CreateValues(
       ['Is_Err', ''],
-      ['fName', '']
+      ['fName', ''],
+      ['is_valid','']
   )
   calcValidation = 0
   helper = phelper.PObjectHelper(config)
@@ -481,7 +597,7 @@ def GenReport(config, parameter, returns):
     ipDTS = periodPath + '\\dts'
     ipData = periodPath + '\\data'
     rf = xutil.XMLFolder()
-    rf.setRoot(dtsLocation, False)
+    rf.setRoot(ipDTS, False)
     ### update versioning here
     s = '''
       select * from dtsdict where dtsid=%s
@@ -558,9 +674,10 @@ def GenReport(config, parameter, returns):
     ### update v22, interformvalidation link
     IVPool = checkIVFormula(iForm, app)
     IVPool.append('parameters')
+    IVInstance = {}
     if len(IVPool)>0:
       s = '''
-        select a.dtsaliaslink, replace(b.dtsfilename, '.xsd') lCode from dtsalias a, dtsfile b
+        select a.dtsaliaslink, replace(b.dtsfilename, '.xsd') lCode, b.dtsfilename from dtsalias a, dtsfile b
         where a.dtsaliasloc = b.dtsfileid and replace(b.dtsfilename, '.xsd') in (%s) and dtsid=%s 
       ''' % (str(IVPool).replace('[','').replace(']',''), str(DTSId))
       aliases = config.CreateSQL(s).RawResult
@@ -570,7 +687,24 @@ def GenReport(config, parameter, returns):
         LinkLoc = LinkLoc.replace('%20','_')
         LinkLoc = LinkLoc.replace('/'+Loc+'.xsd', '') 
         iRoot.namespace['xmlns:%s' % 'par' if Loc=='parameters' else Loc] = LinkLoc
+        if Loc !='parameters':
+          app.ConWriteln('Loc Check')
+          app.ConWriteln('---------')
+          ivFileName = str(bCode)+ '-' + str_repdate + '-MM-' + Loc + '.xml'
+          ivFile = rf.findFile(ivFileName, True)
+          if len(ivFile)>0:
+            ivFile = ivFile[0]
+            ivLoc = ivFile.getFullPath()
+            ivFile.readFromFile()
+            # uncomment for debug
+            #app.ConWriteln(ivLoc)
+            #app.ConWriteln(ivFile.rootElement.writeXML())
+            IVInstance[Loc] = ivFile
+          else:
+            raise Exception, 'Validasi antar form gagal, instance %s belum tersedia.' % Loc
         aliases.Next()
+      #uncomment for debug
+      #app.ConRead('Loc Check')
     else:
       app.ConWriteln('Interform Validation formula link not needed')
     ###--
@@ -582,15 +716,18 @@ def GenReport(config, parameter, returns):
     iForm.addContext(contextParam)
     iForm.addFooter()
     iForm.addDummy()
+    accerr = ''
     if IsEmpty != 'T':
       if os.path.exists(sFileName):
         os.remove(sFileName)
       sw.SaveToFile(sFileName)
       app.ConWriteln('opening template...')
-      owb = xloader(sFileName)
+      owb = xloader(sFileName, data_only=True)
       app.ConWriteln('get active sheet...')
       ows = owb.get_active_sheet()
       app.ConWriteln('Reading instance data')
+      #running through validation
+      aercount = 1
       if formType == 'F':
         xlskey = ows.cell(row=1, column=0).value
         xlsElement = []
@@ -620,14 +757,16 @@ def GenReport(config, parameter, returns):
           a.rumus, 
           a.applyfor,
           a.message,  
+          
           listagg(b.varname||'='||b.varsource, ',') within group (order by b.varid) as xvars
           from dtsformula a, dtsformulavars b
-          where a.dtsformulaid=b.dtsformulaid and a.dtsformid=%s and a.formulatype='v' and b.vartype<>'l'
+          where a.dtsformulaid=b.dtsformulaid and a.dtsformid=%s and a.formulatype='v' and b.varsource is not null 
           group by a.dtsformulaid, a.rumus, a.applyfor, a.message
-        ''' % str(DTSFormId)
+        ''' % str(DTSFormId) # and b.vartype<>'l'
         res = config.CreateSQL(s).RawResult
         vflist = {}
         while not res.Eof:
+          #vflist[res.dtsformulaid] = [res.rumus, res.message, {}, res.applyfor, res.vartype]
           vflist[res.dtsformulaid] = [res.rumus, res.message, {}, res.applyfor]
           varlist = vflist[res.dtsformulaid][2]
           for v in res.xvars.split(','):
@@ -681,9 +820,17 @@ def GenReport(config, parameter, returns):
             #app.ConWriteln(vflist[vf][0])
             #raise Exception, 'Unable to calculate'
             #skip IV
+            accerr += '{0}. '.format(str(aercount).rjust(5))
+            accerr += 'IV skipped (dev)'
+            accerr += '\r\n' 
+            aercount += 1
             break
           if vares<2: 
-            raise Exception, vflist[vf][1] # raise error message
+            #raise Exception, vflist[vf][1] # raise error message
+            accerr += '{0}. '.format(str(aercount).rjust(5))
+            accerr += vflist[vf][1] or ''
+            accerr += '\r\n' 
+            aercount += 1
         # run ea formula
         # read ea formula
         s = '''
@@ -709,7 +856,11 @@ def GenReport(config, parameter, returns):
         for ef in eflist.keys():
           eares = eaCheck(iForm.rootElement, eflist[ef], formType)
           if eares<1:
-            raise Exception, eflist[ef][1] # raise error message
+            #raise Exception, eflist[ef][1] # raise error message
+            accerr += '{0}. '.format(str(aercount).rjust(5))
+            accerr += vflist[vf][1] or ''
+            accerr += '\r\n' 
+            aercount += 1
       elif formType == 'T':
         xlskey = ows.cell(row=0, column=0).value
         xlsElement = []
@@ -726,9 +877,10 @@ def GenReport(config, parameter, returns):
           a.rumus, 
           a.applyfor,
           a.message,  
+          
           listagg(b.varname||'='||b.varsource, ',') within group (order by b.varid) as xvars
           from dtsformula a, dtsformulavars b
-          where a.dtsformulaid=b.dtsformulaid and a.dtsformid=%s and a.formulatype='v' and b.vartype<>'l' and a.exectype='r'
+          where a.dtsformulaid=b.dtsformulaid and a.dtsformid=%s and a.formulatype='v' and b.varsource is not null and a.exectype='r'
           group by a.dtsformulaid, a.rumus, a.applyfor, a.message
         ''' % str(DTSFormId)
         res = config.CreateSQL(s).RawResult
@@ -745,7 +897,7 @@ def GenReport(config, parameter, returns):
           a.dtsformulaid, 
           a.rumus, 
           a.applyfor,
-          a.message,  
+          a.message,
           listagg(b.varname||'='||b.varsource, ',') within group (order by b.varid) as xvars
           from dtsformula a, dtsformulavars b
           where a.dtsformulaid=b.dtsformulaid and a.dtsformid=%s and a.formulatype='c' and a.exectype='r'
@@ -818,16 +970,28 @@ def GenReport(config, parameter, returns):
             vares = vaCheck(testRoot, vflist[vf], formType)
             if vares<1:
               #app.ConWriteln(str(vflist[vf]))
-              raise Exception, 'Unable to calculate'
+              accerr += '{0}. '.format(str(aercount).rjust(5))
+              accerr += 'IV skipped (dev)'
+              accerr += '\r\n' 
+              aercount += 1
+              break
             if vares<2: 
               erm = vflist[vf][1]
               erm = erm.replace('{$v1/../@id}', str(contentNum)) 
-              raise Exception, erm # raise error message
+              #raise Exception, erm # raise error message
+              accerr += '{0}. '.format(str(aercount).rjust(5))
+              accerr += erm
+              accerr += '\r\n' 
+              aercount += 1
           # exec ea formula (r)
           for ef in eflist.keys():
             eares = eaCheck(testRoot, eflist[ef], formType)
             if eares<1:
-              raise Exception, eflist[ef][1] # raise error message
+              #raise Exception, eflist[ef][1] # raise error message
+              accerr += '{0}. '.format(str(aercount).rjust(5))
+              accerr += eflist[ef][1] or ''
+              accerr += '\r\n' 
+              aercount += 1
           xrow+=1
           valueTester = ows.cell(row=xrow, column=0).value
           contentNum+=1
@@ -840,10 +1004,11 @@ def GenReport(config, parameter, returns):
           a.dtsformulaid, 
           a.rumus, 
           a.applyfor,
-          a.message,  
+          a.message,
+            
           listagg(b.varname||'='||b.varsource, ',') within group (order by b.varid) as xvars
           from dtsformula a, dtsformulavars b
-          where a.dtsformulaid=b.dtsformulaid and a.dtsformid=%s and a.formulatype='v' and b.vartype<>'l' and a.exectype='f'
+          where a.dtsformulaid=b.dtsformulaid and a.dtsformid=%s and a.formulatype='v' and b.varsource is not null and a.exectype='f'
           group by a.dtsformulaid, a.rumus, a.applyfor, a.message
         ''' % str(DTSFormId)
         res = config.CreateSQL(s).RawResult
@@ -899,12 +1064,20 @@ def GenReport(config, parameter, returns):
         for vf in vflist.keys():
           #run all
           #app.ConWriteln(str(vflist))
-          #vares = vaCheck(iForm.rootElement, vflist[vf], formType, app) iv-formula skipp !!!!!!!!!
-          vares = 3
+          vares = vaCheck(iForm.rootElement, vflist[vf], formType, app) #iv-formula skipp !!!!!!!!!
+          #vares = 3
           if vares<1:
-            raise Exception, 'Unable to calculate'
+            accerr += '{0}. '.format(str(aercount).rjust(5))
+            accerr += 'IV skipped (dev)'
+            accerr += '\r\n' 
+            aercount += 1
+            break
           if vares<2: 
-            raise Exception, vflist[vf][1] # raise error message
+            #raise Exception, vflist[vf][1] # raise error message
+            accerr += '{0}. '.format(str(aercount).rjust(5))
+            accerr += vflist[vf][1] or ''
+            accerr += '\r\n' 
+            aercount += 1
         # run ea formula
         # read ea formula
         s = '''
@@ -930,7 +1103,11 @@ def GenReport(config, parameter, returns):
         for ef in eflist.keys():
           eares = eaCheck(iForm.rootElement, eflist[ef], formType, app)
           if eares<1:
-            raise Exception, eflist[ef][1] # raise error message
+            #raise Exception, eflist[ef][1] # raise error message
+            accerr += '{0}. '.format(str(aercount).rjust(5))
+            accerr += eflist[ef][1] or ''
+            accerr += '\r\n' 
+            aercount += 1
       elif formType == 'M':
         schemaMeta = iForm.readMeta()
         tstmeta = iForm.schema.metaStructure
@@ -963,9 +1140,10 @@ def GenReport(config, parameter, returns):
           a.rumus, 
           a.applyfor,
           a.message,  
+          
           listagg(b.varname||'='||b.varsource, ',') within group (order by b.varid) as xvars
           from dtsformula a, dtsformulavars b
-          where a.dtsformulaid=b.dtsformulaid and a.dtsformid=%s and a.formulatype='v' and b.vartype<>'l' and a.exectype='r'
+          where a.dtsformulaid=b.dtsformulaid and a.dtsformid=%s and a.formulatype='v' and b.varsource is not null and a.exectype='r'
           group by a.dtsformulaid, a.rumus, a.applyfor, a.message
         ''' % str(DTSFormId)
         res = config.CreateSQL(s).RawResult
@@ -1078,7 +1256,7 @@ def GenReport(config, parameter, returns):
               if 'if' not in vflist[vf][0] and '<' not in vflist[vf][0] and '>' not in vflist[vf][0]:
                 if len(vflist[vf][0].split('=')) == 2:
                   if vflist[vf][0].split('=')[0].count('$') == 1:
-                    vares = vaResult(testRoot, vflist[vf], formType)
+                    vares = vaResult(testRoot, vflist[vf], formType, app)
                     if vares<1:
                       app.ConWriteln("skipped assignment #{2} : {0} for {1}".format(vflist[vf][0], vflist[vf][3], str(vf)))
                       vfSkipFlag += 1
@@ -1093,19 +1271,31 @@ def GenReport(config, parameter, returns):
               #run all
               vares = vaCheck(testRoot, vflist[vf], formType)
               if vares<1:
-                raise Exception, 'Unable to calculate'
+                accerr += '{0}. '.format(str(aercount).rjust(5))
+                accerr += 'IV skipped (dev)'
+                accerr += '\r\n' 
+                aercount += 1
+                break
               if vares<2:
                 errstr = vflist[vf][1].replace('{$v1/../@id}', str(contentNum-1)) 
-                raise Exception, errstr # raise error message
+                #raise Exception, errstr # raise error message
+                accerr += '{0}. '.format(str(aercount).rjust(5))
+                accerr += errstr
+                accerr += '\r\n' 
+                aercount += 1
             # exec ea formula (r)
             #app.ConWriteln('exec ea(r)')
             for ef in eflist.keys():
               eares = eaCheck(testRoot, eflist[ef], formType)
               if eares<1:
-                raise Exception, eflist[ef][1] # raise error message
+                #raise Exception, eflist[ef][1] # raise error message
+                accerr += '{0}. '.format(str(aercount).rjust(5))
+                accerr += eflist[ef][1] or ''
+                accerr += '\r\n' 
+                aercount += 1
         #######ADD FORMULA HERE !!!!!!!!!(Porting from table to multi)##############
         # run pre-va formula
-        app.ConWriteln('aqwe')
+        #app.ConWriteln('aqwe')
         vfSkipFlag = 0
         # read va formula
         s = '''
@@ -1113,10 +1303,10 @@ def GenReport(config, parameter, returns):
           a.dtsformulaid, 
           a.rumus, 
           a.applyfor,
-          a.message,  
+          a.message,
           listagg(b.varname||'='||b.varsource, ',') within group (order by b.varid) as xvars
           from dtsformula a, dtsformulavars b
-          where a.dtsformulaid=b.dtsformulaid and a.dtsformid=%s and a.formulatype='v' and b.vartype<>'l' and a.exectype='f'
+          where a.dtsformulaid=b.dtsformulaid and a.dtsformid=%s and a.formulatype='v' and b.varsource is not null and a.exectype='f'
           group by a.dtsformulaid, a.rumus, a.applyfor, a.message
         ''' % str(DTSFormId)
         res = config.CreateSQL(s).RawResult
@@ -1173,9 +1363,17 @@ def GenReport(config, parameter, returns):
           #vares = vaCheck(iForm.rootElement, vflist[vf], formType) iv formula skip !!!!!!!!!!
           vares = 3
           if vares<1:
-            raise Exception, 'Unable to calculate'
+            accerr += '{0}. '.format(str(aercount).rjust(5))
+            accerr += 'IV skipped (dev)'
+            accerr += '\r\n' 
+            aercount += 1
+            break
           if vares<2: 
-            raise Exception, vflist[vf][1] # raise error message
+            #raise Exception, vflist[vf][1] # raise error message
+            accerr += '{0}. '.format(str(aercount).rjust(5))
+            accerr += vflist[vf][1] or ''
+            accerr += '\r\n' 
+            aercount += 1
         # run ea formula
         # read ea formula
         s = '''
@@ -1201,31 +1399,40 @@ def GenReport(config, parameter, returns):
         for ef in eflist.keys():
           eares = eaCheck(iForm.rootElement, eflist[ef], formType)
           if eares<1:
-            raise Exception, eflist[ef][1] # raise error message
+            #raise Exception, eflist[ef][1] # raise error message
+            accerr += '{0}. '.format(str(aercount).rjust(5))
+            accerr += eflist[ef][1]
+            accerr += '\r\n' 
+            aercount += 1
       else:
           pass
     ixPath = xsdPath.replace(dtsLocation, ipDTS + '\\' + tmpLocation.split('\\')[-1])
     iFileName = str(bCode)+ '-' + str_repdate + '-MM-' + DTSFileName.replace('.xsd','.xml')
     ixPath = ixPath.replace(DTSFileName, iFileName)
-    app.ConWriteln('Preparing output file')  
-    #app.ConWriteln('@ %s' % ixPath)
-    #app.ConRead('check')
-    iFile = open(ixPath, "w")
-    iFile.write(iForm.rootElement.writeXML())
-    iFile.close()
-    sw = returns.AddStreamWrapper()
-    sw.LoadFromFile(ixPath)
-    status.fName = iFileName
+    if accerr != '':
+      app.ConWriteln('Tidak lolos validasi bisnis.')
+      status.is_valid = 'err'
+      raise Exception, accerr
+    else:
+      app.ConWriteln('Preparing output file')  
+      #app.ConWriteln('@ %s' % ixPath)
+      #app.ConRead('check')
+      iFile = open(ixPath, "w")
+      iFile.write(iForm.rootElement.writeXML())
+      iFile.close()
+      sw = returns.AddStreamWrapper()
+      sw.LoadFromFile(ixPath)
+      status.fName = iFileName
     ## test run
     #raise Exception, 'Adding xbrl instance content function unfinished.'
     if calcValidation > 0:
       app.ConWriteln('calcValidation : %s' % str(calcValidation))
       app.ConRead('calcValidation : %s' % str(calcValidation))
-    #app.ConRead(' ')
+    #app.ConRead('No Error. End of test.')
     config.Commit()
   except:
     app.ConWriteln('Error : %s' % str(sys.exc_info()[1]))
-    app.ConWriteln('Traceback')
+    #app.ConWriteln('Traceback')
     _errmsg = traceback.format_exc().splitlines()
     for line in _errmsg : 
       app.ConWriteln(str(line))
@@ -1251,7 +1458,7 @@ def PrepareTemp(config, parameter, returns):
   instanceDir = config.HomeDir+'data\\instance\\'
   status = returns.CreateValues(
       ['Is_Err', '']
-  )
+  )          
   helper = phelper.PObjectHelper(config)
   config.BeginTransaction()
   try:

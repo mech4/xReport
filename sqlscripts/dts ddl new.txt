@@ -1,0 +1,124 @@
+create table dts (
+dtsid number(36),
+dtsname varchar2(100),
+dtslocation varchar2(300),
+periodtype varchar2(1),
+templatelocation varchar2(300)
+);
+
+create sequence seq_dts start with 1;
+
+create table dtsalias (
+dtsaliasid number(36),
+dtsaliaslink varchar2(300),
+dtsaliasloc number(36),
+dtsid number(36)
+);
+
+create sequence seq_dtsalias start with 1;
+
+create table dtsfile (
+dtsfileid number(36),
+dtsfilename varchar2(100),
+dtsfiletype varchar2(5),
+dtsfolderid number(36)
+);
+
+create sequence seq_dtsfile start with 1;
+
+create table dtsfolder (
+dtsfolderid number(36),
+dtsfoldername varchar2(100),
+dtsid number(36),
+parentid number(36)	
+);
+
+create sequence seq_dtsfolder start with 1;
+
+create table dtsform (
+dtsformid number(36),
+dtsformcode varchar2(10),
+dtsformdesc varchar2(200),
+tempready varchar2(1),
+formtype varchar2(1),
+isempty varchar2(1),
+datasize varchar2(1)
+);
+
+create table dtsmap (
+dtsmapid number(36),
+dtsformid number(36),
+dtsmaptype varchar2(5)
+);
+
+create sequence seq_dtsmap start with 1;
+
+create table dtsmapquery (
+dtsmapqueryid number(36),
+dtsmapid number(36),
+querystring varchar2(300),
+assigncode varchar2(50)
+);
+
+create sequence seq_dtsmapquery start with 1;
+
+create table dtsreport (
+dtsreportid number(36),
+dtsid number(36),
+period_id number(36),
+reportlocation varchar2(300),
+branch_id number(36)
+);
+
+create sequence seq_dtsreport start with 1;
+
+create table dtsmeta (
+dtsmetaid number(36),
+dtsformid number(36),
+metalevel number(36),
+metaname varchar2(20),
+metaqname varchar2(20),
+metatype varchar2(20),
+metadesc varchar2(500),
+metaenum varchar2(50),
+metaparent number(36)
+);
+
+create sequence seq_dtsmeta start with 1;
+
+create table dtsenum (
+dtsenumdesc varchar2(300),
+dtsenumname varchar2(50),
+dtsenumvalue varchar2(50),
+dtsid number(36)
+);
+
+create table dtsdict (
+dtsid number(36),
+dictname varchar2(50),
+dictloc varchar2(500)
+);
+
+create table dtsformula (
+dtsformulaid number(36),
+dtsid number(36),
+dtsformid number(36),
+formulaname varchar2(50),
+rumus varchar2(500),
+applyfor varchar2(10),
+message varchar2(500),
+formulatype varchar2(1),
+exectype varchar2(1)
+);
+
+create sequence seq_dtsformula start with 1;
+
+create table dtsformulavars (
+varid number(36),
+dtsformulaid number(36),
+varname varchar2(5),
+varsource varchar2(200),
+vartype varchar2(1)
+);
+
+create sequence seq_dtsformulavars start with 1;

@@ -26,7 +26,10 @@ def GetGridData(config, params, returns):
       raise Exception, 'Kode wilayah %s tidak sesuai format standar' % str(bCode)
     bln = int(pCode[:2])
     thn = int(pCode[2:])
-    nextmo = mlu.EncodeDate(thn, bln+1, 1)
+    if bln<12:
+      nextmo = mlu.EncodeDate(thn, bln+1, 1)
+    else:
+      nextmo = mlu.EncodeDate(thn+1,1,1)
     reportdate = nextmo-1
     thn, bln, tgl = mlu.DecodeDate(reportdate)
     str_repdate = '{0}-{1}-{2}'.format(str(thn).zfill(4),str(bln).zfill(2),str(tgl).zfill(2))

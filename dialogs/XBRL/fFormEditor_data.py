@@ -283,6 +283,15 @@ def LoadStructure(config, parameter, returns):
       #--
       def formulaToEval(frmstr):
         retstr = frmstr.strip()
+        #repair single '='
+        tempstr = retstr.split('=')
+        retstr = tempstr[0]
+        for fixstr in tempstr:
+          if tempstr.index(fixstr)>0:
+            if fixstr!='' and retstr[-1] not in ('>','=','<'):
+              retstr += ' == ' + fixstr
+            else:
+              retstr += ' = ' + fixstr
         #change nilled()
         retstr = retstr.replace('nilled','"" == ')
         #change ge
@@ -292,8 +301,10 @@ def LoadStructure(config, parameter, returns):
         #change eq
         retstr = retstr.replace('eq','==')
         #change gt
+        retstr = retstr.replace('&gt;','>')
         retstr = retstr.replace('gt','>')
         #change lt
+        retstr = retstr.replace('&lt;','<')
         retstr = retstr.replace('lt','<')
         #change ne
         retstr = retstr.replace('ne','!=')
@@ -305,8 +316,18 @@ def LoadStructure(config, parameter, returns):
         retstr = retstr.replace('true','True')
         #change false
         retstr = retstr.replace('false','False')
+        #number handled natively
+        retstr = retstr.replace('number','')
         if retstr[:2]=='if':
-          retstr.replace('number','')
+          #matches using in
+          while len(retstr.split('matches'))>1: 
+            oldmatchesstr = 'matches'+retstr.split('matches',1)[-1].split(')')[0]+')'
+            matchesstr = retstr.split('matches',1)[-1].split('(',1)[-1].split(')')[0]
+            leftmatchesstr, rightmatchesstr = matchesstr.split(',')
+            rightmatchesstr = rightmatchesstr.replace('&quot;','').replace('"','')
+            inmember = rightmatchesstr.split('|')
+            inblock = ' '+leftmatchesstr + ' in '+ str(inmember).replace("'",'"')+' '
+            retstr = retstr.replace(oldmatchesstr, inblock)
           strcond, strres = retstr.split('then', 1)
           strtru, strfals = strres.split('else', 1)
           retstr = strtru + ' ' + strcond + ' else ' + strfals

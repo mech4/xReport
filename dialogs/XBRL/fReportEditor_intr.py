@@ -230,7 +230,7 @@ class fReportEditor:
                           ['IsEmpty', IsEmpty],
                           ['dataSize', dataSize]
     )
-    if xl_filename in (None,'',0):
+    if xl_filename in (None,'',0) and uip.GetFieldValue('lReport.IsEmpty') != 'T':
       app.ShowMessage('Harap buka report terlebih dahulu dengan menggunakan tombol Open.')
       return 1
     if IsEmpty != 'T':
@@ -240,8 +240,12 @@ class fReportEditor:
     res = self.FormObject.CallServerMethod('GenReport', ph)
     status = res.FirstRecord
     if status.Is_Err != '':
-      app.ShowMessage('Server Error : {0}'.format(status.Is_Err))
-      lMemo.Text = 'Server Error : {0}'.format(status.Is_Err) 
+      if status.is_valid != '':
+        app.ShowMessage('Tidak lolos validasi bisnis.\nPeriksa log untuk detail kesalahan.')
+        lMemo.Text = 'Tidak lolos validasi\r\n--------------------\r\n{0}'.format(status.Is_Err)
+      else:
+        app.ShowMessage('Server Error : {0}'.format(status.Is_Err))
+        lMemo.Text = 'Server Error : {0}'.format(status.Is_Err) 
       return
     packet = res.packet
     if packet.StreamWrapperCount > 0:

@@ -5,12 +5,13 @@ class fReportChecklist:
 
   def Show(self):
     uip = self.uipart1
-    uip.SetFieldValue('lDTS.DTSName', 'LBUSv100')
-    uip.SetFieldValue('lperiod.period_code', '082013')
-    uip.SetFieldValue('lbranch.branch_code', '517001')
-    self.refDTSExit(self.panel1_lDTS)
-    self.refPeriodExit(self.panel1_lperiod)
-    self.refBranchExit(self.panel1_lbranch)
+    #for auto
+    #uip.SetFieldValue('lDTS.DTSName', 'LBUSv100')
+    #uip.SetFieldValue('lperiod.period_code', '082013')
+    #uip.SetFieldValue('lbranch.branch_code', '517001')
+    #self.refDTSExit(self.panel1_lDTS)
+    #self.refPeriodExit(self.panel1_lperiod)
+    #self.refBranchExit(self.panel1_lbranch)
     self.FormContainer.Show()
   
   def refDTSExit(self, sender):
