@@ -48,5 +48,10 @@ _userhome/
 inbox/
 database/
 data/
-
+openpyxl-1.6.2/
+dialogs/XML/
+*.tmp
+*.chk
+*.zcln
+menus/bck/
 
