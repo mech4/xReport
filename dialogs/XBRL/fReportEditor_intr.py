@@ -1,13 +1,39 @@
 # GLOBAL VARS
 xl_filename = ''
+tCode = ''
+fCode = ''
+pCode = ''
+bCode = ''
 
 class fReportEditor:
   def __init__(self, formObj, parentForm):
     pass
   #--
   def Show(self):
+    ph = self.FormObject.ClientApplication.CreateValues(
+    )
+    res = self.FormObject.CallServerMethod('PeriodHandler', ph)
+    self.CloseOLE()
     self.FormContainer.Show()
+    
+  def CloseOLE(self):
+    oc = self.FormObject.GetPanelByName('xbrli')
+    pLog = self.FormObject.GetPanelByName('pLog')
+    try:
+      oc.Visible = False
+      pLog.Visible = False
+    except:
+      pass
   
+  def ParamCheck(self, codeType, newCode):
+    global tCode
+    global fCode
+    global pCode
+    global bCode
+    check = {'lDTS' : tCode, 'lReport' : fCode, 'lperiod' : pCode, 'lbranch' : bCode}
+    if check[codeType] != newCode:
+      self.CloseOLE()
+
   def PrepareTemp(self):
     uip = self.uipMain
     app = self.FormObject.ClientApplication
@@ -25,41 +51,53 @@ class fReportEditor:
       return
     
   def refDTSExit(self, sender):
+    global tCode
     sName = sender.Name
     DTSName = '%s.DTSName' % sName
     
     uapp = self.FormObject.ClientApplication.UserAppObject
     if self.uipMain.GetFieldValue(DTSName) == '-':
       self.uipMain.ClearLink(sName)
+      self.CloseOLE()
       return 1
     else:  
       res = uapp.stdLookup(sender, "dts@lookupDTS", sName, 
         "DTSName;PeriodType;DTSId", None, {})
-        
+      self.ParamCheck(sender.Name, self.uipMain.GetFieldValue(DTSName))
+      tCode = self.uipMain.GetFieldValue(DTSName)  
       return res
 
   def refPeriodExit(self, sender):
+    global pCode
     uapp = self.FormObject.ClientApplication.UserAppObject
     if self.uipMain.GetFieldValue("lperiod.period_code") == '-':
       self.uipMain.ClearLink("lperiod")
+      self.CloseOLE()
       return 1
     else:  
       res = uapp.stdLookup(sender, "report@lookupPeriod", "lperiod", 
         "period_code;description;period_id", None, 
         {'period_type': self.uipMain.GetFieldValue("lDTS.PeriodType")})
+      self.ParamCheck(sender.Name, self.uipMain.GetFieldValue("lperiod.period_code"))
+      pCode = self.uipMain.GetFieldValue("lperiod.period_code")  
       return res
 
   def refBranchExit(self, sender):
+    global bCode
     uapp = self.FormObject.ClientApplication.UserAppObject
     if self.uipMain.GetFieldValue("lbranch.branch_code") == '-':
       self.uipMain.ClearLink("lbranch")
+      self.CloseOLE()
       return 1
     else:  
       res = uapp.stdLookup(sender, "report@lookupBranch", "lbranch", 
         "branch_code;branch_name;branch_id")
+      self.ParamCheck(sender.Name, self.uipMain.GetFieldValue("lbranch.branch_code"))
+      bCode = self.uipMain.GetFieldValue("lbranch.branch_code")  
       return res
 
   def refReportExit(self, sender):
+    global fCode
     uip = self.uipMain
     app = self.FormObject.ClientApplication
     DTSId = uip.GetFieldValue('lDTS.DTSId') 
@@ -75,15 +113,20 @@ class fReportEditor:
     uapp = self.FormObject.ClientApplication.UserAppObject
     if self.uipMain.GetFieldValue(DTSName) == '-':
       self.uipMain.ClearLink(sName)
+      self.CloseOLE()
       return 1
     else:  
       res = uapp.stdLookup(sender, "dts@lookupReport", sName, 
         "DTSFormCode;DTSFormDesc;DTSFormId;DTSFolderId;DTSFileName;FormType;IsEmpty;DataSize", None, 
         {'DTSFormCode' : self.uipMain.GetFieldValue(DTSName) or '', 'DTSId' : DTSId})
       uip.SetFieldValue('fType', uip.GetFieldValue('lReport.FormType'))
+      self.ParamCheck(sender.Name, self.uipMain.GetFieldValue(DTSName))
+      fCode = self.uipMain.GetFieldValue(DTSName)  
       if uip.GetFieldValue('lReport.IsEmpty') == 'T':
         bOpen.Enabled = False
         bSave.Enabled = False
+        pLog = self.FormObject.GetPanelByName('pLog')
+        pLog.Visible = True
       else:
         bOpen.Enabled = True
         bSave.Enabled = True
@@ -141,7 +184,9 @@ class fReportEditor:
     oc = self.FormObject.GetPanelByName('xbrli')
     #olecont.CreateObjectFromFile(localfile)
     oc.CreateObjectFromFile(xl_filename)
+    oc.Visible = True
     pLog = self.FormObject.GetPanelByName('pLog')
+    pLog.Visible = True
     lMemo = pLog.GetControlByName('logMemo')
     lMemo.Text = ''
 
@@ -310,6 +355,9 @@ class fReportEditor:
       app.ShowMessage('Server Error : {0}'.format(status.Is_Err))
       return
     app.ShowMessage('Data {0} telah tersimpan.'.format(uip.GetFieldValue('lReport.DTSFormCode')))
+    pNav = self.FormObject.GetPanelByName('pNav')
+    bOpen = pNav.GetControlByName('bOpen')
+    self.bOpenOnClick(bOpen)
     return 1
     pass
     
