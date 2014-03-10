@@ -283,15 +283,6 @@ def LoadStructure(config, parameter, returns):
       #--
       def formulaToEval(frmstr):
         retstr = frmstr.strip()
-        #repair single '='
-        tempstr = retstr.split('=')
-        retstr = tempstr[0]
-        for fixstr in tempstr:
-          if tempstr.index(fixstr)>0:
-            if fixstr!='' and retstr[-1] not in ('>','=','<'):
-              retstr += ' == ' + fixstr
-            else:
-              retstr += ' = ' + fixstr
         #change nilled()
         retstr = retstr.replace('nilled','"" == ')
         #change ge
@@ -316,6 +307,29 @@ def LoadStructure(config, parameter, returns):
         retstr = retstr.replace('true','True')
         #change false
         retstr = retstr.replace('false','False')
+        #change &#10;
+        retstr = retstr.replace('&#10;','')
+        #repair single '='
+        fele = retstr.split('=')
+        if len(fele)>1:
+          ftidy = ''
+          can_use = True
+          for i in fele:
+            if len(i)<1:
+              can_use = False
+          if can_use:
+            for i in range(len(fele)):
+              thisPart = fele[i].strip() 
+              if i>0:
+                prevPart = fele[i-1].strip()
+                if prevPart[-1] not in ('>','<','!','=') and thisPart[0] not in ('>','<','!','='):
+                  ftidy+=' == '+thisPart
+                else:
+                  ftidy+='= '+thisPart
+              else:
+                ftidy+=thisPart
+            retstr = ftidy
+        #end of repair single '=' menjadi '=='
         #number handled natively
         #retstr = retstr.replace('number','')
         if retstr[:2]=='if':
@@ -331,6 +345,11 @@ def LoadStructure(config, parameter, returns):
           strcond, strres = retstr.split('then', 1)
           strtru, strfals = strres.split('else', 1)
           retstr = strtru + ' ' + strcond + ' else ' + strfals
+          if 'then' in retstr:
+            ret1, ret2 = retstr.split('else',1)
+            strcond, strres = ret2.split('then', 1)
+            strtru, strfals = strres.split('else', 1)
+            retstr = ret1 + ' else ( ' + strtru + ' ' + strcond + ' else ' + strfals + ' ) '
         return retstr
       #--
       flinkbases = iForm.linkbases['formula']
@@ -516,7 +535,7 @@ def LoadStructure(config, parameter, returns):
           msgtext = "tidak lolos validasi {0}.".format(va.attrib['id'])
         #'''
         iVa.Message = msgtext
-        #''' 
+        #'''                     
         vava = advSeek(flinkbase.rootElement, 'variableArc', 'xlink:from', forid)    # variableArc
         prevVars = []
         for vafv in vava:
@@ -524,6 +543,20 @@ def LoadStructure(config, parameter, returns):
           # varname : varname@dtsformulavars
           vavfa = advSeek(flinkbase.rootElement, 'variableFilterArc', 'xlink:from', vafv.attrib['xlink:to'])     # variableFilterArc
           fieldCodeTag = ''
+          cPhrase = None
+          PhraseTableCode = DTS.dtsformcode
+          for vacn in vavfa:
+            genData = advSeek(flinkbase.rootElement, 'general', 'xlink:title', vacn.attrib['xlink:to']) 
+            if len(genData)>0:
+              for gn in genData:
+                cPhrase = gn.attrib['test'].replace('&gt;','>').replace('&lt;','<').replace('&quot;','"').replace("'",'"')
+                cPhrase = cPhrase.replace('./../','')
+                cPhrase = cPhrase.replace('=',' eq ')
+                cPhrase = '[ '+cPhrase+' ]'
+                if '@id' in msgtext: 
+                  iVa.exectype = 'r'
+                else:
+                  iVa.exectype = 'f'
           for vacn in vavfa:
             cnData = advSeek(flinkbase.rootElement, 'conceptName', 'xlink:title', vacn.attrib['xlink:to'])       # try trapping conceptName 
             for cn in cnData:
@@ -538,10 +571,13 @@ def LoadStructure(config, parameter, returns):
                 iVaVar.VarName = varname
                 #'''
                 #'''
-                iVaVar.VarSource = fieldCodeTag
+                if cPhrase:
+                  iVaVar.VarSource = PhraseTableCode+' '+cPhrase.replace('.', fieldCode)+' '+fieldCode
+                else:
+                  iVaVar.VarSource = fieldCodeTag
                 iVaVar.VarType = "s"
                 #''' 
-                pvrec = (varname, fieldCodeTag, 's')
+                pvrec = (varname, cPhrase+' '+fieldCode if cPhrase else fieldCodeTag, 's')
                 prevVars.append(pvrec)
           if fieldCodeTag<>'':
             rumusolah = rumusolah.replace('$%s' % varname, fieldCodeTag)
@@ -605,14 +641,20 @@ def LoadStructure(config, parameter, returns):
                     for rele in varref:
                       fieldCode = rele.text
                       fieldCodeTag = fieldCode.split(':')[-1]
-                      msgotext = msgtext.replace('''{$%s/name()}''' % str(varname),fieldCodeTag)
+                      if 'name()' in msgtext and str(varname) in msgtext:
+                        msgownerblock = '{'+msgtext.split('{')[-1].split('}')[0]+'}'
+                        msgownerblock = msgownerblock.replace(str(varname),'%s')
+                        msgotext = msgtext.replace(msgownerblock % str(varname),fieldCodeTag)
+                        iVa.Message = msgotext
+                      else:
+                        msgotext = msgtext
+                        iVa.Message = msgotext
                       #'''
                       iVaVar = helper.CreatePObject('DTSFormulaVars')
                       iVaVar.DTSFormulaId = iVa.DTSFormulaId
                       iVaVar.VarName = varname
                       #'''
                       #'''
-                      iVa.Message = msgotext
                       iVaVar.VarSource = fieldCodeTag
                       iVaVar.VarType = "m"
                       #''' 
@@ -654,7 +696,10 @@ def LoadStructure(config, parameter, returns):
               iVaVar.VarSource = lookup
               iVaVar.VarType = "l"
               #'''
-          exectype = "i"
+          if '@id' in msgtext:
+            exectype = "r"
+          else:
+            exectype = "i"
           if fDebug:
             app.ConWriteln("     {0}".format(rumusolah))
             app.ConWriteln("    msg : {0}".format(msgtext))
