@@ -173,14 +173,14 @@ object:rtf::Form<
           Left=8
           Width=250
           Height=21
-          Enabled=false
           ControlCaption='Komponen'
           FieldName='LKOMPONEN.reference_desc'
           LookupField='LKOMPONEN.reference_code'
-          DisplayLookupField=false
+          DisplayLookupField=true
           OnExit='refExit'
           DisplayLookupColor=-16777192
           DisplayLookupWidth=50
+          DirectInput=true
           ButtonWidth=1
           ManualInputCheck=true
         >, *object:rtf::DBEdit<

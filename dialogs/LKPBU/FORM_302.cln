@@ -61,9 +61,9 @@ object:rtf::Form<
           Name='gcDataATM'
           InputStyle=cisNormal
           EnumeratedValues=''
-          FieldName='Data ATM'
+          FieldName='DataATM'
           DisplayFormat=''
-          TitleCaption='Keterangan'
+          TitleCaption='Data ATM'
           Width=80
         >, object:rtf::GridColumn<
           Name='gcDataATMDebit'
