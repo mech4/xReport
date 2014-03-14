@@ -38,7 +38,7 @@ class fFormEditor:
   def LoadFieldStructure(self):
     uStatus = self.uipDetail
     ffLoadStatus = uStatus.fieldLoaded
-    if ffLoadStatus > 0:
+    if ffLoadStatus > 0 and not self.pDetail_cb1.Checked:
       return 1
     app = self.FormObject.ClientApplication
     FObj = self.FormObject
@@ -48,8 +48,8 @@ class fFormEditor:
     oldsize = uForm.oldDataSize
     newsize = uForm.DataSize
     tempchange = 0
-    if oldmap not in (None, '') and oldmap!=newmap:
-      tempchange = 1      
+    #if oldmap not in (None, '') and oldmap!=newmap:
+    #  tempchange = 1      
     #if oldsize not in (None, '') and oldsize!=newsize:
     #  tempchange = 1      
     if self.pDetail_cb1.Checked:
@@ -80,6 +80,7 @@ class fFormEditor:
     uForm.Edit()
     uForm.SetFieldValue('tempLoc', tempLoc)
     uForm.Post()
+    self.pDetail_cb1.Checked = False
 
   def IsEmptyOnChange(self, sender):
     # procedure(sender: TrtfDBComboBox)

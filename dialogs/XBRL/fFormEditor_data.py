@@ -69,6 +69,7 @@ def LoadStructure(config, parameter, returns):
     DTS = config.CreateSQL(s).RawResult
     def recurse(meta, lv=0, valuableOnly=True, saveToDB=False, helper=None, parent=None, formId=0, app=None, debugMode=False):
         output = []
+        nillable = 'T'
         if len(meta.childrens) == 0:
             output.append((lv, meta.name, meta.QN, meta.desc, meta.datatype, meta.enumName))
             if debugMode:
@@ -83,6 +84,9 @@ def LoadStructure(config, parameter, returns):
               inputMeta.MetaDesc = meta.desc
               inputMeta.MetaEnum = meta.enumName
               inputMeta.MetaParent = parent
+              if meta.nillable == 'False':
+                nillable = 'F'
+              inputMeta.Nillable = nillable
             return output
         else:
             if ((not valuableOnly) or (meta.hasValue)):# and (meta.datatype != 'Table'):
@@ -103,6 +107,9 @@ def LoadStructure(config, parameter, returns):
                 inputMeta.MetaDesc = meta.desc
                 inputMeta.MetaEnum = meta.enumName
                 inputMeta.MetaParent = parent
+                if meta.nillable == 'False':
+                  nillable = 'F'
+                inputMeta.Nillable = nillable
                 parent = inputMeta.DTSMetaId
             lv+=1
             for order, child in sorted(meta.childrens):
@@ -138,7 +145,6 @@ def LoadStructure(config, parameter, returns):
       s = "update dts set templatelocation = '{0}' where dtsid={1}".format(xlsloc, str(DTS.dtsid))
       config.ExecSQL(s)
     iForm = xutil.xbrlSchema(iFile.fileName, iFile.folder)
-    app.ConWriteln('Reading meta structure from {0}'.format(DTS.dtsformcode))
     #type check intercept
     if tempChange==1:
       s = '''
@@ -153,6 +159,9 @@ def LoadStructure(config, parameter, returns):
         delete from dtsformula where dtsformid=%s
       ''' % str(formId)
       config.ExecSQL(s)
+      app.ConWriteln('Recreate meta structure of {0}'.format(DTS.dtsformcode))
+    else:
+      app.ConWriteln('Reading meta structure of {0}'.format(DTS.dtsformcode))
     #--
     #for enum set default=True
     #then process captured enum
@@ -162,7 +171,10 @@ def LoadStructure(config, parameter, returns):
     ''' % str(formId)
     formMeta = config.CreateSQL(s).RawResult
     if formMeta.Eof:
-      app.ConWriteln('Meta not exist in database, reading from file.')
+      if tempChange==1:
+        app.ConWriteln('Reading from file.')
+      else:
+        app.ConWriteln('Meta not exist in database, reading from file.')
       starttime = mlu.Now()
       iForm.getMetaStructure()
       proctime = mlu.DecodeTime(mlu.Now()-starttime)
@@ -214,18 +226,6 @@ def LoadStructure(config, parameter, returns):
         rec.lv = ele[0]
         rec.kode = ele[1]
         rec.desc = ele[3]
-        # save meta to DB join upon calling
-        ''' 
-      for ele in metaForDB:
-        inputMeta = helper.CreatePObject('DTSMeta')
-        inputMeta.DTSFormId = formId
-        inputMeta.MetaName = ele[1]
-        inputMeta.MetaLevel = ele[0]
-        inputMeta.MetaQName = ele[2]
-        inputMeta.MetaType = ele[4]
-        inputMeta.MetaDesc = ele[3]
-        inputMeta.MetaEnum = ele[5]
-      '''
       app.ConWriteln('Saving enum found to database.')
       for enumName in rf.enum.keys():
         s = '''
@@ -726,7 +726,8 @@ def LoadStructure(config, parameter, returns):
     status.tempLoc = xlsLocation.replace('.xlsx','.txt')
     config.Commit()
   except:
-    app.ConRead(' ')
+    if fDebug:
+      app.ConRead(' ')
     config.Rollback()
     status.Is_Err = str(sys.exc_info()[1])
 

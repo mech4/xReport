@@ -10171,6 +10171,12 @@ object:ODL<
           MemberName='MetaParent'
           PhysicalName='METAPARENT'
           DataType=$TYPEDECLS['INTEGER']
+        >, object:FieldMember<
+          MemberName='Nillable'
+          PhysicalName='NILLABLE'
+          DataType=$TYPEDECLS['VARCHAR']
+          DataLength=1
+          Enumerator=$TYPEDECLS['FTBoolean']
         >
       }
       ClassID='{CE5C8ADF-1AF0-4BCC-B8A7-0FD8D89E945F}'
@@ -10352,7 +10358,7 @@ object:ODL<
           MemberName='Message'
           PhysicalName='MESSAGE'
           DataType=$TYPEDECLS['VARCHAR']
-          DataLength=500
+          DataLength=800
         >, object:FieldMember<
           MemberName='FormulaType'
           PhysicalName='FORMULATYPE'

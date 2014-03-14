@@ -9,6 +9,7 @@ import datetime
 DEBUG_MODE = False
 SIMPLE_DEBUG = False
 inapp = None
+DBGFRMIDS = ('',)
 
 def OpenReport(config, parameter, returns):
   # config: ISysConfig object
@@ -599,7 +600,7 @@ def GenReport(config, parameter, returns):
       if app:
         app.ConWriteln('Variable not fully resolved : ')
         app.ConWriteln('Formula : {0}\r\nVarlist : {1}'.format(frm, str(varlist)))
-      if SIMPLE_DEBUG:
+      if SIMPLE_DEBUG and inapp:
         inapp.ConWriteln('Variable not fully resolved : ')
         inapp.ConWriteln('Formula : {0}\r\nVarlist : {1}'.format(frm, str(varlist)))
       return 0
@@ -614,7 +615,7 @@ def GenReport(config, parameter, returns):
         return 2
       if app:
         app.ConWriteln('Test not passed : %s' % frm)
-      if SIMPLE_DEBUG:
+      if SIMPLE_DEBUG and inapp:
         inapp.ConWriteln('Test not passed : %s' % frm)
       return 1
   #-- 
@@ -701,6 +702,7 @@ def GenReport(config, parameter, returns):
       #ga jd create valueContainer, diganti realtime sum
       if app:
         app.ConWriteln('Tidy Condition : %s' % tidyCondition)
+        app.ConWriteln('cFields : %s' % str(cFields))
       for row in rows:
         testCondition = tidyCondition
         for look in cFields:
@@ -731,6 +733,7 @@ def GenReport(config, parameter, returns):
         if app:
           app.ConWriteln('Test Condition : %s' % testCondition)
           app.ConWriteln('Result : %s' % str(testPassed))
+          app.ConRead(' ')
         if testPassed:
           getvalue = row.seek(sum_field, category='tag', exact=True, fromRoot=False)
           if len(getvalue)>0:
@@ -841,6 +844,8 @@ def GenReport(config, parameter, returns):
     formMeta = config.CreateSQL(s).RawResult
     metaPool = {}
     orphan = []
+    nillchecker = {}
+    enumchecker = {}
     if not formMeta.Eof:
       #construct meta into pool
       while not formMeta.Eof:
@@ -849,10 +854,17 @@ def GenReport(config, parameter, returns):
         hasValue = True
         if formMeta.metatype == 'Empty':
           hasValue = False
+        nillable = True
+        if formMeta.nillable in ('F','f'):
+          nillable = False
+        nillchecker[formMeta.metaname] = nillable
+        if formMeta.metaenum not in (None,'','None',0):
+          enumchecker[formMeta.metaname] = formMeta.metaenum
         newMeta.define(
           datatype=formMeta.metatype,
           description=formMeta.metadesc,
           enum=formMeta.metaenum or None,
+          nillable=nillable,
           hasValue=hasValue 
         )
         formMeta.Next()
@@ -874,6 +886,23 @@ def GenReport(config, parameter, returns):
       else:
         metaRoot = orphan[0]
       sForm.metaStructure = metaRoot
+    #Prepare enum used
+    enumList = {}
+    s = '''
+      select * from dtsenum where dtsid={0} and dtsenumname in (
+        select distinct(metaenum) from dtsmeta where dtsformid={1} and metaenum is not null
+      )
+    '''.format(str(DTSId), str(DTSFormId))
+    enumUsed = config.CreateSQL(s).RawResult
+    while not enumUsed.Eof:
+      enumName = enumUsed.dtsenumname
+      enumCode = enumUsed.dtsenumvalue
+      enumDesc = enumUsed.dtsenumdesc
+      if enumName not in enumList.keys():
+        enumList[enumName] = {}
+      enumList[enumName][enumCode] = enumDesc
+      enumUsed.Next()
+    #--
     sForm.mappingType = formType
     xlsPath = xsdPath.replace(dtsLocation, ipData + '\\' + tmpLocation.split('\\')[-1])
     sFileName = xlsPath.replace('.xsd','.xlsx')
@@ -978,6 +1007,7 @@ def GenReport(config, parameter, returns):
         for elementRow in xlsElement:
           thisValue = ows.cell(row=elementRow[0], column=xlsStartCol).value
           if thisValue in (None,'',"None"):
+            #check nillable and enum skipped for flat
             thisValue = '0'
           if str(thisValue).replace('.','').replace('e+','').isdigit():
             if thisValue == int(thisValue):
@@ -1018,7 +1048,7 @@ def GenReport(config, parameter, returns):
               if vflist[vf][0].split('=')[0].count('$') == 1:
                 if DEBUG_MODE:
                   app.ConWriteln('FID : %s' % str(vf))
-                vares = vaResult(iForm.rootElement, vflist[vf], formType, app if DEBUG_MODE else None)
+                vares = vaResult(iForm.rootElement, vflist[vf], formType, app if DEBUG_MODE or str(vf) in DBGFRMIDS else None)
                 if vares<1:
                   if SIMPLE_DEBUG:
                     app.ConWriteln('FID : %s [1]' % str(vf))
@@ -1051,7 +1081,7 @@ def GenReport(config, parameter, returns):
         for cf in cflist.keys():
           if DEBUG_MODE:
             app.ConWriteln('FID : %s' % str(cf))
-          calcres = calcResult(iForm.rootElement, cflist[cf], formType, app if DEBUG_MODE else None)
+          calcres = calcResult(iForm.rootElement, cflist[cf], formType, app if DEBUG_MODE or str(cf) in DBGFRMIDS else None)
           if calcres<1:
             if SIMPLE_DEBUG:
               app.ConWriteln('FID : %s [1]' % str(cf))
@@ -1065,7 +1095,7 @@ def GenReport(config, parameter, returns):
           #run all
           if DEBUG_MODE:
             app.ConWriteln('FID : %s' % str(vf))
-          vares = vaCheck(iForm.rootElement, vflist[vf], formType, app if DEBUG_MODE else None)
+          vares = vaCheck(iForm.rootElement, vflist[vf], formType, app if DEBUG_MODE or str(vf) in DBGFRMIDS else None)
           if vares<1:
             if SIMPLE_DEBUG:
               app.ConWriteln('FID : %s [1]' % str(vf))
@@ -1107,7 +1137,7 @@ def GenReport(config, parameter, returns):
         for ef in eflist.keys():
           if DEBUG_MODE:
             app.ConWriteln('FID : %s' % str(ef))
-          eares = eaCheck(iForm.rootElement, eflist[ef], formType, app if DEBUG_MODE else None)
+          eares = eaCheck(iForm.rootElement, eflist[ef], formType, app if DEBUG_MODE or str(ef) in DBGFRMIDS else None)
           if eares<1:
             if SIMPLE_DEBUG:
               app.ConWriteln('FID : %s [1]' % str(ef))
@@ -1124,6 +1154,8 @@ def GenReport(config, parameter, returns):
         contentNum = 1
         xrow = xlsStartRow 
         valueTester = ows.cell(row=xrow, column=0).value
+        if SIMPLE_DEBUG:
+          inapp = None
         #######READ FORMULA FOR ROW HERE !!!!!!!!!##############
         # read va formula (r)
         s = '''
@@ -1196,7 +1228,25 @@ def GenReport(config, parameter, returns):
           contentRow = { contentId : {}}
           for elementCol in xlsElement:
             thisValue = ows.cell(row=xrow, column=elementCol[0]).value
+            #enum validation
+            if elementCol[1] in enumchecker.keys() and not nillchecker[elementCol[1]]:
+              enumName = enumchecker[elementCol[1]]  
+              if str(thisValue) not in enumList[enumName].keys():
+                erm = '(Record ID : {0}) Field {1} harus berisi kode {2}.'.format(str(contentNum),elementCol[1],enumName) 
+                #raise Exception, erm # raise error message
+                accerr += '{0}. '.format(str(aercount).rjust(5))
+                accerr += erm
+                accerr += '\r\n' 
+                aercount += 1
             if thisValue in (None,'',"None"):
+              #nillable validation
+              if not nillchecker[elementCol[1]]:
+                erm = '(Record ID : {0}) Field {1} tidak boleh kosong.'.format(str(contentNum),elementCol[1]) 
+                #raise Exception, erm # raise error message
+                accerr += '{0}. '.format(str(aercount).rjust(5))
+                accerr += erm
+                accerr += '\r\n' 
+                aercount += 1
               if elementCol[1][0] == 'm':
                 thisValue = '0'
               else:
@@ -1225,7 +1275,7 @@ def GenReport(config, parameter, returns):
                 if vflist[vf][0].split('=')[0].count('$') == 1:
                   if DEBUG_MODE:
                     app.ConWriteln('FID : %s' % str(vf))
-                  vares = vaResult(testRoot, vflist[vf], formType, app if DEBUG_MODE else None)
+                  vares = vaResult(testRoot, vflist[vf], formType, app if DEBUG_MODE or str(vf) in DBGFRMIDS else None)
                   if vares<1:
                     if SIMPLE_DEBUG:
                       app.ConWriteln('FID : %s [1]' % str(vf))
@@ -1236,7 +1286,7 @@ def GenReport(config, parameter, returns):
           for cf in cflist.keys():
             if DEBUG_MODE:
               app.ConWriteln('FID : %s' % str(cf))
-            calcres = calcResult(testRoot, cflist[cf], formType, app if DEBUG_MODE else None)
+            calcres = calcResult(testRoot, cflist[cf], formType, app if DEBUG_MODE or str(cf) in DBGFRMIDS else None)
             if calcres<1:
               if SIMPLE_DEBUG:
                 app.ConWriteln('FID : %s [1]' % str(cf))
@@ -1248,10 +1298,10 @@ def GenReport(config, parameter, returns):
             #run all
             if DEBUG_MODE:
               app.ConWriteln('FID : %s' % str(vf))
-            vares = vaCheck(testRoot, vflist[vf], formType, app if DEBUG_MODE else None)
+            vares = vaCheck(testRoot, vflist[vf], formType, app if DEBUG_MODE or str(vf) in DBGFRMIDS else None)
             if vares<1:
-              if SIMPLE_DEBUG:
-                app.ConWriteln('FID : %s [1]' % str(vf))
+              #if SIMPLE_DEBUG:
+              #  app.ConWriteln('FID : %s [1]' % str(vf))
               #if DEBUG_MODE:
               #  app.ConWriteln(str(vflist[vf]))
               #app.ConWriteln('IV skipped (dev)')
@@ -1270,7 +1320,7 @@ def GenReport(config, parameter, returns):
           for ef in eflist.keys():
             if DEBUG_MODE:
               app.ConWriteln('FID : %s' % str(ef))
-            eares = eaCheck(testRoot, eflist[ef], formType, app if DEBUG_MODE else None)
+            eares = eaCheck(testRoot, eflist[ef], formType, app if DEBUG_MODE or str(ef) in DBGFRMIDS else None)
             if eares<1:
               if SIMPLE_DEBUG:
                 app.ConWriteln('FID : %s [1]' % str(ef))
@@ -1307,6 +1357,8 @@ def GenReport(config, parameter, returns):
             varlist[v.split('=',1)[0]] = v.split('=',1)[1]
           res.Next()
         # exec pre-va formula
+        if SIMPLE_DEBUG:
+          inapp = app
         for vf in vflist.keys():
           #trap assignment
           #app.ConWriteln(str(vflist[vf]))
@@ -1315,7 +1367,7 @@ def GenReport(config, parameter, returns):
               if vflist[vf][0].split('=')[0].count('$') == 1:
                 if DEBUG_MODE:
                   app.ConWriteln('FID : %s' % str(vf))
-                vares = vaResult(iForm.rootElement, vflist[vf], formType, app if DEBUG_MODE else None)
+                vares = vaResult(iForm.rootElement, vflist[vf], formType, app if DEBUG_MODE or str(vf) in DBGFRMIDS else None)
                 if vares<1:
                   if SIMPLE_DEBUG:
                     app.ConWriteln('FID : %s [1]' % str(vf))
@@ -1348,7 +1400,7 @@ def GenReport(config, parameter, returns):
         for cf in cflist.keys():
           if DEBUG_MODE:
             app.ConWriteln('FID : %s' % str(cf))
-          calcres = calcResult(iForm.rootElement, cflist[cf], formType, app if DEBUG_MODE else None)
+          calcres = calcResult(iForm.rootElement, cflist[cf], formType, app if DEBUG_MODE or str(cf) in DBGFRMIDS else None)
           if calcres<1:
             if SIMPLE_DEBUG:
               app.ConWriteln('FID : %s [1]' % str(cf))
@@ -1364,7 +1416,7 @@ def GenReport(config, parameter, returns):
           #  app.ConWriteln(str(vflist))
           if DEBUG_MODE:
             app.ConWriteln('FID : %s' % str(vf))
-          vares = vaCheck(iForm.rootElement, vflist[vf], formType, app if DEBUG_MODE else None) 
+          vares = vaCheck(iForm.rootElement, vflist[vf], formType, app if DEBUG_MODE or str(vf) in DBGFRMIDS else None) 
           if vares<1:
             if SIMPLE_DEBUG:
               app.ConWriteln('FID : %s [1]' % str(vf))
@@ -1403,7 +1455,7 @@ def GenReport(config, parameter, returns):
         for ef in eflist.keys():
           if DEBUG_MODE:
             app.ConWriteln('FID : %s' % str(ef))
-          eares = eaCheck(iForm.rootElement, eflist[ef], formType, app if DEBUG_MODE else None)
+          eares = eaCheck(iForm.rootElement, eflist[ef], formType, app if DEBUG_MODE or str(ef) in DBGFRMIDS else None)
           if eares<1:
             if SIMPLE_DEBUG:
               app.ConWriteln('FID : %s [1]' % str(ef))
@@ -1515,7 +1567,25 @@ def GenReport(config, parameter, returns):
             for elementCol in xlsElement:
               #app.ConWriteln("{0} ; {1}".format(elementCol[1],elementCol[2]))
               thisValue = ows.cell(row=xrow, column=elementCol[0]).value
+              #enum validation
+              if elementCol[1] in enumchecker.keys() and not nillchecker[elementCol[1]]:
+                enumName = enumchecker[elementCol[1]]  
+                if str(thisValue) not in enumList[enumName].keys():
+                  erm = '(Record ID : {0}) Field {1} harus berisi kode {2}.'.format(str(contentNum-1),elementCol[1],enumName) 
+                  #raise Exception, erm # raise error message
+                  accerr += '{0}. '.format(str(aercount).rjust(5))
+                  accerr += erm
+                  accerr += '\r\n' 
+                  aercount += 1
               if thisValue in (None,'',"None"):
+                #nillable validation
+                if not nillchecker[elementCol[1]]:
+                  erm = '(Record ID : {0}) Field {1} tidak boleh kosong.'.format(str(contentNum-1),elementCol[1]) 
+                  #raise Exception, erm # raise error message
+                  accerr += '{0}. '.format(str(aercount).rjust(5))
+                  accerr += erm
+                  accerr += '\r\n' 
+                  aercount += 1
                 if elementCol[1][0] == 'm':
                   thisValue = '0'
                 else:
@@ -1550,7 +1620,25 @@ def GenReport(config, parameter, returns):
           else:
             for elementCol in xlsElement:
               thisValue = ows.cell(row=xrow, column=elementCol[0]).value
+              #enum validation
+              if elementCol[1] in enumchecker.keys() and not nillchecker[elementCol[1]]:
+                enumName = enumchecker[elementCol[1]]  
+                if str(thisValue) not in enumList[enumName].keys():
+                  erm = '(Record ID : {0}) Field {1} harus berisi kode {2}.'.format(str(contentNum-1),elementCol[1],enumName) 
+                  #raise Exception, erm # raise error message
+                  accerr += '{0}. '.format(str(aercount).rjust(5))
+                  accerr += erm
+                  accerr += '\r\n' 
+                  aercount += 1
               if thisValue in (None,'',"None"):
+                #nillable validation
+                if not nillchecker[elementCol[1]]:
+                  erm = '(Record ID : {0}) Field {1} tidak boleh kosong.'.format(str(contentNum-1),elementCol[1]) 
+                  #raise Exception, erm # raise error message
+                  accerr += '{0}. '.format(str(aercount).rjust(5))
+                  accerr += erm
+                  accerr += '\r\n' 
+                  aercount += 1
                 if elementCol[1][0] == 'm':
                   thisValue = '0'
                 else:
@@ -1593,7 +1681,7 @@ def GenReport(config, parameter, returns):
                   if vflist[vf][0].split('=')[0].count('$') == 1:
                     if DEBUG_MODE:
                       app.ConWriteln('FID : %s' % str(vf))
-                    vares = vaResult(testRoot, vflist[vf], formType, app if DEBUG_MODE else None)
+                    vares = vaResult(testRoot, vflist[vf], formType, app if DEBUG_MODE or str(vf) in DBGFRMIDS else None)
                     if vares<1:
                       if SIMPLE_DEBUG:
                         app.ConWriteln('FID : %s [1]' % str(vf))
@@ -1604,7 +1692,7 @@ def GenReport(config, parameter, returns):
             for cf in cflist.keys():
               if DEBUG_MODE:
                 app.ConWriteln('FID : %s' % str(cf))
-              calcres = calcResult(testRoot, cflist[cf], formType, app if DEBUG_MODE else None)
+              calcres = calcResult(testRoot, cflist[cf], formType, app if DEBUG_MODE or str(cf) in DBGFRMIDS else None)
               if calcres<1:
                 if SIMPLE_DEBUG:
                   app.ConWriteln('FID : %s [1]' % str(cf))
@@ -1616,7 +1704,7 @@ def GenReport(config, parameter, returns):
               #run all
               if DEBUG_MODE:
                 app.ConWriteln('FID : %s' % str(vf))
-              vares = vaCheck(testRoot, vflist[vf], formType, app if DEBUG_MODE else None)
+              vares = vaCheck(testRoot, vflist[vf], formType, app if DEBUG_MODE or str(vf) in DBGFRMIDS else None)
               if vares<1:
                 if SIMPLE_DEBUG:
                   app.ConWriteln('FID : %s [1]' % str(vf))
@@ -1635,7 +1723,7 @@ def GenReport(config, parameter, returns):
             for ef in eflist.keys():
               if DEBUG_MODE:
                 app.ConWriteln('FID : %s' % str(ef))
-              eares = eaCheck(testRoot, eflist[ef], formType, app if DEBUG_MODE else None)
+              eares = eaCheck(testRoot, eflist[ef], formType, app if DEBUG_MODE or str(ef) in DBGFRMIDS else None)
               if eares<1:
                 if SIMPLE_DEBUG:
                   app.ConWriteln('FID : %s [1]' % str(ef))
@@ -1675,7 +1763,7 @@ def GenReport(config, parameter, returns):
               if vflist[vf][0].split('=')[0].count('$') == 1:
                 if DEBUG_MODE:
                   app.ConWriteln('FID : %s' % str(vf))
-                vares = vaResult(iForm.rootElement, vflist[vf], formType, app if DEBUG_MODE else None)
+                vares = vaResult(iForm.rootElement, vflist[vf], formType, app if DEBUG_MODE or str(vf) in DBGFRMIDS else None)
                 if vares<1:
                   if SIMPLE_DEBUG:
                     app.ConWriteln('FID : %s [1]' % str(vf))
@@ -1708,7 +1796,7 @@ def GenReport(config, parameter, returns):
         for cf in cflist.keys():
           if DEBUG_MODE:
             app.ConWriteln('FID : %s' % str(cf))
-          calcres = calcResult(iForm.rootElement, cflist[cf], formType, app if DEBUG_MODE else None)
+          calcres = calcResult(iForm.rootElement, cflist[cf], formType, app if DEBUG_MODE or str(cf) in DBGFRMIDS else None)
           if calcres<1:
             if SIMPLE_DEBUG:
               app.ConWriteln('FID : %s [1]' % str(cf))
@@ -1722,7 +1810,7 @@ def GenReport(config, parameter, returns):
           #run all
           if DEBUG_MODE:
             app.ConWriteln('FID : %s' % str(vf))
-          vares = vaCheck(iForm.rootElement, vflist[vf], formType, app if DEBUG_MODE else None)
+          vares = vaCheck(iForm.rootElement, vflist[vf], formType, app if DEBUG_MODE or str(vf) in DBGFRMIDS else None)
           #vares = 3
           if vares<1:
             if SIMPLE_DEBUG:
@@ -1762,7 +1850,7 @@ def GenReport(config, parameter, returns):
         for ef in eflist.keys():
           if DEBUG_MODE:
             app.ConWriteln('FID : %s' % str(ef))
-          eares = eaCheck(iForm.rootElement, eflist[ef], formType, app if DEBUG_MODE else None)
+          eares = eaCheck(iForm.rootElement, eflist[ef], formType, app if DEBUG_MODE or str(ef) in DBGFRMIDS else None)
           if eares<1:
             if SIMPLE_DEBUG:
               app.ConWriteln('FID : %s [1]' % str(ef))
@@ -1801,7 +1889,7 @@ def GenReport(config, parameter, returns):
     config.Commit()
   except:
     app.ConWriteln('Error : %s' % str(sys.exc_info()[1]))
-    if DEBUG_MODE or SIMPLE_DEBUG:
+    if DEBUG_MODE or SIMPLE_DEBUG or '' not in DBGFRMIDS:
       app.ConWriteln('Traceback Log')
       app.ConWriteln('-------------')
       _errmsg = traceback.format_exc().splitlines()
